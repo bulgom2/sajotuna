@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* CSS */
+
+    .container {
+      display: flex;
+      height: 96vh;
+    }
+
+    .menu-box {
+      width: 150px;
+      height: 92.5vh;
+      background-color: #223E4F;
+      padding: 20px;
+      border-radius: 10px;
+      margin-left: 10px;
+    }
+    
+    .menu-item {           /* 메뉴 */
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-left: -8px;
+    }
+
+    
+
+    .menu-main{             /* TUNA MES */
+      margin-bottom: 50px;
+      margin-left: -8px;
+    }
+    
+    .menu-item a {          /* 메뉴 */
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .menu-main a{           /* TUNA MES */
+      text-shadow: -10px 0px 4px white; 
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .menu-item a:hover{     /* 마우스 올리면 색상 변경 */
+      color:#A4A4A4;
+    }
+
+    .subpage1{               /* 첫번째 박스 (수정버튼)*/
+      width: 103vh;
+      height: 3vh;
+      margin: 10px;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #D9D9D9;
+    }
+
+
+    /* 기준정보  */
+    .menu-item1 {           /* 메뉴 */
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-left: -8px;
+    }
+
+    .menu-item1 a {          /* 메뉴 */
+      text-decoration: none;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .menu-item1 a:hover{     /* 마우스 올리면 색상 변경 */
+      color:#A4A4A4;
+    }
+
+
+    /* 우측 정보 페이지 */
+    .subpage1-1{
+      width: 50vh;
+      height: 4vh;
+      background-color: white;
+      font-weight: bold;
+    }
+
+    #fix{
+      border-radius: 7px;
+      background-color: #223E4F;
+      color: white;
+      font-weight: bold;
+      box-shadow: none;
+      position: absolute;
+      right: 200px;
+    }
+
+
+    
+
+    .subpage2{                        /* 두번째 박스 */
+      width: 103vh;
+      height: 50vh;
+      margin: 10px;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #D9D9D9;
+    }
+
+    .subpage3{                        /* 세번째 박스 */
+      width: 103vh;
+      height: 25vh;
+      margin: 10px;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #D9D9D9;
+    }
+
+
+
+    /* 기준정보 하위메뉴 */
+
+    .menu-item1 ul{
+      list-style: none;
+    }
+
+    .menu-item1 ul li{
+      display: none;
+      margin-left: -15px;
+      position: relative;
+    }
+
+    #item1{
+      font-size: 14px;
+    }
+
+    .menu-item1:hover{
+      background-color: #0B2535;
+      border-radius: 7px;
+    }
+
+    .menu-item1:hover ul li {
+     display: block;                  /* 마우스를 올리면 메뉴 항목 보이기 */
+    }
+
+    
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+  <div class="menu-box">
+    <div class="menu-main">
+      <a href="#">T U N A M E S</a>
+    </div>
+    <div class="menu-item">
+      <a href="#">수주관리</a>
+    </div>
+    <div class="menu-item">
+      <a href="#">발주관리</a>
+    </div>
+    <div class="menu-item">
+      <a href="#">원자재관리</a>
+    </div>
+    <div class="menu-item">
+      <a href="#">재고관리</a>
+    </div>
+    <div class="menu-item">
+      <a href="#">이력관리</a>
+    </div>
+    <div class="menu-item">
+      <a href="#">출하관리</a>
+    </div>
+    <div class="menu-item1">
+      <a href="#">기준정보</a>
+        <ul>
+          <li><a id="item1">설비정보</a></li>
+          <li><a id="item1">공정정보</a></li>
+          <li><a id="item1">BOM</a></li>
+          <li><a id="item1">거래처정보</a></li>
+        </ul>
+    </div>
+  </div>
+  <div class="content">
+    <div class="subpage1">
+      <div class="subpage1-1">설비정보
+        <button id="fix" a>수정</button>
+      </div>
+    </div>
+    <div class="subpage2">
+      
+    </div>
+    <div class="subpage3">
+      
+    </div>
+  </div>
+</div>
+</body>
+</html>
