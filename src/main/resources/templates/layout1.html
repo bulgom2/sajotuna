@@ -1,20 +1,25 @@
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <link href="/static/css/MES.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="/static/css/layout1.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-  <div class="menu-box">
-    <div class="menu-main">
-      <a href="#">T U N A - M E S</a>
-    </div>
-    <div class="menu-list">
-      <ul class="menu-item">
+
+<div id="container">
+<!--  <div id="page-wrapper">-->
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+          <a href="#" style="font-size:50px; ">TUNA-MES</a>
+        </li>
         <li><a href="#">수주관리</a></li>
         <li><a href="#">발주관리</a></li>
         <li><a href="#">원자재관리</a></li>
@@ -23,7 +28,7 @@
         <li><a href="#">출하관리</a></li>
         <li class="menu-item1">
           <a href="#">기준정보</a>
-          <ul>
+          <ul class="menu-list">
             <li><a class="item1">설비정보</a></li>
             <li><a class="item1">공정정보</a></li>
             <li><a class="item1">BOM</a></li>
@@ -32,28 +37,23 @@
         </li>
       </ul>
     </div>
-  </div>
+    <!-- /사이드바 -->
 
-  <div class="content">
-    <div class="subpage1">
-      <div class="subpage1-1">설비정보
-        <button id="fix" a>수정</button>
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+      <div class="content-desc">
+        <label>하나도 안 간단함</label>
+
+        <h1>간단한 사이드바</h1>
+      </div>
+      <div class="content-2">
+
       </div>
     </div>
-    <div class="subpage2">
+    <!-- /본문 -->
+<!--  </div>-->
 
-    </div>
-    <div class="subpage3">
-
-    </div>
-  </div>
 </div>
-
 
 </body>
 </html>
-
-
-
-
-
