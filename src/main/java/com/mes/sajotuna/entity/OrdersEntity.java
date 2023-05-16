@@ -8,9 +8,9 @@ import javax.persistence.*;
 public class OrdersEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orders_id", nullable = false)
-    private String id;    // 수주번호
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "orders_id", nullable = false)
+//    private String id;    // 수주번호
 
     @Column(name = "orders_date", nullable = false)
     private String date;    // 수주일자
