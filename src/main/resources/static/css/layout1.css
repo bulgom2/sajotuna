@@ -24,6 +24,7 @@
 /*    border-radius: 16px;*/
 /*}*/
 
+/* 사이드바 틀 */
 #sidebar-wrapper {
     display: flex;
     position: fixed;
@@ -131,7 +132,7 @@
     margin: 10px 10px 16px 370px;
     border-radius: 16px;
     padding: 0;
-    border: 2px solid #A4A4A4;
+    border: 2px solid #A4A4A4;  /* 틀 확인용 */
 }
 
 /* 페이지 제목란 */
@@ -153,3 +154,34 @@
     margin-bottom: 10px;
     height: 200px;
 }
+
+/* 메인 영역 */
+.content-header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 42px;
+    border: 1px solid red;  /* 틀 확인용 */
+}
+
+
+/* 탭 제목 */
+.form-control {
+    position: relative;
+    width: 1088px;
+    height: 50px;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+/* 검색바 */
+.search-bar {
+    margin-right: 20px;
+}
+
+.btn:hover {
+    background-color: #223E4F;
+    color: white;
+}
+
