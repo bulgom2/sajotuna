@@ -44,7 +44,7 @@
     color:#A4A4A4;
 }
 
-.subpage1{               /* 첫번째 박스 (수정버튼)*/
+.subpage1{               /* 첫번째 박스 (검색버튼)*/
     width: 103vh;
     height: 3vh;
     margin: 10px;
@@ -80,20 +80,30 @@
     height: 4vh;
     background-color: white;
     font-weight: bold;
-}
-
-#fix{
-    border-radius: 7px;
-    background-color: #223E4F;
-    color: white;
-    font-weight: bold;
-    box-shadow: none;
-    position: absolute;
-    right: 200px;
-    height : 35px;
 
 }
 
+/* 제품 검색창 */
+#search{
+    position : absolute;
+    right : 80px;
+}
+
+#search_button{
+ width: 5vh;
+    height: 51px;
+    border : 1px solid;
+    border-radius: 6px;
+    padding : 10px 20px;
+}
+
+#search_text {
+ width: 15vh;
+    height: 51px;
+    border : 1px solid;
+    border-radius : 4px;
+
+}
 
 
 
