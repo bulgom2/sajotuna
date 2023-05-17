@@ -5,7 +5,7 @@ import javax.persistence.*;
 // BOM
 @Entity
 @Table(name = "bom")
-public class BomEntity {
+public class Bom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

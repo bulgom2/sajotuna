@@ -6,7 +6,7 @@ import java.time.LocalDate;
 // 발주관리
 @Entity
 @Table(name = "purchase")
-public class PurchaseEntity {
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
