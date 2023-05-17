@@ -74,8 +74,8 @@
                 </div>
             </div>
         </div>
-        <div class="content-2">
-            <div class="content2-1">
+        <div class="orders-content-2">
+            <div class="orders-content-2-1">
             <div class="orders_company">
                 <p class="orders_company">거래처</p>
                 <select name = "orders_company-list" id="orders_company-list">
@@ -96,11 +96,11 @@
 
             <div class="orders-btn">
                 <button id="confirmed">수주 확정</button>
-                <button id="register">수주 등록</button>
+                <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
             </div>
             </div>
 
-            <div class="content2-2">
+            <div class="orders-content-2-2">
                 <div class="orders_item">
                     <p class="orders_item">제품명</p>
                     <input type="text" id="orders_item">
@@ -127,31 +127,31 @@
             </div>
         </div>
 
-        <div class="content-3">
+        <div class="orders-content-3">
             <p class="orders-table">수주 내역</p>
-            <table>
+            <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>수주 번호</th>
-                    <th>수주 일자</th>
-                    <th>거래처</th>
-                    <th>제품명</th>
-                    <th>제품 코드</th>
-                    <th>수량</th>
-                    <th>예상 납품일</th>
-                    <th>진행 상태</th>
+                    <th style="border-left:none; border-right:none;">수주 번호</th>
+                    <th style="border-left:none; border-right:none;">수주 일자</th>
+                    <th style="border-left:none; border-right:none;">거래처</th>
+                    <th style="border-left:none; border-right:none;">제품명</th>
+                    <th style="border-left:none; border-right:none;">제품 코드</th>
+                    <th style="border-left:none; border-right:none;">수량</th>
+                    <th style="border-left:none; border-right:none;">예상 납품일</th>
+                    <th style="border-left:none; border-right:none;">진행 상태</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                    <td>Cell 3</td>
-                    <td>Cell 3</td>
-                    <td>Cell 3</td>
-                    <td>Cell 3</td>
-                    <td>Cell 3</td>
+                    <td style="border-left:none; border-right:none;">Cell 1</td>
+                    <td style="border-left:none; border-right:none;">Cell 2</td>
+                    <td style="border-left:none; border-right:none;">Cell 3</td>
+                    <td style="border-left:none; border-right:none;">Cell 3</td>
+                    <td style="border-left:none; border-right:none;">Cell 3</td>
+                    <td style="border-left:none; border-right:none;">Cell 3</td>
+                    <td style="border-left:none; border-right:none;">Cell 3</td>
+                    <td style="border-left:none; border-right:none;">Cell 3</td>
                 </tr>
                 <tr>
                     <td>Cell 4</td>
@@ -213,6 +213,31 @@
 
     </div>
     <!-- /본문 -->
+
+    <!-- 모달 -->
+    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">사진제목</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <img class="card-img-top rounded img-fluid" src="images/research/research-1.jpg">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <!--  </div>-->
 
 </div>

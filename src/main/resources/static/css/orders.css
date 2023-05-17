@@ -1,4 +1,4 @@
-.content-2 {
+.orders-content-2 {
     position: relative;
     display: flex;
     background-color: #fff;
@@ -10,7 +10,7 @@
     flex-direction: column;
 }
 
-.content2-1 {
+.orders-content-2-1 {
     width: 2180px;
     display: flex;
 
@@ -101,7 +101,7 @@
 
 
 /* content-2 아래 부분 */
-.content2-2 {
+.orders-content-2-2 {
     width: 100%;
     display: flex;
 }
@@ -158,7 +158,7 @@
 
 
 /* content-3 */
-.content-3{
+.orders-content-3 {
     margin-top : 100px;
     margin-left : 40px;
     margin-right : 35px;
@@ -174,12 +174,13 @@
 
 
 table {
-     border-collapse: collapse;
-     width: 100%;
+    border-collapse: collapse;
+    width: 100%;
  }
 
 th, td {
-    border: 1px solid black;
+    border-right: none;
+    border-left: none;
     padding: 8px;
     text-align: center;
     width: calc(100% / 8);
