@@ -1,0 +1,230 @@
+.content-2 {
+    position: relative;
+    display: flex;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    height: 200px;
+    justify-content: space-between;
+
+    flex-direction: column;
+}
+
+.content2-1 {
+    width: 2180px;
+    display: flex;
+
+    justify-content: space-between;
+}
+
+/* 수주 번호 */
+.orders_no{
+    height : 40px;
+    margin-left : 20px;
+    display : flex;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders-no{
+    height : 40px;
+    width: 200px;
+    margin-left : 10px;
+    font-size : 25px;
+}
+
+
+/* 수주 일자 */
+.orders_date{
+    display : flex;
+    height : 40px;
+    margin-left : 20px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_date{
+    height : 40px;
+    margin-left : 10px;
+}
+
+
+/* 거래처 */
+.orders_company{
+    margin-left : 20px;
+    height : 40px;
+    font-size : 25px;
+    font-weight : bold;
+    display : flex;
+}
+
+#orders_company{
+    margin-left : 10px;
+    height : 40px;
+    weight : 90px;
+    font-size : 25px;
+    margin-bottom : 10px;
+}
+
+
+
+/* 제품명 */
+.orders_item {
+    margin-left : 20px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
+}
+
+#orders_item {
+     height : 40px;
+     width: 200px;
+     margin-left : 10px;
+     font-size : 25px;
+
+}
+
+
+/* 제품 코드 */
+.orders_code{
+    display : flex;
+    height : 40px;
+    margin-left : 20px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_code{
+    height : 40px;
+    weight : 200px;
+    margin-left : 10px;
+    font-size : 25px;
+}
+
+
+
+/* 수주 확정,등록 버튼 */
+.orders-btn{
+    display : flex;
+    margin-left : 20px;
+    margin-right : 20px;
+    height : 40px;
+    justify-content: flex-end;
+}
+
+/* 수주 확정 버튼 */
+#confirmed{
+    margin-left : 10px;
+    height : 40px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    margin-right : 10px;
+    font-size : 23px;
+}
+
+/* 수주 등록 버튼 */
+#register{
+    margin-left : 10px;
+    margin-right : 20px;
+    height : 40px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    font-size : 23px;
+}
+
+
+
+/* content-2 아래 부분 */
+.content2-2 {
+    width: 100%;
+    display: flex;
+
+}
+
+/* 수량 */
+.orders_qtt{
+    height : 40px;
+    margin-left : 20px;
+    display : flex;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_qtt{
+    height : 40px;
+    width: 200px;
+    margin-left : 10px;
+    font-size : 25px;
+    text-align : center;
+}
+
+
+/* 예상 납품일 */
+.orders_shipdate{
+    margin-left : 87px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
+}
+
+#orders_shipdate{
+    height : 40px;
+    margin-left : 10px;
+}
+
+
+/* 진행 상태 */
+.orders_status {
+    display : flex;
+    height : 40px;
+    margin-left : 45px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_status {
+    height : 40px;
+    weight : 200px;
+    margin-left : 10px;
+    font-size : 25px;
+}
+
+
+/* content-3 */
+.content-3{
+    margin-top : 100px;
+    margin-left : 40px;
+    margin-right : 35px;
+    margin-bottom : 100px;
+    height : 750px;
+    overflow : auto;
+}
+
+.orders-table {
+    margin-left : 0px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
+}
+
+
+table {
+     border-collapse: collapse;
+     width: 100%;
+ }
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    width: calc(100% / 8);
+}
+
+th {
+    background-color: #f2f2f2;
+}

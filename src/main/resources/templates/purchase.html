@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" , name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <title> T U N A - M E S </title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
+    <!-- 모달창  -->
+    <script>
+$(document).ready(function() {
+    // 테이블 행 클릭 시 팝업 창에 정보 출력
+    $('table tr').click(function() {
+        var company = $(this).find('td:nth-child(3)').text();
+        var productName = $(this).find('td:nth-child(4)').text();
+        var productCode = $(this).find('td:nth-child(5)').text();
+        var quantity = $(this).find('td:nth-child(6)').text();
+        var deliveryDate = $(this).find('td:nth-child(7)').text();
+
+        // 팝업 창에 정보 채우기
+        $('#popup-company').text(company);
+        $('#popup-product-name').text(productName);
+        $('#popup-product-code').text(productCode);
+        $('#popup-quantity').text(quantity);
+        $('#popup-delivery-date').text(deliveryDate);
+
+        // 팝업 창 열기
+        $('#popupModal').modal('show');
+    });
+
+    // 팝업 창 닫기 버튼 클릭 이벤트 처리
+    $('#popup-close-btn').click(function() {
+        $('#popupModal').modal('hide');
+    });
+});
+</script>
+
+    <link rel="stylesheet" href="/static/css/layout1.css">
+    <link rel="stylesheet" href="/static/css/purchase.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+    <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+
+</head>
+<body>
+
+<div id="container">
+    <!--  <div id="page-wrapper">-->
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#" style="font-size:50px; ">TUNA-MES</a>
+            </li>
+            <li><a href="orders.html">수주관리</a></li>
+            <li><a href="purchase.html">발주관리</a></li>
+            <li><a href="wip.html">재공재고관리</a></li>
+            <li><a href="stock.html">재고관리</a></li>
+            <li><a href="record.html">이력관리</a></li>
+            <li><a href="shipment.html">출하관리</a></li>
+            <li class="menu-item1">
+                <a href="#">기준정보</a>
+                <ul class="menu-list">
+                    <li><a class="item1" href="facility.html">설비정보</a></li>
+                    <li><a class="item1" href="process.html">공정정보</a></li>
+                    <li><a class="item1" href="BOM.html">BOM</a></li>
+                    <li><a class="item1" href="company.html">거래처정보</a></li>
+                    <li><a class="item1" href="product.html">품목정보</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /사이드바 -->
+
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div class="content-desc">
+            <div class="content-header">
+                <input class="form-control" type="text" value="발주 관리" aria-label="Disabled input example" disabled readonly>
+
+                <div class="search-bar">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-2">
+            <div class="content2-1">
+                <div class="purchase_no">
+                    <p class="purchase_no">발주 번호</p>
+                    <input type="text" id="purchase_no">
+                </div>
+
+                <div class="purchase_date">
+                    <p class="purchase_date">발주 일자</p>
+                    <input type="date" id="purchase_date">
+                </div>
+
+                <div class="purchase_company">
+                    <p class="purchase_company">거래처</p>
+                    <select name = "purchase_company" id="purchase_company">
+                        <option value = "coupang">쿠팡</option>
+                        <option value = "11st">11번가</option>
+                    </select>
+                </div>
+
+                <div class="purchase_item">
+                    <p class="purchase_item">자재명</p>
+                    <select name = "purchase_item" id="purchase_item">
+                        <option value = "item1">양배추 즙</option>
+                        <option value = "item2">흑마늘 즙</option>
+                        <option value = "item3">석류 젤리스틱</option>
+                        <option value = "item4">매실 젤리스틱</option>
+                    </select>
+                </div>
+
+                <div class="purchase_code">
+                    <p class="purchase_code">자재 코드</p>
+                    <select name = "purchase_code" id="purchase_code">
+                        <option value = "code1">A0001</option>
+                        <option value = "code2">A0002</option>
+                        <option value = "code3">B0001</option>
+                        <option value = "code4">B0002</option>
+                    </select>
+                </div>
+
+
+            </div>
+
+            <div class="content2-2">
+
+                <div class="purchase_qtt">
+                    <p class="purchase_qtt">발주 수량</p>
+                    <input type="number" id="purchase_qtt">
+                </div>
+
+                <div class="purchase_shipdate">
+                    <p class="purchase_shipdate">입고 일자</p>
+                    <input type="date" id="purchase_shipdate">
+                </div>
+
+                <div class="orders-id">
+                    <p class="orders-id">수주 번호</p>
+                    <input type="text" id="orders-id">
+                </div>
+
+                <div class="orders-btn">
+                    <button id="register">등록</button>
+                </div>
+
+
+
+                <div class="purchase_status">
+                    <p class="purchase_status">진행상황</p>
+                    <select name = "purchase_status" id="purchase_status">
+                        <option value = "proceeding">진행중</option>
+                        <option value = "waiting">대기중</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-3">
+            <p class="orders-table">발주 내역</p>
+            <table>
+                <thead>
+                <tr>
+                    <th>발주 번호</th>
+                    <th>발주 일자</th>
+                    <th>거래처</th>
+                    <th>자재명</th>
+                    <th>자재 코드</th>
+                    <th>발주 수량</th>
+                    <th>입고 일자</th>
+                    <th>수주 번호</th>
+                    <th>진행 상태</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>20230501000A</td>
+                    <td>2023/05/01</td>
+                    <td>쿠팡</td>
+                    <td>양배추 즙</td>
+                    <td>A0001</td>
+                    <td>100</td>
+                    <td>2023/05/04</td>
+                    <td>20230501000A</td>
+                    <td>진행중</td>
+                </tr>
+                <tr>
+                    <td>20230502000B</td>
+                    <td>2023/05/02</td>
+                    <td>11번가</td>
+                    <td>흑마늘 즙</td>
+                    <td>A0002</td>
+                    <td>200</td>
+                    <td>2023/05/08</td>
+                    <td>20230502000B</td>
+                    <td>진행중</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+                <tr>
+                    <td>Cell 7</td>
+                    <td>Cell 8</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                    <td>Cell 9</td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <div id="popupModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-xl">
+                    <div
+                            class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">상세 정보</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>거래처:</td>
+                                    <td id="popup-company"></td>
+                                </tr>
+                                <tr>
+                                    <td>제품명:</td>
+                                    <td id="popup-product-name"></td>
+                                </tr>
+                                <tr>
+                                    <td>제품 코드:</td>
+                                    <td id="popup-product-code"></td>
+                                </tr>
+                                <tr>
+                                    <td>수량:</td>
+                                    <td id="popup-quantity"></td>
+                                </tr>
+                                <tr>
+                                    <td>예상 납품일:</td>
+                                    <td id="popup-delivery-date"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="popup-close-btn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--    팝업창        -->
+
+        </div>
+    </div>
+    <!-- /본문 -->
+    <!--  </div>-->
+
+</div>
+
+</body>
+</html>

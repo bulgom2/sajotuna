@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <title> T U N A - M E S </title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css/layout1.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="container">
+    <!--  <div id="page-wrapper">-->
+    <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#" style="font-size:50px; ">TUNA-MES</a>
+            </li>
+            <li><a href="orders.html">수주관리</a></li>
+            <li><a href="purchase.html">발주관리</a></li>
+            <li><a href="wip.html">재공재고관리</a></li>
+            <li><a href="stock.html">재고관리</a></li>
+            <li><a href="record.html">이력관리</a></li>
+            <li><a href="shipment.html">출하관리</a></li>
+            <li class="menu-item1">
+                <a href="#">기준정보</a>
+                <ul class="menu-list">
+                    <li><a class="item1" href="facility.html">설비정보</a></li>
+                    <li><a class="item1" href="process.html">공정정보</a></li>
+                    <li><a class="item1" href="BOM.html">BOM</a></li>
+                    <li><a class="item1" href="company.html">거래처정보</a></li>
+                    <li><a class="item1" href="product.html">품목정보</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /사이드바 -->
+
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div class="content-desc">
+            <div class="content-header">
+                <input class="form-control" type="text" value="기준 정보" aria-label="Disabled input example" disabled readonly>
+
+                <div class="search-bar">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="product-info">
+            <h1>품목 정보</h1>
+
+
+        </div>
+    </div>
+    <!-- /본문 -->
+    <!--  </div>-->
+
+</div>
+
+</body>
+</html>
