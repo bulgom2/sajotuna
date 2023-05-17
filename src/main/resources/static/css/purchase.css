@@ -202,8 +202,14 @@
     margin-top : 100px;
     margin-left : 40px;
     margin-right : 35px;
+}
+
+.content-4{
+    margin-top : 0px;
+    margin-left : 40px;
+    margin-right : 35px;
     margin-bottom : 100px;
-    height : 750px;
+    height : 650px;
     overflow : auto;
 }
 
