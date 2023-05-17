@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 재공재고관리
 @Entity
 @Table(name = "wip")
-public class WipEntity {
+public class Wip {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

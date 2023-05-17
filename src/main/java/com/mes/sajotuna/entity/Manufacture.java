@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 생산관리
 @Entity
 @Table(name = "manufacture")
-public class ManufactureEntity {
+public class Manufacture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

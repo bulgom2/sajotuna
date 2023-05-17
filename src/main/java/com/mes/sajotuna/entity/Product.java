@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 품목 정보
 @Entity
 @Table(name = "product")
-public class ProductEntity {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
