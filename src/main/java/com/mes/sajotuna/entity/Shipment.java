@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 출하관리
 @Entity
 @Table(name = "shipment")
-public class ShipmentEntity {
+public class Shipment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
