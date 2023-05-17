@@ -342,12 +342,21 @@
     height: 200px;
     justify-content:space-between;
 
+    flex-direction: column;
+}
+
+.content2-1 {
+    width: 100%;
+    display: flex;
+
+    justify-content: space-between;
+
 }
 
 
 
 /* 거래처 */
-.company-list{
+.orders_company{
     margin-left : 20px;
     height : 40px;
     font-size : 25px;
@@ -357,13 +366,14 @@
 
 }
 
-#company-list{
+#orders_company{
     margin-left : 10px;
     height : 40px;
     weight : 90px;
     font-size : 25px;
     font-weight : bold;
     display : fixed;
+    margin-bottom : 10px;
 }
 
 /* 수주 일자 */
@@ -382,7 +392,7 @@
 }
 
 /* 수주 번호 */
-.orders-num{
+.orders-id{
     height : 40px;
     margin-left : 35px;
     display : flex;
@@ -390,13 +400,15 @@
     font-weight : bold;
 }
 
-#orders-num{
+#orders-id{
     height : 40px;
-    weight : 158px;
+    width: 200px;
     margin-left : 10px;
     font-size : 25px;
-    font-weight : bold;
+
 }
+
+
 
 
 
@@ -433,6 +445,80 @@
 }
 
 
+/* content-2 아래 부분 */
+.content2-2 {
+    width: 100%;
+    display: flex;
+
+}
+
+/* 제품명 */
+.orders_item {
+    margin-left : 20px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
+}
+
+#orders_item {
+     height : 40px;
+     width: 200px;
+     margin-left : 10px;
+     font-size : 25px;
+
+}
+
+/* 제품 코드 */
+.orders_code{
+    display : flex;
+    height : 40px;
+    margin-left : 59px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_code{
+    height : 40px;
+    weight : 200px;
+    margin-left : 10px;
+    display : fixed;
+    font-size : 25px;
+}
+
+
+/* 진행 상태 */
+.orders_status {
+    display : flex;
+    height : 40px;
+    margin-left : 60px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_status {
+    height : 40px;
+    weight : 200px;
+    margin-left : 10px;
+    display : fixed;
+    font-size : 25px;
+}
+
+
+/* content-3 */
+.content-3{
+    margin-top : 100px;
+    margin-left : 40px;
+    margin-right : 35px;
+}
+
+.orders-table {
+    margin-left : 0px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
+}
 
 /* 메인 영역 */
 .content-header {
