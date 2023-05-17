@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 공정 정보
 @Entity
 @Table(name = "process")
-public class ProcessEntity {
+public class Process {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

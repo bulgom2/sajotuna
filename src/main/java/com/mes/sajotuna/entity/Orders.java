@@ -5,12 +5,15 @@ import javax.persistence.*;
 // 수주관리
 @Entity
 @Table(name = "orders")
-public class OrdersEntity {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orders_id", nullable = false)
-    private String id;    // 수주번호
+    private Long id;    // 수주id
+
+    @Column(name = "orders_no", nullable = false)
+    private String no;    // 수주번호
 
     @Column(name = "orders_date", nullable = false)
     private String date;    // 수주일자

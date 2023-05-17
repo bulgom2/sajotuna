@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 이력관리
 @Entity
 @Table(name = "record")
-public class RecordEntity {
+public class Record {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
