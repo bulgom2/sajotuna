@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<!--<th:block th:replace="~{orders :: target(~{this::sidebar})}">-->
+<!--    <th:block th:fragment="sidebar">-->
+        <div id="sidebar-wrapper" th:fragment="sidebar">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#" style="font-size:50px; ">TUNA-MES</a>
+                </li>
+                <li><a href="/orders">수주관리</a></li>
+                <li><a href="/purchase">발주관리</a></li>
+                <li><a href="/wip">재공재고관리</a></li>
+                <li><a href="/stock">재고관리</a></li>
+                <li><a href="/record">이력관리</a></li>
+                <li><a href="/shipment">출하관리</a></li>
+                <li class="menu-item1">
+                    <a href="">기준정보</a>
+                    <ul class="menu-list">
+                        <li><a class="item1" href="/facility">설비정보</a></li>
+                        <li><a class="item1" href="/process">공정정보</a></li>
+                        <li><a class="item1" href="/BOM">BOM</a></li>
+                        <li><a class="item1" href="/company">거래처정보</a></li>
+                        <li><a class="item1" href="/product">품목정보</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+<!--    </th:block>-->
+<!--</th:block>-->
+</html>

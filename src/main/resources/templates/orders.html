@@ -9,40 +9,19 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="/static/css/layout1.css">
-    <link rel="stylesheet" href="/static/css/orders.css">
+    <link rel="stylesheet" href="/css/orders.css">
+    <link rel="stylesheet" href="/css/layout1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
 <div id="container">
     <!--  <div id="page-wrapper">-->
     <!-- 사이드바 -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#" style="font-size:50px; ">TUNA-MES</a>
-            </li>
-            <li><a href="orders.html">수주관리</a></li>
-            <li><a href="purchase.html">발주관리</a></li>
-            <li><a href="wip.html">재공재고관리</a></li>
-            <li><a href="stock.html">재고관리</a></li>
-            <li><a href="record.html">이력관리</a></li>
-            <li><a href="shipment.html">출하관리</a></li>
-            <li class="menu-item1">
-                <a href="#">기준정보</a>
-                <ul class="menu-list">
-                    <li><a class="item1" href="facility.html">설비정보</a></li>
-                    <li><a class="item1" href="process.html">공정정보</a></li>
-                    <li><a class="item1" href="BOM.html">BOM</a></li>
-                    <li><a class="item1" href="company.html">거래처정보</a></li>
-                    <li><a class="item1" href="product.html">품목정보</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <div th:replace="fragment/sidebar::sidebar"></div>
     <!-- /사이드바 -->
 
     <!-- 본문 -->
@@ -114,9 +93,10 @@
 
         <div class="orders-content-3">
             <p class="orders-table">수주 내역</p>
-            <table class="table table-hover" th:each="orders: ${orders}">
+            <table class="table table-hover">
                 <thead>
                 <tr>
+                    <th style="border-left:none; border-right:none;">순번</th>
                     <th style="border-left:none; border-right:none;">수주 번호</th>
                     <th style="border-left:none; border-right:none;">수주 일자</th>
                     <th style="border-left:none; border-right:none;">거래처</th>
@@ -127,8 +107,9 @@
                     <th style="border-left:none; border-right:none;">진행 상태</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody th:each="orders: ${orders}">
                     <tr>
+                        <td style="border-left:none; border-right:none;" th:text="${orders.id}">순번</td>
                         <td style="border-left:none; border-right:none;" th:text="${orders.no}">수주번호</td>
                         <td style="border-left:none; border-right:none;" th:text="${orders.date}">수주일자</td>
                         <td style="border-left:none; border-right:none;" th:text="${orders.company}">거래처</td>
@@ -160,7 +141,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <img class="card-img-top rounded img-fluid" src="images/research/research-1.jpg">
+
                 </div>
 
                 <!-- Modal footer -->
@@ -176,4 +157,5 @@
 </div>
 
 </body>
+</th:block>
 </html>
