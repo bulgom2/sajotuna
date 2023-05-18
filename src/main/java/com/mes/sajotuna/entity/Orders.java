@@ -9,10 +9,10 @@ import javax.persistence.*;
 // 수주관리
 @Entity
 @Table(name = "orders")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Orders {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "orders_id", nullable = false)

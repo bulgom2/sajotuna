@@ -1,11 +1,16 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
-import java.time.LocalDate;
 
 // 발주관리
 @Entity
 @Table(name = "purchase")
+@Getter @Setter
+@ToString
 public class Purchase {
 
     @Id
