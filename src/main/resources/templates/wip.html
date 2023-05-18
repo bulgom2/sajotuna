@@ -38,7 +38,7 @@ $(document).ready(function() {
 });
 </script>
 
-    <link rel="stylesheet" href="/static/css/layout1.css">
+<!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
     <link rel="stylesheet" href="/static/css/wip.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,9 +102,9 @@ $(document).ready(function() {
 <!--                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
 <!--                    </div>-->
 <!--                </div>-->
-                <div class="orders_item">
-                    <p class="orders_item">제품명</p>
-                    <select name = "orders_item" id="orders_item">
+                <div class="wip_name">
+                    <p class="wip_name">자재명</p>
+                    <select name = "wip_name" id="wip_name">
                         <option value = "item1">양배추 즙</option>
                         <option value = "item2">흑마늘 즙</option>
                         <option value = "item3">석류 젤리스틱</option>
@@ -112,9 +112,9 @@ $(document).ready(function() {
                     </select>
                 </div>
 
-                <div class="orders_status">
-                    <p class="orders_status">진행상황</p>
-                    <select name = "orders_status" id="orders_status">
+                <div class="wip_process">
+                    <p class="wip_process">공정</p>
+                    <select name = "wip_process" id="wip_process">
                         <option value = "proceeding">진행중</option>
                         <option value = "waiting">대기중</option>
                     </select>
@@ -122,121 +122,51 @@ $(document).ready(function() {
 
             </div>
         </div>
-
         <div class="content-2">
-            <div class="content2-1">
-                <div class="orders_no">
-                    <p class="orders_no">수주 번호</p>
-                    <input type="text" id="orders_no">
-                </div>
-
-                <div class="orders_date">
-                    <p class="orders_date">수주 일자</p>
-                    <input type="date" id="orders_date">
-                </div>
-
-                <div class="orders_company">
-                    <p class="orders_company">거래처</p>
-                    <select name = "orders_company" id="orders_company">
-                        <option value = "coupang">쿠팡</option>
-                        <option value = "11st">11번가</option>
-                    </select>
-                </div>
-
-<!--                <div class="orders_item">-->
-<!--                    <p class="orders_item">제품명</p>-->
-<!--                    <select name = "orders_item" id="orders_item">-->
-<!--                        <option value = "item1">양배추 즙</option>-->
-<!--                        <option value = "item2">흑마늘 즙</option>-->
-<!--                        <option value = "item3">석류 젤리스틱</option>-->
-<!--                        <option value = "item4">매실 젤리스틱</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-
-                <div class="orders_code">
-                    <p class="orders_code">제품코드</p>
-                    <select name = "orders_code" id="orders_code">
-                        <option value = "code1">A0001</option>
-                        <option value = "code2">A0002</option>
-                        <option value = "code3">B0001</option>
-                        <option value = "code4">B0002</option>
-                    </select>
-                </div>
-
-                <div class="orders_btn">
-                    <button id="confirmed">수주 확정</button>
-                    <button id="register">수주 등록</button>
-                </div>
-            </div>
-
-            <div class="content2-2">
-
-                <div class="orders_qtt">
-                    <p class="orders_qtt">수량</p>
-                    <input type="number" id="orders_qtt">
-                </div>
-
-                <div class="orders_shipdate">
-                    <p class="orders_shipdate">예상 납품일</p>
-                    <input type="date" id="orders_shipdate">
-                </div>
-
-
-<!--                <div class="orders_status">-->
-<!--                    <p class="orders_status">진행상황</p>-->
-<!--                    <select name = "orders_status" id="orders_status">-->
-<!--                        <option value = "proceeding">진행중</option>-->
-<!--                        <option value = "waiting">대기중</option>-->
-<!--                    </select>-->
-<!--                </div>-->
-
-            </div>
+            <p id="content-2">공정별 대기 품목</p>
         </div>
 
         <div class="content-3">
-            <p class="orders-table">수주 내역</p>
-        </div>
-
-        <div class="content-4">
             <table>
                 <thead>
                 <tr>
-                    <th>수주 번호</th>
-                    <th>수주 일자</th>
-                    <th>거래처</th>
-                    <th>제품명</th>
-                    <th>제품 코드</th>
-                    <th>수량</th>
-                    <th>예상 납품일</th>
-                    <th>진행 상태</th>
+                    <th class="cell-width1">순번</th>
+                    <th class="cell-width2">자재명</th>
+                    <th class="cell-width3">재고 수량</th>
+                    <th class="cell-width4">단위</th>
+                    <th class="cell-width5">LOT 번호</th>
+                    <th class="cell-width6">공정</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>20230501000A</td>
-                    <td>2023/05/01</td>
-                    <td>쿠팡</td>
-                    <td>양배추 즙</td>
-                    <td>A0001</td>
+                    <td>1</td>
+                    <td>양배추</td>
                     <td>100</td>
-                    <td>2023/05/04</td>
-                    <td>진행중</td>
+                    <td>ton</td>
+                    <td>A20230508m001</td>
+                    <td>추출</td>
                 </tr>
                 <tr>
-                    <td>20230502000B</td>
-                    <td>2023/05/02</td>
-                    <td>11번가</td>
-                    <td>흑마늘 즙</td>
-                    <td>A0002</td>
-                    <td>200</td>
-                    <td>2023/05/08</td>
-                    <td>진행중</td>
+                    <td>2</td>
+                    <td>흑마늘</td>
+                    <td>1</td>
+                    <td>ton</td>
+                    <td>B20230508s002</td>
+                    <td>충진</td>
                 </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+
                 <tr>
                     <td>Cell 7</td>
                     <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
                     <td>Cell 9</td>
                     <td>Cell 9</td>
                     <td>Cell 9</td>
@@ -250,25 +180,10 @@ $(document).ready(function() {
                     <td>Cell 9</td>
                     <td>Cell 9</td>
                     <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
                 </tr>
                 <tr>
                     <td>Cell 7</td>
                     <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
                     <td>Cell 9</td>
                     <td>Cell 9</td>
                     <td>Cell 9</td>
