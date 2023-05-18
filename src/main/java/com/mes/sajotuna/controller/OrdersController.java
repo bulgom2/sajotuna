@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-
 public class OrdersController {
 
     @Autowired
@@ -28,7 +27,6 @@ public class OrdersController {
         model.addAttribute("orders", list);
 
         return "orders";
-
     }
 
 
