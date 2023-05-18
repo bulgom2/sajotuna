@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
 
     <title> T U N A - M E S </title>
 
@@ -9,27 +9,11 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-
-    <link rel="stylesheet" href="/css/layout1.css">
     <link rel="stylesheet" href="/css/orders.css">
+    <link rel="stylesheet" href="/css/layout1.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
-
-    <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
 
 </head>
 <body>
@@ -37,29 +21,7 @@
 <div id="container">
     <!--  <div id="page-wrapper">-->
     <!-- 사이드바 -->
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a style="font-size:50px; " th:href="@{'/order/list'}">TUNA-MES</a>
-            </li>
-            <li><a href="orders.html">수주관리</a></li>
-            <li><a href="purchase.html">발주관리</a></li>
-            <li><a href="wip.html">재공재고관리</a></li>
-            <li><a href="stock.html">재고관리</a></li>
-            <li><a href="record.html">이력관리</a></li>
-            <li><a href="shipment.html">출하관리</a></li>
-            <li class="menu-item1">
-                <a href="#">기준정보</a>
-                <ul class="menu-list">
-                    <li><a class="item1" href="facility.html">설비정보</a></li>
-                    <li><a class="item1" href="process.html">공정정보</a></li>
-                    <li><a class="item1" href="BOM.html">BOM</a></li>
-                    <li><a class="item1" href="company.html">거래처정보</a></li>
-                    <li><a class="item1" href="product.html">품목정보</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+    <div th:replace="fragment/sidebar::sidebar"></div>
     <!-- /사이드바 -->
 
     <!-- 본문 -->
@@ -71,94 +33,82 @@
         </div>
 
         <form action="/orders" method="post">
-        <div class="content-2">
-            <div class="content2-1">
-                <div class="orders_no">
-                    <p class="orders_no">수주 번호</p>
-                    <input type="text" id="orders_no" name="no">
+
+            <div class="orders-content-2">
+                <div class="orders-content-2-1">
+                    <div class="orders_company">
+                        <p class="orders_company">거래처</p>
+                        <select name = "company" id="orders_company-list">
+                            <option value = "coupang">쿠팡</option>
+                            <option value = "11st">11번가</option>
+                        </select>
+                    </div>
+
+                    <div class="orders-date">
+                        <p class="orders-date">수주 일자</p>
+                        <input type="date" id="orders-date" name="date">
+                    </div>
+
+                    <div class="orders-no">
+                        <p class="orders-no">수주 번호</p>
+                        <input type="text" id="orders_no" name="no">
+                    </div>
+
+                    <div class="orders-btn">
+                        <button id="confirmed">수주 확정</button>
+                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
+                    </div>
                 </div>
 
-                <div class="orders_date">
-                    <p class="orders_date">수주 일자</p>
-                    <input type="date" id="orders_date" name="date">
-                </div>
+                <div class="orders-content-2-2">
+                    <div class="orders_item">
+                        <p class="orders_item">제품명</p>
+                        <input type="text" id="orders_item" name="item">
+                    </div>
 
-                <div class="orders_company">
-                    <p class="orders_company">거래처</p>
-                    <select name = "company" id="company">
-                        <option value = "coupang">쿠팡</option>
-                        <option value = "11st">11번가</option>
-                    </select>
-                </div>
+                    <div class="orders_code">
+                        <p class="orders_code">제품코드</p>
+                        <select name = "code" id="orders_code">
+                            <option value = "code1">A0001</option>
+                            <option value = "code2">A0002</option>
+                            <option value = "code3">B0001</option>
+                            <option value = "code4">B0002</option>
+                        </select>
+                    </div>
 
-                <div class="orders_item">
-                    <p class="orders_item">제품명</p>
-                    <select name = "item" id="item">
-                        <option value = "item1">양배추 즙</option>
-                        <option value = "item2">흑마늘 즙</option>
-                        <option value = "item3">석류 젤리스틱</option>
-                        <option value = "item4">매실 젤리스틱</option>
-                    </select>
-                </div>
+                    <div class="orders_status">
+                        <p class="orders_status">진행상황</p>
+                        <select name = "status" id="orders_status">
+                            <option value = "proceeding">진행중</option>
+                            <option value = "waiting">대기중</option>
+                        </select>
+                    </div>
 
-                <div class="orders_code">
-                    <p class="orders_code">제품코드</p>
-                    <select name = "code" id="code">
-                        <option value = "code1">A0001</option>
-                        <option value = "code2">A0002</option>
-                        <option value = "code3">B0001</option>
-                        <option value = "code4">B0002</option>
-                    </select>
-                </div>
+                    <div class="orders_qtt">
+                        <p class="orders_qtt">수량</p>
+                        <input type="text" id="orders_qtt" name="qtt">
+                    </div>
 
-                <div class="orders_btn">
-                    <button id="register">저장</button>
+
                 </div>
             </div>
-
-        <div class="content2-2">
-
-                <div class="orders_qtt">
-                    <p class="orders_qtt">수량</p>
-                    <input type="text" id="qtt" name="qtt">
-                </div>
-
-                <div class="orders_shipdate">
-                    <p class="orders_shipdate">예상 납품일</p>
-                    <input type="date" id="orders_shipdate" name="shipdate">
-                </div>
-
-
-                <div class="orders_status">
-                    <p class="orders_status">진행상황</p>
-                    <select name = "status" id="status">
-                        <option value = "IN_PROGRESS">진행중</option>
-                        <option value = "COMPLETED">대기중</option>
-                    </select>
-                </div>
-
-            </div>
-        </div>
         </form>
 
 
-        <div class="content-3">
+        <div class="orders-content-3">
             <p class="orders-table">수주 내역</p>
-        </div>
-
-        <div class="content-4">
-            <table>
+            <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th>수주 번호</th>
-                    <th>수주 일자</th>
-                    <th>거래처</th>
-                    <th>제품명</th>
-                    <th>제품 코드</th>
-                    <th>수량</th>
-                    <th>예상 납품일</th>
-                    <th>진행 상태</th>
-                </tr>
+                    <tr>
+                        <th>수주 번호</th>
+                        <th>수주 일자</th>
+                        <th>거래처</th>
+                        <th>제품명</th>
+                        <th>제품 코드</th>
+                        <th>수량</th>
+                        <th>예상 납품일</th>
+                        <th>진행 상태</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <tr>
