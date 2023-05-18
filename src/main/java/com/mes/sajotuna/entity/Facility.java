@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 설비관리
 @Entity
 @Table(name = "facility")
-public class FacilityEntity {
+public class Facility {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

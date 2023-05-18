@@ -1,0 +1,185 @@
+/* 컨테이너 */
+#container {
+    display: flex;
+    position: absolute;
+    width: 2543px;
+    height: 1316px;
+}
+
+/* 사이드바 래퍼 스타일 */
+/*#page-wrapper {*/
+/*    padding-left: 250px;*/
+/*}*/
+
+/*#sidebar-wrapper {*/
+/*    display: flex;*/
+/*    position: fixed;*/
+/*    width: 350px;*/
+/*    height: 98vh;*/
+/*    margin-top: 10px;*/
+/*    margin-left: 10px;*/
+/*    background: #223E4F;*/
+/*    overflow-x: hidden;*/
+/*    overflow-y: auto;*/
+/*    border-radius: 16px;*/
+/*}*/
+
+/* 사이드바 틀 */
+#sidebar-wrapper {
+    width: 350px;
+    height: 1290px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    background: #223E4F;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 16px;
+}
+
+#page-content-wrapper {
+    flex: 1;
+    padding: 20px;
+}
+
+/* 사이드바 스타일 */
+
+.sidebar-nav {
+    width: 350px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 1.5em;
+    line-height: 2.8em;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 550;
+    margin-bottom: 20px;
+}
+
+.sidebar-nav li:nth-child(8) a {
+    margin-bottom: 0;
+}
+
+.sidebar-nav li a:hover {
+    color: #A4A4A4;
+    /*background: rgba(255, 255, 255, 0.2);*/
+}
+
+.sidebar-nav > .sidebar-brand {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    /*font-size: 3em;*/
+    line-height: 5em;
+    font-family: 'Faster One', cursive;
+}
+
+.sidebar-nav li:nth-child(1) a:hover {
+    color: white;
+}
+
+/* 기준정보 효과 */
+.menu-list li:nth-child(1) a:hover {
+    color: #A4A4A4;
+}
+
+.menu-item1 ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menu-item1 ul li {
+    margin-left: 30px;
+    position: relative;
+}
+
+.menu-list li a {
+    font-size: 20px;
+}
+
+
+.menu-item1:hover {
+    width: 330px;
+    background-color: #0B2535;
+    border-radius: 0 16px 16px 0;
+}
+
+.menu-list{
+    display: none;
+}
+
+#sidebar-wrapper .menu-item1:hover .menu-list {
+    display: block;
+}
+
+
+/* 본문 컨텐츠 영역 */
+#page-content-wrapper {
+    position: relative;
+    display: block;
+    margin: 10px 10px 16px 10px;
+    border-radius: 16px;
+    padding: 0;
+    border: 2px solid #A4A4A4;  /* 틀 확인용 */
+    width: 2180px;
+    height: 1290px;
+}
+
+/* 페이지 제목란 */
+.content-desc {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    height: 147px;
+
+}
+/* test 용 */
+.content-2 {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    height: 200px;
+}
+
+/* 메인 영역 */
+.content-header {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 42px;
+    border: 1px solid red;  /* 틀 확인용 */
+}
+
+
+/* 탭 제목 */
+.form-control {
+    position: relative;
+    width: 1088px;
+    height: 50px;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+/* 검색바 */
+.search-bar {
+    margin-right: 20px;
+}
+
+.btn:hover {
+    background-color: #223E4F;
+    color: white;
+}

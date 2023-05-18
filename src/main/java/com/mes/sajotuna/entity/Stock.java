@@ -5,7 +5,7 @@ import javax.persistence.*;
 // 재고관리
 @Entity
 @Table(name = "stock")
-public class StockEntity {
+public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

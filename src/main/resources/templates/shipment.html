@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <title> T U N A - M E S </title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/layout1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="container">
+    <!--  <div id="page-wrapper">-->
+    <!-- 사이드바 -->
+    <div th:replace="fragment/sidebar::sidebar"></div>
+    <!-- /사이드바 -->
+
+    <!-- 본문 -->
+    <div id="page-content-wrapper">
+        <div class="content-desc">
+            <div class="content-header">
+                <input class="form-control" type="text" value="출하 관리" aria-label="Disabled input example" disabled readonly>
+
+                <div class="search-bar">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-2">
+
+        </div>
+    </div>
+    <!-- /본문 -->
+    <!--  </div>-->
+
+</div>
+
+</body>
+</html>
