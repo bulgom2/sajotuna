@@ -1,10 +1,16 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 // 설비관리
 @Entity
 @Table(name = "facility")
+@Getter @Setter
+@ToString
 public class Facility {
 
     @Id
