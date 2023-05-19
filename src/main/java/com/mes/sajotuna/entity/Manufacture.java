@@ -38,6 +38,6 @@ public class Manufacture {
     private String ordersId;    // 수주번호
 
     @Column(name = "manufacture_status")
-    @ColumnDefault("no")
+    @ColumnDefault("'N'")
     private String status;
 }

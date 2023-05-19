@@ -47,12 +47,13 @@ public class OrdersController {
 
         System.out.println("orders " + orders);
 
-        return "redirect:/orders/list";
+        return "redirect:/";
     }
 
 
     // orders 테이블에 있는 값들 표로 출력하기
-    @GetMapping("/orders/list")
+    // main 페이지
+    @GetMapping("/")
     public String orderList(Model model){
         List<Orders> ordersList = ordersRepository.findAll();
 
@@ -85,7 +86,7 @@ public class OrdersController {
 
         ordersService.ordersDelete(id);
 
-        return "redirect:/orders/list";
+        return "redirect:/";
     }
 
 }
