@@ -25,8 +25,8 @@ public class Material {
     private String lt;  // 리드타임
 
     @Column(name = "material_st", nullable = false)
-    private String st;  //
+    private String st;  // 기준 시간
 
     @Column(name = "material_stock", nullable = false)
-    private Long stock;  // 재료4 투입량
+    private Long stock;  // 재료 재고
 }
