@@ -53,7 +53,7 @@
 }
 
 /* 수주 번호 */
-.orders-no{
+.orders_no{
     height : 40px;
     margin-left : 35px;
     display : flex;
@@ -61,7 +61,7 @@
     font-weight : bold;
 }
 
-#orders-no{
+#orders_no{
     height : 40px;
     width: 200px;
     margin-left : 10px;
@@ -182,8 +182,8 @@
     display: flex;
     width: 100%;
     margin-top : 200px;
-    margin-left : 40px;
-    margin-right : 130px;
+    margin-left : 35;
+    margin-right : 35px;
 }
 
 .orders-table {

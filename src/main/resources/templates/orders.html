@@ -54,24 +54,28 @@
                         <input type="date" id="orders-date">
                     </div>
 
-                    <div class="orders-id">
-                        <p class="orders-id">수주 번호</p>
-                        <input type="text" id="orders-id">
+                    <div class="orders_no">
+                        <p class="orders_no">수주 번호</p>
+                        <input type="text" id="orders_no">
                     </div>
 
                     <div class="orders-btn">
                         <button id="confirmed">수주 확정</button>
-                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
+<!--                        <button type="button" id="register" onclick="window.location.href='/orders'">수주 등록</button>-->
+                        <button type="button" id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
                     </div>
-
-                    <div><a th:text="등록" th:href="@{'/orders'}">등록</a></div>
 
                 </div>
 
                 <div class="orders-content-2-2">
                     <div class="orders_item">
                         <p class="orders_item">제품명</p>
-                        <input type="text" id="orders_item">
+                        <select name = "code" id="orders_item">
+                            <option value = "item1">양배추 즙</option>
+                            <option value = "item2">흑마늘 즙</option>
+                            <option value = "item3">석류 젤리스틱</option>
+                            <option value = "item4">매실 젤리스틱</option>
+                        </select>
                     </div>
 
                     <div class="orders_code">
@@ -132,23 +136,28 @@
     <!--  </div>-->
 
     <!-- 모달 -->
-    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" >
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">사진제목</h4>
+                    <h4 class="modal-title">수주 등록</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
-                <div class="modal-body">
+<!--                <div class="modal-body">-->
 
+<!--                </div>-->
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <iframe src="/orders" style="width: 100%; height: 750px; border: none;"></iframe>
                 </div>
 
+
                 <!-- Modal footer -->
-                <div class="modal-footer">
+                <div class="modal-footer" >
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
 
