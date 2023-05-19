@@ -179,7 +179,7 @@
 
 
 
-/* 품목정보 */
+/* BOM */
 .content-2 {
     position: relative;
     display: flex;
@@ -199,55 +199,16 @@
 
 
 
-/* 완제품 */
-/*.content-3 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-top : 150px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-    width : 540px;
-}*/
-
+/* BOM 테이블 */
 .content-3{
-    width : 719px;
-    margin-top : 200px;
-}
-
-#content-3{
-
-    font-size : 25px;
-    margin-left : 40px;
-}
-
-
-
-/* 완제품 테이블 */
-/*.content-4{
     margin-top : 0px;
     margin-left : 40px;
     margin-right : 45px;
     margin-bottom : 50px;
     height : 400px;
-    width : 500px;
+    width : 1800px;
     overflow : auto;
-}*/
-
-.content-4{
-    margin-top : 50px;
-    width : 719px;
 }
-
-#content-4{
-    margin-left : 40px;
-    width : 500px;
-}
-
-
 
 
 table {
@@ -259,7 +220,7 @@ th, td {
     border: 1px solid black;
     padding: 8px;
     text-align: center;
-    width: calc(100% / 3);
+
     height : 40px;
 }
 
@@ -268,8 +229,34 @@ th {
 }
 
 
-/* 원자재 */
-/*.content-5 {
+/* 테이블 셀 크기 지정 */
+.cell-width1 {
+    width : 200px;
+}
+
+.cell-width2{
+    width : 200px;
+}
+
+.cell-width3{
+    width : 200px;
+}
+
+.cell-width4{
+    width : 200px;
+}
+
+.cell-width5{
+    width : 200px;
+}
+
+.cell-width6{
+    width : 200px;
+}
+
+
+/* 제품별 총량 */
+.content-4 {
     position: relative;
     display: flex;
     background-color: #fff;
@@ -279,81 +266,30 @@ th {
     height: 50px;
     justify-content: space-between;
     flex-direction: column;
-    width : 540px;
-}*/
+}
 
+#content-4{
+    font-size : 25px;
+    font-weight : bold;
+    margin-left : 40px;
+}
+
+/* 제품별 총량 테이블 */
 .content-5{
-    float : left;
-    width : 719px;
-}
-
-#content-5{
-    float : left;
-    font-size : 25px;
-    margin-left : 40px;
-}
-
-/* 원자재 테이블 */
-/*.content-6{
-    width : 500px;
-    margin-top : 0px;
-    margin-left : auto;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 400px;
-    overflow : auto;
-}*/
-
-.content-6{
-    float : left;
-    width : 719px;
-}
-
-#content-6{
-    float : left;
-    width : 500px;
-    margin-left : 40px;
-}
-
-/* 반제품 */
-/*.content-7 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-top : 20px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-}*/
-
-.content-7{
-    width : 719px;
-    margin-left : 40px;
-}
-
-#content-7{
-    font-size : 25px;
-    margin-left : 40px;
-}
-
-/* 반제품 테이블 */
-/*.content-8{
-    width : 500px;
+    width : 400px;
     margin-top : 0px;
     margin-left : 40px;
     margin-right : 45px;
     margin-bottom : 50px;
     height : 400px;
     overflow : auto;
-}*/
-
-.content-8{
-    width : 719px;
 }
 
-#content-8{
-    width : 500px;
-    margin-left : 40px;
+/* 테이블 셀 크기 지정 */
+.cell-width1-1 {
+    width : 200px;
+}
+
+.cell-width2-2{
+    width : 200px;
 }

@@ -177,9 +177,46 @@
 
 }
 
+/* 자재명 */
+.wip_name {
+    margin-left : 30px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
+}
+
+#wip_name{
+    height : 40px;
+    width: 200px;
+    margin-left : 10px;
+    font-size : 25px;
+}
 
 
-/* 품목정보 */
+/* 공정 */
+.wip_process{
+    display : flex;
+    height : 40px;
+    margin-left : 45px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#wip_process{
+    height : 40px;
+    weight : 200px;
+    margin-left : 10px;
+    font-size : 25px;
+}
+
+.btn:hover {
+    background-color: #223E4F;
+    color: white;
+}
+
+
+/* 공정별 대기 품목 */
 .content-2 {
     position: relative;
     display: flex;
@@ -198,56 +235,23 @@
 }
 
 
-
-/* 완제품 */
-/*.content-3 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-top : 150px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-    width : 540px;
-}*/
-
+/* 공정별 대기 품목 테이블 */
 .content-3{
-    width : 719px;
-    margin-top : 200px;
-}
-
-#content-3{
-
-    font-size : 25px;
-    margin-left : 40px;
-}
-
-
-
-/* 완제품 테이블 */
-/*.content-4{
     margin-top : 0px;
     margin-left : 40px;
     margin-right : 45px;
     margin-bottom : 50px;
-    height : 400px;
-    width : 500px;
+    height : 800px;
     overflow : auto;
-}*/
-
-.content-4{
-    margin-top : 50px;
-    width : 719px;
 }
 
-#content-4{
-    margin-left : 40px;
-    width : 500px;
+.wip-table {
+    margin-left : 0px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    height : 40px;
 }
-
-
 
 
 table {
@@ -259,8 +263,8 @@ th, td {
     border: 1px solid black;
     padding: 8px;
     text-align: center;
-    width: calc(100% / 3);
-    height : 40px;
+
+    weight : 40px;
 }
 
 th {
@@ -268,92 +272,27 @@ th {
 }
 
 
-/* 원자재 */
-/*.content-5 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-top : 20px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-    width : 540px;
-}*/
-
-.content-5{
-    float : left;
-    width : 719px;
+/* 테이블 셀 크기 지정 */
+.cell-width1 {
+    width : 100px;
 }
 
-#content-5{
-    float : left;
-    font-size : 25px;
-    margin-left : 40px;
+.cell-width2{
+    width : 550px;
 }
 
-/* 원자재 테이블 */
-/*.content-6{
-    width : 500px;
-    margin-top : 0px;
-    margin-left : auto;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 400px;
-    overflow : auto;
-}*/
-
-.content-6{
-    float : left;
-    width : 719px;
+.cell-width3{
+    width : 400px;
 }
 
-#content-6{
-    float : left;
-    width : 500px;
-    margin-left : 40px;
+.cell-width4{
+    width : 100px;
 }
 
-/* 반제품 */
-/*.content-7 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-top : 20px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-}*/
+.cell-width5{
 
-.content-7{
-    width : 719px;
-    margin-left : 40px;
 }
 
-#content-7{
-    font-size : 25px;
-    margin-left : 40px;
-}
-
-/* 반제품 테이블 */
-/*.content-8{
-    width : 500px;
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 400px;
-    overflow : auto;
-}*/
-
-.content-8{
-    width : 719px;
-}
-
-#content-8{
-    width : 500px;
-    margin-left : 40px;
+.cell-width6{
+    width : 150px;
 }
