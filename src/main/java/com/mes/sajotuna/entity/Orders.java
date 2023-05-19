@@ -36,8 +36,9 @@ public class Orders {
     @Column(name = "orders_item", nullable = false)
     private String item;    // 제품명
 
+    // 23/05/19 String → Integer로 자료형 수정
     @Column(name = "orders_qtt", nullable = false)
-    private String qtt;    // 제품수량
+    private Integer qtt;    // 제품수량
 
     @Column(name = "orders_shipdate")
     private String shipDate;    // 예상 납품일
@@ -45,5 +46,4 @@ public class Orders {
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
 //    }
-
 }
