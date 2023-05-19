@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" , name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <title> T U N A - M E S </title>
 
@@ -9,11 +9,56 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="/static/css/layout1.css">
+    <!-- 모달창  -->
+    <script>
+$(document).ready(function() {
+    // 테이블 행 클릭 시 팝업 창에 정보 출력
+    $('table tr').click(function() {
+        var company = $(this).find('td:nth-child(3)').text();
+        var productName = $(this).find('td:nth-child(4)').text();
+        var productCode = $(this).find('td:nth-child(5)').text();
+        var quantity = $(this).find('td:nth-child(6)').text();
+        var deliveryDate = $(this).find('td:nth-child(7)').text();
 
+        // 팝업 창에 정보 채우기
+        $('#popup-company').text(company);
+        $('#popup-product-name').text(productName);
+        $('#popup-product-code').text(productCode);
+        $('#popup-quantity').text(quantity);
+        $('#popup-delivery-date').text(deliveryDate);
+
+        // 팝업 창 열기
+        $('#popupModal').modal('show');
+    });
+
+    // 팝업 창 닫기 버튼 클릭 이벤트 처리
+    $('#popup-close-btn').click(function() {
+        $('#popupModal').modal('hide');
+    });
+});
+</script>
+
+    <!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
+    <link rel="stylesheet" href="/static/css/product.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+    <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -49,22 +94,146 @@
     <div id="page-content-wrapper">
         <div class="content-desc">
             <div class="content-header">
-                <input class="form-control" type="text" value="기준 정보" aria-label="Disabled input example" disabled readonly>
+                <input class="form-control" type="text" value="품목 정보" aria-label="Disabled input example" disabled readonly>
 
-                <div class="search-bar">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-                    </div>
-                </div>
+                <!--                <div class="search-bar">-->
+                <!--                    <div class="input-group mb-3">-->
+                <!--                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">-->
+                <!--                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
+                <!--                    </div>-->
+                <!--                </div>-->
 
             </div>
         </div>
-        <div class="product-info">
-            <h1>품목 정보</h1>
-
-
+        <div class="content-2">
+            <p id="content-2">품목 정보</p>
         </div>
+
+        <div class="content-3">
+            <p id="content-3">완제품</p>
+        </div>
+
+        <div class="content-4">
+            <table id="content-4">
+                <thead>
+                <tr>
+                    <th>품목명</th>
+                    <th>단위</th>
+                    <th>품목 코드</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>양배추 즙</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>흑마늘 즙</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>석류 스틱</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>매실 스틱</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-5">
+            <p id="content-5">원자재</p>
+        </div>
+
+        <div class="content-6">
+            <table id="content-6">
+                <thead>
+                <tr>
+                    <th>품목명</th>
+                    <th>단위</th>
+                    <th>품목 코드</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>양배추</td>
+                    <td>(g)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>흑마늘</td>
+                    <td>(g)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>석류 농축액</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>매실 농축액</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>콜라겐</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>정제수</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>포장지</td>
+                    <td>(ea)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BOX</td>
+                    <td>(ea)</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-7">
+            <p id="content-7">반제품</p>
+        </div>
+
+        <div class="content-8">
+            <table id="content-8">
+                <thead>
+                <tr>
+                    <th>품목명</th>
+                    <th>단위</th>
+                    <th>품목 코드</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>양배추 추출액</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>흑마늘 추출액</td>
+                    <td>(ml)</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
     <!-- /본문 -->
     <!--  </div>-->
