@@ -1,10 +1,17 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 // 설비관리
 @Entity
 @Table(name = "facility")
+@Getter
+@Setter
+@ToString
 public class Facility {
 
     @Id
@@ -22,16 +29,12 @@ public class Facility {
     private Long qtt;  // 생산 가능량
 
     @Column(name = "facility_pt")
-    private String pt;  // 생산 준비시간
+    private int pt;  // 생산 준비시간
 
     @Column(name = "facility_lt")
-    private String lt;  // 생산 소요 시간
+    private int lt;  // 생산 소요 시간
 
     @Column(name = "facility_status")
     private Boolean status;  // 설비 상태
-
-    public enum FacilityStatus {
-        IN_PROGRESS, COMPLETED  // 가동중, 완료
-    }
 
 }

@@ -1,10 +1,17 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 // 제품별 이력관리
 @Entity
 @Table(name = "precord")
+@Getter
+@Setter
+@ToString
 public class Precord {
 
     @Id

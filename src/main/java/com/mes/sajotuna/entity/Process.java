@@ -1,10 +1,17 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 // 공정 정보
 @Entity
 @Table(name = "process")
+@Getter
+@Setter
+@ToString
 public class Process {
 
     @Id
@@ -24,14 +31,12 @@ public class Process {
     @Column(name = "facility_id", nullable = false)
     private Long facilityId;  // 설비 정보
 
+    // 소요 시간 계산을 위해 Duration를 이용
     @Column(name = "process_pt")
-    private String pt;  // 공정 준비시간
+    private int pt;  // 공정 준비시간
 
     @Column(name = "process_lt")
-    private String lt;  // 공정 소요 시간
+    private int lt;  // 공정 소요 시간
 
-    public enum ProcessStatus {
-        IN_PROGRESS, COMPLETED  // 가동중, 완료
-    }
 
 }
