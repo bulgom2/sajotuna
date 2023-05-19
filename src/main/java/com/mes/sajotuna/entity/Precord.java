@@ -9,8 +9,7 @@ import javax.persistence.*;
 // 제품별 이력관리
 @Entity
 @Table(name = "precord")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Precord {
 

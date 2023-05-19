@@ -9,8 +9,7 @@ import javax.persistence.*;
 // 품목 정보
 @Entity
 @Table(name = "product")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Product {
 

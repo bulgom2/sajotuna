@@ -5,13 +5,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 // 출하관리
 @Entity
 @Table(name = "shipment")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Shipment {
 
@@ -36,6 +34,6 @@ public class Shipment {
     private String name;  // 품목명
 
     @Column(name = "shipment_date")
-    private LocalDateTime date;  // 수령일(=출하일)
+    private String date;  // 수령일(=출하일)
 
 }

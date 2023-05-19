@@ -5,8 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 // 수주관리
 @Entity
@@ -24,7 +22,7 @@ public class Orders {
     private String no;    // 수주번호
 
     @Column(name = "orders_date", nullable = false)
-    private LocalDateTime date;    // 수주일자
+    private String date;    // 수주일자
 
     @Column(name = "orders_status", nullable = false)
     private String status;    // 진행상태
@@ -40,9 +38,12 @@ public class Orders {
 
     @Column(name = "orders_qtt", nullable = false)
     private String qtt;    // 제품수량
-//예상 납품일
-    @Column(name = "orders_shipdate")
-    private LocalDate shipDate;    // 예상 납품일
 
+    @Column(name = "orders_shipdate")
+    private String shipDate;    // 예상 납품일
+
+//    public enum OrdersStatus {
+//        IN_PROGRESS, COMPLETED  // 진행중, 완료
+//    }
 
 }

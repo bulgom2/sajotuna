@@ -5,13 +5,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 // 이력관리
 @Entity
 @Table(name = "record")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Record {
 
@@ -36,9 +34,13 @@ public class Record {
     private Long status;    // 진행 상태
 
     @Column(name = "record_starttime")
-    private LocalDateTime startTime;    // 시작 시간
+    private String startTime;    // 시작 시간
 
     @Column(name = "record_endtime")
-    private LocalDateTime endTime;    // 종료 시간
+    private String endTime;    // 종료 시간
+
+    public enum RecordStatus {
+        IN_PROGRESS, COMPLETED  // 진행중, 완료
+    }
 
 }

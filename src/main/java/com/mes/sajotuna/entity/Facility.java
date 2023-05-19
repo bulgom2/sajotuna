@@ -9,8 +9,7 @@ import javax.persistence.*;
 // 설비관리
 @Entity
 @Table(name = "facility")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Facility {
 
@@ -29,12 +28,16 @@ public class Facility {
     private Long qtt;  // 생산 가능량
 
     @Column(name = "facility_pt")
-    private int pt;  // 생산 준비시간
+    private String pt;  // 생산 준비시간
 
     @Column(name = "facility_lt")
-    private int lt;  // 생산 소요 시간
+    private String lt;  // 생산 소요 시간
 
     @Column(name = "facility_status")
     private Boolean status;  // 설비 상태
+
+    public enum FacilityStatus {
+        IN_PROGRESS, COMPLETED  // 가동중, 완료
+    }
 
 }

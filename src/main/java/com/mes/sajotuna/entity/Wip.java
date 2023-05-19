@@ -9,8 +9,7 @@ import javax.persistence.*;
 // 재공재고관리
 @Entity
 @Table(name = "wip")
-@Getter
-@Setter
+@Getter @Setter
 @ToString
 public class Wip {
 
