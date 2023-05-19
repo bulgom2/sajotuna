@@ -2,8 +2,8 @@
 #container {
     display: flex;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 2543px;
+    height: 1316px;
 }
 
 /* 사이드바 래퍼 스타일 */
@@ -26,11 +26,8 @@
 
 /* 사이드바 틀 */
 #sidebar-wrapper {
-    display: flex;
-    position: fixed;
     width: 350px;
-    min-height: 900px;
-    height: 1300px;
+    height: 1290px;
     margin-top: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -129,10 +126,12 @@
 #page-content-wrapper {
     position: relative;
     display: block;
-    margin: 10px 10px 16px 370px;
+    margin: 10px 10px 16px 10px;
     border-radius: 16px;
     padding: 0;
     border: 2px solid #A4A4A4;  /* 틀 확인용 */
+    width: 2180px;
+    height: 1290px;
 }
 
 /* 페이지 제목란 */
@@ -145,7 +144,7 @@
     height: 147px;
 
 }
-
+/* test 용 */
 .content-2 {
     position: relative;
     display: block;

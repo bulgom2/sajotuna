@@ -42,8 +42,8 @@ public class Orders {
     @Column(name = "orders_shipdate")
     private String shipDate;    // 예상 납품일
 
-    public enum OrdersStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
+//    public enum OrdersStatus {
+//        IN_PROGRESS, COMPLETED  // 진행중, 완료
+//    }
 
 }

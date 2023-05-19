@@ -36,4 +36,6 @@ public class Manufacture {
     @Column(name = "orders_id", nullable = false)
     private String ordersId;    // 수주번호
 
+    @Column(name = "manufacture_status", columnDefinition = "N")
+    private String status;
 }
