@@ -23,15 +23,17 @@ public class OrdersController {
     private OrdersService ordersService;
 
 
-    @GetMapping("/order")
-    public String getTest(){
+    // html 불러오기(수주 동록 페이지)
+    @GetMapping("/orders")
+    public String orderWrite(){
         System.out.println("실행");
         System.out.println("abfdsbv");
         return "ordersinput";
     }
 
+    // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
     @PostMapping("/orders")
-    public String createTests(OrdersDto ordersDto) {
+    public String orderWritePost(OrdersDto ordersDto) {
 
         System.out.println("OrdersDto " + ordersDto.toString());
 
@@ -45,11 +47,14 @@ public class OrdersController {
 
         System.out.println("orders " + orders);
 
-        return "redirect:/order/list";
+        return "redirect:/";
     }
 
-    @GetMapping("/order/list")
-    public String getTest2(Model model){
+
+    // orders 테이블에 있는 값들 표로 출력하기
+    // main 페이지
+    @GetMapping("/")
+    public String orderList(Model model){
         List<Orders> ordersList = ordersRepository.findAll();
 
         model.addAttribute("orderList", ordersList);
@@ -57,8 +62,10 @@ public class OrdersController {
         return "orders";
     }
 
+
+    // 수주id를 선택하면 상세 페이지 출력하기
     @GetMapping("/orders/{id}")
-    public String getTest3(Model model, @PathVariable("id") Long id){
+    public String orderDetail(Model model, @PathVariable("id") Long id){
 
         System.out.println("123 : " + id);
 
@@ -70,6 +77,16 @@ public class OrdersController {
         model.addAttribute("ordersDto", ordersDto);
 
         return "ordersdetail";
+    }
+
+
+    // 삭제 버튼을 누르면 해당 값 삭제하기
+    @GetMapping("/orders/delete/{id}")
+    public String orderDelete(@PathVariable("id") Long id){
+
+        ordersService.ordersDelete(id);
+
+        return "redirect:/";
     }
 
 }
