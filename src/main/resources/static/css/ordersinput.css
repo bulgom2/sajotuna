@@ -46,6 +46,26 @@
         font-size : 20px;
 }
 
+/* 납품일 계산 버튼 */
+.date_calculate{
+        display : flex;
+        margin-right : 20px;
+        height : 30px;
+        justify-content: flex-end;
+}
+
+#date_calculate {
+        margin-left : 5px;
+        height : 30px;
+        border-radius : 4px;
+        background: #223E4F;
+        color : white;
+        margin-right : 5px;
+        font-size : 20px;
+        text-align : center;
+}
+
+
 
 /* 버튼 */
 .orders-btn{
@@ -156,8 +176,6 @@
     font-weight: bold;
     width: 98%;
     height : 30px;
-
-
 }
 
 
