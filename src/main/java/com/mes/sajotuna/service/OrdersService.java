@@ -31,4 +31,13 @@ public class OrdersService {
 
         return ordersDto;
     }
+
+    // 특정 게시글 삭제
+    public void ordersDelete(Long id){
+
+        Orders orders = ordersRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        ordersRepository.deleteById(id);
+    }
 }
