@@ -88,5 +88,9 @@ public class OrdersController {
 
         return "redirect:/";
     }
+    @GetMapping("/tables")
+    public void table(){
+
+    }
 
 }
