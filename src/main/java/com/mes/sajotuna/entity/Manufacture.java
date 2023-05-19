@@ -1,10 +1,16 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 // 생산관리
 @Entity
 @Table(name = "manufacture")
+@Getter @Setter
+@ToString
 public class Manufacture {
 
     @Id
@@ -30,4 +36,6 @@ public class Manufacture {
     @Column(name = "orders_id", nullable = false)
     private String ordersId;    // 수주번호
 
+    @Column(name = "manufacture_status", columnDefinition = "N")
+    private String status;
 }

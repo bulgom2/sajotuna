@@ -1,10 +1,16 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 // BOM
 @Entity
 @Table(name = "bom")
+@Getter @Setter
+@ToString
 public class Bom {
 
     @Id
@@ -39,4 +45,6 @@ public class Bom {
     @Column(name = "bom_input_4", nullable = false)
     private Long input4;  // 재료4 투입량
 
+    @Column(name = "bom_total")
+    private Long total;  // 완제품 재고
 }

@@ -53,7 +53,7 @@
 }
 
 /* 수주 번호 */
-.orders-id{
+.orders-no{
     height : 40px;
     margin-left : 35px;
     display : flex;
@@ -61,7 +61,7 @@
     font-weight : bold;
 }
 
-#orders-id{
+#orders-no{
     height : 40px;
     width: 200px;
     margin-left : 10px;
@@ -118,10 +118,10 @@
 }
 
 #orders_item {
-     height : 40px;
-     width: 200px;
-     margin-left : 10px;
-     font-size : 25px;
+    height : 40px;
+    width: 200px;
+    margin-left : 10px;
+    font-size : 25px;
 
 }
 
@@ -158,6 +158,22 @@
     font-size : 25px;
 }
 
+/* 진행 상태 */
+.orders_qtt {
+    display : flex;
+    height : 40px;
+    margin-left : 60px;
+    font-size : 25px;
+    font-weight : bold;
+}
+
+#orders_qtt {
+    height : 40px;
+    weight : 200px;
+    margin-left : 10px;
+    font-size : 25px;
+}
+
 
 /* content-3 */
 .orders-content-3 {
@@ -183,7 +199,7 @@
 table {
     border-collapse: collapse;
     width: 100%;
- }
+}
 
 th, td {
     border-right: none;

@@ -24,109 +24,109 @@
     <div th:replace="fragment/sidebar::sidebar"></div>
     <!-- /사이드바 -->
 
-    <!-- 본문 -->
-    <div id="page-content-wrapper">
-        <div class="content-desc">
-            <div class="content-header">
-                <input class="form-control" type="text" value="수주 관리" aria-label="Disabled input example" disabled readonly>
+    <form th:method="get">
+        <!-- 본문 -->
+        <div id="page-content-wrapper">
+            <div class="content-desc">
+                <div class="content-header">
+                    <input class="form-control" type="text" value="수주 관리" aria-label="Disabled input example" disabled readonly>
 
-                <div class="search-bar">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                    <div class="search-bar">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="orders-content-2">
-            <div class="orders-content-2-1">
-            <div class="orders_company">
-                <p class="orders_company">거래처</p>
-                <select name = "orders_company-list" id="orders_company-list">
-                    <option value = "coupang">쿠팡</option>
-                    <option value = "11st">11번가</option>
-                </select>
-            </div>
+            <div class="orders-content-2">
+                <div class="orders-content-2-1">
+                    <div class="orders_company">
+                        <p class="orders_company">거래처</p>
+                        <select name = "orders_company-list" id="orders_company-list">
+                            <option value = "coupang">쿠팡</option>
+                            <option value = "11st">11번가</option>
+                        </select>
+                    </div>
 
-            <div class="orders-date">
-                <p class="orders-date">수주 일자</p>
-                <input type="date" id="orders-date">
-            </div>
+                    <div class="orders-date">
+                        <p class="orders-date">수주 일자</p>
+                        <input type="date" id="orders-date">
+                    </div>
 
-            <div class="orders-id">
-                <p class="orders-id">수주 번호</p>
-                <input type="text" id="orders-id">
-            </div>
+                    <div class="orders-id">
+                        <p class="orders-id">수주 번호</p>
+                        <input type="text" id="orders-id">
+                    </div>
 
-            <div class="orders-btn">
-                <button id="confirmed">수주 확정</button>
-                <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
-            </div>
-            </div>
-
-            <div class="orders-content-2-2">
-                <div class="orders_item">
-                    <p class="orders_item">제품명</p>
-                    <input type="text" id="orders_item">
+                    <div class="orders-btn">
+                        <button id="confirmed">수주 확정</button>
+                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
+                    </div>
                 </div>
 
-                <div class="orders_code">
-                    <p class="orders_code">제품코드</p>
-                    <select name = "orders_code" id="orders_code">
-                        <option value = "code1">A0001</option>
-                        <option value = "code2">A0002</option>
-                        <option value = "code3">B0001</option>
-                        <option value = "code4">B0002</option>
-                    </select>
-                </div>
+                <div class="orders-content-2-2">
+                    <div class="orders_item">
+                        <p class="orders_item">제품명</p>
+                        <input type="text" id="orders_item">
+                    </div>
 
-                <div class="orders_status">
-                    <p class="orders_status">진행상황</p>
-                    <select name = "orders_status" id="orders_status">
-                        <option value = "proceeding">진행중</option>
-                        <option value = "waiting">대기중</option>
-                    </select>
-                </div>
+                    <div class="orders_code">
+                        <p class="orders_code">제품코드</p>
+                        <select name = "orders_code" id="orders_code">
+                            <option value = "code1">A0001</option>
+                            <option value = "code2">A0002</option>
+                            <option value = "code3">B0001</option>
+                            <option value = "code4">B0002</option>
+                        </select>
+                    </div>
 
+                    <div class="orders_status">
+                        <p class="orders_status">진행상황</p>
+                        <select name = "orders_status" id="orders_status">
+                            <option value = "proceeding">진행중</option>
+                            <option value = "waiting">대기중</option>
+                        </select>
+                    </div>
+
+                </div>
             </div>
-        </div>
 
-        <div class="orders-content-3">
-            <p class="orders-table">수주 내역</p>
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th style="border-left:none; border-right:none;">순번</th>
-                    <th style="border-left:none; border-right:none;">수주 번호</th>
-                    <th style="border-left:none; border-right:none;">수주 일자</th>
-                    <th style="border-left:none; border-right:none;">거래처</th>
-                    <th style="border-left:none; border-right:none;">제품명</th>
-                    <th style="border-left:none; border-right:none;">제품 코드</th>
-                    <th style="border-left:none; border-right:none;">수량</th>
-                    <th style="border-left:none; border-right:none;">예상 납품일</th>
-                    <th style="border-left:none; border-right:none;">진행 상태</th>
-                </tr>
-                </thead>
-                <tbody th:each="orders: ${orders}">
+            <div class="orders-content-3">
+                <p class="orders-table">수주 내역</p>
+                <table class="table table-hover">
+                    <thead>
                     <tr>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.id}">순번</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.no}">수주번호</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.date}">수주일자</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.company}">거래처</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.item}">제품명</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.code}">제품코드</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.qtt}">수량</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.shipDate}">예상납품일</td>
-                        <td style="border-left:none; border-right:none;" th:text="${orders.status}">진행상태</td>
+                        <th style="border-left:none; border-right:none;">순번</th>
+                        <th style="border-left:none; border-right:none;">수주 번호</th>
+                        <th style="border-left:none; border-right:none;">수주 일자</th>
+                        <th style="border-left:none; border-right:none;">거래처</th>
+                        <th style="border-left:none; border-right:none;">제품명</th>
+                        <th style="border-left:none; border-right:none;">제품 코드</th>
+                        <th style="border-left:none; border-right:none;">수량</th>
+                        <th style="border-left:none; border-right:none;">예상 납품일</th>
+                        <th style="border-left:none; border-right:none;">진행 상태</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="list : ${orderList}">
+                            <td style="border-left:none; border-right:none;"><a th:text="${list.id}" th:href="@{'/orders/' + ${list.id}}">수주ID</a></td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.no}">수주번호</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.date}">수주일자</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.company}">거래처</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.item}">제품명</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.code}">제품 코드</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.qtt}">수량</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.shipDate}">예상납품일</td>
+                            <td style="border-left:none; border-right:none;" th:text="${list.status}">진행상태</td>
+                        </tr>
                 </tbody>
             </table>
-
-
         </div>
-
     </div>
+    </form>
     <!-- /본문 -->
+    <!--  </div>-->
 
     <!-- 모달 -->
     <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
@@ -155,7 +155,5 @@
     <!--  </div>-->
 
 </div>
-
 </body>
-</th:block>
 </html>
