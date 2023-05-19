@@ -3,6 +3,7 @@ package com.mes.sajotuna.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -36,6 +37,7 @@ public class Manufacture {
     @Column(name = "orders_id", nullable = false)
     private String ordersId;    // 수주번호
 
-    @Column(name = "manufacture_status", columnDefinition = "N")
+    @Column(name = "manufacture_status")
+    @ColumnDefault("'N'")
     private String status;
 }
