@@ -1,8 +1,8 @@
 package com.mes.sajotuna.service;
 
+import com.mes.sajotuna.dto.OrdersDto;
 import com.mes.sajotuna.entity.Bom;
 import com.mes.sajotuna.entity.Material;
-import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.BomRepository;
 import com.mes.sajotuna.repository.MaterialRepository;
 import com.mes.sajotuna.repository.OrdersRepository;
@@ -30,17 +30,23 @@ public class PurchaseService {
 
     private final MaterialRepository materialRepository;
 
-    public LocalDateTime purchaseMain(){
 
-        // 1번 가져온다
-        Orders orders = ordersRepository.findById(1L)
-                .orElseThrow(EntityNotFoundException::new);
 
-        int orderQtt = orders.getQtt();
+
+
+
+    // 수주 날짜와 수주 수량 가져오기
+    public LocalDateTime purchaseMain(OrdersDto ordersDto){
+
+//        // 1번 가져온다
+//        ordersDto = ordersRepository.findById(1L)
+//                .orElseThrow(EntityNotFoundException::new);
+
+        int orderQtt = ordersDto.getQtt();
 
         System.out.println("수량 : " + orderQtt);
 
-        String orderName = orders.getItem();
+        String orderName = ordersDto.getItem();
 
         System.out.println("수주할 제품 : " + orderName);
 
@@ -57,7 +63,8 @@ public class PurchaseService {
 
         // 현재 날짜 지정 방법
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.now();
+        LocalDateTime date = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
+//        LocalDate date = LocalDate.now();
         String formattedDate = date.format(formatter);
 
         if(box <= 0) {
@@ -281,6 +288,9 @@ public class PurchaseService {
 
         return latestTime;
     }
+
+
+
 
 
 

@@ -4,6 +4,9 @@ import com.mes.sajotuna.entity.Orders;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 // 수주관리
 @Getter
@@ -14,7 +17,9 @@ public class OrdersDto {
 
     private String no;    // 수주번호
 
-    private String date;    // 수주일자
+    // 23/05/22 LocalDateTime으로 타입 변경
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime date;    // 수주일자
 
     private String status;    // 진행상태
 
@@ -24,9 +29,10 @@ public class OrdersDto {
 
     private String item;    // 제품명
 
-    private String qtt;    // 제품수량
+    // 23/05/22 Integer로 타입 변경
+    private Integer qtt;    // 제품수량
 
-    private String shipDate;    // 예상 납품일
+    private LocalDateTime shipDate;    // 예상 납품일
 
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
