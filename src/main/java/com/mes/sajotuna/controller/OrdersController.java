@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -33,20 +34,37 @@ public class OrdersController {
 
     // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
     @PostMapping("/orders")
-    public String orderWritePost(OrdersDTO ordersDto) {
+    public String orderWritePost(OrdersDTO ordersDTO) {
 
-        System.out.println("OrdersDto " + ordersDto.toString());
+        System.out.println("OrdersDto " + ordersDTO.toString());
 
+        LocalDateTime orderDay = ordersDTO.getDate();
+
+        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+""};
+
+        String code = "SJ";
+
+        for(int i=0; i<dateTime.length; i++){
+            if(dateTime[i].length() < 2){
+                dateTime[i] = "0" + dateTime[i];
+            }
+            code += dateTime[i];
+        }
+
+        System.out.println("수주번호 : " + code);
+
+        ordersDTO.setNo(code);
+
+        ordersDTO.setStatus("waiting");
 
 //        String code = "SJ" + ordersDto.getDate().toLocalDate();
-
 
 
 //        ordersDto.setCode();
 
 //        ordersDto.setShipDate("132456");
 
-        Orders orders = ordersDto.createOrders();
+        Orders orders = ordersDTO.createOrders();
 
         System.out.println("orders " + orders);
 

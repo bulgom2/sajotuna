@@ -82,15 +82,15 @@
                         </select>
                     </div>
 
-                    <div class="orders_code">
-                        <p class="orders_code">제품코드</p>
-                        <select name = "orders_code" id="orders_code">
-                            <option value = "code1">A0001</option>
-                            <option value = "code2">A0002</option>
-                            <option value = "code3">B0001</option>
-                            <option value = "code4">B0002</option>
-                        </select>
-                    </div>
+<!--                    <div class="orders_code">-->
+<!--                        <p class="orders_code">제품코드</p>-->
+<!--                        <select name = "orders_code" id="orders_code">-->
+<!--                            <option value = "code1">A0001</option>-->
+<!--                            <option value = "code2">A0002</option>-->
+<!--                            <option value = "code3">B0001</option>-->
+<!--                            <option value = "code4">B0002</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
 
                     <div class="orders_status">
                         <p class="orders_status">진행상황</p>
@@ -113,7 +113,7 @@
                         <th style="border-left:none; border-right:none;">수주 일자</th>
                         <th style="border-left:none; border-right:none;">거래처</th>
                         <th style="border-left:none; border-right:none;">제품명</th>
-                        <th style="border-left:none; border-right:none;">제품 코드</th>
+<!--                        <th style="border-left:none; border-right:none;">제품 코드</th>-->
                         <th style="border-left:none; border-right:none;">수량</th>
                         <th style="border-left:none; border-right:none;">예상 납품일</th>
                         <th style="border-left:none; border-right:none;">진행 상태</th>
@@ -126,7 +126,7 @@
                             <td style="border-left:none; border-right:none;" th:text="${list.date}">수주일자</td>
                             <td style="border-left:none; border-right:none;" th:text="${list.company}">거래처</td>
                             <td style="border-left:none; border-right:none;" th:text="${list.item}">제품명</td>
-                            <td style="border-left:none; border-right:none;" th:text="${list.code}">제품 코드</td>
+<!--                            <td style="border-left:none; border-right:none;" th:text="${list.code}">제품 코드</td>-->
                             <td style="border-left:none; border-right:none;" th:text="${list.qtt}">수량</td>
                             <td style="border-left:none; border-right:none;" th:text="${list.shipDate}">예상납품일</td>
                             <td style="border-left:none; border-right:none;" th:text="${list.status}">진행상태</td>

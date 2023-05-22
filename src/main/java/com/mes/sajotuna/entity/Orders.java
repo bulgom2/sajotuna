@@ -33,8 +33,8 @@ public class Orders {
     @Column(name = "orders_company", nullable = false)
     private String company;    // 거래처
 
-    @Column(name = "orders_code", nullable = false)
-    private String code;    // 제품코드
+//    @Column(name = "orders_code", nullable = false)
+//    private String code;    // 제품코드
 
     @Column(name = "orders_item", nullable = false)
     private String item;    // 제품명

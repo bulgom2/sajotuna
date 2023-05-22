@@ -27,7 +27,7 @@ public class OrdersDTO {
 
     private String company;    // 거래처
 
-    private String code;    // 제품코드
+//    private String code;    // 제품코드
 
     private String item;    // 제품명
 
