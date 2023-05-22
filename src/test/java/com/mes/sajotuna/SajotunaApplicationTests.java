@@ -29,7 +29,7 @@ class SajotunaApplicationTests {
 //
 //    @Test
 //    void test2(){
-//        Long id = 125L;
+//        Long id = 1L;
 //        Optional<Tests> tests = testRepository.findById(id);
 //
 //        System.out.println(tests);

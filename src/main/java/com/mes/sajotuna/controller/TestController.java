@@ -16,8 +16,6 @@ public class TestController {
 
     @GetMapping("/test")
     public String getTest(){
-        System.out.println("실행");
-        System.out.println("abfdsbv");
         return "layout1";
     }
 
