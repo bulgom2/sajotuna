@@ -1,8 +1,10 @@
 package com.mes.sajotuna.service;
 
-import com.mes.sajotuna.dto.OrdersDto;
+import com.mes.sajotuna.dto.OrdersDTO;
+import com.mes.sajotuna.dto.PurchaseDTO;
 import com.mes.sajotuna.entity.Bom;
 import com.mes.sajotuna.entity.Material;
+import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.BomRepository;
 import com.mes.sajotuna.repository.MaterialRepository;
 import com.mes.sajotuna.repository.OrdersRepository;
@@ -31,22 +33,34 @@ public class PurchaseService {
     private final MaterialRepository materialRepository;
 
 
+    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
+        PurchaseDTO purchaseDTO = new PurchaseDTO();
 
+        Orders orders = ordersRepository.findById(1L)
+                .orElseThrow(EntityNotFoundException::new);
 
+        System.out.println("수주 entity : " + orders);
 
+        OrdersDTO ordersDto = OrdersDTO.of(orders);
+
+        purchaseDTO.setDate(ordersDTO.getDate());
+        purchaseDTO.setShipDate(purchaseTime(ordersDTO));
+        purchaseDTO.setOrdersNo(ordersDTO.getNo());
+
+        return purchaseDTO;
+    }
 
     // 수주 날짜와 수주 수량 가져오기
-    public LocalDateTime purchaseMain(OrdersDto ordersDto){
-
-//        // 1번 가져온다
-//        ordersDto = ordersRepository.findById(1L)
+    public LocalDateTime purchaseTime(OrdersDTO ordersDTO){
+        // 1번 가져온다
+//        Orders orders = ordersRepository.findById(4L)
 //                .orElseThrow(EntityNotFoundException::new);
 
-        int orderQtt = ordersDto.getQtt();
+        int orderQtt = ordersDTO.getQtt();
 
         System.out.println("수량 : " + orderQtt);
 
-        String orderName = ordersDto.getItem();
+        String orderName = ordersDTO.getItem();
 
         System.out.println("수주할 제품 : " + orderName);
 
@@ -137,7 +151,7 @@ public class PurchaseService {
         };
 
         // 주문시 걸리는 날짜
-        LocalDateTime orderDate[] = new LocalDateTime[5];
+        LocalDateTime orderTime[] = new LocalDateTime[5];
 
         // 현재 시간 지정
         LocalDateTime now = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
@@ -206,7 +220,7 @@ public class PurchaseService {
         // ch1 < 3일때는 12시 지나면 다음날 발주
         // 그 외의 조건은 15시 지나면 다음날 발주
         // ch1 {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.포장지, 7.스틱파우치, 8.박스}
-        for(int i=0; i<orderDate.length; i++) {
+        for(int i=0; i<orderTime.length; i++) {
             // 정제수이면 for문으로 다시 가서 i 값 1 증가
 
             if(Arrays.asList(material).indexOf(name[i]) == material.length-1) continue;
@@ -220,22 +234,22 @@ public class PurchaseService {
             if(needpro[i] != 0) {
                 if(ch1 < 3) {
                     if(now.getHour() < 12) {
-                        orderDate[i] = twelveOrder(now, ch1);
+                        orderTime[i] = twelveOrder(now, ch1);
                     } else {
                         System.out.println("다음날 12시 전에 발주를 진행해주세요");
                     }
-//						System.out.println("1 : " + orderDate[i]);
+//						System.out.println("1 : " + orderTime[i]);
                 } else {
                     if(now.getHour() < 15) {
-                        orderDate[i] = fifthteenOrder(now, ch1);
-//						System.out.println("2 : " + orderDate[i]);
+                        orderTime[i] = fifthteenOrder(now, ch1);
+//						System.out.println("2 : " + orderTime[i]);
                     } else {
                         System.out.println("다음날 15시 전에 발주를 진행해주세요");
                     }
                 }
             } else {
                 System.out.println(name[i] + "은(는) 발주를 진행하지 않아도 됩니다.");
-                orderDate[i] = now;
+                orderTime[i] = now;
             }
 
             double min = minmax[i][0];
@@ -257,10 +271,10 @@ public class PurchaseService {
 
 
             // LocalDateTime을 LocalDate로 타입 변경
-            if(orderDate[i] == null) {
+            if(orderTime[i] == null) {
                 System.out.println("해당 시간 및 요일에는 발주가 불가능합니다.");
             } else {
-                LocalDate datetypech = orderDate[i].toLocalDate();
+                LocalDate datetypech = orderTime[i].toLocalDate();
 
                 System.out.print("필요한 " + name[i]);
                 System.out.print(" 도착 예정 시간 : " + datetypech);
@@ -279,20 +293,20 @@ public class PurchaseService {
             System.out.println();
             System.out.println();
 
-            if(latestTime.isBefore(orderDate[i])){
-                latestTime = orderDate[i];
+
+            // {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.파우치, 7.스틱파우치, 8.박스}
+            if(ch1 <= 5){
+                if(latestTime.isBefore(orderTime[i])){
+                    latestTime = orderTime[i];
+                }
             }
+
         }
 
         latestTime = latestTime.withHour(10).withMinute(0).withSecond(0).withNano(0);
 
         return latestTime;
     }
-
-
-
-
-
 
 
     // ch1 {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.포장지, 7.스틱파우치, 8.박스}

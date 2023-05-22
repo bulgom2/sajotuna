@@ -26,5 +26,4 @@ public class WipRepositoryTest {
 
         System.out.println(wip);
     }
-
 }

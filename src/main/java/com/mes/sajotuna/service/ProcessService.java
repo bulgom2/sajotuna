@@ -12,7 +12,7 @@ import javax.persistence.EntityNotFoundException;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class OrdersService {
+public class ProcessService {
 
     private final OrdersRepository ordersRepository;
 

@@ -31,7 +31,7 @@ public class Process {
     private Long facilityId;  // 설비 정보
 
     @Column(name = "process_pt")
-    private String pt;  // 공정 준비시간
+    private Integer pt;  // 공정 준비시간
 
     @Column(name = "process_lt")
     private String lt;  // 공정 소요 시간

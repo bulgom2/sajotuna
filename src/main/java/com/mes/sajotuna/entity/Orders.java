@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 // 수주관리
@@ -43,7 +44,7 @@ public class Orders {
     private Integer qtt;    // 제품수량
 
     @Column(name = "orders_shipdate")
-    private LocalDateTime shipDate;    // 예상 납품일
+    private LocalDate shipDate;    // 예상 납품일
 
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료

@@ -1,6 +1,6 @@
 package com.mes.sajotuna.service;
 
-import com.mes.sajotuna.dto.OrdersDto;
+import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import org.junit.jupiter.api.Test;
@@ -21,14 +21,17 @@ class PurchaseServiceTests {
 
     @Test
     void purchaseTest(){
-        Orders orders = ordersRepository.findById(1L)
+        Orders orders = ordersRepository.findById(5L)
                 .orElseThrow(EntityNotFoundException::new);
 
-        OrdersDto ordersDto = OrdersDto.of(orders);
+        System.out.println("수주 entity : " + orders);
 
-        LocalDateTime purchaseTime = purchaseService.purchaseMain(ordersDto);
+        OrdersDTO ordersDto = OrdersDTO.of(orders);
+
+        System.out.println("수주 dto : " + ordersDto);
+
+        LocalDateTime purchaseTime = purchaseService.purchaseTime(ordersDto);
 
         System.out.println("발주 완료 시간 : " + purchaseTime);
     }
-
 }

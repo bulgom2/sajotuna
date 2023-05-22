@@ -20,7 +20,7 @@ public class ordersRepositoryTest {
         Orders orders = new Orders();
 
         orders.setNo("123");
-        orders.setQtt("12");
+        orders.setQtt(12);
         orders.setDate(LocalDateTime.now());
         orders.setCode("123");
         orders.setItem("12315");

@@ -52,4 +52,8 @@ public class CoolingProcess {
             System.out.println("현재 냉각이 진행중이 아닙니다.");    // 검사 데이터가 없다면
         }
     }
+
+    public static void main(String[] args){
+//        CoolingProcess()
+    }
 }

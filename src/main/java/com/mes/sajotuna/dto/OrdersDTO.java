@@ -3,6 +3,7 @@ package com.mes.sajotuna.dto;
 import com.mes.sajotuna.entity.Orders;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,7 +12,8 @@ import java.time.LocalDateTime;
 // 수주관리
 @Getter
 @Setter
-public class OrdersDto {
+@ToString
+public class OrdersDTO {
 
     private Long id;    // 수주id
 
@@ -44,7 +46,7 @@ public class OrdersDto {
         return modelMapper.map(this, Orders.class);
     }
 
-    public static OrdersDto of(Orders orders){
-        return modelMapper.map(orders, OrdersDto.class);
+    public static OrdersDTO of(Orders orders){
+        return modelMapper.map(orders, OrdersDTO.class);
     }
 }

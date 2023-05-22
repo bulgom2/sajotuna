@@ -1,6 +1,7 @@
 package com.mes.sajotuna.process;
 
-import com.example.domain.ManufactureDTO;
+
+import com.mes.sajotuna.dto.ManufactureDTO;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -8,7 +9,6 @@ import java.time.LocalTime;
 public class PreProcessing {
 
     ManufactureDTO thisManufactureDTO = new ManufactureDTO();
-
 
     //하루 일과 시간
     LocalTime start = LocalTime.of(9, 0, 0); // 오전 9시

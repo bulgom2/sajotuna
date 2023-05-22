@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.Duration;
-
 @SpringBootTest
 public class FacilityRepositoryTest {
 
@@ -20,7 +18,7 @@ public class FacilityRepositoryTest {
         facility.setQtt(500L);
         facility.setItem("sdfsdf");
         facility.setPt(10);
-        facility.setLt(Duration.ofMinutes(6));
+//        facility.setLt(Duration.ofMinutes(6));
         facility.setStatus(false);
         facility.setName("jell");
 

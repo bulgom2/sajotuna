@@ -1,6 +1,6 @@
 package com.mes.sajotuna.process;
 
-import com.example.domain.ManufactureDTO;
+import com.mes.sajotuna.dto.ManufactureDTO;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,13 +21,10 @@ public class Measurement {
         //원료 계량 계산 시점
         LocalDateTime now = getTime;
 
-
-
         LocalDateTime processLastTime = manufactureDTO.getManufacture_outtime();
 
         if(now.isAfter(processLastTime)){  // 원료계량기 작업 계획이 없을때
             checkTime(now);
-
 
         }else { // 원료계량기 작업 계획이 있을때
             checkTime(processLastTime);
@@ -64,8 +61,5 @@ public class Measurement {
         }
 
     }
-
-
-
 
 }

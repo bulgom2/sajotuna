@@ -1,16 +1,26 @@
 package com.mes.sajotuna.calculation;
 
-import com.example.domain.ManufactureDTO;
-import com.example.domain.OrdersDTO;
-import com.example.process.Measurement;
-import com.example.process.PreProcessing;
+
+import com.mes.sajotuna.dto.ManufactureDTO;
+import com.mes.sajotuna.dto.OrdersDTO;
+import com.mes.sajotuna.process.Measurement;
+import com.mes.sajotuna.process.PreProcessing;
+import com.mes.sajotuna.service.PurchaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
 public class measure {
+
+    @Autowired
+    private static PurchaseService purchaseService;
+
 
     public static void main(String[] args) {
 
@@ -21,30 +31,34 @@ public class measure {
 
         //<수주 등록>
         OrdersDTO ordersDTO = new OrdersDTO();
-        ordersDTO.setOrders_item("ybc");
-        ordersDTO.setOrders_qtt(100);
-        ordersDTO.setOrders_date(LocalDateTime.now());
+        ordersDTO.setItem("양배추즙");
+        ordersDTO.setQtt(100);
+        ordersDTO.setDate(LocalDateTime.now());
 
         String now = LocalDateTime.now().format(formatter);
 
         System.out.println("=== 수주 등록 ==================================================================================================");
-        System.out.println("주문 상품 : "+ordersDTO.getOrders_item());
-        System.out.println("주문 수량 : "+ ordersDTO.getOrders_qtt());
+        System.out.println("주문 상품 : "+ordersDTO.getItem());
+        System.out.println("주문 수량 : "+ ordersDTO.getQtt());
         System.out.println("수주 등록 시간 : "+ now);
         System.out.println(" ");
 
-
+//        PurchaseDTO purchaseDTO = purchaseService.purchaseMain(ordersDTO);
 
         ///////////////////////////////////// 원료 계산 ////////////////////////////////////////
         //<원료 계량 생산계획 정보 가져오기>
         ManufactureDTO getMS = new ManufactureDTO();
         getMS.setManufacture_outtime(LocalDateTime.of(2023, 05,19,12,50));             //원료 계획 최종 시간
         LocalDateTime shipmentTime = LocalDateTime.of(2023,05,22,10,00,0);      //발주 입고 시간
+//        LocalDateTime shipmentTime = purchaseService.purchaseTime(ordersDTO);      //발주 입고 시간
+
+//        System.out.println("발주dto : " + purchaseDTO);
+//        System.out.println("발주시간 : " + shipmentTime);
 
         //<원료 계량 시간 계산>
         Measurement measurement = new Measurement();
         ManufactureDTO resultMs = measurement.measurementByMaterial(getMS, shipmentTime);
-        resultMs.setManufacture_qtt(50);
+        resultMs.setManufacture_qtt(5000);
 
         String start = resultMs.getManufacture_intime().format(formatter);
         String end = resultMs.getManufacture_outtime().format(formatter);
@@ -58,6 +72,9 @@ public class measure {
 
         workTime = resultMs.getManufacture_outtime();
         ///////////////////////////////////// 전처리 /////////////////////////////////////////
+
+
+        System.out.println("=== 전처리 ==================================================================================================");
 
         // 원료 계량 양
         int amount = resultMs.getManufacture_qtt();
@@ -87,7 +104,6 @@ public class measure {
             amount -= amountPerWork;
         }
 
-
         for(int i = 1; i < ppList.size() ; i++){
             ppList.set(i, preProcessing.preProcessing(ppList.get(i), referenceTime, workTime));
             System.out.println("List "+i+"번째 :"+ppList.get(i));
@@ -96,9 +112,5 @@ public class measure {
         }
 
 
-
-
-
     }
-
 }
