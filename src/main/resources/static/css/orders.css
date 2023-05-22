@@ -21,13 +21,13 @@
 }
 
 
-.orders-content-2-1 {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
+/*.orders-content-2-1 {*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    margin-bottom: 30px;*/
 
-}
+/*}*/
 
 /* 거래처 */
 .orders_company{

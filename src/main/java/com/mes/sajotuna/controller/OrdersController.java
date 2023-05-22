@@ -23,11 +23,9 @@ public class OrdersController {
     private OrdersService ordersService;
 
 
-    // html 불러오기(수주 동록 페이지)
+    // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders")
     public String orderWrite(){
-        System.out.println("실행");
-        System.out.println("abfdsbv");
         return "ordersinput";
     }
 
@@ -68,7 +66,6 @@ public class OrdersController {
     public String orderDetail(Model model, @PathVariable("id") Long id){
 
         System.out.println("123 : " + id);
-
 
         OrdersDto ordersDto = ordersService.ordersDetail(id);
 

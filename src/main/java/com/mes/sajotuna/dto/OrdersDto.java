@@ -24,13 +24,18 @@ public class OrdersDto {
 
     private String item;    // 제품명
 
-    private String qtt;    // 제품수량
+    private Long qtt;    // 제품수량
 
     private String shipDate;    // 예상 납품일
+
+    private String ordersNo;
 
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
 //    }
+
+//    Orders.setId(OrdersDto.getId);
+//    OrdersDto.setId(Orders.getId);
 
     public static ModelMapper modelMapper = new ModelMapper();
 

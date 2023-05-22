@@ -5,26 +5,26 @@
 
     <title> T U N A - M E S </title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="/css/orders.css">
-    <link rel="stylesheet" href="/css/layout1.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/css/orders.css" rel="stylesheet">
+    <link href="/css/layout1.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
 
-    <link th:href="@{/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link th:href="@{css/sb-admin-2.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{css/sb-admin-2.min.css}">
 
     <!-- Custom styles for this page -->
-    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
 </head>
 <body>
@@ -40,17 +40,19 @@
         <div id="page-content-wrapper">
             <div class="content-desc">
                 <div class="content-header">
-                    <input class="content-title" type="text" value="수주 관리" disabled readonly>
+                    <input class="content-title" disabled readonly type="text" value="수주 관리">
                     <div class="orders-btn">
                         <button id="confirmed">수주 확정</button>
-                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
+                        <!--                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>-->
+                        <button data-target="#myModal" data-toggle="modal" id="register" type="button">수주 등록</button>
+
                     </div>
-<!--                    <div class="search-bar">-->
-<!--                        <div class="input-group mb-3">-->
-<!--                            <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">-->
-<!--                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="search-bar">-->
+                    <!--                        <div class="input-group mb-3">-->
+                    <!--                            <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">-->
+                    <!--                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                 </div>
             </div>
 
@@ -75,18 +77,18 @@
                                     <th>진행 상태</th>
                                 </tr>
                                 </thead>
-                                <tbody th:each="list : ${orderList}">
-                                    <tr>
-                                        <td><a th:text="${list.id}" th:href="@{'/orders/' + ${list.id}}">수주ID</a></td>
-                                        <td th:text="${list.no}">수주번호</td>
-                                        <td th:text="${list.date}">수주일자</td>
-                                        <td th:text="${list.company}">거래처</td>
-                                        <td th:text="${list.item}">제품명</td>
-                                        <td th:text="${list.code}">제품 코드</td>
-                                        <td th:text="${list.qtt}">수량</td>
-                                        <td th:text="${list.shipDate}">예상납품일</td>
-                                        <td th:text="${list.status}">진행상태</td>
-                                    </tr>
+                                <tbody>
+                                <tr th:each="list : ${orderList}">
+                                    <td th:text="${list.id}">수주ID</td>
+                                    <td th:text="${list.no}">수주번호</td>
+                                    <td th:text="${list.date}">수주일자</td>
+                                    <td th:text="${list.company}">거래처</td>
+                                    <td th:text="${list.item}">제품명</td>
+                                    <td th:text="${list.code}">제품 코드</td>
+                                    <td th:text="${list.qtt}">수량</td>
+                                    <td th:text="${list.shipDate}">예상납품일</td>
+                                    <td th:text="${list.status}">진행상태</td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -99,91 +101,30 @@
     <!--  </div>-->
 
     <!-- 모달 -->
-    <div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">수주 등록</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button class="close" data-dismiss="modal" type="button">&times;</button>
                 </div>
 
-                <!-- Modal body -->
                 <div class="modal-body">
-                    <form action="/orders" method="post">
-
-                        <div class="orders-content-2">
-                            <div class="orders-content-2-1">
-                                <div class="orders_company">
-                                    <p class="orders_company">거래처</p>
-                                    <select name = "company" id="orders_company-list">
-                                        <option value = "coupang">쿠팡</option>
-                                        <option value = "11st">11번가</option>
-                                    </select>
-                                </div>
-
-                                <div class="orders-date">
-                                    <p class="orders-date">수주 일자</p>
-                                    <input type="date" id="orders-date" name="date">
-                                </div>
-
-                                <div class="orders-no">
-                                    <p class="orders-no">수주 번호</p>
-                                    <input type="text" id="orders_no" name="no">
-                                </div>
-
-<!--                                <div class="orders-btn">-->
-<!--                                    <button id="confirmed">수주 확정</button>-->
-<!--                                    <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>-->
-<!--                                </div>-->
-                            </div>
-
-                            <div class="orders-content-2-2">
-                                <div class="orders_item">
-                                    <p class="orders_item">제품명</p>
-                                    <input type="text" id="orders_item" name="item">
-                                </div>
-
-                                <div class="orders_code">
-                                    <p class="orders_code">제품코드</p>
-                                    <select name = "code" id="orders_code">
-                                        <option value = "code1">A0001</option>
-                                        <option value = "code2">A0002</option>
-                                        <option value = "code3">B0001</option>
-                                        <option value = "code4">B0002</option>
-                                    </select>
-                                </div>
-
-                                <div class="orders_status">
-                                    <p class="orders_status">진행상황</p>
-                                    <select name = "status" id="orders_status">
-                                        <option value = "proceeding">진행중</option>
-                                        <option value = "waiting">대기중</option>
-                                    </select>
-                                </div>
-
-                                <div class="orders_qtt">
-                                    <p class="orders_qtt">수량</p>
-                                    <input type="text" id="orders_qtt" name="qtt">
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </form>
-
+                    <iframe src="/orders" style="width: 100%; height: 750px; border: none;"></iframe>
                 </div>
+
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
                 </div>
 
-            </div>
+            </div> <!-- modal-content -->
         </div>
     </div>
-    <!--  </div>-->
+    <!-- </div>-->
 
 </div>
 
