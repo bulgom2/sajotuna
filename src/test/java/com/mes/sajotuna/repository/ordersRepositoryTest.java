@@ -1,17 +1,16 @@
-package com.mes.sajotuna;
+package com.mes.sajotuna.repository;
+
 
 import com.mes.sajotuna.entity.Orders;
-import com.mes.sajotuna.repository.OrdersRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class SajotunaApplicationTests {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    @Test
-    void contextLoads() {
-    }
+@SpringBootTest
+public class ordersRepositoryTest {
 
     @Autowired
     private OrdersRepository ordersRepository;
@@ -22,8 +21,15 @@ class SajotunaApplicationTests {
 
         orders.setNo("123");
         orders.setQtt("12");
+        orders.setDate(LocalDateTime.now());
+        orders.setCode("123");
+        orders.setItem("12315");
+        orders.setCompany("2131");
+        orders.setShipDate(LocalDate.from(LocalDateTime.now()));
+        orders.setStatus("132");
 
         ordersRepository.save(orders);
-    }
 
+        System.out.println(orders);
+    }
 }
