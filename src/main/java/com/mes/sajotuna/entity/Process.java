@@ -36,8 +36,5 @@ public class Process {
     @Column(name = "process_lt")
     private String lt;  // 공정 소요 시간
 
-    public enum ProcessStatus {
-        IN_PROGRESS, COMPLETED  // 가동중, 완료
-    }
 
 }

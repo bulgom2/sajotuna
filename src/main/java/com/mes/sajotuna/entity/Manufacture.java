@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 // 생산관리
 @Entity
@@ -26,10 +27,10 @@ public class Manufacture {
     private String processId;    // 공정 id
 
     @Column(name = "manufacture_intime", nullable = false)
-    private String inTime;    // 투입 전 시간
+    private LocalDateTime inTime;    // 투입 전 시간
 
     @Column(name = "manufacture_outtime", nullable = false)
-    private String outTime;    // 투입 후 시간
+    private LocalDateTime outTime;    // 투입 후 시간
 
     @Column(name = "manufacture_qtt", nullable = false)
     private Long qtt;    // 투입량

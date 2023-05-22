@@ -19,7 +19,7 @@ public class RecordRepositoryTest {
         Record record = new Record();
 
         record.setBeId("sdds");
-        record.setQtt(50L);
+        record.setQtt(500L);
         record.setNo("sdfsfs");
         record.setProcessId("sdfdfd");
         record.setStatus(50L);

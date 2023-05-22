@@ -6,14 +6,14 @@ import java.time.LocalTime;
 public class CoolingProcess {
     private String no;   // 로트 번호
     private LocalDateTime date;    // 출하 시간
-    private int qtt; // 수량
+    private Long qtt; // 수량
     private String productName; // 제품명
     private String ordersId;    // 수주 번호
     private String company; // 거래처
 
     public CoolingProcess() {}
 
-    public CoolingProcess(String no, int qtt, LocalDateTime date, String productName, String ordersId, String company) {
+    public CoolingProcess(String no, Long qtt, LocalDateTime date, String productName, String ordersId, String company) {
         this.no = no;
         this.qtt = qtt;
         this.date = date;
@@ -22,12 +22,18 @@ public class CoolingProcess {
         this.company = company;
     }
 
-    public void startCooling(String no, int qtt, String productName, LocalDateTime date, String ordersId, String company) {
+    public void startCooling(String no, Long qtt, String productName, LocalDateTime date, String ordersId, String company) {
         // 이전 공정(검사)에서 startCooling에 데이터를 저장했음
         // 검사 데이터를 받아오면 냉각 공정 시작
         if (no != null && qtt > 0 && date != null && productName != null && ordersId != null && company != null) {
-            LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
             this.no = no;  // 현재 공정 로트 번호로 업데이트
+            this.qtt = qtt; // 현재 공정 수량로 업데이트
+            this.date = date;   // 현재 공정 시간으로 업데이트
+            this.productName = productName; // 현재 공정 제품명으로 업데이트
+            this.ordersId = ordersId; // 현재 공정 수주 번호로 업데이트
+            this.company = company; // 현재 공정 거래처로 업데이트
+
+            LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
 
             if ((currentTime.getHour() >= 12 && currentTime.getHour() < 13) ||
                     (currentTime.getHour() >= 18 && currentTime.isBefore(LocalDateTime.of(currentTime.toLocalDate().plusDays(1), LocalTime.of(9, 20))))) {
@@ -52,4 +58,51 @@ public class CoolingProcess {
             System.out.println("현재 냉각이 진행중이 아닙니다.");    // 검사 데이터가 없다면
         }
     }
+
+    public void startCooling() {
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public void setQtt(long qtt) {
+        this.qtt = qtt;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setOrdersId(String ordersId) {
+        this.ordersId = ordersId;
+    }
+
+    public String getOrdersId() {
+        return ordersId;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public String getNo() {return no;}
+
+    public Long getQtt() {return qtt;}
 }

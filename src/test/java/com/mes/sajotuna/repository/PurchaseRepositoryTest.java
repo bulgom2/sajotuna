@@ -25,7 +25,7 @@ public class PurchaseRepositoryTest {
         purchase.setDate(LocalDateTime.now());
         purchase.setCompany("sfdfsd");
         purchase.setOrdersId("Sffd");
-        purchase.setShipDate(LocalDateTime.now());
+        purchase.setShipDate("2023.05.20");
         purchase.setStatus(30L);
 
         purchaseRepository.save(purchase);
