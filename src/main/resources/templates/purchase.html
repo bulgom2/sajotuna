@@ -172,8 +172,8 @@
                                     <th>진행 상태</th>
                                 </tr>
                                 </thead>
-                                <tbody th:each="list : ${purchaseList}">
-                                <tr>
+                                <tbody>
+                                <tr th:each="list : ${purchaseList}">
                                     <td><a th:href="@{'/purchase/' + ${list.id}}" th:text="${list.id}">발주ID</a></td>
                                     <td th:text="${list.no}">발주번호</td>
                                     <td th:text="${list.date}">발주일자</td>
