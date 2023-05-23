@@ -1,21 +1,17 @@
 package com.mes.sajotuna.service;
 
-import com.mes.sajotuna.entity.Orders;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 public class OrdersServiceTest {
 
-//    @Autowired
-//    private OrdersService ordersService;
-//
+    @Autowired
+    private OrdersService ordersService;
+
 //    @Test
-//    public void ordersTest() {
-//        List<Orders> list = ordersService.getOrders();
+//    void ordersTest() {
+//        List<Orders> list = OrderS.findAll();
 //
 //        System.out.println("list : "+list);
 //
