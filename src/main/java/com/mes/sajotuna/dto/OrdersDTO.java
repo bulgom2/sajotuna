@@ -36,9 +36,14 @@ public class OrdersDTO {
 
     private LocalDateTime shipDate;    // 예상 납품일
 
+    private String ordersNo;
+
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
 //    }
+
+//    Orders.setId(OrdersDto.getId);
+//    OrdersDto.setId(Orders.getId);
 
     public static ModelMapper modelMapper = new ModelMapper();
 

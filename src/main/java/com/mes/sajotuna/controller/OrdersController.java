@@ -1,6 +1,7 @@
 package com.mes.sajotuna.controller;
 
 import com.mes.sajotuna.dto.OrdersDTO;
+
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.service.OrdersService;
@@ -23,12 +24,9 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
-
-    // html 불러오기(수주 동록 페이지)
+    // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders")
     public String orderWrite(){
-        System.out.println("실행");
-        System.out.println("abfdsbv");
         return "ordersinput";
     }
 
@@ -94,12 +92,11 @@ public class OrdersController {
 
         System.out.println("123 : " + id);
 
+        OrdersDTO ordersDTO = ordersService.ordersDetail(id);
 
-        OrdersDTO ordersDto = ordersService.ordersDetail(id);
+        System.out.println("123 : " + ordersDTO);
 
-        System.out.println("123 : " + ordersDto);
-
-        model.addAttribute("ordersDto", ordersDto);
+        model.addAttribute("ordersDto", ordersDTO);
 
         return "ordersdetail";
     }
@@ -113,5 +110,8 @@ public class OrdersController {
 
         return "redirect:/";
     }
+    @GetMapping("/tables")
+    public void table(){
 
+    }
 }

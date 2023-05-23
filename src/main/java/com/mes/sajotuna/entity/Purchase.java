@@ -19,6 +19,7 @@ public class Purchase {
     @Column(name = "purchase_id", nullable = false, insertable = false, updatable = false)
     private Long id;    // id
 
+
     @Column(name = "purchase_no", nullable = false)
     private String no;    // 발주번호(Lot)
 
@@ -50,7 +51,7 @@ public class Purchase {
 //    @Column(name = "orders_id", nullable = false)
 //    private Long ordersId;    // 수주 번호
 
-    public enum PurchaseStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
+//    public enum PurchaseStatus {
+//        IN_PROGRESS, COMPLETED  // 진행중, 완료
+//    }
 }

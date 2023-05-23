@@ -8,6 +8,7 @@ import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.BomRepository;
 import com.mes.sajotuna.repository.MaterialRepository;
 import com.mes.sajotuna.repository.OrdersRepository;
+import com.mes.sajotuna.entity.Purchase;
 import com.mes.sajotuna.repository.PurchaseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -382,4 +383,14 @@ public class PurchaseService {
         return chDate;
     }
 
+    // 발주 상세페이지~
+    public PurchaseDTO purchaseDetail(Long id) {
+
+        Purchase purchase = purchaseRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        PurchaseDTO purchaseDTO = PurchaseDTO.of(purchase);
+
+        return purchaseDTO;
+    }
 }

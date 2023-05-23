@@ -3,23 +3,20 @@ package com.mes.sajotuna.dto;
 import com.mes.sajotuna.entity.Purchase;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.modelmapper.ModelMapper;
 
-import java.time.LocalDateTime;
+// 수주관리
+@Getter
+@Setter
+public class PurchaseDto {
 
-// 발주관리
-@Getter @Setter
-@ToString
-public class PurchaseDTO {
+    private Long id;    //
 
-    private Long id;    // id
+    private String no;    // 발주번호
 
-    private String no;    // 발주번호(Lot)
+    private String date;    // 발주일자
 
-    private LocalDateTime date;    // 발주일자
-
-    private Long status;    // 진행상태
+    private String status;    // 진행상태
 
     private String company;    // 거래처
 
@@ -29,13 +26,16 @@ public class PurchaseDTO {
 
     private Long qtt;    // 발주 수량
 
-    private LocalDateTime shipDate;    // 입고일
+    private String shipDate;    // 입고일
 
-    private String ordersNo;    // 수주 번호
 
-    public enum PurchaseStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
+
+//    public enum OrdersStatus {
+//        IN_PROGRESS, COMPLETED  // 진행중, 완료
+//    }
+
+//    Orders.setId(OrdersDto.getId);
+//    OrdersDto.setId(Orders.getId);
 
     public static ModelMapper modelMapper = new ModelMapper();
 
@@ -43,7 +43,7 @@ public class PurchaseDTO {
         return modelMapper.map(this, Purchase.class);
     }
 
-    public static PurchaseDTO of(Purchase purchase){
-        return modelMapper.map(purchase, PurchaseDTO.class);
+    public static PurchaseDto of(Purchase purchase){
+        return modelMapper.map(purchase, PurchaseDto.class);
     }
 }
