@@ -1,6 +1,6 @@
 package com.mes.sajotuna.controller;
 
-import com.mes.sajotuna.dto.OrdersDto;
+import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.service.OrdersService;
@@ -33,7 +33,7 @@ public class OrdersController {
 
     // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
     @PostMapping("/orders")
-    public String orderWritePost(OrdersDto ordersDto) {
+    public String orderWritePost(OrdersDTO ordersDto) {
 
         System.out.println("OrdersDto " + ordersDto.toString());
 
@@ -70,7 +70,7 @@ public class OrdersController {
         System.out.println("123 : " + id);
 
 
-        OrdersDto ordersDto = ordersService.ordersDetail(id);
+        OrdersDTO ordersDto = ordersService.ordersDetail(id);
 
         System.out.println("123 : " + ordersDto);
 

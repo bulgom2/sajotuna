@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 // 수주관리
 @Getter
 @Setter
-public class OrdersDto {
+public class OrdersDTO {
 
     private Long id;    // 수주id
 
@@ -44,7 +44,7 @@ public class OrdersDto {
         return modelMapper.map(this, Orders.class);
     }
 
-    public static OrdersDto of(Orders orders){
-        return modelMapper.map(orders, OrdersDto.class);
+    public static OrdersDTO of(Orders orders){
+        return modelMapper.map(orders, OrdersDTO.class);
     }
 }

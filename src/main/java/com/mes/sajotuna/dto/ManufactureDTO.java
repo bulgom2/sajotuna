@@ -11,7 +11,7 @@ public class ManufactureDTO {
     String process_id;
     LocalDateTime manufacture_intime;
     LocalDateTime manufacture_outtime;
-    int manufacture_qtt;
+    long manufacture_qtt;
     String orders_id;
 
 

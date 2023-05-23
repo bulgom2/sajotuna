@@ -1,6 +1,6 @@
 package com.mes.sajotuna.service;
 
-import com.mes.sajotuna.dto.OrdersDto;
+import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.entity.Bom;
 import com.mes.sajotuna.entity.Material;
 import com.mes.sajotuna.repository.BomRepository;
@@ -36,7 +36,7 @@ public class PurchaseService {
 
 
     // 수주 날짜와 수주 수량 가져오기
-    public LocalDateTime purchaseMain(OrdersDto ordersDto){
+    public LocalDateTime purchaseMain(OrdersDTO ordersDto){
 
 //        // 1번 가져온다
 //        ordersDto = ordersRepository.findById(1L)

@@ -1,6 +1,7 @@
 package com.mes.sajotuna.process;
 
-import com.example.domain.ManufactureDTO;
+
+import com.mes.sajotuna.dto.ManufactureDTO;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -41,7 +42,7 @@ public class PreProcessing {
             ManufactureDTO amountWork = new ManufactureDTO(); // 새로운 객체 생성
 
             amountWork.setManufacture_qtt(amountPerWork);
-            amountWork.setOrders_no(resultMS.getOrders_no());
+            amountWork.setOrders_id(resultMS.getOrders_id());
             amountWork.setManufacture_item(resultMS.getManufacture_item());
 
             ppList.add(result(amountWork, workTime, processLastTime));
