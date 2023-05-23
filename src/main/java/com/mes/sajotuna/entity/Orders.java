@@ -5,6 +5,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 // 수주관리
 @Entity
@@ -21,8 +23,9 @@ public class Orders {
     @Column(name = "orders_no", nullable = false)
     private String no;    // 수주번호
 
+    // 23/05/22 LocalDateTime으로 타입 변경
     @Column(name = "orders_date", nullable = false)
-    private String date;    // 수주일자
+    private LocalDateTime date;    // 수주일자
 
     @Column(name = "orders_status", nullable = false)
     private String status;    // 진행상태
@@ -30,20 +33,20 @@ public class Orders {
     @Column(name = "orders_company", nullable = false)
     private String company;    // 거래처
 
-    @Column(name = "orders_code", nullable = false)
-    private String code;    // 제품코드
+//    @Column(name = "orders_code", nullable = false)
+//    private String code;    // 제품코드
 
     @Column(name = "orders_item", nullable = false)
     private String item;    // 제품명
 
+    // 23/05/19 String → Integer로 자료형 수정
     @Column(name = "orders_qtt", nullable = false)
-    private String qtt;    // 제품수량
+    private Integer qtt;    // 제품수량
 
     @Column(name = "orders_shipdate")
-    private String shipDate;    // 예상 납품일
+    private LocalDate shipDate;    // 예상 납품일
 
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
 //    }
-
 }

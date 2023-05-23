@@ -1,48 +1,28 @@
 package com.mes.sajotuna;
 
-import com.mes.sajotuna.entity.Tests;
-import com.mes.sajotuna.repository.TestRepository;
+import com.mes.sajotuna.repository.OrdersRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
-
 @SpringBootTest
 class SajotunaApplicationTests {
 
-//    @Autowired
-//    private TestRepository testRepository;
-//
+    @Test
+    void contextLoads() {
+    }
+
+    @Autowired
+    private OrdersRepository ordersRepository;
+
 //    @Test
-//    void contextLoads() {
-//    }
+//    void test1() {
+//        Orders orders = new Orders();
 //
-//    @Test
-//    void test(){
-//        Tests tests = new Tests();
+//        orders.setNo("123");
+//        orders.setQtt(12);
 //
-//        tests.setAge(51);
-//
-//        testRepository.save(tests);
-//    }
-//
-//    @Test
-//    void test2(){
-//        Long id = 125L;
-//        Optional<Tests> tests = testRepository.findById(id);
-//
-//        System.out.println(tests);
-//        System.out.println(tests.get());
-//
-//        System.out.println("나이 : " + tests.get().getAge());
-//
-//        System.out.println();
-//
-//        Tests tests1 = testRepository.findByTestId(id);
-//        System.out.println(tests1);
-//        System.out.println("나이 : " + tests1.getAge());
-//
+//        ordersRepository.save(orders);
 //    }
 
 }

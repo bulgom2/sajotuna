@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 // 재고관리
 @Entity
@@ -31,7 +32,7 @@ public class Stock {
     private String no;    // Lot 번호
 
     @Column(name = "stock_time", nullable = false)
-    private String time;    // 시간
+    private LocalDateTime time;    // 시간
 
     @Column(name = "stock_status", nullable = false)
     private String status;    // 진행상태

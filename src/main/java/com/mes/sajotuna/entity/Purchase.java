@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 // 발주관리
 @Entity
@@ -15,14 +16,15 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_id", nullable = false)
+    @Column(name = "purchase_id", nullable = false, insertable = false, updatable = false)
     private Long id;    // id
+
 
     @Column(name = "purchase_no", nullable = false)
     private String no;    // 발주번호(Lot)
 
     @Column(name = "purchase_date", nullable = false)
-    private String date;    // 발주일자
+    private LocalDateTime date;    // 발주일자
 
     @Column(name = "purchase_status", nullable = false)
     private Long status;    // 진행상태
@@ -40,12 +42,16 @@ public class Purchase {
     private Long qtt;    // 발주 수량
 
     @Column(name = "purchase_shipdate", nullable = false)
-    private String shipDate;    // 입고일
+    private LocalDateTime shipDate;    // 입고일
 
-    @Column(name = "orders_id", nullable = false)
-    private String ordersId;    // 수주 번호
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "orders_no")
+    private Orders orders;
 
-    public enum PurchaseStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
+//    @Column(name = "orders_id", nullable = false)
+//    private Long ordersId;    // 수주 번호
+
+//    public enum PurchaseStatus {
+//        IN_PROGRESS, COMPLETED  // 진행중, 완료
+//    }
 }
