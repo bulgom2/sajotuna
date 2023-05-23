@@ -1,6 +1,7 @@
 package com.mes.sajotuna.process;
 
-import com.example.domain.ManufactureDTO;
+import com.mes.sajotuna.dto.ManufactureDTO;
+import com.mes.sajotuna.dto.PurchaseDTO;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -16,12 +17,14 @@ public class Measurement {
     LocalTime startLaunchTime = LocalTime.of(11, 10,0); // 11시 10분
     LocalTime endLaunchTime = LocalTime.of(13, 0,0); // 1시
 
-    public ManufactureDTO measurementByMaterial(ManufactureDTO manufactureDTO, LocalDateTime getTime){
+    public ManufactureDTO measurementByMaterial(ManufactureDTO manufactureDTO, PurchaseDTO purchaseDTO){
 
         //원료 계량 계산 시점
-        LocalDateTime now = getTime;
+        LocalDateTime now = purchaseDTO.getShipDate();
 
-
+        thisManufactureDTO.setManufacture_item(purchaseDTO.getItem());
+        thisManufactureDTO.setManufacture_qtt(purchaseDTO.getQtt());
+        thisManufactureDTO.setOrders_no(purchaseDTO.getOrdersNo());
 
         LocalDateTime processLastTime = manufactureDTO.getManufacture_outtime();
 
@@ -60,12 +63,6 @@ public class Measurement {
             }else{
                 measureSetTime(time.plusDays(3).withHour(9).withMinute(0).withSecond(0));
             }
-
         }
-
     }
-
-
-
-
 }
