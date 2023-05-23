@@ -34,6 +34,10 @@ public class OrdersController {
     @PostMapping("/orders")
     public String orderWritePost(OrdersDTO ordersDTO) {
 
+        ordersDTO.setDate(LocalDateTime.now());
+
+        ordersDTO.setStatus("proceeding");
+
         System.out.println("OrdersDto " + ordersDTO.toString());
 
         LocalDateTime orderDay = ordersDTO.getDate();
@@ -72,6 +76,8 @@ public class OrdersController {
 
         return "redirect:/";
     }
+
+
 
 
     // orders 테이블에 있는 값들 표로 출력하기

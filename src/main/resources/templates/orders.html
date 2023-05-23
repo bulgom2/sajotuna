@@ -38,6 +38,7 @@
     justify-content: center;
   }
 </style>
+
 </head>
 <body>
 
@@ -74,7 +75,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">수주 현황</h6>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive" id="orderListContainer">
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
@@ -154,6 +155,7 @@
 
 <!-- Page level custom scripts -->
 <script th:src="@{/js/demo/datatables-demo.js}"></script>
+
 
 </body>
 </html>

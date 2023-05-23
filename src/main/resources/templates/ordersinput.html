@@ -15,6 +15,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
 
+    <script>
+    function closeModal() {
+        // 모달 창닫기
+        $('#myModal').modal('hide');
+
+        // 페이지 새로고침
+        window.parent.location.reload();
+    }
+    </script>
+
+
 </head>
 <body>
 
@@ -73,7 +84,7 @@
 
             <div class="content-3">
                 <div class="orders-btn">
-                    <button id="confirmed">저장</button>
+                    <button id="confirmed" onclick="closeModal()">저장</button>
                 </div>
             </div>
         </form>
