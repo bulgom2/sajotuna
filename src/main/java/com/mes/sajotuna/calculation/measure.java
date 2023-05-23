@@ -1,18 +1,15 @@
 package com.mes.sajotuna.calculation;
 
-import com.example.domain.ManufactureDTO;
-import com.example.domain.OrdersDTO;
-import com.example.domain.PurchaseDTO;
-import com.example.process.Extraction;
-import com.example.process.Measurement;
-import com.example.process.PreProcessing;
+import com.mes.sajotuna.dto.ManufactureDTO;
+import com.mes.sajotuna.dto.OrdersDTO;
+import com.mes.sajotuna.dto.PurchaseDTO;
+import com.mes.sajotuna.process.Extraction;
+import com.mes.sajotuna.process.Measurement;
+import com.mes.sajotuna.process.PreProcessing;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class measure {
 
@@ -26,15 +23,15 @@ public class measure {
 
         //<수주 등록>
         OrdersDTO ordersDTO = new OrdersDTO();
-        ordersDTO.setOrders_item("ybc");
-        ordersDTO.setOrders_qtt(100);
-        ordersDTO.setOrders_date(LocalDateTime.now());
+        ordersDTO.setItem("ybc");
+        ordersDTO.setQtt(100);
+        ordersDTO.setDate(LocalDateTime.now());
 
         //@@@@@@@@ 테스트 후 삭제 @@@@@@@@@//
         String now = LocalDateTime.now().format(formatter);
         System.out.println("=== 수주 등록 ==================================================================================================");
-        System.out.println("주문 상품 : "+ordersDTO.getOrders_item());
-        System.out.println("주문 수량 : "+ ordersDTO.getOrders_qtt());
+        System.out.println("주문 상품 : "+ordersDTO.getItem());
+        System.out.println("주문 수량 : "+ ordersDTO.getQtt());
         System.out.println("수주 등록 시간 : "+ now);
         System.out.println(" ");
         //@@@@@@@@ 테스트 후 삭제 @@@@@@@@@//
