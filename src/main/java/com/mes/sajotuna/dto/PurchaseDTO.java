@@ -5,16 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
 
+import java.time.LocalDateTime;
+
 // 수주관리
 @Getter
 @Setter
-public class PurchaseDto {
+public class PurchaseDTO {
 
     private Long id;    //
 
     private String no;    // 발주번호
 
-    private String date;    // 발주일자
+    private LocalDateTime date;    // 발주일자
 
     private String status;    // 진행상태
 
@@ -26,8 +28,9 @@ public class PurchaseDto {
 
     private Long qtt;    // 발주 수량
 
-    private String shipDate;    // 입고일
+    private LocalDateTime shipDate;    // 입고일
 
+    private String ordersNo;
 
 
 //    public enum OrdersStatus {
@@ -43,7 +46,7 @@ public class PurchaseDto {
         return modelMapper.map(this, Purchase.class);
     }
 
-    public static PurchaseDto of(Purchase purchase){
-        return modelMapper.map(purchase, PurchaseDto.class);
+    public static PurchaseDTO of(Purchase purchase){
+        return modelMapper.map(purchase, PurchaseDTO.class);
     }
 }

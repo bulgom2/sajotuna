@@ -5,16 +5,27 @@
     border-radius: 16px;
     margin-bottom: 10px;
     width: 100%;
-    height: 100px;
+    height: auto;
     justify-content: flex-start;
     flex-direction: column;
 
     height: auto;
 }
+
+/* content-2 아래 부분 */
+.orders-content-2-1 {
+    width: 100%;
+    height : 80%;
+    display: flex;
+    margin-top : 40px;
+    justify-content: space-between;
+}
+
+
 /* 거래처 */
 .orders_company{
-    margin-left : 0;
-    height : 20px;
+    margin-left : 10px;
+    height : 30px;
     font-size : 20px;
     font-weight : bold;
     display : flex;
@@ -26,9 +37,101 @@
     width : 130px;
     font-size : 20px;
     margin-bottom : 5px;
+    text-align : center;
 }
 
-/* 예상 납품일 */
+/* content-2 아래 부분 */
+.orders-content-2-2 {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    justify-content: flex-start;
+}
+
+/* 제품명 */
+.orders_item {
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    height: 30px;
+}
+
+#orders_item {
+    height: 30px;
+    width: 180px;
+    margin-left: 5px;
+    font-size: 20px;
+    text-align : center;
+}
+
+/* content-2 아래 부분 */
+.orders-content-2-3 {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    justify-content: flex-start;
+}
+
+/* 수량 */
+.orders_qtt {
+    display: flex;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+#orders_qtt {
+    height: 30px;
+    width: 130px;
+    margin-left: 20px;
+    font-size: 20px;
+    text-align : center;
+}
+
+
+/* content-3 영역 */
+.content-3{
+    width: 100%;
+    display: flex;
+    margin-top : 140px;
+    justify-content: space-start;
+}
+
+
+/* 버튼 */
+.orders-btn{
+    display : flex;
+    margin-left : 10px;
+    height : 30px;
+    justify-content: flex-end;
+}
+
+/* 저장 버튼 */
+#confirmed{
+    height : 30px;
+    border-radius : 4px;
+    background: #223E4F;
+    color : white;
+    font-size : 20px;
+    text-align : center;
+    margin-left : 10px;
+}
+
+
+
+
+
+
+
+
+/* 예상 납품일 *//*
 .orders_date{
     display : flex;
     height : 30px;
@@ -44,7 +147,7 @@
     font-size : 20px;
 }
 
-/* 납품일 계산 버튼 */
+*//* 납품일 계산 버튼 *//*
 .date_calculate{
     display : flex;
     margin-right : 20px;
@@ -64,54 +167,7 @@
 }
 
 
-
-/* 버튼 */
-.orders-btn{
-    display : flex;
-    margin-right : 20px;
-    height : 30px;
-    justify-content: flex-end;
-}
-
-/* 저장 버튼 */
-#confirmed{
-    margin-left : 50px;
-    height : 30px;
-    border-radius : 4px;
-    background: #223E4F;
-    color : white;
-    margin-right : 5px;
-    font-size : 20px;
-    text-align : center;
-}
-
-
-/* content-2 아래 부분 */
-.orders-content-2-1 {
-    width: 100%;
-    display: flex;
-    margin-top : 25px;
-    justify-content: space-between;
-}
-
-/* 제품명 */
-.orders_item {
-    margin-left : 10px;
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    height : 30px;
-}
-
-#orders_item {
-    height : 30px;
-    width: 180px;
-    margin-left : 5px;
-    font-size : 20px;
-
-}
-
-/* 제품 코드 */
+*//* 제품 코드 *//*
 .orders_code{
     display : flex;
     height : 20px;
@@ -128,32 +184,10 @@
 }
 
 
-/* 수량 */
-.orders_qtt{
-    display : flex;
-    height : 20px;
-    margin-left : 0px;
-    font-size: 20px;
-    font-weight : bold;
-}
-
-#orders_qtt{
-    height : 30px;
-    width : 130px;
-    margin-left : 5px;
-    font-size : 20px;
-}
-
-.content-3{
-    width: 100%;
-    height : 100px;
-    display: flex;
-    margin-top : 40px;
-    justify-content: space-start;
-}
 
 
-/* 상세 내역 */
+
+*//* 상세 내역 *//*
 .orders-content-4 {
     position: absolute;
     flex-direction: column;
@@ -193,7 +227,7 @@ th, td {
 
 th {
     background-color: #f2f2f2;
-}
+}*/
 
 
 /* -------------------- */
