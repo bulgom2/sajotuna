@@ -34,6 +34,12 @@ public class OrdersController {
     @PostMapping("/orders")
     public String orderWritePost(OrdersDTO ordersDTO) {
 
+        System.out.println("시작ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
+
+        ordersDTO.setDate(LocalDateTime.now());
+
+        ordersDTO.setStatus("proceeding");
+
         System.out.println("OrdersDto " + ordersDTO.toString());
 
         LocalDateTime orderDay = ordersDTO.getDate();
@@ -78,6 +84,7 @@ public class OrdersController {
     // main 페이지
     @GetMapping("/")
     public String orderList(Model model){
+        System.out.println("종룍ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
         List<Orders> ordersList = ordersRepository.findAll();
 
         model.addAttribute("orderList", ordersList);
