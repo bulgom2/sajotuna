@@ -1,7 +1,7 @@
 /* 컨테이너 */
 #container {
     display: flex;
-    position: absolute;
+    /*position: absolute;*/
     width: 2543px;
     height: 1316px;
 }
@@ -28,19 +28,18 @@
 #sidebar-wrapper {
     width: 350px;
     height: 1290px;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin: 10px;
     background: #223E4F;
     overflow-x: hidden;
     overflow-y: auto;
     border-radius: 16px;
 }
 
-#page-content-wrapper {
-    flex: 1;
-    padding: 20px;
-}
+/*#page-content-wrapper {*/
+/*    flex: 1;*/
+/*    padding: 20px;*/
+/*    margin: 10px 0;*/
+/*}*/
 
 /* 사이드바 스타일 */
 
@@ -81,6 +80,8 @@
     line-height: 5em;
     font-family: 'Faster One', cursive;
 }
+
+
 
 .sidebar-nav li:nth-child(1) a:hover {
     color: white;
@@ -126,11 +127,11 @@
 #page-content-wrapper {
     position: relative;
     display: block;
-    margin: 10px 10px 16px 10px;
+    margin: 10px 0;
     border-radius: 16px;
     padding: 0;
     border: 2px solid #A4A4A4;  /* 틀 확인용 */
-    width: 2180px;
+    width: 2176px;
     height: 1290px;
 }
 
@@ -159,19 +160,24 @@
     position: absolute;
     display: flex;
     justify-content: space-between;
+    height : 109px;
     width: 100%;
     padding-top: 42px;
     border: 1px solid red;  /* 틀 확인용 */
 }
 
-
 /* 탭 제목 */
-.form-control {
-    position: relative;
-    width: 1088px;
+.content-title {
+    width: 800px;
     height: 50px;
     font-size: 30px;
+    text-indent: 15px;
     margin-left: 20px;
+    color: #495057;
+    background-color: #e2e5e8;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
 }
 
 /* 검색바 */
