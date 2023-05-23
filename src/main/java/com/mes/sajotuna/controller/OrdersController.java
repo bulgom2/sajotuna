@@ -34,6 +34,8 @@ public class OrdersController {
     @PostMapping("/orders")
     public String orderWritePost(OrdersDTO ordersDTO) {
 
+        System.out.println("시작ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
+
         ordersDTO.setDate(LocalDateTime.now());
 
         ordersDTO.setStatus("proceeding");
@@ -78,12 +80,11 @@ public class OrdersController {
     }
 
 
-
-
     // orders 테이블에 있는 값들 표로 출력하기
     // main 페이지
     @GetMapping("/")
     public String orderList(Model model){
+        System.out.println("종룍ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
         List<Orders> ordersList = ordersRepository.findAll();
 
         model.addAttribute("orderList", ordersList);
