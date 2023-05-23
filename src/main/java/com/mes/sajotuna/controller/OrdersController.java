@@ -42,7 +42,7 @@ public class OrdersController {
 
         String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+""};
 
-        String code = "SJ";
+        String code = "SJ" + orderDay.getYear();
 
         for(int i=0; i<dateTime.length; i++){
             if(dateTime[i].length() < 2){

@@ -22,7 +22,7 @@ public class ordersRepositoryTest {
         orders.setNo("123");
         orders.setQtt(12);
         orders.setDate(LocalDateTime.now());
-        orders.setCode("123");
+//        orders.setCode("123");
         orders.setItem("12315");
         orders.setCompany("2131");
         orders.setShipDate(LocalDate.from(LocalDateTime.now()));
