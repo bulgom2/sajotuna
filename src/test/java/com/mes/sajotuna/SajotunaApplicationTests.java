@@ -1,5 +1,7 @@
 package com.mes.sajotuna;
 
+
+import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,6 @@ class SajotunaApplicationTests {
     void contextLoads() {
     }
 
-    @Autowired
-    private OrdersRepository ordersRepository;
-
 //    @Test
 //    void test1() {
 //        Orders orders = new Orders();
@@ -24,5 +23,18 @@ class SajotunaApplicationTests {
 //
 //        ordersRepository.save(orders);
 //    }
+
+    @Autowired
+    private OrdersRepository ordersRepository;
+
+    @Test
+    void test1() {
+        Orders orders = new Orders();
+
+        orders.setNo("123");
+        orders.setQtt(234);
+
+        ordersRepository.save(orders);
+    }
 
 }

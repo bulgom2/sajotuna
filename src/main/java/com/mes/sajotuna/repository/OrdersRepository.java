@@ -12,9 +12,12 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     List<Orders> findAll();
 
-//    @Transactional
-    @Modifying
-    @Query("UPDATE Orders o SET o.status = :status WHERE o.no = :no")
-    void updateStatusByNo(@Param("no") String no, @Param("status") String status);
 
+    // 수주 확정 변경
+    @Modifying
+    @Query("UPDATE Orders  SET status = :status WHERE no = :no")
+    void updateStatusByNo(@Param("status") String status, @Param("no") String no);
+
+    // 수주번호로 찾기
+    Orders findByNo(String selectedNo);
 }

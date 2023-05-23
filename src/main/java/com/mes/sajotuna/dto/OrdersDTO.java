@@ -1,6 +1,7 @@
 package com.mes.sajotuna.dto;
 
 import com.mes.sajotuna.entity.Orders;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
+@Data
 // 수주관리
 @Getter
 @Setter
