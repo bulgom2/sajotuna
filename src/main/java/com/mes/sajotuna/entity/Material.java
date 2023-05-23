@@ -35,4 +35,7 @@ public class Material {
 
     @Column(name = "material_stock")
     private Long stock;  // 재료 재고
+
+    @Column(name = "material_unit")
+    private String unit;  // 단위
 }

@@ -20,7 +20,7 @@ public class ProcessRepositoryTest {
 //        process.setLt(Duration.ofMinutes(6));
         process.setName("sdfdf");
         process.setStatus(true);
-        process.setFacilityId(10L);
+//        process.setFacilityId(10L);
 
         processRepository.save(process);
 

@@ -1,11 +1,12 @@
 package com.mes.sajotuna.repository;
 
-
 import com.mes.sajotuna.entity.Orders;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -14,6 +15,9 @@ public class ordersRepositoryTest {
 
     @Autowired
     private OrdersRepository ordersRepository;
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Test
     void test1() {
@@ -31,5 +35,42 @@ public class ordersRepositoryTest {
         ordersRepository.save(orders);
 
         System.out.println(orders);
+    }
+
+    @Test
+    @Transactional
+    void test2() {
+//        Orders orders = ordersRepository.findById(1L).orElseThrow();
+
+
+        String no = "SJ230519-01";
+        String status = "Confirmed";
+
+//        Orders orders1 = ordersRepository.findById(4L).orElseThrow();
+//
+//        System.out.println("여기11 : " + orders1);
+//
+//        orders1.setStatus("Confirmed");
+//
+//        System.out.println("여기11 : " + orders1);
+//
+//        ordersRepository.save(orders1);
+
+        ordersRepository.updateStatusByNo(no,status);
+
+//        Orders orders = ordersRepository.findById(1L);
+
+//        List<Orders> ordersList = ordersRepository.findAll();
+//
+//        for (Orders orders : ordersList){
+//            System.out.println(orders);
+////            Orders orders1 = ordersRepository.findById(orders.getId()).orElseThrow();
+////            System.out.println(orders1);
+//            ordersRepository.save(orders);
+////            orders.setStatus(status);
+////            entityManager.flush();
+//        }
+
+
     }
 }

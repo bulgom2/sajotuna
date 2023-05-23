@@ -38,6 +38,9 @@ public class Facility {
     @Column(name = "facility_status")
     private Boolean status;  // 설비 상태
 
+    @Column(name = "facility_unit")
+    private String unit;  // 단위
+
     public enum FacilityStatus {
         IN_PROGRESS, COMPLETED  // 가동중, 완료
     }

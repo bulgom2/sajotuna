@@ -48,6 +48,9 @@ public class PurchaseService {
         purchaseDTO.setShipDate(purchaseTime(ordersDTO));
         purchaseDTO.setOrdersNo(ordersDTO.getNo());
 
+        purchaseDTO.setOrdersNo(ordersDTO.getNo());
+
+
         return purchaseDTO;
     }
 
