@@ -12,116 +12,23 @@
 
 
 /* BOM */
-.content-2 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
+.bom-content-2 {
+    /*position: absolute;*/
+    /*flex-direction: column;*/
+    /*display: flex;*/
+    width: 97%;
+    margin-left : 20px;
+    margin-right : 20px;
 }
-
-#content-2{
-    font-size : 25px;
-    font-weight : bold;
-    margin-left : 40px;
-}
-
-
-
-/* BOM 테이블 */
-.content-3{
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 400px;
-    width : 1800px;
-    overflow : auto;
-}
-
-
-table {
-     border-collapse: collapse;
-     width: 100%;
- }
-
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-
-    height : 40px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-
-/* 테이블 셀 크기 지정 */
-.cell-width1 {
-    width : 200px;
-}
-
-.cell-width2{
-    width : 200px;
-}
-
-.cell-width3{
-    width : 200px;
-}
-
-.cell-width4{
-    width : 200px;
-}
-
-.cell-width5{
-    width : 200px;
-}
-
-.cell-width6{
-    width : 200px;
-}
-
 
 /* 제품별 총량 */
-.content-4 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-top : 20px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
+.bom-content-3 {
+    /*position: absolute;*/
+    /*flex-direction: column;*/
+    /*display: flex;*/
+    width: 30%;
+    margin-left : 20px;
+    margin-right : 20px;
+    margin-top : 70px;
 }
 
-#content-4{
-    font-size : 25px;
-    font-weight : bold;
-    margin-left : 40px;
-}
-
-/* 제품별 총량 테이블 */
-.content-5{
-    width : 400px;
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 400px;
-    overflow : auto;
-}
-
-/* 테이블 셀 크기 지정 */
-.cell-width1-1 {
-    width : 200px;
-}
-
-.cell-width2-2{
-    width : 200px;
-}
