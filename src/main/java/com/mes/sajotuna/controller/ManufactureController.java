@@ -25,6 +25,6 @@ public class ManufactureController {
 
         System.out.println("실행");
         System.out.println("abfdsbv");
-        return "product";
+        return "manufacture";
     }
 }
