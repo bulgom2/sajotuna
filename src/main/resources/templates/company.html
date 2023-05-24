@@ -91,134 +91,26 @@ $(document).ready(function() {
             <table>
                 <thead>
                 <tr>
+                    <th class="cell-width1">순번</th>
                     <th class="cell-width1">거래처 코드</th>
-                    <th class="cell-width2">거래처 명</th>
+                    <th class="cell-width2">거래처명</th>
                     <th class="cell-width3">주소</th>
-                    <th class="cell-width4">담당자 명</th>
+                    <th class="cell-width4">담당자명</th>
                     <th class="cell-width5">거래품목</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td>11번가</td>
-                    <td>경상남도 창원시 의창구 동읍 1111-1111번지</td>
-                    <td>불곰</td>
-                    <td>양배추즙, 흑마늘즙</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>쿠팡</td>
-                    <td>경상남도 창원시 성산구 중앙동 1111-1111번지 101호</td>
-                    <td>보보</td>
-                    <td>석류 젤리스틱, 매실 젤리스틱</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>에잉농장</td>
-                    <td>경상남도 창원시 동읍 2222-222번지</td>
-                    <td>꿀벌아저씨</td>
-                    <td>양배추, 흑마늘, 벌꿀</td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>창원농협</td>
-                    <td>경상남도 창원시 성산구 상남로 31 남창원농협, 경상남도 창원시 의창구 동읍 용잠로 21</td>
-                    <td>하늬</td>
-                    <td>석류, 매실, 콜라겐</td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>혼합기2</td>
-                    <td>석류젤리스틱,매실젤리스틱</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
+                <tr th:each="company : ${companyList}">
+                    <td th:text="${company.id}"></td>
+                    <td th:text="${company.no}"></td>
+                    <td th:text="${company.name}"></td>
+                    <td th:text="${company.addr}"></td>
+                    <td th:text="${company.person}"></td>
+                    <td th:text="${company.item}"></td>
                 </tr>
                 </tbody>
             </table>
-
-            <!--   팝업창 추가         -->
-
-            <!-- 팝업 창 -->
-            <div id="popupModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-xl">
-                    <div
-                            class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">상세 정보</h4>
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td>거래처:</td>
-                                    <td id="popup-company"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품명:</td>
-                                    <td id="popup-product-name"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품 코드:</td>
-                                    <td id="popup-product-code"></td>
-                                </tr>
-                                <tr>
-                                    <td>수량:</td>
-                                    <td id="popup-quantity"></td>
-                                </tr>
-                                <tr>
-                                    <td>예상 납품일:</td>
-                                    <td id="popup-delivery-date"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="popup-close-btn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--   팝업창         -->
 
         </div>
     </div>
