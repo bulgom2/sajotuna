@@ -21,14 +21,17 @@ class PurchaseServiceTests {
 
     @Test
     void purchaseTest(){
-        Orders orders = ordersRepository.findById(1L)
+        Orders orders = ordersRepository.findById(5L)
                 .orElseThrow(EntityNotFoundException::new);
+
+        System.out.println("수주 entity : " + orders);
 
         OrdersDTO ordersDto = OrdersDTO.of(orders);
 
-        LocalDateTime purchaseTime = purchaseService.purchaseMain(ordersDto);
+        System.out.println("수주 dto : " + ordersDto);
+
+        LocalDateTime purchaseTime = purchaseService.purchaseTime(ordersDto);
 
         System.out.println("발주 완료 시간 : " + purchaseTime);
     }
-
 }

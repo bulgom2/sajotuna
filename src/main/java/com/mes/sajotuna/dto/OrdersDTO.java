@@ -1,16 +1,20 @@
 package com.mes.sajotuna.dto;
 
 import com.mes.sajotuna.entity.Orders;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
+@Data
 // 수주관리
 @Getter
 @Setter
+@ToString
 public class OrdersDTO {
 
     private Long id;    // 수주id
@@ -25,7 +29,7 @@ public class OrdersDTO {
 
     private String company;    // 거래처
 
-    private String code;    // 제품코드
+//    private String code;    // 제품코드
 
     private String item;    // 제품명
 
@@ -34,9 +38,14 @@ public class OrdersDTO {
 
     private LocalDateTime shipDate;    // 예상 납품일
 
+    private String ordersNo;
+
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
 //    }
+
+//    Orders.setId(OrdersDto.getId);
+//    OrdersDto.setId(Orders.getId);
 
     public static ModelMapper modelMapper = new ModelMapper();
 

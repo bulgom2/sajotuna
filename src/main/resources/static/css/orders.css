@@ -20,14 +20,24 @@
     margin-right : 20px;
 }
 
-
-.orders-content-2-1 {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-
+.selected {
+    background-color: yellow;
+    color: black;
 }
+
+tbody tr:hover {
+    background-color: #223E4F;
+    color: white;
+}
+
+
+/*.orders-content-2-1 {*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    margin-bottom: 30px;*/
+
+/*}*/
 
 /* 거래처 */
 .orders_company{
@@ -179,5 +189,4 @@
     margin-left : 10px;
     font-size : 25px;
 }
-
 

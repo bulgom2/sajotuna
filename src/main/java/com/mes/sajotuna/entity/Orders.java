@@ -22,7 +22,6 @@ public class Orders {
     @Column(name = "orders_no", nullable = false)
     private String no;    // 수주번호
 
-    // 23/05/22 LocalDateTime으로 타입 변경
     @Column(name = "orders_date", nullable = false)
     private LocalDateTime date;    // 수주일자
 
@@ -38,14 +37,10 @@ public class Orders {
     @Column(name = "orders_item", nullable = false)
     private String item;    // 제품명
 
-    // 23/05/19 String → Integer로 자료형 수정
     @Column(name = "orders_qtt", nullable = false)
-    private Integer qtt;    // 제품수량
+    private Long qtt;    // 제품수량
 
     @Column(name = "orders_shipdate")
-    private LocalDateTime shipDate;    // 예상 납품일
+    private String shipDate;    // 예상 납품일
 
-//    public enum OrdersStatus {
-//        IN_PROGRESS, COMPLETED  // 진행중, 완료
-//    }
 }

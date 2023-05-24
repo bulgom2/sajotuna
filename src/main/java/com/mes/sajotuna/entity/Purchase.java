@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 // 발주관리
 @Entity
@@ -22,7 +23,7 @@ public class Purchase {
     private String no;    // 발주번호(Lot)
 
     @Column(name = "purchase_date", nullable = false)
-    private String date;    // 발주일자
+    private LocalDateTime date;    // 발주일자
 
     @Column(name = "purchase_status", nullable = false)
     private Long status;    // 진행상태
@@ -45,7 +46,4 @@ public class Purchase {
     @Column(name = "orders_id", nullable = false)
     private String ordersId;    // 수주 번호
 
-    public enum PurchaseStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
 }
