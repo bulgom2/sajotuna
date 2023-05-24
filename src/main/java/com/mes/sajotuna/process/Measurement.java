@@ -25,7 +25,7 @@ public class Measurement {
 
         thisManufactureDTO.setManufacture_item(purchaseDTO.getItem());
         thisManufactureDTO.setManufacture_qtt(purchaseDTO.getQtt());
-        thisManufactureDTO.setOrders_id(purchaseDTO.getOrdersNo());
+        thisManufactureDTO.setOrders_no(purchaseDTO.getOrdersNo());
 
         LocalDateTime processLastTime = manufactureDTO.getManufacture_outtime();
 
