@@ -8,7 +8,7 @@ public class ProductController {
 
     // html 불러오기(기준정보 관리 페이지)
     @GetMapping("/product")
-    public String bomInformation(){
+    public String productInformation(){
         System.out.println("실행");
         System.out.println("abfdsbv");
         return "product";

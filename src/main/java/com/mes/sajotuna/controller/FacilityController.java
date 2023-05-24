@@ -17,7 +17,7 @@ public class FacilityController {
 
     // html 불러오기(설비 관리 페이지)
     @GetMapping("/facility")
-    public String bomInformation(Model model){
+    public String facilityInformation(Model model){
 
         System.out.println("실행");
         System.out.println("abfdsbv");

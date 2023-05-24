@@ -8,7 +8,7 @@ public class CompanyController {
 
     // html 불러오기(거래처 관리 페이지)
     @GetMapping("/company")
-    public String bomInformation(){
+    public String companyInformation(){
         System.out.println("실행");
         System.out.println("abfdsbv");
         return "company";
