@@ -22,7 +22,7 @@ public class OrdersDTO {
     private String no;    // 수주번호
 
     // 23/05/22 LocalDateTime으로 타입 변경
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;    // 수주일자
 
     private String status;    // 진행상태
