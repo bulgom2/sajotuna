@@ -141,7 +141,6 @@ public class OrdersController {
         // Orders 테이블 업데이트
         ordersRepository.save(existingOrder);
 
-        System.out.println("여기1 : " + existingOrder);
 
         return "success";
     }
