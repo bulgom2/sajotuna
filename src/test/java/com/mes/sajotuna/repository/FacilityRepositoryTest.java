@@ -15,10 +15,10 @@ public class FacilityRepositoryTest {
     void Test5() {
         Facility facility = new Facility();
 
-        facility.setQtt(1000L);
+        facility.setQtt(500L);
         facility.setItem("sdfsdf");
-        facility.setPt("500");
-        facility.setLt("30");
+        facility.setPt(10);
+//        facility.setLt(Duration.ofMinutes(6));
         facility.setStatus(false);
         facility.setName("jell");
 

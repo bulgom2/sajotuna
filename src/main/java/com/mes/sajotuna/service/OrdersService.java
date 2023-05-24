@@ -1,6 +1,7 @@
 package com.mes.sajotuna.service;
 
-import com.mes.sajotuna.dto.OrdersDto;
+import com.mes.sajotuna.dto.OrdersDTO;
+
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,14 +19,14 @@ public class OrdersService {
 
 
     //특정 게시글 불러오기
-    public OrdersDto ordersDetail(Long id){
+    public OrdersDTO ordersDetail(Long id){
 
         Orders orders = ordersRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
 
         System.out.println("123 : " + orders);
 
-        OrdersDto ordersDto = OrdersDto.of(orders);
+        OrdersDTO ordersDto = OrdersDTO.of(orders);
 
         System.out.println("123 : " + orders);
 

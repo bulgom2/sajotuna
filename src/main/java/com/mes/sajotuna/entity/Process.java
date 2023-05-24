@@ -27,14 +27,19 @@ public class Process {
     @Column(name = "process_status", nullable = false)
     private Boolean status;  // 설비 사용 여부
 
-    @Column(name = "facility_id", nullable = false)
-    private Long facilityId;  // 설비 정보
+    // 23/05/23 컬럼 추가
+    @Column(name = "process_category")
+    private String category;  //  (수작업) 자동 설비 여부
 
     @Column(name = "process_pt")
-    private String pt;  // 공정 준비시간
+    private Integer pt;  // 공정 준비시간
 
     @Column(name = "process_lt")
-    private String lt;  // 공정 소요 시간
+    private Integer lt;  // 공정 소요 시간
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "facility_id")
+    private Facility facility;  // 설비 정보
 
 
 }

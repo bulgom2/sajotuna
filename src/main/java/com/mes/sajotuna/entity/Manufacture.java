@@ -26,6 +26,7 @@ public class Manufacture {
     @Column(name = "process_id", nullable = false)
     private String processId;    // 공정 id
 
+    // 23/05/22 String → LocalDateTime 변경
     @Column(name = "manufacture_intime", nullable = false)
     private LocalDateTime inTime;    // 투입 전 시간
 

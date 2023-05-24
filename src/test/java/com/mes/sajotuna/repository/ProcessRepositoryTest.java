@@ -16,11 +16,11 @@ public class ProcessRepositoryTest {
         Process process = new Process();
 
         process.setNo("dddd");
-        process.setPt("30");
-        process.setLt("500");
+        process.setPt(30);
+//        process.setLt(Duration.ofMinutes(6));
         process.setName("sdfdf");
         process.setStatus(true);
-        process.setFacilityId(10L);
+//        process.setFacilityId(10L);
 
         processRepository.save(process);
 

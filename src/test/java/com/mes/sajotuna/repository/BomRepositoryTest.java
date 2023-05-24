@@ -17,13 +17,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 
             bom.setItem("jell");
             bom.setMaterial1("a");
-            bom.setInput1(30L);
+            bom.setInput1(30.0);
             bom.setMaterial2("d");
-            bom.setInput2(40L);
+            bom.setInput2(40.0);
             bom.setMaterial3("c");
-            bom.setInput3(50L);
+            bom.setInput3(50.0);
             bom.setMaterial4("b");
-            bom.setInput4(70L);
+            bom.setInput4(70.0);
 
             bomRepository.save(bom);
 

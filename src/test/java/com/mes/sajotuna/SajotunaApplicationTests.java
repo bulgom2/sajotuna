@@ -1,5 +1,6 @@
 package com.mes.sajotuna;
 
+
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,16 @@ class SajotunaApplicationTests {
     void contextLoads() {
     }
 
+//    @Test
+//    void test1() {
+//        Orders orders = new Orders();
+//
+//        orders.setNo("123");
+//        orders.setQtt(12);
+//
+//        ordersRepository.save(orders);
+//    }
+
     @Autowired
     private OrdersRepository ordersRepository;
 
@@ -21,7 +32,7 @@ class SajotunaApplicationTests {
         Orders orders = new Orders();
 
         orders.setNo("123");
-        orders.setQtt(12L);
+        orders.setQtt(234);
 
         ordersRepository.save(orders);
     }

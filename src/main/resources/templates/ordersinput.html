@@ -9,19 +9,49 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="/css/orders.css">
-    <link rel="stylesheet" href="/css/layout1.css">
+    <link rel="stylesheet" href="/css/ordersinput.css">
+<!--    <link rel="stylesheet" href="/css/layout1.css">-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
 
+    <script>
+        function closeModal() {
+<!--          // 모달창 닫기-->
+        <!--  $('#myModal').modal('hide');-->
+
+          // 데이터 가져오기
+          var company = $('#orders_company').val();
+          var item = $('#orders_item').val();
+          var qtt = $('#orders_qtt').val();
+
+          // AJAX 요청 보내기
+          $.ajax({
+            url: '/orders',
+            method: 'POST',
+            data: {
+              company: company,
+              item: item,
+              qtt: qtt
+            },
+            success: function(response) {
+              // 성공적으로 요청이 처리되면 부모 창을 다른 경로로 이동시킴
+              window.parent.location.href = 'http://localhost:8080/';
+            },
+            error: function(error) {
+              // 요청이 실패한 경우 에러 처리
+              console.error(error);
+            }
+          });
+        }
+    </script>
 </head>
 <body>
 
-<div id="container">
+<div id="container1">
     <!--  <div id="page-wrapper">-->
     <!-- 사이드바 -->
-    <div th:replace="fragment/sidebar::sidebar"></div>
+<!--    <div th:replace="fragment/sidebar::sidebar"></div>-->
     <!-- /사이드바 -->
 
     <!-- 본문 -->
@@ -32,150 +62,52 @@
             </div>
         </div>
 
-        <form action="/orders" method="post">
+<!--        <form action="/orders" method="post">-->
 
             <div class="orders-content-2">
                 <div class="orders-content-2-1">
                     <div class="orders_company">
                         <p class="orders_company">거래처</p>
-                        <select name = "company" id="orders_company-list">
+                        <select name = "company" id="orders_company">
                             <option value = "coupang">쿠팡</option>
                             <option value = "11st">11번가</option>
                         </select>
                     </div>
 
-                    <div class="orders-date">
+                    <!--<div class="orders-date">
                         <p class="orders-date">수주 일자</p>
-                        <input type="date" id="orders-date" name="date">
-                    </div>
+                        <input type="datetime-local" id="orders-date" name="date">
+                    </div>-->
 
-                    <div class="orders-no">
-                        <p class="orders-no">수주 번호</p>
-                        <input type="text" id="orders_no" name="no">
-                    </div>
-
-                    <div class="orders-btn">
-                        <button id="confirmed">수주 확정</button>
-                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>
-                    </div>
                 </div>
 
                 <div class="orders-content-2-2">
                     <div class="orders_item">
                         <p class="orders_item">제품명</p>
-                        <input type="text" id="orders_item" name="item">
-                    </div>
-
-                    <div class="orders_code">
-                        <p class="orders_code">제품코드</p>
-                        <select name = "code" id="orders_code">
-                            <option value = "code1">A0001</option>
-                            <option value = "code2">A0002</option>
-                            <option value = "code3">B0001</option>
-                            <option value = "code4">B0002</option>
+                        <select name = "item" id="orders_item">
+                            <option value = "item1">양배추즙</option>
+                            <option value = "item2">흑마늘즙</option>
+                            <option value = "item3">석류 젤리스틱</option>
+                            <option value = "item4">매실 젤리스틱</option>
                         </select>
                     </div>
-
-                    <div class="orders_status">
-                        <p class="orders_status">진행상황</p>
-                        <select name = "status" id="orders_status">
-                            <option value = "proceeding">진행중</option>
-                            <option value = "waiting">대기중</option>
-                        </select>
-                    </div>
-
-                    <div class="orders_qtt">
-                        <p class="orders_qtt">수량</p>
-                        <input type="text" id="orders_qtt" name="qtt">
-                    </div>
-
 
                 </div>
+                <div class="orders-content-2-3">
+                    <div class="orders_qtt">
+                        <p class="orders_qtt">수 량</p>
+                        <input type="number" id="orders_qtt" name="qtt">
+                    </div>
+                </div>
             </div>
-        </form>
 
-
-        <div class="orders-content-3">
-            <p class="orders-table">수주 내역</p>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>수주 번호</th>
-                        <th>수주 일자</th>
-                        <th>거래처</th>
-                        <th>제품명</th>
-                        <th>제품 코드</th>
-                        <th>수량</th>
-                        <th>예상 납품일</th>
-                        <th>진행 상태</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>20230501000A</td>
-                    <td>2023/05/01</td>
-                    <td>쿠팡</td>
-                    <td>양배추 즙</td>
-                    <td>A0001</td>
-                    <td>100</td>
-                    <td>2023/05/04</td>
-                    <td>진행중</td>
-                </tr>
-                <tr>
-                    <td>20230502000B</td>
-                    <td>2023/05/02</td>
-                    <td>11번가</td>
-                    <td>흑마늘 즙</td>
-                    <td>A0002</td>
-                    <td>200</td>
-                    <td>2023/05/08</td>
-                    <td>진행중</td>
-                </tr>
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+            <div class="content-3">
+                <div class="orders-btn">
+                    <button id="confirmed" onclick="closeModal()">저장</button>
+<!--                    <button id="confirmed" data-dismiss="modal fade">저장</button>-->
+                </div>
+            </div>
+<!--        </form>-->
     </div>
 </div>
 </body>
