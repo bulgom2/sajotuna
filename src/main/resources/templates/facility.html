@@ -91,7 +91,8 @@ $(document).ready(function() {
             <table>
                 <thead>
                 <tr>
-                    <th class="cell-width1">설비코드</th>
+                    <th class="cell-width1">순번</th>
+<!--                    <th class="cell-width1">설비코드</th>-->
                     <th class="cell-width2">설비명</th>
                     <th class="cell-width3">생산제품</th>
                     <th class="cell-width4">생산가능량</th>
@@ -102,111 +103,19 @@ $(document).ready(function() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>추출기1</td>
-                    <td>양배추즙</td>
-                    <td>2000</td>
-                    <td>L</td>
-                    <td>60</td>
-                    <td>48</td>
-                    <td>N</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>흑마늘즙</td>
-                    <td>2000</td>
-                    <td>L</td>
-                    <td>60</td>
-                    <td>48</td>
-                    <td>Y</td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>혼합기1</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>2000</td>
-                    <td>L</td>
-                    <td>20</td>
-                    <td>24</td>
-                    <td>N</td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>혼합기2</td>
-                    <td>석류젤리스틱,매실젤리스틱</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                    <td>Y</td>
+                <tr th:each="facility : ${facilityList}">
+                    <td th:text="${facility.id}"></td>
+<!--                    <td th:text="${facility.}"></td>-->
+                    <td th:text="${facility.name}">세척기</td>
+                    <td th:text="${facility.item}">양배추즙,흑마늘즙</td>
+                    <td th:text="${facility.qtt}">1000</td>
+                    <td th:text="${facility.unit}">kg/h(max)</td>
+                    <td th:text="${facility.lt}">20</td>
+                    <td th:text="${facility.pt}">60</td>
+                    <td th:text="${facility.status}">60</td>
                 </tr>
                 </tbody>
             </table>
-
             <!--   팝업창 추가         -->
 
             <!-- 팝업 창 -->

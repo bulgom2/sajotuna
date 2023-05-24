@@ -8,7 +8,7 @@ public class ShipmentController {
 
     // html 불러오기(bom 관리 페이지)
     @GetMapping("/shipment")
-    public String bomInformation(){
+    public String shipmentInformation(){
         System.out.println("실행");
         System.out.println("abfdsbv");
         return "shipment";

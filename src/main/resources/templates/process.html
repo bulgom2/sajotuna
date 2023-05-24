@@ -39,7 +39,7 @@ $(document).ready(function() {
 </script>
 
     <!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
-    <link rel="stylesheet" href="/css/facility.css">
+    <link rel="stylesheet" href="/css/process.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
@@ -91,146 +91,27 @@ $(document).ready(function() {
             <table>
                 <thead>
                 <tr>
+                    <th class="cell-width1">순번</th>
                     <th class="cell-width1">공정코드</th>
                     <th class="cell-width2">공정명</th>
-                    <th class="cell-width3">공정정보</th>
-                    <th class="cell-width4">사용여부</th>
                     <th class="cell-width5">준비시간(분)</th>
-                    <th class="cell-width6">box당 소요시간(시간)</th>
-
+                    <th class="cell-width6">공정시간(분)</th>
+                    <th class="cell-width3">구분</th>
+                    <th class="cell-width4">사용여부</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td></td>
-                    <td>입고</td>
-                    <td>수작업</td>
-                    <td>N</td>
-                    <td>0</td>
-                    <td>48</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>원료계량</td>
-                    <td>수작업</td>
-                    <td>N</td>
-                    <td>20</td>
-                    <td>0.5</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>흑마늘즙</td>
-                    <td>2000</td>
-                    <td>L</td>
-                    <td>60</td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>혼합기1</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>2000</td>
-                    <td>L</td>
-                    <td>20</td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td>혼합기2</td>
-                    <td>석류젤리스틱,매실젤리스틱</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>세척기</td>
-                    <td>양배추즙,흑마늘즙</td>
-                    <td>1000</td>
-                    <td>kg/h(max)</td>
-                    <td>20</td>
+                <tr th:each="process : ${processList}">
+                    <td th:text="${process.id}"></td>
+                    <td th:text="${process.no}"></td>
+                    <td th:text="${process.name}"></td>
+                    <td th:text="${process.lt}"></td>
+                    <td th:text="${process.pt}"></td>
+                    <td th:text="${process.category}"></td>
+                    <td th:text="${process.status}"></td>
                 </tr>
                 </tbody>
             </table>
-
-            <!--   팝업창 추가         -->
-
-            <!-- 팝업 창 -->
-            <div id="popupModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-xl">
-                    <div
-                            class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">상세 정보</h4>
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td>거래처:</td>
-                                    <td id="popup-company"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품명:</td>
-                                    <td id="popup-product-name"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품 코드:</td>
-                                    <td id="popup-product-code"></td>
-                                </tr>
-                                <tr>
-                                    <td>수량:</td>
-                                    <td id="popup-quantity"></td>
-                                </tr>
-                                <tr>
-                                    <td>예상 납품일:</td>
-                                    <td id="popup-delivery-date"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="popup-close-btn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--   팝업창         -->
-
         </div>
     </div>
     <!-- /본문 -->
