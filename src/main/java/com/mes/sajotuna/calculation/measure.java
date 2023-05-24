@@ -1,10 +1,12 @@
 package com.mes.sajotuna.calculation;
 
+
 import com.mes.sajotuna.dto.ManufactureDTO;
 import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
 import com.mes.sajotuna.process.Extraction;
 import com.mes.sajotuna.process.Measurement;
+import com.mes.sajotuna.process.Mix;
 import com.mes.sajotuna.process.PreProcessing;
 
 import java.time.LocalDateTime;
@@ -17,9 +19,6 @@ public class measure {
 
         // 년 월 일 형식으로 변환
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초");
-
-        // 공정 계산 할 때 시점
-        LocalDateTime workTime;
 
         //<수주 등록>
         OrdersDTO ordersDTO = new OrdersDTO();
@@ -48,7 +47,7 @@ public class measure {
         PurchaseDTO purchaseDTO = new PurchaseDTO();
         purchaseDTO.setOrdersNo("sj_2023_05_21");
         purchaseDTO.setItem("YBC02");
-        purchaseDTO.setQtt(5000L);
+        purchaseDTO.setQtt(4700L);
         purchaseDTO.setShipDate(LocalDateTime.of(2023,05,22,10,00,0));
 
 
@@ -95,15 +94,32 @@ public class measure {
 
         System.out.println("=== 추출 공정 ==================================================================================================");
 
-        LocalDateTime  EA1 = LocalDateTime.of(2023,05,21,10,30,0);             //설비1 마지막 공정 시간
-        LocalDateTime  EA2 = LocalDateTime.of(2023,05,21,14,30,0);             //설비2 마지막 공정 시간
+        LocalDateTime  EA1 = LocalDateTime.of(2023,05,23,13,30,0);             //설비1 마지막 공정 시간
+        LocalDateTime  EA2 = LocalDateTime.of(2023,05,24,15,30,0);             //설비2 마지막 공정 시간
 
         Extraction extraction = new Extraction();
 
         List<ManufactureDTO> ccList = extraction.extraction(ppList, EA1, EA2);
+        System.out.println(" ");
+        for (int i = 0; i < ppList.size(); i++){
+
+            System.out.println("ppList : "+ppList.get(i));
+        }
 
 
+        /////////////////////// 혼합 공정 (EA == 추출)////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        System.out.println("=== 혼합 공정 ==================================================================================================");
 
+        // 혼합 계획 최종 시간
+        ManufactureDTO getMIX = new ManufactureDTO();
+        getMIX.setManufacture_outtime(LocalDateTime.of(2023,05,25,14,30,0));
+
+        Mix mix = new Mix();
+        List<ManufactureDTO> MIXList = mix.mix(ccList, getMIX, resultMS);
+
+        System.out.println("resultMS : "+resultMS);
+        System.out.println("ppList : "+ppList);
+        System.out.println("ccList : "+ccList);
 
 
     }

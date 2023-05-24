@@ -42,7 +42,7 @@ public class PreProcessing {
             ManufactureDTO amountWork = new ManufactureDTO(); // 새로운 객체 생성
 
             amountWork.setManufacture_qtt(amountPerWork);
-            amountWork.setOrders_id(resultMS.getOrders_id());
+            amountWork.setOrders_no(resultMS.getOrders_no());
             amountWork.setManufacture_item(resultMS.getManufacture_item());
 
             ppList.add(result(amountWork, workTime, processLastTime));
@@ -86,7 +86,7 @@ public class PreProcessing {
         if (time.toLocalTime().isAfter(start) && time.toLocalTime().isBefore(end)) { // 현재 시간이 9시에서  5시 10분 전 일 경우
 
             if (time.toLocalTime().isAfter(startLaunchTime) && time.toLocalTime().isBefore(endLaunchTime)) { //점심 시간 고려
-               manufactureDTO = measureSetTime(time.withHour(13).withMinute(0).withSecond(0),manufactureDTO);
+                manufactureDTO = measureSetTime(time.withHour(13).withMinute(0).withSecond(0),manufactureDTO);
 
             } else {
                 manufactureDTO = measureSetTime(time,manufactureDTO);
