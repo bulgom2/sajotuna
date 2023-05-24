@@ -1,63 +1,36 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" , name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
 
     <title> T U N A - M E S </title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <!-- 모달창  -->
-    <script>
-$(document).ready(function() {
-    // 테이블 행 클릭 시 팝업 창에 정보 출력
-    $('table tr').click(function() {
-        var company = $(this).find('td:nth-child(3)').text();
-        var productName = $(this).find('td:nth-child(4)').text();
-        var productCode = $(this).find('td:nth-child(5)').text();
-        var quantity = $(this).find('td:nth-child(6)').text();
-        var deliveryDate = $(this).find('td:nth-child(7)').text();
-
-        // 팝업 창에 정보 채우기
-        $('#popup-company').text(company);
-        $('#popup-product-name').text(productName);
-        $('#popup-product-code').text(productCode);
-        $('#popup-quantity').text(quantity);
-        $('#popup-delivery-date').text(deliveryDate);
-
-        // 팝업 창 열기
-        $('#popupModal').modal('show');
-    });
-
-    // 팝업 창 닫기 버튼 클릭 이벤트 처리
-    $('#popup-close-btn').click(function() {
-        $('#popupModal').modal('hide');
-    });
-});
-</script>
 
     <!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
-    <link rel="stylesheet" href="/css/company.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
 
-    <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+    <link href="/css/company.css" rel="stylesheet">
+    <link href="/css/layout1.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{css/sb-admin-2.min.css}">
+
+    <!-- Custom styles for this page -->
+    <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
 </head>
 <body>
@@ -72,52 +45,66 @@ $(document).ready(function() {
     <div id="page-content-wrapper">
         <div class="content-desc">
             <div class="content-header">
-                <input class="form-control" type="text" value="거래처 정보" aria-label="Disabled input example" disabled readonly>
-
-                <!--                <div class="search-bar">-->
-                <!--                    <div class="input-group mb-3">-->
-                <!--                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">-->
-                <!--                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
+                <input class="content-title" disabled readonly type="text" value="거래처 정보">
             </div>
         </div>
-        <div class="content-2">
-            <p id="content-2">거래처 정보</p>
-        </div>
 
-        <div class="content-3">
-            <table>
-                <thead>
-                <tr>
-                    <th class="cell-width1">순번</th>
-                    <th class="cell-width1">거래처 코드</th>
-                    <th class="cell-width2">거래처명</th>
-                    <th class="cell-width3">주소</th>
-                    <th class="cell-width4">담당자명</th>
-                    <th class="cell-width5">거래품목</th>
+        <div class="company-content-2">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">설비 정보</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" id="processListContainer">
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>순번</th>
+                                <th>거래처 코드</th>
+                                <th>거래처명</th>
+                                <th>주소</th>
+                                <th>담당자명</th>
+                                <th>거래품목</th>
 
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="company : ${companyList}">
-                    <td th:text="${company.id}"></td>
-                    <td th:text="${company.no}"></td>
-                    <td th:text="${company.name}"></td>
-                    <td th:text="${company.addr}"></td>
-                    <td th:text="${company.person}"></td>
-                    <td th:text="${company.item}"></td>
-                </tr>
-                </tbody>
-            </table>
-
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="company : ${companyList}">
+                                <td th:text="${company.id}"></td>
+                                <td th:text="${company.no}"></td>
+                                <td th:text="${company.name}"></td>
+                                <td th:text="${company.addr}"></td>
+                                <td th:text="${company.person}"></td>
+                                <td th:text="${company.item}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /본문 -->
     <!--  </div>-->
-
 </div>
+
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/datatables-demo.js}"></script>
 
 </body>
 </html>

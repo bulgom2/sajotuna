@@ -36,7 +36,7 @@
 
     <!-- 본문 -->
     <div id="page-content-wrapper">
-        <div class="content-desc">
+        <div class="content-desc1">
             <div class="content-header">
                 <input class="content-title" disabled readonly type="text" value="BOM">
             </div>
@@ -102,7 +102,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" id="bomListContainer2">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="dataTable2">
                             <thead>
                             <tr>
                                 <th>제품명</th>
@@ -119,11 +119,11 @@
                                 <td>80</td>
                             </tr>
                             <tr>
-                                <td>석류젤리스틱</td>
+                                <td>석류 젤리스틱</td>
                                 <td>15</td>
                             </tr>
                             <tr>
-                                <td>매실젤리스틱</td>
+                                <td>매실 젤리스틱</td>
                                 <td>15</td>
                             </tr>
                             </tbody>
@@ -135,5 +135,28 @@
     </div>
 </div>
 
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/datatables-demo.js}"></script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable2').DataTable();
+    });
+</script>
 </body>
 </html>
