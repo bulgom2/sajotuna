@@ -198,7 +198,6 @@
                     value: '확정',
                 };
 
-
                 // AJAX 요청 예시
 
                 $.ajax({
@@ -208,6 +207,8 @@
                     contentType: 'application/json',
                     success: function(response) {
                         console.log('수주가 확정되었습니다.');
+                        // window.location.reload(); // 페이지 새로고침
+                        alert('수주 확정!');
                     },
                     error: function(xhr, status, error) {
                         console.error('값 업데이트 중 오류가 발생했습니다.');

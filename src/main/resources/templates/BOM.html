@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" , name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
     <title> T U N A - M E S </title>
 
@@ -11,35 +11,36 @@
 
     <!-- 모달창  -->
     <script>
-$(document).ready(function() {
-    // 테이블 행 클릭 시 팝업 창에 정보 출력
-    $('table tr').click(function() {
-        var company = $(this).find('td:nth-child(3)').text();
-        var productName = $(this).find('td:nth-child(4)').text();
-        var productCode = $(this).find('td:nth-child(5)').text();
-        var quantity = $(this).find('td:nth-child(6)').text();
-        var deliveryDate = $(this).find('td:nth-child(7)').text();
+        $(document).ready(function() {
+            // 테이블 행 클릭 시 팝업 창에 정보 출력
+            $('table tr').click(function() {
+                var company = $(this).find('td:nth-child(3)').text();
+                var productName = $(this).find('td:nth-child(4)').text();
+                var productCode = $(this).find('td:nth-child(5)').text();
+                var quantity = $(this).find('td:nth-child(6)').text();
+                var deliveryDate = $(this).find('td:nth-child(7)').text();
 
-        // 팝업 창에 정보 채우기
-        $('#popup-company').text(company);
-        $('#popup-product-name').text(productName);
-        $('#popup-product-code').text(productCode);
-        $('#popup-quantity').text(quantity);
-        $('#popup-delivery-date').text(deliveryDate);
+                // 팝업 창에 정보 채우기
+                $('#popup-company').text(company);
+                $('#popup-product-name').text(productName);
+                $('#popup-product-code').text(productCode);
+                $('#popup-quantity').text(quantity);
+                $('#popup-delivery-date').text(deliveryDate);
 
-        // 팝업 창 열기
-        $('#popupModal').modal('show');
-    });
+                // 팝업 창 열기
+                $('#popupModal').modal('show');
+            });
 
-    // 팝업 창 닫기 버튼 클릭 이벤트 처리
-    $('#popup-close-btn').click(function() {
-        $('#popupModal').modal('hide');
-    });
-});
-</script>
+            // 팝업 창 닫기 버튼 클릭 이벤트 처리
+            $('#popup-close-btn').click(function() {
+                $('#popupModal').modal('hide');
+            });
+        });
+    </script>
 
     <!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
     <link rel="stylesheet" href="/css/BOM.css">
+    <link href="/css/layout1.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
@@ -91,62 +92,43 @@ $(document).ready(function() {
             <table>
                 <thead>
                 <tr>
+                    <th class="cell-width1">id</th>
                     <th class="cell-width1">제품명</th>
-                    <th class="cell-width2">양배추(g)</th>
-                    <th class="cell-width3">흑마늘(g)</th>
-                    <th class="cell-width4">석류(ml)</th>
-                    <th class="cell-width5">매실(ml)</th>
-                    <th class="cell-width6">콜라겐(g)</th>
-                    <th class="cell-width7">정제수(ml)</th>
-                    <th class="cell-width8">포장지(ea)</th>
-                    <th class="cell-width9">총투입량(g)</th>
+                    <th class="cell-width2">양배추(kg)</th>
+                    <th class="cell-width3">흑마늘(kg)</th>
+                    <th class="cell-width4">석류(L)</th>
+                    <th class="cell-width5">매실(L)</th>
+                    <th class="cell-width6">콜라겐(kg)</th>
+                    <th class="cell-width7">정제수(L)</th>
+                    <th class="cell-width8">파우치(ea)</th>
+                    <th class="cell-width8">스틱파우치(ea)</th>
+                    <th class="cell-width9">총투입량(kg)</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>양배추즙</td>
-                    <td>50</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>50</td>
-                    <td>1</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>흑마늘즙</td>
-                    <td>0</td>
-                    <td>8.3</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>85</td>
-                    <td>1</td>
-                    <td>93.3</td>
-                </tr>
-                <tr>
-                    <td>석류젤리스틱</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>0</td>
-                    <td>2</td>
-                    <td>8</td>
-                    <td>1</td>
-                    <td>15</td>
-                </tr>
-
-                <tr>
-                    <td>매실젤리스틱</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>8</td>
-                    <td>1</td>
-                    <td>15</td>
+                <tr th:each="bom : ${bomList}">
+                    <td th:text="${bom.id}">1</td>
+                    <td th:text="${bom.item}">양배추즙</td>
+                    <td th:if="${bom.material1.equals('양배추')}" th:text="${bom.input1}">50</td>
+                    <td th:unless="${bom.material1.equals('양배추')}">0</td>
+                    <td th:if="${bom.material1.equals('흑마늘')}" th:text="${bom.input1}">50</td>
+                    <td th:unless="${bom.material1.equals('흑마늘')}">0</td>
+                    <td th:if="${bom.material1.equals('석류 농축액')}" th:text="${bom.input1}">50</td>
+                    <td th:unless="${bom.material1.equals('석류 농축액')}">0</td>
+                    <td th:if="${bom.material1.equals('매실 농축액')}" th:text="${bom.input1}">50</td>
+                    <td th:unless="${bom.material1.equals('매실 농축액')}">0</td>
+                    <td th:if="${bom.material2.equals('콜라겐')}" th:text="${bom.input2}">50</td>
+                    <td th:unless="${bom.material2.equals('콜라겐')}">0</td>
+                    <td th:if="${bom.material2.equals('정제수')}" th:text="${bom.input2}">50</td>
+                    <td th:unless="${bom.material2.equals('정제수')}" th:if="${bom.material3.equals('정제수')}" th:text="${bom.input3}">50</td>
+                    <td th:if="${bom.material3.equals('파우치')}" th:text="${bom.input3}">50</td>
+                    <td th:unless="${bom.material3.equals('파우치')}">0</td>
+                    <td th:if="${bom.material4.equals('스틱파우치')}" th:text="${bom.input4}">50</td>
+                    <td th:unless="${bom.material4.equals('스틱파우치')}">0</td>
+                    <td th:if="${bom.material3.equals('파우치')}" th:text="${bom.input1 + bom.input2}">50</td>
+                    <td th:unless="${bom.material3.equals('파우치')}" th:text="${bom.input1 + bom.input2 + bom.input3}">50</td>
+                    <!--                    <td th:unless="${bom.material2.equals('파우치') or bom.material2.equals('스틱파우치')}">0</td>-->
+<!--                    <td th:if="${bom.material4.equals('스틱파우치')}" th:text="${bom.input4}">50</td>-->
                 </tr>
                 </tbody>
             </table>
