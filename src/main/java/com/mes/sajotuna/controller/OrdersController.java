@@ -100,8 +100,6 @@ public class OrdersController {
 
         OrdersDTO ordersDTO = ordersService.ordersDetail(id);
 
-        System.out.println("123 : " + ordersDTO);
-
         model.addAttribute("ordersDto", ordersDTO);
 
         return "ordersdetail";

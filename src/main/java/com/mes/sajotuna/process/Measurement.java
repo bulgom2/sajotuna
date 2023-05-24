@@ -1,5 +1,6 @@
 package com.mes.sajotuna.process;
 
+
 import com.mes.sajotuna.dto.ManufactureDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
 
@@ -36,7 +37,7 @@ public class Measurement {
             checkTime(processLastTime);
         }
 
-    return thisManufactureDTO;
+        return thisManufactureDTO;
     }
 
 
