@@ -96,7 +96,6 @@ tbody tr:hover {
     justify-content: flex-end;
 }
 
-
 /* 엑셀 다운로드 버튼 */
 #downloadButton{
     margin-left : 10px;
@@ -108,8 +107,19 @@ tbody tr:hover {
     font-size : 23px;
 }
 
+/* 수주 삭제 버튼 */
+#delete {
+    margin-left : 10px;
+    height : 40px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    margin-right : 10px;
+    font-size : 23px;
+}
+
 /* 수주 확정 버튼 */
-#confirmed{
+#confirmed {
     margin-left : 10px;
     height : 40px;
     border-radius : 8px;
@@ -120,7 +130,7 @@ tbody tr:hover {
 }
 
 /* 수주 등록 버튼 */
-#register{
+#register {
     margin-left : 10px;
     height : 40px;
     border-radius : 8px;
@@ -128,6 +138,7 @@ tbody tr:hover {
     color : white;
     font-size : 23px;
 }
+
 
 
 /* content-2 아래 부분 */

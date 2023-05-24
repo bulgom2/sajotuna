@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta , charset="UTF-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+          name="viewport">
 
     <title> T U N A - M E S </title>
 
@@ -9,13 +10,8 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
-
-    <link href="/css/facility.css" rel="stylesheet">
     <link href="/css/layout1.css" rel="stylesheet">
+    <link href="/css/facility.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
@@ -30,7 +26,6 @@
 
     <!-- Custom styles for this page -->
     <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
-
 
 </head>
 <body>
@@ -49,47 +44,52 @@
             </div>
         </div>
 
-        <div class="facility-content-2">
+<!--        <div class="facility-content-2">-->
+<!--            <p id="facility-content-2">설비 정보</p>-->
+<!--        </div>-->
+
+        <div class="facility-content-3">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">설비 정보</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" id="processListContainer">
+                    <div class="table-responsive" id="orderListContainer">
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                             <tr>
-                                <th>순번</th>
-                                <th>설비명</th>
-                                <th>생산제품</th>
-                                <th>생산 가능량</th>
-                                <th>단위</th>
-                                <th>준비시간(분)</th>
-                                <th>소요시간(시간)</th>
-                                <th>사용여부</th>
+                                <th class="cell-width1">순번</th>
+                                <!--                    <th class="cell-width1">설비코드</th>-->
+                                <th class="cell-width2">설비명</th>
+                                <th class="cell-width3">생산제품</th>
+                                <th class="cell-width4">생산가능량</th>
+                                <th class="cell-width5">단위</th>
+                                <th class="cell-width6">준비시간(분)</th>
+                                <th class="cell-width7">소요시간(시간)</th>
+                                <th class="cell-width8">사용여부</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="facility : ${facilityList}">
                                 <td th:text="${facility.id}"></td>
-                                <td th:text="${facility.name}"></td>
-                                <td th:text="${facility.item}"></td>
-                                <td th:text="${facility.qtt}"></td>
-                                <td th:text="${facility.unit}"></td>
-                                <td th:text="${facility.pt}"></td>
-                                <td th:text="${facility.lt}"></td>
-                                <td th:text="${facility.status}"></td>
+                                <!--                    <td th:text="${facility.}"></td>-->
+                                <td th:text="${facility.name}">세척기</td>
+                                <td th:text="${facility.item}">양배추즙,흑마늘즙</td>
+                                <td th:text="${facility.qtt}">1000</td>
+                                <td th:text="${facility.unit}">kg/h(max)</td>
+                                <td th:text="${facility.lt}">20</td>
+                                <td th:text="${facility.pt}">60</td>
+                                <td th:text="${facility.status}">60</td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> <!-- card-body -->
+
             </div>
-        </div>
-    </div>
-    <!-- /본문 -->
-    <!--  </div>-->
-</div>
+        </div> <!-- facility-content-3 -->
+    </div> <!-- page-content-wrapper -->
+</div> <!-- container -->
 
 
 <!-- Bootstrap core JavaScript-->

@@ -1,7 +1,6 @@
 package com.mes.sajotuna.controller;
 
 import com.mes.sajotuna.dto.OrdersDTO;
-
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.service.OrdersService;
@@ -11,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -57,7 +57,7 @@ public class OrdersController {
 
         ordersDTO.setNo(code);
 
-        ordersDTO.setStatus("waiting");
+        ordersDTO.setStatus("대기");
 
 //        String code = "SJ" + ordersDto.getDate().toLocalDate();
 
@@ -84,6 +84,7 @@ public class OrdersController {
     public String orderList(Model model){
         System.out.println("종룍ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
         List<Orders> ordersList = ordersRepository.findAll();
+        Collections.reverse(ordersList); // 리스트를 역순으로 정렬합니다.
 
         model.addAttribute("orderList", ordersList);
 
@@ -107,13 +108,30 @@ public class OrdersController {
     }
 
 
+//    // 삭제 버튼을 누르면 해당 값 삭제하기
+//    @GetMapping("/orders/delete/{id}")
+//    public String orderDelete(@PathVariable("id") Long id){
+//
+//        ordersService.ordersDelete(id);
+//
+//        return "redirect:/";
+//    }
+
     // 삭제 버튼을 누르면 해당 값 삭제하기
-    @GetMapping("/orders/delete/{id}")
-    public String orderDelete(@PathVariable("id") Long id){
+    @PostMapping("/orders/delete")
+    @ResponseBody
+    public String orderDelete(@RequestBody OrdersDTO ordersDTO) {
+        String ordersNo = ordersDTO.getOrdersNo();
 
-        ordersService.ordersDelete(id);
+        Orders existingOrder = ordersRepository.findByNo(ordersNo);
 
-        return "redirect:/";
+        if (existingOrder == null) {
+            // 삭제할 수주가 없는 경우 처리 로직 추가
+        } else {
+            ordersRepository.delete(existingOrder);
+        }
+
+        return "success";
     }
 
     // 수주 확정 버튼을 누르면 셀 값 변경
@@ -144,4 +162,8 @@ public class OrdersController {
 
         return "success";
     }
+
+
+
+
 }
