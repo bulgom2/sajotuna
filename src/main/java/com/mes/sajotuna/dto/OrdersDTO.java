@@ -1,16 +1,14 @@
 package com.mes.sajotuna.dto;
 
 import com.mes.sajotuna.entity.Orders;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 // 수주관리
-@Getter
-@Setter
+@Data
 public class OrdersDTO {
 
     private Long id;    // 수주id
