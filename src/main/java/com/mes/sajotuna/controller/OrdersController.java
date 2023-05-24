@@ -42,7 +42,7 @@ public class OrdersController {
 
         LocalDateTime orderDay = ordersDTO.getDate();
 
-        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+""};
+        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+"", orderDay.getSecond()+""};
 
         String code = "SJ" + orderDay.getYear();
 
