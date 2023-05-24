@@ -1,3 +1,16 @@
+
+
+/* 본문 컨텐츠 영역 */
+#page-content-wrapper {
+    position: relative;
+    display: block;
+    margin: 10px 10px 16px 370px;
+    border-radius: 16px;
+    padding: 0;
+    border: 2px solid #A4A4A4;  /* 틀 확인용 */
+}
+
+
 /* BOM */
 .content-2 {
     position: relative;

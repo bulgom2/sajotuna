@@ -19,7 +19,6 @@ public class Purchase {
     @Column(name = "purchase_id", nullable = false, insertable = false, updatable = false)
     private Long id;    // id
 
-
     @Column(name = "purchase_no", nullable = false)
     private String no;    // 발주번호(Lot)
 
