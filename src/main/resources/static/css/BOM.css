@@ -1,4 +1,11 @@
+.content-desc1 {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border-radius: 16px;
+    height: 147px;
 
+}
 
 /* 본문 컨텐츠 영역 */
 #page-content-wrapper {
@@ -29,6 +36,6 @@
     width: 30%;
     margin-left : 20px;
     margin-right : 20px;
-    margin-top : 70px;
+    margin-top : 40px;
 }
 
