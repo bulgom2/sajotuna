@@ -93,7 +93,7 @@
                                     <th>제품명</th>
                                     <th>수량</th>
                                     <th>예상 납품일</th>
-                                    <th>진행 상태</th>
+                                    <th data-orderable="true" data-priority="1">진행 상태</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -105,7 +105,7 @@
                                     <td th:text="${list.item}">제품명</td>
                                     <td th:text="${list.qtt}">수량</td>
                                     <td th:text="${list.shipDate}">예상납품일</td>
-                                    <td th:text="${list.status}">진행상태</td>
+                                    <td th:text="${list.status.toString()}">진행상태</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> <!-- /page-content-wrapper -->
     </form>
     <!-- /본문 -->
     <!--  </div>-->
@@ -166,7 +166,29 @@
     $(document).ready(function() {
         var selectedRow;
 
-        $('#dataTable tbody tr').click(function() {
+        // 이벤트 바인딩을 별도의 함수로 이동합니다.
+        function bindRowClickEvent() {
+            // 기존의 이벤트 바인딩을 제거합니다.
+            $('#dataTable tbody tr').off('click');
+
+            // 테이블 행에 클릭 이벤트를 바인딩합니다.
+            $('#dataTable tbody tr').on('click', function() {
+                if (selectedRow) {
+                    selectedRow.removeClass('selected');
+                }
+                if (selectedRow !== $(this)) {
+                    selectedRow = $(this);
+                    selectedRow.addClass('selected');
+                } else {
+                    selectedRow = null;
+                }
+            });
+        }
+
+        // 초기에 이벤트 바인딩을 실행합니다.
+        bindRowClickEvent();
+
+        $(document).on('click', '#dataTable tbody tr', function() {
             if (selectedRow) {
                 selectedRow.removeClass('selected');
             }
@@ -179,9 +201,21 @@
             }
         });
 
-        $('#confirmed').click(function() {
+        bindRowClickEvent();
+
+        $(document).on('click', '#confirmed', function(e) {
+            e.preventDefault();
+            var selectedRow = $('#dataTable tbody tr.selected');
             if (!selectedRow) {
                 alert('선택된 행이 없습니다.');
+                return;
+            }
+
+            // 이미 확정된 행인지 확인
+            var statusCell = selectedRow.find('td:eq(7)');
+            var status = statusCell.text().trim();
+            if (status === '확정') {
+                alert('이미 수주가 확정되었습니다.');
                 return;
             }
 
@@ -190,8 +224,16 @@
             if (confirmation) {
                 var statusCell = selectedRow.find('td:eq(7)');
                 statusCell.text('확정');
-                var ordersNo = selectedRow.find('td:eq(1)').text();
+
+                var ordersNo = selectedRow.find('td:eq(1)').text().trim();
+
+                if (ordersNo === '') {
+                    alert('수주 번호를 가져올 수 없습니다.');
+                    return;
+                }
+
                 console.log(ordersNo);
+
                 var RowData = {
                     row: selectedRow.index(),
                     col: 8,
@@ -208,6 +250,7 @@
                     contentType: 'application/json',
                     success: function(response) {
                         console.log('수주가 확정되었습니다.');
+                        alert('수주 확정!');
                     },
                     error: function(xhr, status, error) {
                         console.error('값 업데이트 중 오류가 발생했습니다.');

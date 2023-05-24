@@ -142,6 +142,6 @@ public class OrdersController {
         ordersRepository.save(existingOrder);
 
 
-        return "redirect:/";
+        return "success";
     }
 }
