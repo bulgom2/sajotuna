@@ -26,12 +26,12 @@ public class CoolingProcess {
         // 이전 공정(검사)에서 startCooling에 데이터를 저장했음
         // 검사 데이터를 받아오면 냉각 공정 시작
         if (no != null && qtt > 0 && date != null && productName != null && ordersId != null && company != null) {
-            this.no = no;  // 현재 공정 로트 번호로 업데이트
-            this.qtt = qtt; // 현재 공정 수량로 업데이트
-            this.date = date;   // 현재 공정 시간으로 업데이트
-            this.productName = productName; // 현재 공정 제품명으로 업데이트
-            this.ordersId = ordersId; // 현재 공정 수주 번호로 업데이트
-            this.company = company; // 현재 공정 거래처로 업데이트
+            this.no = no;  // 현재 공정 로트 번호
+            this.qtt = qtt; // 현재 공정 수량
+            this.date = date;   // 현재 공정 시간
+            this.productName = productName; // 현재 공정 제품명
+            this.ordersId = ordersId; // 현재 공정 수주 번호
+            this.company = company; // 현재 공정 거래처
 
             LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
 

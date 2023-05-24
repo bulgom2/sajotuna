@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 public class PackagingProcess {
     private String no;   // 로트 번호
     private LocalDateTime date;    // 출하 시간
-    private Long qtt; // 수량
-    private String productName; // 제품명
+    private static Long qtt; // 수량
+    private static String productName; // 제품명
     private String ordersId;    // 수주 번호
     private String company; // 거래처
     private Long boxes;
@@ -27,12 +27,12 @@ public class PackagingProcess {
         // 이전 공정(검사)에서 startPackaging에 데이터를 저장했음
         // 검사 데이터를 받아오면 냉각 공정 시작
         if (no != null && qtt > 0 && date != null && productName != null && ordersId != null && company != null) {
-            this.no = no;  // 현재 공정 로트 번호로 업데이트
-            this.qtt = qtt; // 현재 공정 수량로 업데이트
-            this.date = date;   // 현재 공정 시간으로 업데이트
-            this.productName = productName; // 현재 공정 제품명으로 업데이트
-            this.ordersId = ordersId; // 현재 공정 수주 번호로 업데이트
-            this.company = company; // 현재 공정 거래처로 업데이트
+            this.no = no;  // 현재 공정 로트 번호
+            this.qtt = qtt; // 현재 공정 수량
+            this.date = date;   // 현재 공정 시간
+            this.productName = productName; // 현재 공정 제품명
+            this.ordersId = ordersId; // 현재 공정 수주 번호
+            this.company = company; // 현재 공정 거래처
 
             LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
             LocalDateTime startTime = currentTime.plusMinutes(20); // 현재 시간에서 준비 시간 20분 추가
@@ -48,13 +48,14 @@ public class PackagingProcess {
                 } else {
                     boxes = qtt / 25; // 젤리는 박스당 25개
                 }
+                this.boxes = boxes;
 
                 // 포장 소요 시간 계산
                 int packagingCnt = 200; // 시간당 포장 가능한 제품 수(박스)
                 int ptTime = 20; // 준비 시간(분)
 
                 Long packagingTime = (boxes / packagingCnt) * 60; // 시작 후 경과한 시간(분)
-                Long addPtTime = ((packagingTime / 60) / 1) * ptTime; // 시작 후 1시간마다 준비 시간 추가
+                Long addPtTime = (packagingTime / 60) * ptTime; // 시작 후 1시간마다 준비 시간 추가
                 Long leadTime = packagingTime + addPtTime; // 총 포장 소요 시간
 
                 date = startTime.plusMinutes(leadTime); // 다음 공정의 시작 시간
@@ -86,7 +87,7 @@ public class PackagingProcess {
         this.productName = productName;
     }
 
-    public String getProductName() {
+    public static String getProductName() {
         return productName;
     }
 
@@ -116,7 +117,8 @@ public class PackagingProcess {
 
     public String getNo() {return no;}
 
-    public Long getQtt() {return qtt;}
+    public static Long getQtt() {return qtt;}
+
 
     public Long getBoxes() {return boxes;}
 }
