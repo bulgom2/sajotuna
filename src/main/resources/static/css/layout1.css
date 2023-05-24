@@ -65,7 +65,7 @@
 }
 
 .sidebar-nav li:nth-child(8) a {
-    margin-bottom: 0;
+    margin-top: 20px;
 }
 
 .sidebar-nav li a:hover {
@@ -105,6 +105,7 @@
 
 .menu-list li a {
     font-size: 20px;
+    margin-bottom : 0;
 }
 
 

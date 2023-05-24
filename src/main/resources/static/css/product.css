@@ -1,35 +1,45 @@
 
-/* 완제품*/
+.content-desc1 {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 45px;
+    height: 147px;
+    justify-content: space-between;
+}
+
+/* 완제품 , 반제품 */
 .product-content-2 {
     /*position: absolute;*/
-    /*flex-direction: column;*/
-    /*display: flex;*/
-    width: 97%;
-    margin-left : 20px;
-    margin-right : 20px;
+    flex-direction: row;
+    display: flex;
+    width: 80%;
+    margin-left : 10%;
+    /*margin-right : 20px;*/
+    justify-content : space-between;
+}
+
+/* 완제품 */
+.product-content-2-2{
+    width : 48%;
+}
+
+/* 반제품 */
+.product-content-2-3{
+    width : 48%;
 }
 
 
-/* 원자재*/
+/* 원자재 */
 .product-content-3 {
     /*position: absolute;*/
     /*flex-direction: column;*/
     /*display: flex;*/
-    width: 97%;
-    margin-left : 20px;
-    margin-right : 20px;
-    margin-top : 70px;
-}
-
-
-/* 반제품*/
-.product-content-4 {
-    /*position: absolute;*/
-    /*flex-direction: column;*/
-    /*display: flex;*/
-    width: 97%;
-    margin-left : 20px;
-    margin-right : 20px;
+    width: 80%;
+    margin-left : 10%;
+    margin-right : 10%;
     margin-top : 70px;
 }
 

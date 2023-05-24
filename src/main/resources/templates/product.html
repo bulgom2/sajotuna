@@ -43,21 +43,54 @@
 
     <!-- 본문 -->
     <div id="page-content-wrapper">
-        <div class="content-desc">
+        <div class="content-desc1">
             <div class="content-header">
                 <input class="content-title" disabled readonly type="text" value="품목 정보">
             </div>
         </div>
 
         <div class="product-content-2">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">완제품</h6>
+            <div class="product-content-2-2">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">완제품</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="processListContainer">
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>순번</th>
+                                        <th>품목 코드</th>
+                                        <th>품목명</th>
+                                        <th>단위</th>
+                                        <th>품목 구분</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:if="${product.id <= 4}" th:each="product : ${productList}">
+                                    <td th:text="${product.id}">1</td>
+                                    <td th:text="${product.no}">c01</td>
+                                    <td th:text="${product.name}">양배추즙</td>
+                                    <td th:text="${product.unit}">ml</td>
+                                    <td th:text="${product.status}">완</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive" id="processListContainer">
-                        <table class="table table-bordered" id="dataTable">
-                            <thead>
+            </div>
+
+            <div class="product-content-2-3">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">반제품</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="processListContainer2">
+                            <table class="table table-bordered" id="dataTable2">
+                                <thead>
                                 <tr>
                                     <th>순번</th>
                                     <th>품목 코드</th>
@@ -65,17 +98,18 @@
                                     <th>단위</th>
                                     <th>품목 구분</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:if="${product.id <= 4}" th:each="product : ${productList}">
-                                <td th:text="${product.id}">1</td>
-                                <td th:text="${product.no}">c01</td>
-                                <td th:text="${product.name}">양배추즙</td>
-                                <td th:text="${product.unit}">ml</td>
-                                <td th:text="${product.status}">완</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                <tr th:if="${product.id >= 5 and product.id <= 6}" th:each="product : ${productList}">
+                                    <td th:text="${product.id}">1</td>
+                                    <td th:text="${product.no}">c01</td>
+                                    <td th:text="${product.name}">양배추즙</td>
+                                    <td th:text="${product.unit}">ml</td>
+                                    <td th:text="${product.status}">완</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -87,8 +121,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">원자재</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" id="processListContainer2">
-                        <table class="table table-bordered" id="dataTable2">
+                    <div class="table-responsive" id="processListContainer3">
+                        <table class="table table-bordered" id="dataTable3">
                             <thead>
                             <tr>
                                 <th>순번</th>
@@ -113,37 +147,7 @@
             </div>
         </div>
 
-        <div class="product-content-4">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">반제품</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive" id="processListContainer3">
-                        <table class="table table-bordered" id="dataTable3">
-                            <thead>
-                            <tr>
-                                <th>순번</th>
-                                <th>품목 코드</th>
-                                <th>품목명</th>
-                                <th>단위</th>
-                                <th>품목 구분</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:if="${product.id >= 5 and product.id <= 6}" th:each="product : ${productList}">
-                                    <td th:text="${product.id}">1</td>
-                                    <td th:text="${product.no}">c01</td>
-                                    <td th:text="${product.name}">양배추즙</td>
-                                    <td th:text="${product.unit}">ml</td>
-                                    <td th:text="${product.status}">완</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
     </div>
     <!-- /본문 -->
