@@ -81,4 +81,6 @@ public class ShipmentProcess {
     public String getNo() {return no;}
 
     public Long getBoxes() {return boxes;}
+
+    public void startShipment(int no, String date, String productName, String ordersId, String company, int boxes) {}
 }

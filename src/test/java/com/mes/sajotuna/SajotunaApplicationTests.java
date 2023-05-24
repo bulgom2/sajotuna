@@ -32,7 +32,7 @@ class SajotunaApplicationTests {
         Orders orders = new Orders();
 
         orders.setNo("123");
-        orders.setQtt(234);
+        orders.setQtt(234L);
 
         ordersRepository.save(orders);
     }

@@ -1,8 +1,10 @@
 import com.mes.sajotuna.gongjung.PackagingProcess;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+@SpringBootTest
 public class PackagingProcessTest {
     private PackagingProcess packagingProcess;
     private int completePackagingCnt;

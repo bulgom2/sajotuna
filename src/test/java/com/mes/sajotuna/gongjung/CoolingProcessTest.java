@@ -8,8 +8,17 @@ import java.time.LocalDateTime;
 public class CoolingProcessTest {
 
         public static void main(String[] args) {
+
+            InspectionProcess inspectionProcess = new InspectionProcess();
+            inspectionProcess.startInspection(LocalDateTime.now(), 10000L);
+
+            System.out.println(inspectionProcess.getQtt());
+            System.out.println("검사 끝나는 시간 : " + inspectionProcess.getDate());
+
+            System.out.println();
+
             CoolingProcess coolingProcess = new CoolingProcess();
-            coolingProcess.startCooling("LOT123",1000L, "Product A", LocalDateTime.now(), "ORDER456", "Company XYZ");
+            coolingProcess.startCooling("LOT123",inspectionProcess.getQtt(), "양배추즙", inspectionProcess.getDate(), "ORDER456", "Company XYZ");
 
             System.out.println(coolingProcess.getNo());
             System.out.println(coolingProcess.getQtt());
@@ -17,6 +26,8 @@ public class CoolingProcessTest {
             System.out.println(coolingProcess.getProductName());
             System.out.println(coolingProcess.getOrdersId());
             System.out.println(coolingProcess.getCompany());
+
+            System.out.println();
 
             PackagingProcess packagingProcess = new PackagingProcess();
             packagingProcess.startPackaging(coolingProcess.getNo(), coolingProcess.getQtt(), coolingProcess.getProductName(), coolingProcess.getDate(), coolingProcess.getOrdersId(), coolingProcess.getCompany());
@@ -28,6 +39,8 @@ public class CoolingProcessTest {
             System.out.println(packagingProcess.getProductName());
             System.out.println(packagingProcess.getOrdersId());
             System.out.println(packagingProcess.getCompany());
+
+            System.out.println();
 
             ShipmentProcess shipmentProcess = new ShipmentProcess();
             shipmentProcess.startShipment(packagingProcess.getNo(), packagingProcess.getProductName(), packagingProcess.getDate(), packagingProcess.getOrdersId(), packagingProcess.getCompany(), 255L);

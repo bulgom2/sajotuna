@@ -11,9 +11,11 @@ public class CurrentStatus {
     private ShipmentProcess shipmentProcess;
 
     public double completeInspectionCnt;    // 실시간 검사 완료 수량
-    public double completeCoolingCnt;
+    public double completeCoolingCnt;      // 실시간 냉각 완료 수량
     public double completePackagingCnt;     // 실시간 포장 완료 수량
     public double completeShipmentCnt;
+
+
 
     // 실시간 공정별 현황(각 공정별 완료된 제품수량을 통해 실시간으로 퍼센트)
     public double inspectionPercent() {

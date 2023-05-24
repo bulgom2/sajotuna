@@ -37,4 +37,21 @@ public class Shipment {
     @Column(name = "shipment_date")
     private LocalDateTime date;  // 수령일(=출하일)
 
+//    public enum ShipmentStatus {
+//        COMPLETE("완료"),
+//        PROCEEDING("진행중"),
+//        WAITING("대기중");
+//
+//        private String label;
+//
+//        ShipmentStatus(String label) {
+//            this.label = label;
+//        }
+//
+//        public String getLabel() {
+//            return label;
+//        }
+//    }
+
 }
+

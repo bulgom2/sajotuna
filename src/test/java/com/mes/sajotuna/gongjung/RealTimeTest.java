@@ -1,6 +1,9 @@
+import org.springframework.boot.test.context.SpringBootTest;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+@SpringBootTest
 public class RealTimeTest {
     private LocalDateTime startTime;
 
