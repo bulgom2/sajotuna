@@ -24,12 +24,12 @@ public class ordersRepositoryTest {
         Orders orders = new Orders();
 
         orders.setNo("123");
-        orders.setQtt(12);
+        orders.setQtt(12L);
         orders.setDate(LocalDateTime.now());
 //        orders.setCode("123");
         orders.setItem("12315");
         orders.setCompany("2131");
-        orders.setShipDate(LocalDate.from(LocalDateTime.now()));
+        orders.setShipDate(String.valueOf(LocalDate.from(LocalDateTime.now())));
         orders.setStatus("132");
 
         ordersRepository.save(orders);

@@ -19,7 +19,7 @@ public class WipRepositoryTest {
         wip.setName("SDfsdfsd");
         wip.setUnit("kg");
         wip.setProcess("dfd");
-        wip.setQtt(5L);
+        wip.setQtt(500L);
         wip.setLotId("dddd");
 
         wipRepository.save(wip);

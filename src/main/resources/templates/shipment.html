@@ -14,11 +14,11 @@
 $(document).ready(function() {
     // 테이블 행 클릭 시 팝업 창에 정보 출력
     $('table tr').click(function() {
-        var company = $(this).find('td:nth-child(3)').text();
+        var company = $(this).find('td:nth-child(2)').text();
         var productName = $(this).find('td:nth-child(4)').text();
-        var productCode = $(this).find('td:nth-child(5)').text();
-        var quantity = $(this).find('td:nth-child(6)').text();
-        var deliveryDate = $(this).find('td:nth-child(7)').text();
+        var productCode = $(this).find('td:nth-child(3)').text();
+        var quantity = $(this).find('td:nth-child(5)').text();
+        var deliveryDate = $(this).find('td:nth-child(6)').text();
 
         // 팝업 창에 정보 채우기
         $('#popup-company').text(company);
@@ -86,7 +86,7 @@ $(document).ready(function() {
         <div class="content2">
             <div class="shipment_company">
                 <p class="shipment_company">거래처</p>
-                <select name = "shipment_company" id="shipment_company">
+                <select name = "shipment_company" id="shipment_company" th:field="${shipmentProcess.company}">
                     <option value = "coupang">쿠팡</option>
                     <option value = "11st">11번가</option>
                 </select>
@@ -94,7 +94,7 @@ $(document).ready(function() {
 
             <div class="shipment_name">
                 <p class="shipment_name">품목명</p>
-                <select name = "shipment_name" id="shipment_name">
+                <select name = "shipment_name" id="shipment_name" th:field="${shipmentProcess.name}">
                     <option value = "item1">양배추 즙</option>
                     <option value = "item2">흑마늘 즙</option>
                     <option value = "item3">석류 젤리스틱</option>
@@ -104,24 +104,22 @@ $(document).ready(function() {
 
             <div class="orders_id">
                 <p class="orders_id">수주 번호</p>
-                <input type="text" id="orders_id">
+                <input type="text" id="orders_id" th:value="${shipmentProcess.ordersId}">
             </div>
 
             <div class="shipment_date">
                 <p class="shipment_date">납기일</p>
-                <input type="date" id="shipment_date">
+                <input type="date" id="shipment_date" th:value="${shipmentProcess.date}">
             </div>
-
 
             <div class="shipment_status">
                 <p class="shipment_status">진행 상황</p>
-                <select name = "shipment_status" id="shipment_status">
-                    <option value = "complete">완료</option>
-                    <option value = "proceeding">진행중</option>
-                    <option value = "waiting">대기중</option>
+                <select name="shipment_status" id="shipment_status" th:field="${shipmentProcess.status}">
+                    <option th:each="status : ${T(com.mes.sajotuna.entity.ShipmentStatus).values()}"
+                            th:value="${status}"
+                            th:text="${status.label}"></option>
                 </select>
             </div>
-
         </div>
 
         <div class="content-3">
@@ -132,76 +130,32 @@ $(document).ready(function() {
             <table>
                 <thead>
                 <tr>
-                    <th class="cell-width1">수주 번호</th>
-                    <th class="cell-width2">거래처</th>
-                    <th class="cell-width3">Lot.no</th>
-                    <th class="cell-width4">품목명</th>
-                    <th class="cell-width5">출하 수량</th>
-                    <th class="cell-width6">납기일</th>
+                    <th class="cell-width1-1">수주 번호</th>
+                    <th class="cell-width2-2">거래처</th>
+                    <th class="cell-width3-3">Lot.no</th>
+                    <th class="cell-width4-4">품목명</th>
+                    <th class="cell-width5-5">출하 수량</th>
+                    <th class="cell-width6-6">납기일</th>
                 </tr>
                 </thead>
-
-                <tbody>
-                <tr>
-                    <td>OM20230511001</td>
-                    <td>쿠팡</td>
-                    <td>A20230508m010</td>
-                    <td>석류 젤리스틱</td>
-                    <td>300EA</td>
-                    <td>2023.05.12</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
+                <tbody> // 일단 데이터 나오는 것만 열이 뜨게 바꿈
+                <tr th:each="startShipment : ${startShipment}">
+                    <td th:text="${startShipment.ordersId}">OM20230511001</td>
+                    <td th:text="${startShipment.company}">쿠팡</td>
+                    <td th:text="${startShipment.no}">A20230508m010</td>
+                    <td th:text="${startShipment.name}">석류 젤리스틱</td>
+                    <td th:text="${startShipment.qtt}">300EA</td>
+                    <td th:text="${startShipment.date('yyyy.MM.dd')}">2023.05.12</td>
                 </tr>
                 </tbody>
             </table>
 
-            <!--   팝업창 추가         -->
 
+            <!--   팝업창 추가         -->
             <!-- 팝업 창 -->
             <div id="popupModal" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-xl">
-                    <div
-                            class="modal-content">
+                    <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">상세 정보</h4>
                             <button type="button" class="close" data-dismiss="modal">×</button>
@@ -218,7 +172,7 @@ $(document).ready(function() {
                                     <td id="popup-product-name"></td>
                                 </tr>
                                 <tr>
-                                    <td>제품 코드:</td>
+                                    <td>Lot.no:</td>
                                     <td id="popup-product-code"></td>
                                 </tr>
                                 <tr>
@@ -239,8 +193,8 @@ $(document).ready(function() {
                 </div>
             </div>
             <!--   팝업창         -->
-
         </div>
+
 
         <div class="content-5">
             <p class="shipment_detail_record">출하 상세내역</p>
@@ -248,7 +202,7 @@ $(document).ready(function() {
 
         <div class="content-6">
             <table>
-                <thead>
+                <thead >
                 <tr>
                     <th class="cell-width1-1">수주 번호</th>
                     <th class="cell-width2-2">거래처</th>
@@ -260,61 +214,14 @@ $(document).ready(function() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>OM20230511001</td>
-                    <td>쿠팡</td>
-                    <td>A20230508m010</td>
-                    <td>석류 젤리스틱</td>
-                    <td>300EA</td>
-                    <td>2023.05.12</td>
-                    <td>진행중</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                </tr>
-                <tr>
-                    <td>Cell 7</td>
-                    <td>Cell 8</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
-                    <td>Cell 9</td>
+                <tr th:each="startShipment : ${startShipment}">
+                    <td th:text="${startShipment.ordersId}">OM20230511001</td>
+                    <td th:text="${startShipment.company}">쿠팡</td>
+                    <td th:text="${startShipment.no}">A20230508m010</td>
+                    <td th:text="${startShipment.name}">석류 젤리스틱</td>
+                    <td th:text="${startShipment.qtt}">300EA</td>
+                    <td th:text="${startShipment.date('yyyy.MM.dd')}">2023.05.12</td>
+                    <td th:text="${startShipment.status}">진행중</td>
                 </tr>
                 </tbody>
             </table>
