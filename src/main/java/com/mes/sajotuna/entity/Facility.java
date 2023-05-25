@@ -28,12 +28,12 @@ public class Facility {
     private Long qtt;  // 생산 가능량
 
     // 23/05/22 String → Integer 변경
-    @Column(name = "facility_pt")
-    private Integer pt;  // 생산 준비시간
+    @Column(name = "facility_preparation")
+    private Integer preparation;  // 생산 준비시간
 
     // 23/05/22 String → Integer 변경
-    @Column(name = "facility_lt")
-    private Integer lt;  // 생산 소요 시간
+    @Column(name = "facility_lead")
+    private Integer lead;  // 생산 소요 시간
 
     @Column(name = "facility_status")
     private Boolean status;  // 설비 상태
