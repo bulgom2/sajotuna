@@ -12,3 +12,23 @@ tbody tr:hover {
     background-color: #223E4F;
     color: white;
 }
+
+/* 버튼 위치 */
+.purchase-btn{
+    display : flex;
+    margin-right : 40px;
+    height : 40px;
+    justify-content: flex-end;
+}
+
+
+/* 엑셀 다운로드 버튼 */
+#downloadButton{
+    margin-left : 10px;
+    height : 40px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    margin-right : 10px;
+    font-size : 23px;
+}

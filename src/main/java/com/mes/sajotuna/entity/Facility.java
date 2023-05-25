@@ -44,5 +44,4 @@ public class Facility {
     public enum FacilityStatus {
         IN_PROGRESS, COMPLETED  // 가동중, 완료
     }
-
 }
