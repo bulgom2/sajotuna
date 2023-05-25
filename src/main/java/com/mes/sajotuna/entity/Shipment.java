@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 // 출하관리
 @Entity
@@ -34,6 +35,23 @@ public class Shipment {
     private String name;  // 품목명
 
     @Column(name = "shipment_date")
-    private String date;  // 수령일(=출하일)
+    private LocalDateTime date;  // 수령일(=출하일)
+
+//    public enum ShipmentStatus {
+//        COMPLETE("완료"),
+//        PROCEEDING("진행중"),
+//        WAITING("대기중");
+//
+//        private String label;
+//
+//        ShipmentStatus(String label) {
+//            this.label = label;
+//        }
+//
+//        public String getLabel() {
+//            return label;
+//        }
+//    }
 
 }
+
