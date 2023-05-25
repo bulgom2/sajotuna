@@ -1,0 +1,100 @@
+/* 본문 컨텐츠 영역 */
+#page-content-wrapper1 {
+    position: relative;
+    display: block;
+    margin: 10px 0;
+    border-radius: 16px;
+    padding: 0;
+    border: 2px solid #A4A4A4;  /* 틀 확인용 */
+    width: 90%;
+    height: 1297px;
+}
+
+
+/* 페이지 제목란 */
+.content-desc1 {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    height: 10%;
+
+}
+
+
+/* 메인 영역 */
+.content-header1 {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    height : auto;
+    width: 100%;
+}
+
+/* 탭 제목 */
+.content-title1 {
+    width: 100%;
+    height: 80px;
+    font-size: 60px;
+    color: #495057;
+    text-align : center;
+    margin-top : 10px;
+    font-family: 'Faster One', cursive;
+}
+
+
+
+.main-content-1{
+    width: 100%;
+    display : flex;
+    justify-content : space-around;
+    margin-bottom : 50px;
+}
+
+
+/* 현재 공정별 현황 */
+#main-content-1-1{
+    width : 800px;
+    height : 500px;
+    background-color : grey;
+    color : white;
+
+}
+
+
+/* 설비 가동 시간 */
+#main-content-1-2{
+    width : 800px;
+    height : 500px;
+    background-color : grey;
+    color : white;
+
+}
+
+
+
+
+.main-content-2{
+    width: 100%;
+    display : flex;
+    justify-content : space-around;
+}
+
+/* 실시간 제품 현황*/
+#main-content-2-1{
+    width : 800px;
+    height : 500px;
+    background-color : grey;
+    color : white;
+}
+
+/* 재공재고 현황 */
+#main-content-2-2{
+    width : 800px;
+    height : 500px;
+    background-color : grey;
+    color : white;
+
+}
+
