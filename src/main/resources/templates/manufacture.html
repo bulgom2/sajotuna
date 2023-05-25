@@ -113,23 +113,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!--                                <tr th:each="list : ${orderList}">-->
-                                <!--                                    <td th:text="${list.no}">수주번호</td>-->
-                                <!--                                    <td th:text="${list.date}">수주일자</td>-->
-                                <!--                                    <td th:text="${list.company}">거래처</td>-->
-                                <!--                                    <td th:text="${list.item}">제품명</td>-->
-                                <!--                                    <td th:text="${list.qtt}">수량</td>-->
-                                <!--                                    <td th:text="${list.shipDate}">예상납품일</td>-->
-                                <!--                                    <td th:text="${list.status.toString()}">진행상태</td>-->
-                                <!--                                </tr>-->
-                                <tr>
-                                    <td>1</td>
-                                    <td>양배추즙</td>
-                                    <td>추출</td>
-                                    <td>100</td>
-                                    <td>2023-05-24 17:47</td>
-                                    <td>2023-05-24 20:47</td>
-                                    <td>진행 중</td>
+                                <tr th:each="manufacture : ${manufactureList}">
+                                    <td th:text="${manufacture.id}">1</td>
+                                    <td th:text="${manufacture.item}">양배추즙</td>
+                                    <td th:text="${manufacture.processId}">추출</td>
+                                    <td th:text="${manufacture.qtt}">100</td>
+                                    <td th:text="${manufacture.inTime}">2023-05-24 17:47</td>
+                                    <td th:text="${manufacture.outTime}">2023-05-24 20:47</td>
+                                    <td th:text="${manufacture.status}">진행 중</td>
                                 </tr>
                                 </tbody>
                             </table>

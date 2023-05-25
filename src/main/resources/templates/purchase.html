@@ -1,43 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta , charset="UTF-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-          name="viewport">
+    <meta charset="UTF-8">
 
     <title> T U N A - M E S </title>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
-
-    <!-- 모달창  -->
-    <!--    <script>-->
-    <!--$(document).ready(function() {-->
-    <!--    // 테이블 행 클릭 시 팝업 창에 정보 출력-->
-    <!--    $('table tr').click(function() {-->
-    <!--        var company = $(this).find('td:nth-child(3)').text();-->
-    <!--        var productName = $(this).find('td:nth-child(4)').text();-->
-    <!--        var productCode = $(this).find('td:nth-child(5)').text();-->
-    <!--        var quantity = $(this).find('td:nth-child(6)').text();-->
-    <!--        var deliveryDate = $(this).find('td:nth-child(7)').text();-->
-
-    <!--        // 팝업 창에 정보 채우기-->
-    <!--        $('#popup-company').text(company);-->
-    <!--        $('#popup-product-name').text(productName);-->
-    <!--        $('#popup-product-code').text(productCode);-->
-    <!--        $('#popup-quantity').text(quantity);-->
-    <!--        $('#popup-delivery-date').text(deliveryDate);-->
-
-    <!--        // 팝업 창 열기-->
-    <!--        $('#popupModal').modal('show');-->
-    <!--    });-->
-
-    <!--    // 팝업 창 닫기 버튼 클릭 이벤트 처리-->
-    <!--    $('#popup-close-btn').click(function() {-->
-    <!--        $('#popupModal').modal('hide');-->
-    <!--    });-->
-    <!--});-->
-    <!--</script>-->
 
     <link href="/css/layout1.css" rel="stylesheet">
     <link href="/css/purchase.css" rel="stylesheet">
@@ -56,7 +26,6 @@
     <!-- Custom styles for this page -->
     <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
-
 </head>
 <body>
 
@@ -74,82 +43,6 @@
             </div>
         </div>
 
-        <!--        <div class="content-2">-->
-        <!--            <div class="content2-1">-->
-        <!--                <div class="purchase_no">-->
-        <!--                    <p class="purchase_no">발주 번호</p>-->
-        <!--                    <input type="text" id="purchase_no">-->
-        <!--                </div>-->
-
-        <!--                <div class="purchase_date">-->
-        <!--                    <p class="purchase_date">발주 일자</p>-->
-        <!--                    <input type="date" id="purchase_date">-->
-        <!--                </div>-->
-
-        <!--                <div class="purchase_company">-->
-        <!--                    <p class="purchase_company">거래처</p>-->
-        <!--                    <select name = "purchase_company" id="purchase_company">-->
-        <!--                        <option value = "coupang">쿠팡</option>-->
-        <!--                        <option value = "11st">11번가</option>-->
-        <!--                    </select>-->
-        <!--                </div>-->
-
-        <!--                <div class="purchase_item">-->
-        <!--                    <p class="purchase_item">자재명</p>-->
-        <!--                    <select name = "purchase_item" id="purchase_item">-->
-        <!--                        <option value = "item1">양배추 즙</option>-->
-        <!--                        <option value = "item2">흑마늘 즙</option>-->
-        <!--                        <option value = "item3">석류 젤리스틱</option>-->
-        <!--                        <option value = "item4">매실 젤리스틱</option>-->
-        <!--                    </select>-->
-        <!--                </div>-->
-
-        <!--                <div class="purchase_code">-->
-        <!--                    <p class="purchase_code">자재 코드</p>-->
-        <!--                    <select name = "purchase_code" id="purchase_code">-->
-        <!--                        <option value = "code1">A0001</option>-->
-        <!--                        <option value = "code2">A0002</option>-->
-        <!--                        <option value = "code3">B0001</option>-->
-        <!--                        <option value = "code4">B0002</option>-->
-        <!--                    </select>-->
-        <!--                </div>-->
-
-
-        <!--            </div>-->
-
-        <!--            <div class="content2-2">-->
-
-        <!--                <div class="purchase_qtt">-->
-        <!--                    <p class="purchase_qtt">발주 수량</p>-->
-        <!--                    <input type="number" id="purchase_qtt">-->
-        <!--                </div>-->
-
-        <!--                <div class="purchase_shipdate">-->
-        <!--                    <p class="purchase_shipdate">입고 일자</p>-->
-        <!--                    <input type="date" id="purchase_shipdate">-->
-        <!--                </div>-->
-
-        <!--                <div class="orders-id">-->
-        <!--                    <p class="orders-id">수주 번호</p>-->
-        <!--                    <input type="text" id="orders-id">-->
-        <!--                </div>-->
-
-        <!--                <div class="orders-btn">-->
-        <!--                    <button id="register">등록</button>-->
-        <!--                </div>-->
-
-
-        <!--                <div class="purchase_status">-->
-        <!--                    <p class="purchase_status">진행상황</p>-->
-        <!--                    <select name = "purchase_status" id="purchase_status">-->
-        <!--                        <option value = "proceeding">진행중</option>-->
-        <!--                        <option value = "waiting">대기중</option>-->
-        <!--                    </select>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-
-
             <div class="purchase-content-2">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -160,30 +53,28 @@
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th>NO</th>
+                                    <th>순번</th>
                                     <th>발주 번호</th>
-                                    <th>발주 일자</th>
-                                    <th>거래처</th>
                                     <th>자재명</th>
-                                    <th>자재 코드</th>
                                     <th>발주 수량</th>
+                                    <th>거래처</th>
+                                    <th>발주 일자</th>
                                     <th>입고 일자</th>
-                                    <!--                                <th>수주 번호</th>-->
                                     <th>진행 상태</th>
+                                    <th>자재 코드</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="list : ${purchaseList}">
-                                    <td><a th:href="@{'/purchase/' + ${list.id}}" th:text="${list.id}">발주ID</a></td>
-                                    <td th:text="${list.no}">발주번호</td>
-                                    <td th:text="${list.date}">발주일자</td>
-                                    <td th:text="${list.company}">거래처</td>
-                                    <td th:text="${list.item}">자재명</td>
-                                    <td th:text="${list.code}">자재 코드</td>
-                                    <td th:text="${list.qtt}">발주수량</td>
-                                    <td th:text="${list.shipDate}">입고일자</td>
-                                    <!--                                <td th:text="${list.orders.getNo()}">수주번호</td>-->
-                                    <td th:text="${list.status}">진행상태</td>
+                                <tr th:each="purchase : ${purchaseList}">
+                                    <td th:text="${purchase.id}">발주ID</td>
+                                    <td th:text="${purchase.no}">발주번호</td>
+                                    <td th:text="${purchase.item}">자재명</td>
+                                    <td th:text="${purchase.qtt}">발주수량</td>
+                                    <td th:text="${purchase.company}">거래처</td>
+                                    <td th:text="${purchase.date}">발주일자</td>
+                                    <td th:text="${purchase.shipDate}">입고일자</td>
+                                    <td th:text="${purchase.status}">진행상태</td>
+                                    <td th:text="${purchase.code}">자재 코드</td>
                                 </tr>
                                 </tbody>
                             </table>
