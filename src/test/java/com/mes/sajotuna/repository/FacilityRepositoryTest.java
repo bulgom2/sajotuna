@@ -17,7 +17,7 @@ public class FacilityRepositoryTest {
 
         facility.setQtt(500L);
         facility.setItem("sdfsdf");
-        facility.setPt(String.valueOf(10));
+        facility.setPt(10);
 //        facility.setLt(Duration.ofMinutes(6));
         facility.setStatus(false);
         facility.setName("jell");

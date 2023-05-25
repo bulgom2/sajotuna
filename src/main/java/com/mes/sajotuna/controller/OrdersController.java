@@ -100,8 +100,6 @@ public class OrdersController {
 
         OrdersDTO ordersDTO = ordersService.ordersDetail(id);
 
-        System.out.println("123 : " + ordersDTO);
-
         model.addAttribute("ordersDto", ordersDTO);
 
         return "ordersdetail";
@@ -159,7 +157,6 @@ public class OrdersController {
         // Orders 테이블 업데이트
         ordersRepository.save(existingOrder);
 
-        System.out.println("여기1 : " + existingOrder);
 
         return "success";
     }

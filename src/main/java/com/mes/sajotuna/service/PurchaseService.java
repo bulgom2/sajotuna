@@ -1,7 +1,9 @@
 package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.OrdersDTO;
+
 import com.mes.sajotuna.dto.PurchaseDTO;
+
 import com.mes.sajotuna.entity.Bom;
 import com.mes.sajotuna.entity.Material;
 import com.mes.sajotuna.entity.Orders;
@@ -58,6 +60,7 @@ public class PurchaseService {
     public LocalDateTime purchaseTime(OrdersDTO ordersDTO){
         // 1번 가져온다
 //        Orders orders = ordersRepository.findById(4L)
+
 //                .orElseThrow(EntityNotFoundException::new);
 
         int orderQtt = ordersDTO.getQtt();
