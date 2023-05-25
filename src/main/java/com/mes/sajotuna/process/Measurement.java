@@ -27,7 +27,7 @@ public class Measurement {
         thisManufactureDTO.setManufacture_qtt(purchaseDTO.getQtt());
         thisManufactureDTO.setOrders_no(purchaseDTO.getOrdersNo());
 
-        LocalDateTime processLastTime = manufactureDTO.getManufacture_outtime();
+        LocalDateTime processLastTime = manufactureDTO.getManufacture_outTime();
 
         if(now.isAfter(processLastTime)){  // 원료계량기 작업 계획이 없을때
             checkTime(now);
@@ -43,8 +43,8 @@ public class Measurement {
 
     public void measureSetTime(LocalDateTime now){
 
-        thisManufactureDTO.setManufacture_intime(now.plusMinutes(20));
-        thisManufactureDTO.setManufacture_outtime(now.plusMinutes(50));
+        thisManufactureDTO.setManufacture_inTime(now.plusMinutes(20));
+        thisManufactureDTO.setManufacture_outTime(now.plusMinutes(50));
         thisManufactureDTO.setProcess_id("MS");
     }
 

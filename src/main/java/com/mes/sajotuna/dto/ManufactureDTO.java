@@ -4,7 +4,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 @Data
-public class ManufactureDTO {
+public class ManufactureDTO implements Cloneable{
 
     int manufacture_id;
     String manufacture_item;
@@ -12,8 +12,8 @@ public class ManufactureDTO {
     String orders_no;
     String facility_id;
     long manufacture_qtt;
-    LocalDateTime manufacture_intime;
-    LocalDateTime manufacture_outtime;
+    LocalDateTime manufacture_inTime;
+    LocalDateTime manufacture_outTime;
 
 
     public ManufactureDTO (){
@@ -27,8 +27,17 @@ public class ManufactureDTO {
         this.orders_no = m.getOrders_no();
         this.facility_id = m.getFacility_id();
         this.manufacture_qtt = m.getManufacture_qtt();
-        this.manufacture_intime = m.getManufacture_intime();
-        this.manufacture_outtime = m.getManufacture_outtime();
+        this.manufacture_inTime = m.getManufacture_inTime();
+        this.manufacture_outTime = m.getManufacture_outTime();
+    }
+
+    @Override
+    public ManufactureDTO clone() {
+        try {
+            return (ManufactureDTO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
