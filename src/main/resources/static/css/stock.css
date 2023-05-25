@@ -1,116 +1,17 @@
 
-/* 자재명 */
-.product_name {
-    margin-left : 30px;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
-    height : 40px;
+/* 공정별 대기 품목 테이블 */
+.stock-content-2{
+    width: 97%;
+    margin-left : 20px;
+    margin-right : 20px;
 }
 
-#product_name{
-    height : 40px;
-    width: 200px;
-    margin-left : 10px;
-    font-size : 25px;
+.selected {
+    background-color: yellow;
+    color: black;
 }
 
-
-/* 재고량 */
-.stock_qtt{
-    display : flex;
-    height : 40px;
-    margin-left : 45px;
-    font-size : 25px;
-    font-weight : bold;
-}
-
-#stock_qtt{
-    height : 40px;
-    width : 200px;
-    margin-left : 10px;
-    font-size : 25px;
-}
-
-.btn:hover {
+tbody tr:hover {
     background-color: #223E4F;
     color: white;
-}
-
-
-/* 공정별 대기 품목 */
-.content-2 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-#content-2{
-    font-size : 25px;
-    font-weight : bold;
-    margin-left : 40px;
-}
-
-
-/* 공정별 대기 품목 테이블 */
-.content-3{
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 800px;
-    overflow : auto;
-}
-
-
-table {
-     border-collapse: collapse;
-     width: 100%;
- }
-
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-
-    height : 40px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-
-/* 테이블 셀 크기 지정 */
-.cell-width1 {
-    width : 100px;
-}
-
-.cell-width2{
-    width : 300px;
-}
-
-.cell-width3{
-    width : 300px;
-}
-
-.cell-width4{
-    width : 100px;
-}
-
-.cell-width5{
-    width : 520px;
-}
-
-.cell-width6{
-    width : 520px;
-}
-
-.cell-width7{
-    width : 100px;
 }

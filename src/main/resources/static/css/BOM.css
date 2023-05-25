@@ -1,22 +1,3 @@
-.content-desc1 {
-    position: relative;
-    display: block;
-    background-color: #fff;
-    border-radius: 16px;
-    height: 147px;
-
-}
-
-/* 본문 컨텐츠 영역 */
-#page-content-wrapper {
-    position: relative;
-    display: block;
-    margin: 10px 10px 16px 370px;
-    border-radius: 16px;
-    padding: 0;
-    border: 2px solid #A4A4A4;  /* 틀 확인용 */
-}
-
 
 /* BOM */
 .bom-content-2 {
@@ -37,5 +18,10 @@
     margin-left : 20px;
     margin-right : 20px;
     margin-top : 40px;
+}
+
+tbody tr:hover {
+    background-color: #223E4F;
+    color: white;
 }
 

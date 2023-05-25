@@ -9,23 +9,7 @@
     margin-right : 20px;
 }
 
-
-/* 메인 영역 */
-.content-header {
-    position: absolute;
-    display: flex;
-    height : 109px;
-    width: 100%;
-    padding-top: 42px;
-    border: 1px solid red;  /* 틀 확인용 */
-}
-
-
-/* 탭 제목 */
-.form-control {
-    position: relative;
-    width: 800px;
-    height: 50px;
-    font-size: 30px;
-    margin-left: 20px;
+tbody tr:hover {
+    background-color: #223E4F;
+    color: white;
 }

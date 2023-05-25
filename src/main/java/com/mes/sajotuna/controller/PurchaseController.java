@@ -15,11 +15,10 @@ public class PurchaseController {
     @Autowired
     private PurchaseRepository purchaseRepository;
 
-
-
     // html 불러오기(발주 관리 페이지)
     @GetMapping("/purchase")
     public String purchaseList(Model model){
+
         List<Purchase> purchaseList = purchaseRepository.findAll();
 
         model.addAttribute("purchaseList", purchaseList);

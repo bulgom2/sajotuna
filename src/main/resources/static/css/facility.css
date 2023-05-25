@@ -1,37 +1,9 @@
-/* 설비 정보 */
-/*.facility-content-2 {*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    background-color: #fff;*/
-/*    border-radius: 16px;*/
-/*    margin-bottom: 10px;*/
-/*    height: 50px;*/
-/*    justify-content: space-between;*/
-/*    flex-direction: column;*/
-/*}*/
-
-/*#facility-content-2 {*/
-/*    font-size : 25px;*/
-/*    font-weight : bold;*/
-/*    margin-left : 40px;*/
-/*}*/
-
 
 /* 설비 정보 테이블 */
-.facility-content-3{
+.facility-content-2{
     width: 97%;
     margin-left : 20px;
     margin-right : 20px;
-}
-
-
-/* 탭 제목 */
-.form-control {
-    position: relative;
-    width: 800px;
-    height: 50px;
-    font-size: 30px;
-    margin-left: 20px;
 }
 
 .selected {
@@ -42,38 +14,4 @@
 tbody tr:hover {
     background-color: #223E4F;
     color: white;
-}
-
-
-/* 테이블 셀 크기 지정 */
-.cell-width1 {
-    width : 150px;
-}
-
-.cell-width2{
-    width : 250px;
-}
-
-.cell-width3{
-    width : 400px;
-}
-
-.cell-width4{
-    width : 250px;
-}
-
-.cell-width5{
-    width : 150px;
-}
-
-.cell-width6{
-    width : 250px;
-}
-
-.cell-width7{
-    width : 250px;
-}
-
-.cell-width8{
-    width : 250px;
 }

@@ -19,9 +19,6 @@ public class BomController {
     @GetMapping("/bom")
     public String bomInformation(Model model){
 
-        System.out.println("실행");
-        System.out.println("abfdsbv");
-
         List<Bom> bomList = bomRepository.findAll();
 
         model.addAttribute("bomList", bomList);

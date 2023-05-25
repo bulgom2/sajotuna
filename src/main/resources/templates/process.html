@@ -9,8 +9,8 @@
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <link href="/css/process.css" rel="stylesheet">
     <link href="/css/layout1.css" rel="stylesheet">
+    <link href="/css/process.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
@@ -67,19 +67,19 @@
                                 <td th:text="${process.id}"></td>
                                 <td th:text="${process.no}"></td>
                                 <td th:text="${process.name}"></td>
-                                <td th:text="${process.lt}"></td>
-                                <td th:text="${process.pt}"></td>
+                                <td th:text="${process.preparation}"></td>
+                                <td th:text="${process.lead}"></td>
                                 <td th:text="${process.category}"></td>
                                 <td th:text="${process.status}"></td>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                    </div> <!-- /table-responsive -->
+                </div> <!-- /card-body -->
+            </div> <!-- /card shadow mb-4 -->
+        </div> <!-- /process-content-2 -->
+    </div> <!-- /page-content-wrapper -->
+</div> <!-- /container -->
 
 <!-- Bootstrap core JavaScript-->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
