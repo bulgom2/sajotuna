@@ -22,8 +22,6 @@ public class StockController {
         List<Stock> stockList = stockRepository.findAll();
 
         model.addAttribute("stockList", stockList);
-        System.out.println("실행");
-        System.out.println("abfdsbv");
         return "stock";
     }
 }

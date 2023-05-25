@@ -43,94 +43,48 @@
             </div>
         </div>
 
-            <div class="purchase-content-2">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">발주 현황</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable">
-                                <thead>
-                                <tr>
-                                    <th>순번</th>
-                                    <th>발주 번호</th>
-                                    <th>자재명</th>
-                                    <th>발주 수량</th>
-                                    <th>거래처</th>
-                                    <th>발주 일자</th>
-                                    <th>입고 일자</th>
-                                    <th>진행 상태</th>
-                                    <th>자재 코드</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="purchase : ${purchaseList}">
-                                    <td th:text="${purchase.id}">발주ID</td>
-                                    <td th:text="${purchase.no}">발주번호</td>
-                                    <td th:text="${purchase.item}">자재명</td>
-                                    <td th:text="${purchase.qtt}">발주수량</td>
-                                    <td th:text="${purchase.company}">거래처</td>
-                                    <td th:text="${purchase.date}">발주일자</td>
-                                    <td th:text="${purchase.shipDate}">입고일자</td>
-                                    <td th:text="${purchase.status}">진행상태</td>
-                                    <td th:text="${purchase.code}">자재 코드</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        <div class="purchase-content-2">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">발주 현황</h6>
+
                 </div>
-            </div>
-
-
-        <!--            <div id="popupModal" class="modal fade" role="dialog">-->
-        <!--                <div class="modal-dialog modal-xl">-->
-        <!--                    <div-->
-        <!--                            class="modal-content">-->
-        <!--                        <div class="modal-header">-->
-        <!--                            <h4 class="modal-title">상세 정보</h4>-->
-        <!--                            <button type="button" class="close" data-dismiss="modal">×</button>-->
-        <!--                        </div>-->
-        <!--                        <div class="modal-body">-->
-        <!--                            <table class="table">-->
-        <!--                                <tbody>-->
-        <!--                                <tr>-->
-        <!--                                    <td>거래처:</td>-->
-        <!--                                    <td id="popup-company"></td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>제품명:</td>-->
-        <!--                                    <td id="popup-product-name"></td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>제품 코드:</td>-->
-        <!--                                    <td id="popup-product-code"></td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>수량:</td>-->
-        <!--                                    <td id="popup-quantity"></td>-->
-        <!--                                </tr>-->
-        <!--                                <tr>-->
-        <!--                                    <td>예상 납품일:</td>-->
-        <!--                                    <td id="popup-delivery-date"></td>-->
-        <!--                                </tr>-->
-        <!--                                </tbody>-->
-        <!--                            </table>-->
-        <!--                        </div>-->
-        <!--                        <div class="modal-footer">-->
-        <!--                            <button id="popup-close-btn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--    팝업창        -->
-
-    </div>
-</div>
-<!-- /본문 -->
-<!--  </div>-->
-
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>순번</th>
+                                <th>발주 번호</th>
+                                <th>자재명</th>
+                                <th>발주 수량</th>
+                                <th>거래처</th>
+                                <th>발주 일자</th>
+                                <th>입고 일자</th>
+                                <th>진행 상태</th>
+                                <th>자재 코드</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="purchase : ${purchaseList}">
+                                <td th:text="${purchase.id}">발주ID</td>
+                                <td th:text="${purchase.no}">발주번호</td>
+                                <td th:text="${purchase.item}">자재명</td>
+                                <td th:text="${purchase.qtt}">발주수량</td>
+                                <td th:text="${purchase.company}">거래처</td>
+                                <td th:text="${purchase.date}">발주일자</td>
+                                <td th:text="${purchase.shipDate}">입고일자</td>
+                                <td th:text="${purchase.status}">진행상태</td>
+                                <td th:text="${purchase.code}">자재 코드</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- /table-responsive -->
+                </div> <!-- /card-body -->
+            </div> <!-- /card shadow mb-4 -->
+        </div> <!-- /purchase-content-2 -->
+    </div> <!-- /page-content-wrapper -->
+</div> <!-- /container -->
 
 <!-- Bootstrap core JavaScript-->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
@@ -148,7 +102,6 @@
 
 <!-- Page level custom scripts -->
 <script th:src="@{/js/demo/datatables-demo.js}"></script>
-
 
 </body>
 </html>

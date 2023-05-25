@@ -19,9 +19,6 @@ public class CompanyController {
     @GetMapping("/company")
     public String companyInformation(Model model){
 
-        System.out.println("실행");
-        System.out.println("abfdsbv");
-
         List<Company> companyList = companyRepository.findAll();
 
         model.addAttribute("companyList", companyList);

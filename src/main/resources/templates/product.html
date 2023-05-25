@@ -38,7 +38,7 @@
 
     <!-- 본문 -->
     <div id="page-content-wrapper">
-        <div class="content-desc1">
+        <div class="content-desc">
             <div class="content-header">
                 <input class="content-title" disabled readonly type="text" value="품목 정보">
             </div>
@@ -51,7 +51,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">완제품</h6>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive" id="processListContainer">
+                        <div class="table-responsive" id="productListContainer">
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                     <tr>
@@ -72,10 +72,10 @@
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </div> <!-- /table-responsive -->
+                    </div> <!-- /card-body -->
+                </div> <!-- /card shadow mb-4 -->
+            </div> <!-- /product-content-2-2 -->
 
             <div class="product-content-2-3">
                 <div class="card shadow mb-4">
@@ -83,7 +83,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">반제품</h6>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive" id="processListContainer2">
+                        <div class="table-responsive" id="productListContainer2">
                             <table class="table table-bordered" id="dataTable2">
                                 <thead>
                                 <tr>
@@ -104,11 +104,11 @@
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div> <!-- /table-responsive -->
+                    </div> <!-- /card-body -->
+                </div> <!-- /card shadow mb-4 -->
+            </div> <!-- /product-content-2-3 -->
+        </div> <!-- /product-content-2 -->
 
         <div class="product-content-3">
             <div class="card shadow mb-4">
@@ -116,7 +116,7 @@
                     <h6 class="m-0 font-weight-bold text-primary">원자재</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" id="processListContainer3">
+                    <div class="table-responsive" id="productListContainer3">
                         <table class="table table-bordered" id="dataTable3">
                             <thead>
                             <tr>
@@ -137,14 +137,12 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /본문 -->
-    <!--  </div>-->
-</div>
+                    </div> <!-- /table-responsive -->
+                </div> <!-- /card-body -->
+            </div> <!-- /card shadow mb-4 -->
+        </div> <!-- /product-content-3 -->
+    </div> <!-- /page-content-wrapper -->
+</div> <!-- /container -->
 
 <!-- Bootstrap core JavaScript-->
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>

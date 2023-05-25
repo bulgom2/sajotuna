@@ -18,6 +18,7 @@ public class PurchaseController {
     // html 불러오기(발주 관리 페이지)
     @GetMapping("/purchase")
     public String purchaseList(Model model){
+
         List<Purchase> purchaseList = purchaseRepository.findAll();
 
         model.addAttribute("purchaseList", purchaseList);

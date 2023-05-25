@@ -23,8 +23,6 @@ public class ProcessController {
 
         model.addAttribute("processList", processList);
 
-        System.out.println("실행");
-        System.out.println("abfdsbv");
         return "process";
     }
 }

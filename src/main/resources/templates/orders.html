@@ -48,25 +48,7 @@
     </script>
 
     <script>
-        // function convertTableToCSV() {
-        //     var table = document.getElementById('dataTable');
-        //     var rows = table.getElementsByTagName('tr');
-        //     var csv = '';
-        //
-        //     for (var i = 0; i < rows.length; i++) {
-        //         var row = rows[i];
-        //         var cells = row.getElementsByTagName('td');
-        //
-        //         for (var j = 0; j < cells.length; j++) {
-        //             var cell = cells[j].innerText.replace(/"/g, '""');
-        //             csv += '"' + cell + '",';
-        //         }
-        //
-        //         csv += '\n';
-        //     }
-        //     return csv;
-        // }
-
+        // 엑셀 저장
         function convertTableToCSV() {
             var table = document.getElementById('dataTable');
             var rows = table.getElementsByTagName('tr');
@@ -134,14 +116,8 @@
                         <button data-target="#myModal" data-toggle="modal" id="register" type="button">수주 등록</button>
 
                     </div>
-                    <!--                    <div class="search-bar">-->
-                    <!--                        <div class="input-group mb-3">-->
-                    <!--                            <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">-->
-                    <!--                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                </div>
-            </div>
+                </div> <!-- content-header -->
+            </div> <!-- content-desc -->
 
             <div class="orders-content-2">
                 <div class="card shadow mb-4">
@@ -149,7 +125,7 @@
                         <h6 class="m-0 font-weight-bold text-primary">수주 현황</h6>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive" id="orderListContainer">
+                        <div class="table-responsive" id="ordersListContainer">
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
@@ -161,27 +137,25 @@
                                     <th>수량</th>
                                     <th>예상 납품일</th>
                                     <th data-orderable="true" data-priority="1">진행 상태</th>
-                                    <!--                                    <th><a th:text="삭제" th:href="@{'/orders/delete/' + ${id}}">삭제</a></th>-->
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="list : ${orderList}">
-                                    <td><a th:text="${list.id}" th:href="@{'/orders/' + ${list.id}}">수주ID</a></td>
-                                    <td th:text="${list.no}">수주번호</td>
-                                    <td th:text="${#temporals.format(list.date, 'yyyy/MM/dd')}">수주일자</td>
-                                    <td th:text="${list.company}">거래처</td>
-                                    <td th:text="${list.item}">제품명</td>
-                                    <td th:text="${list.qtt}">수량</td>
-                                    <td th:text="${list.shipDate}">예상납품일</td>
-                                    <td th:text="${list.status.toString()}">진행상태</td>
-                                    <!--                                    <td><a th:text="삭제" th:href="@{'/orders/delete/' + ${list.id}}">삭제</a></td>-->
+                                <tr th:each="orders : ${ordersList}">
+                                    <td th:text="${orders.id}">수주ID</td>
+                                    <td th:text="${orders.no}">수주번호</td>
+                                    <td th:text="${#temporals.format(orders.date, 'yyyy/MM/dd')}">수주일자</td>
+                                    <td th:text="${orders.company}">거래처</td>
+                                    <td th:text="${orders.item}">제품명</td>
+                                    <td th:text="${orders.qtt}">수량</td>
+                                    <td th:text="${orders.shipDate}">예상납품일</td>
+                                    <td th:text="${orders.status.toString()}">진행상태</td>
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </div> <!-- /table-responsive -->
+                    </div> <!-- /card-body -->
+                </div> <!-- /card shadow mb-4 -->
+            </div> <!-- /orders-content-2 -->
         </div> <!-- /page-content-wrapper -->
     </form>
     <!-- /본문 -->
@@ -189,24 +163,18 @@
 
     <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal">
         <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content" style="width:40%; height:535px;">
+            <div class="modal-content" style="width:40%; height:430px;">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">수주 등록</h4>
+                    <h4 class="modal-title" style="color:black;">수주 등록</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body" style="width:100%;">
-                    <iframe src="/orders" style="width:100%; height:100%; border:none;"></iframe>
+                    <iframe src="/orders/submit" style="width:100%; height:100%; border:none;"></iframe>
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
-                </div>
-
             </div> <!-- modal-content -->
         </div>
     </div>
