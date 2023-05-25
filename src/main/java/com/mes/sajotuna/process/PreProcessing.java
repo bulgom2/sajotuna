@@ -42,7 +42,7 @@ public class PreProcessing {
             ManufactureDTO amountWork = new ManufactureDTO(); // 새로운 객체 생성
 
             amountWork.setManufacture_qtt(amountPerWork);
-            amountWork.setOrders_id(resultMS.getOrders_id());
+            amountWork.setOrders_no(resultMS.getOrders_no());
             amountWork.setManufacture_item(resultMS.getManufacture_item());
 
             ppList.add(result(amountWork, workTime, processLastTime));
