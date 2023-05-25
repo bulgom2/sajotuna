@@ -27,8 +27,8 @@ public class PurchaseRepositoryTest {
         purchase.setQtt(500L);
         purchase.setDate(LocalDateTime.now());
         purchase.setCompany("sfdfsd");
-        purchase.setOrders(orders);
-        purchase.setShipDate(LocalDateTime.now());
+        purchase.setOrdersId("132");
+        purchase.setShipDate(String.valueOf(LocalDateTime.now()));
         purchase.setStatus(30L);
 
 //        purchaseRepository.save(purchase);

@@ -17,7 +17,7 @@ public class ManufactureRepostoryTest {
     void Test6() {
         Manufacture manufacture = new Manufacture();
 
-        manufacture.setQtt(50L);
+        manufacture.setQtt(550L);
         manufacture.setItem("jelly");
         manufacture.setInTime(LocalDateTime.now());
         manufacture.setOutTime(LocalDateTime.now());

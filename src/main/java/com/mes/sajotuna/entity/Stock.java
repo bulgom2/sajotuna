@@ -37,8 +37,5 @@ public class Stock {
     @Column(name = "stock_status", nullable = false)
     private String status;    // 진행상태
 
-    public enum StockStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
 
 }

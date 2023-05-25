@@ -16,7 +16,7 @@ public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "purchase_id", nullable = false, insertable = false, updatable = false)
+    @Column(name = "purchase_id", nullable = false)
     private Long id;    // id
 
     @Column(name = "purchase_no", nullable = false)
@@ -41,16 +41,9 @@ public class Purchase {
     private Long qtt;    // 발주 수량
 
     @Column(name = "purchase_shipdate", nullable = false)
-    private LocalDateTime shipDate;    // 입고일
+    private String shipDate;    // 입고일
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orders_no")
-    private Orders orders;
+    @Column(name = "orders_id", nullable = false)
+    private String ordersId;    // 수주 번호
 
-//    @Column(name = "orders_id", nullable = false)
-//    private Long ordersId;    // 수주 번호
-
-//    public enum PurchaseStatus {
-//        IN_PROGRESS, COMPLETED  // 진행중, 완료
-//    }
 }

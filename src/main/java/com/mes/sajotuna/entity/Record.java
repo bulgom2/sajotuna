@@ -40,8 +40,4 @@ public class Record {
     @Column(name = "record_endtime")
     private LocalDateTime endTime;    // 종료 시간
 
-    public enum RecordStatus {
-        IN_PROGRESS, COMPLETED  // 진행중, 완료
-    }
-
 }

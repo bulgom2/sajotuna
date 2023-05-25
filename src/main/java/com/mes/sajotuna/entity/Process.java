@@ -41,8 +41,5 @@ public class Process {
     @JoinColumn(name = "facility_id")
     private Facility facility;  // 설비 정보
 
-    public enum ProcessStatus {
-        IN_PROGRESS, COMPLETED  // 가동중, 완료
-    }
 
 }

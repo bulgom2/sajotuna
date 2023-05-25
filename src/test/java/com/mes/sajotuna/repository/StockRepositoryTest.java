@@ -18,7 +18,7 @@ public class StockRepositoryTest {
         Stock stock = new Stock();
 
         stock.setProductId("121");
-        stock.setQtt(10L);
+        stock.setQtt(1000L);
         stock.setUnit("kg");
         stock.setNo("232");
         stock.setTime(LocalDateTime.now());
