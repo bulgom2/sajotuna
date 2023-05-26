@@ -99,8 +99,6 @@ public class OrdersController {
         }
 
         model.addAttribute("ordersList", ordersList);
-        model.addAttribute("startDate", null);
-        model.addAttribute("endDate", null);
 
         return "orders";
     }
