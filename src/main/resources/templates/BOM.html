@@ -1,69 +1,81 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" , name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
 
     <title> T U N A - M E S </title>
 
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
-    <!-- 모달창  -->
-    <script>
-$(document).ready(function() {
-    // 테이블 행 클릭 시 팝업 창에 정보 출력
-    $('table tr').click(function() {
-        var company = $(this).find('td:nth-child(3)').text();
-        var productName = $(this).find('td:nth-child(4)').text();
-        var productCode = $(this).find('td:nth-child(5)').text();
-        var quantity = $(this).find('td:nth-child(6)').text();
-        var deliveryDate = $(this).find('td:nth-child(7)').text();
-
-        // 팝업 창에 정보 채우기
-        $('#popup-company').text(company);
-        $('#popup-product-name').text(productName);
-        $('#popup-product-code').text(productCode);
-        $('#popup-quantity').text(quantity);
-        $('#popup-delivery-date').text(deliveryDate);
-
-        // 팝업 창 열기
-        $('#popupModal').modal('show');
-    });
-
-    // 팝업 창 닫기 버튼 클릭 이벤트 처리
-    $('#popup-close-btn').click(function() {
-        $('#popupModal').modal('hide');
-    });
-});
-</script>
-
-    <!--    <link rel="stylesheet" href="/static/css/layout1.css">-->
-    <link rel="stylesheet" href="/css/BOM.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/css/layout1.css" rel="stylesheet">
+    <link href="/css/BOM.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
 
-    <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 8px;
-      text-align: center;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+    <link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{css/sb-admin-2.min.css}">
+
+    <!-- Custom styles for this page -->
+    <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
+
+    <script>
+        // 엑셀 저장
+        function convertTableToCSV() {
+            var table = document.getElementById('dataTable');
+            var rows = table.getElementsByTagName('tr');
+            var csv = '';
+
+            // 헤더 부분 추가
+            var headerRow = rows[0];
+            var headerCells = headerRow.getElementsByTagName('th');
+            for (var h = 0; h < headerCells.length; h++) {
+                var headerCell = headerCells[h].innerText.replace(/"/g, '""');
+                csv += '"' + headerCell + '",';
+            }
+            csv += '\n';
+
+            // 행 데이터 추가
+            for (var i = 1; i < rows.length; i++) {
+                var row = rows[i];
+                var cells = row.getElementsByTagName('td');
+
+                for (var j = 0; j < cells.length; j++) {
+                    var cell = cells[j].innerText.replace(/"/g, '""');
+                    csv += '"' + cell + '",';
+                }
+
+                csv += '\n';
+            }
+            return csv;
+        }
+
+        $(document).ready(function() {
+            $('#downloadButton').on('click', function() {
+                var csvData = '\uFEFF' + convertTableToCSV();
+                var blob = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
+                var downloadLink = document.createElement('a');
+                downloadLink.setAttribute('href', URL.createObjectURL(blob));
+                downloadLink.setAttribute('download', 'BOM내역.csv');
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            });
+        });
+    </script>
 
 </head>
 <body>
 
 <div id="container">
-    <!--  <div id="page-wrapper">-->
     <!-- 사이드바 -->
     <div th:replace="fragment/sidebar::sidebar"></div>
     <!-- /사이드바 -->
@@ -72,170 +84,133 @@ $(document).ready(function() {
     <div id="page-content-wrapper">
         <div class="content-desc">
             <div class="content-header">
-                <input class="form-control" type="text" value="BOM" aria-label="Disabled input example" disabled readonly>
-
-                <!--                <div class="search-bar">-->
-                <!--                    <div class="input-group mb-3">-->
-                <!--                        <input type="text" class="form-control" placeholder="뭐 검색?" aria-label="Recipient's username" aria-describedby="button-addon2">-->
-                <!--                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
-                <!--                    </div>-->
-                <!--                </div>-->
-
-            </div>
-        </div>
-        <div class="content-2">
-            <p id="content-2">BOM</p>
-        </div>
-
-        <div class="content-3">
-            <table>
-                <thead>
-                <tr>
-                    <th class="cell-width1">제품명</th>
-                    <th class="cell-width2">양배추(g)</th>
-                    <th class="cell-width3">흑마늘(g)</th>
-                    <th class="cell-width4">석류(ml)</th>
-                    <th class="cell-width5">매실(ml)</th>
-                    <th class="cell-width6">콜라겐(g)</th>
-                    <th class="cell-width7">정제수(ml)</th>
-                    <th class="cell-width8">포장지(ea)</th>
-                    <th class="cell-width9">총투입량(g)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>양배추즙</td>
-                    <td>50</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>50</td>
-                    <td>1</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>흑마늘즙</td>
-                    <td>0</td>
-                    <td>8.3</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>85</td>
-                    <td>1</td>
-                    <td>93.3</td>
-                </tr>
-                <tr>
-                    <td>석류젤리스틱</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>0</td>
-                    <td>2</td>
-                    <td>8</td>
-                    <td>1</td>
-                    <td>15</td>
-                </tr>
-
-                <tr>
-                    <td>매실젤리스틱</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>8</td>
-                    <td>1</td>
-                    <td>15</td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!--   팝업창 추가         -->
-
-            <!-- 팝업 창 -->
-            <div id="popupModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-xl">
-                    <div
-                            class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">상세 정보</h4>
-                            <button type="button" class="close" data-dismiss="modal">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td>거래처:</td>
-                                    <td id="popup-company"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품명:</td>
-                                    <td id="popup-product-name"></td>
-                                </tr>
-                                <tr>
-                                    <td>제품 코드:</td>
-                                    <td id="popup-product-code"></td>
-                                </tr>
-                                <tr>
-                                    <td>수량:</td>
-                                    <td id="popup-quantity"></td>
-                                </tr>
-                                <tr>
-                                    <td>예상 납품일:</td>
-                                    <td id="popup-delivery-date"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="popup-close-btn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div>
+                <input class="content-title" disabled readonly type="text" value="BOM">
+                <div class="bom-btn">
+                    <button id="downloadButton" type="button">엑셀 다운로드</button>
                 </div>
             </div>
-            <!--   팝업창         -->
-
         </div>
 
-        <div class="content-4">
-            <p id="content-4">제품별 총량</p>
-        </div>
+        <div class="bom-content-2">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">BOM</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" id="bomListContainer">
+                        <table class="table table-bordered" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>순번</th>
+                                <th>제품명</th>
+                                <th>양배추(kg)</th>
+                                <th>흑마늘(kg)</th>
+                                <th>석류(L)</th>
+                                <th>매실(L)</th>
+                                <th>콜라겐(kg)</th>
+                                <th>정제수(L)</th>
+                                <th>파우치(ea)</th>
+                                <th>스틱파우치(ea)</th>
+                                <th>총투입량(kg)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="bom : ${bomList}">
+                                <td th:text="${bom.id}">1</td>
+                                <td th:text="${bom.item}">양배추즙</td>
+                                <td th:if="${bom.material1.equals('양배추')}" th:text="${bom.input1}">50</td>
+                                <td th:unless="${bom.material1.equals('양배추')}">0</td>
+                                <td th:if="${bom.material1.equals('흑마늘')}" th:text="${bom.input1}">50</td>
+                                <td th:unless="${bom.material1.equals('흑마늘')}">0</td>
+                                <td th:if="${bom.material1.equals('석류 농축액')}" th:text="${bom.input1}">50</td>
+                                <td th:unless="${bom.material1.equals('석류 농축액')}">0</td>
+                                <td th:if="${bom.material1.equals('매실 농축액')}" th:text="${bom.input1}">50</td>
+                                <td th:unless="${bom.material1.equals('매실 농축액')}">0</td>
+                                <td th:if="${bom.material2.equals('콜라겐')}" th:text="${bom.input2}">50</td>
+                                <td th:unless="${bom.material2.equals('콜라겐')}">0</td>
+                                <td th:if="${bom.material2.equals('정제수')}" th:text="${bom.input2}">50</td>
+                                <td th:if="${bom.material3.equals('정제수')}" th:text="${bom.input3}"
+                                    th:unless="${bom.material2.equals('정제수')}">50
+                                </td>
+                                <td th:if="${bom.material3.equals('파우치')}" th:text="${bom.input3}">50</td>
+                                <td th:unless="${bom.material3.equals('파우치')}">0</td>
+                                <td th:if="${bom.material4.equals('스틱파우치')}" th:text="${bom.input4}">50</td>
+                                <td th:unless="${bom.material4.equals('스틱파우치')}">0</td>
+                                <td th:if="${bom.material3.equals('파우치')}" th:text="${bom.input1 + bom.input2}">50</td>
+                                <td th:text="${bom.input1 + bom.input2 + bom.input3}"
+                                    th:unless="${bom.material3.equals('파우치')}">50
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <
+                    </div> <!-- /table-responsive -->
+                </div> <!-- /card-body -->
+            </div> <!-- /card shadow mb-4 -->
+        </div> <!-- /bom-content-2 -->
 
-        <div class="content-5">
-            <table>
-                <thead>
-                <tr>
-                    <th class="cell-width1-1">제품명</th>
-                    <th class="cell-width2-2">용량(ml)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>양배추즙</td>
-                    <td>80</td>
-                </tr>
-                <tr>
-                    <td>흑마늘즙</td>
-                    <td>80</td>
-                </tr>
-                <tr>
-                    <td>석류젤리스틱</td>
-                    <td>15</td>
-                </tr>
+        <div class="bom-content-3">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">제품별 총량</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive" id="bomListContainer2">
+                        <table class="table table-bordered" id="dataTable2">
+                            <thead>
+                            <tr>
+                                <th>제품명</th>
+                                <th>용량(ml)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>양배추 즙</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td>흑마늘 즙</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td>석류 젤리스틱</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>매실 젤리스틱</td>
+                                <td>15</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div> <!-- /table-responsive -->
+                </div> <!-- /card-body -->
+            </div> <!-- /card shadow mb-4 -->
+        </div> <!-- /bom-content-3 -->
+    </div> <!-- /page-content-wrapper -->
+</div> <!-- /container -->
 
-                <tr>
-                    <td>매실젤리스틱</td>
-                    <td>15</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- /본문 -->
-    <!--  </div>-->
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
-</div>
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+<!-- Page level plugins -->
+<script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/datatables-demo.js}"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#dataTable2').DataTable();
+    });
+</script>
 </body>
 </html>

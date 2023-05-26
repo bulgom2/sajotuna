@@ -1,16 +1,18 @@
 package com.mes.sajotuna.controller;
 
 import com.mes.sajotuna.dto.OrdersDTO;
-
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -23,16 +25,14 @@ public class OrdersController {
     private OrdersService ordersService;
 
     // html 불러오기(수주 등록 페이지)
-    @GetMapping("/orders")
+    @GetMapping("/orders/submit")
     public String orderWrite(){
         return "ordersinput";
     }
 
     // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
-    @PostMapping("/orders")
+    @PostMapping("/orders/submit")
     public String orderWritePost(OrdersDTO ordersDTO) {
-
-        System.out.println("시작ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
 
         ordersDTO.setDate(LocalDateTime.now());
 
@@ -42,7 +42,7 @@ public class OrdersController {
 
         LocalDateTime orderDay = ordersDTO.getDate();
 
-        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+""};
+        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+"", orderDay.getSecond()+""};
 
         String code = "SJ" + orderDay.getYear();
 
@@ -57,7 +57,7 @@ public class OrdersController {
 
         ordersDTO.setNo(code);
 
-        ordersDTO.setStatus("waiting");
+        ordersDTO.setStatus("대기");
 
 //        String code = "SJ" + ordersDto.getDate().toLocalDate();
 
@@ -74,18 +74,31 @@ public class OrdersController {
 
         System.out.println("orders " + orders);
 
-        return "redirect:/";
+        return "redirect:/orders";
     }
 
 
     // orders 테이블에 있는 값들 표로 출력하기
     // main 페이지
-    @GetMapping("/")
-    public String orderList(Model model){
-        System.out.println("종룍ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
-        List<Orders> ordersList = ordersRepository.findAll();
+    @GetMapping("/orders")
+    public String orderList(@RequestParam(value = "startDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                            @RequestParam(value = "endDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
+                            Model model) {
 
-        model.addAttribute("orderList", ordersList);
+        List<Orders> ordersList;
+
+        if (startDate != null && endDate != null) {
+            LocalDateTime start = startDate.atStartOfDay().withHour(0).withMinute(0).withSecond(0);
+            LocalDateTime end = endDate.atTime(LocalTime.MAX);
+
+            // 날짜 범위가 지정된 경우 해당 기간 동안의 주문 검색
+            ordersList = ordersService.getOrdersByDateRange(start, end);
+        } else {
+            // 날짜 범위가 지정되지 않은 경우 모든 주문 검색
+            ordersList = ordersRepository.findAll();
+        }
+
+        model.addAttribute("ordersList", ordersList);
 
         return "orders";
     }
@@ -95,33 +108,43 @@ public class OrdersController {
     @GetMapping("/orders/{id}")
     public String orderDetail(Model model, @PathVariable("id") Long id){
 
-        System.out.println("123 : " + id);
-
         OrdersDTO ordersDTO = ordersService.ordersDetail(id);
-
-        System.out.println("123 : " + ordersDTO);
 
         model.addAttribute("ordersDto", ordersDTO);
 
         return "ordersdetail";
     }
 
+//    // 삭제 버튼을 누르면 해당 값 삭제하기
+//    @GetMapping("/orders/delete/{id}")
+//    public String orderDelete(@PathVariable("id") Long id){
+//
+//        ordersService.ordersDelete(id);
+//
+//        return "redirect:/";
+//    }
 
     // 삭제 버튼을 누르면 해당 값 삭제하기
-    @GetMapping("/orders/delete/{id}")
-    public String orderDelete(@PathVariable("id") Long id){
+    @PostMapping("/orders/delete")
+    @ResponseBody
+    public String orderDelete(@RequestBody OrdersDTO ordersDTO) {
+        String ordersNo = ordersDTO.getOrdersNo();
 
-        ordersService.ordersDelete(id);
+        Orders existingOrder = ordersRepository.findByNo(ordersNo);
 
-        return "redirect:/";
+        if (existingOrder == null) {
+            // 삭제할 수주가 없는 경우 처리 로직 추가
+        } else {
+            ordersRepository.delete(existingOrder);
+        }
+
+        return "success";
     }
 
     // 수주 확정 버튼을 누르면 셀 값 변경
     @PostMapping("/confirm")
     @ResponseBody
     public String confirmSuju(@RequestBody OrdersDTO ordersDTO) {
-
-        System.out.println("여기1 : " + ordersDTO);
 
         // 선택된 수주번호와 변경할 상태 값을 가져옴
         String selectedNo = ordersDTO.getOrdersNo();
@@ -130,18 +153,16 @@ public class OrdersController {
         // Orders 테이블 조회
         Orders existingOrder = ordersRepository.findByNo(selectedNo);
 
-        System.out.println("여기1 : " + existingOrder);
-
         // 기존의 값을 유지하면서 진행 상태 변경
         existingOrder.setStatus(newStatus);
 
         // Orders 테이블 업데이트
-//        ordersRepository.updateStatusByNo(selectedNo, newStatus);
-
-        // Orders 테이블 업데이트
         ordersRepository.save(existingOrder);
 
-
-        return "redirect:/";
+        return "success";
     }
+
+
+
+
 }

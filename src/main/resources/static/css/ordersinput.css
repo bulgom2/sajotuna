@@ -96,26 +96,19 @@
 }
 
 
-/* content-3 영역 */
-.content-3{
-    width: 100%;
-    display: flex;
-    margin-top : 80px;
-    justify-content: space-start;
-}
-
-
 /* 버튼 */
-.orders-btn{
+.orders-modal-btn{
     display : flex;
+    margin-top: 50px;
     margin-left : 10px;
+    margin-right: 10px;
     height : 30px;
     justify-content: flex-end;
 }
 
 /* 저장 버튼 */
-#confirmed{
-    height : 30px;
+#save{
+    height : 40px;
     border-radius : 4px;
     background: #223E4F;
     color : white;
@@ -124,12 +117,15 @@
     margin-left : 10px;
 }
 
-
-
-
-
-
-
+#close {
+    height : 40px;
+    border-radius : 4px;
+    background: #223E4F;
+    color : white;
+    font-size : 20px;
+    text-align : center;
+    margin-left : 10px;
+}
 
 /* 예상 납품일 *//*
 .orders_date{
