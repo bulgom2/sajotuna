@@ -14,9 +14,8 @@ import javax.persistence.*;
 public class Facility {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "facility_id", nullable = false)
-    private Long id;  // 설비 코드
+    private String id;  // 설비 코드
 
     @Column(name = "facility_name", nullable = false)
     private String name;  // 설비명

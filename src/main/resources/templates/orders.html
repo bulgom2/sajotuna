@@ -46,6 +46,19 @@
             window.location.reload();
         }
     </script>
+    <script>
+        $(document).ready(function() {
+        var table = $('#dataTable').DataTable({
+            "paging": false,
+            "scrollY": "850px", // Adjust the height as per your requirement
+        });
+
+        // 오름차순 정렬
+        table.order([7, 'asc']).draw();
+
+        });
+        <!--     dataTable-->
+    </script>
 
     <script>
         // 엑셀 저장
