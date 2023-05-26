@@ -19,9 +19,6 @@ public class FacilityController {
     @GetMapping("/facility")
     public String facilityInformation(Model model){
 
-        System.out.println("실행");
-        System.out.println("abfdsbv");
-
         List<Facility> facilityList = facilityRepository.findAll();
 
         model.addAttribute("facilityList", facilityList);
