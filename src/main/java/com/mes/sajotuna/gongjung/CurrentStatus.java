@@ -1,8 +1,10 @@
 package com.mes.sajotuna.gongjung;
 
+import org.springframework.stereotype.Component;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
-
+@Component
 public class CurrentStatus {
 
     private InspectionProcess inspectionProcess;
@@ -42,7 +44,7 @@ public class CurrentStatus {
 
     public double coolingPercent() {
         Duration runtime = CoolingRuntime(); // 냉각 공정의 가동 시간을 가져옴
-        Long qtt = coolingProcess.getQtt(); // 냉각 공정의 제품 수량
+        long qtt = coolingProcess.getQtt(); // 냉각 공정의 제품 수량
 
         if (runtime.getSeconds() > 0) {
             long runtimeMinutes = runtime.toMinutes(); // 가동 시간(분)
@@ -63,6 +65,7 @@ public class CurrentStatus {
     public double packagingPercent() {
         Duration runtime = PackagingRuntime(); // 포장 공정의 가동 시간을 가져옴
         double packagingCnt = 200.0; // 시간당 포장 가능한 제품 수(박스)
+        int ptTime = 20; // 준비 시간(분)
 
         if (runtime.getSeconds() > 0) {
             long runtimeMinutes = runtime.toMinutes(); // 가동 시간을 분으로 변환
@@ -76,14 +79,19 @@ public class CurrentStatus {
 
             if (productName.contains("즙")) {
                 boxes = qtt / 30; // 즙은 박스당 30개
+                qtt = boxes;    // 박스를 qtt로 바꿈
             } else {
                 boxes = qtt / 25; // 젤리는 박스당 25개
+                qtt = boxes;    // 박스를 qtt로 바꿈
             }
 
+            System.out.println(qtt);
             // 포장 소요 시간 계산
-            int packagingTime = (int)Math.ceil((boxes / packagingCnt) * 60);    // 박스 수에 따른 총 포장 시간
-            float completePackagingCnt = ((float) (packagingCnt / 60) * (float) runtimeMinutes); // 현재 완료된 제품 수량 계산
-            double packagingPercent = Math.round((completePackagingCnt / (double) boxes) * 100.0); // 포장 완료 수량의 퍼센트 계산
+            int packagingTime = (int)Math.ceil((qtt / packagingCnt) * 60);    // 박스수(qtt)에 따른 총 포장 시간
+            float completePackagingCnt = ((float) packagingCnt / 60 * (float) runtimeMinutes); // 현재 완료된 제품 수량 계산
+            System.out.println(completePackagingCnt);
+            double packagingPercent = Math.round((completePackagingCnt / qtt) * 100.0); // 포장 완료 수량의 퍼센트 계산
+            System.out.println(packagingPercent);
             return packagingPercent;
         } else {
             return 0; // 포장 공정이 진행되지 않았을 경우 완료된 제품 수량은 0
@@ -128,18 +136,31 @@ public class CurrentStatus {
 //    public int Juice2Cnt() {}   // 흑마늘즙 재고수량
 
     // 공정별 재공 재고 현황(미투입 원재료 수량) // 전체 수량(qtt)에서 실시간 공정별 현황의 수량(qtt)를 뺀 값
-    public Long InspectionWip(float completeInspectionCnt) {
-        Long inspectionWip = (long) (inspectionProcess.getQtt() - completeInspectionCnt);
+    public long InspectionWip(float completeInspectionCnt) {
+        long inspectionWip = (long) (inspectionProcess.getQtt() - completeInspectionCnt);
         return inspectionWip;
     }
 
-    public Long CoolingWip(float completeCoolingCnt) { // 냉각 공정은 일단 보류
-        Long coolingWip = (long) (coolingProcess.getQtt() - completeCoolingCnt);
+    public long CoolingWip(float completeCoolingCnt) { // 냉각 공정은 일단 보류
+        long coolingWip = (long) (coolingProcess.getQtt() - completeCoolingCnt);
         return coolingWip;
     }
 
     public long PackagingWip(float completePackagingCnt) {
         long packagingWip = (long) (packagingProcess.getQtt() - completePackagingCnt);
         return packagingWip;
+    }
+
+    // getter 메서드 추가
+    public double getCompleteInspectionCnt() {
+        return completeInspectionCnt;
+    }
+
+    public double getCompleteCoolingCnt() {
+        return completeCoolingCnt;
+    }
+
+    public double getCompletePackagingCnt() {
+        return completePackagingCnt;
     }
 }

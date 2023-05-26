@@ -29,6 +29,7 @@ public class PackagingProcess {
             this.productName = productName; // 현재 공정 제품명
             this.ordersId = ordersId; // 현재 공정 수주 번호
             this.company = company; // 현재 공정 거래처
+            this.qtt = qtt; // 현재 검사할 제품 수량
 
             LocalDateTime startTime = date.plusMinutes(20); // 현재 시간에서 준비 시간 20분 추가
             LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
@@ -44,19 +45,16 @@ public class PackagingProcess {
                 } else {
                     boxes = qtt / 25; // 젤리는 박스당 25개
                 }
-                this.boxes = boxes;
+
+                this.qtt = boxes;
 
                 // 포장 소요 시간 계산
                 double packagingCnt = 200.0; // 시간당 포장 가능한 제품 수(박스)
-                int packagingTime = (int)Math.ceil((boxes / packagingCnt) * 60); // 시작 후 경과한 시간(분)
-                int leadTime = packagingTime; // 총 포장 소요 시간
+                int packagingTime = (int)Math.ceil((qtt / packagingCnt) * 60); // 총 포장 소요 시간
 
-                this.date = startTime.plusMinutes(leadTime); // 다음 공정의 시작 시간
+                this.date = startTime.plusMinutes(packagingTime); // 다음 공정의 시작 시간
 
                 this.no = no;  // 현재 공정 로트 번호
-
-                // qtt를 박스 값으로 전달
-                this.qtt = boxes;
 
             } else {
                 System.out.println("현재 근무 시간이 아닙니다.");    // 근무시간이 아니면
