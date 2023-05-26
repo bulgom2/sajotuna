@@ -84,8 +84,8 @@ public class PurchaseService {
 
         // 현재 날짜 지정 방법
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime date = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
-//        LocalDate date = LocalDate.now();
+//        LocalDateTime date = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
+        LocalDate date = LocalDate.now();
         String formattedDate = date.format(formatter);
 
         if(box <= 0) {
@@ -160,8 +160,8 @@ public class PurchaseService {
         LocalDateTime orderTime[] = new LocalDateTime[5];
 
         // 현재 시간 지정
-//        LocalDateTime now = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.of(2023, 5, 17, 12, 50, 25);
+//        LocalDateTime now = LocalDateTime.now();
 
         // 필요한 수량
         for(int i=0; i<productbox.length; i++) {
@@ -230,7 +230,9 @@ public class PurchaseService {
             // 정제수이면 for문으로 다시 가서 i 값 1 증가
 
             if(Arrays.asList(material).indexOf(name[i]) == material.length-1) continue;
-            if(name[i] == null) continue;
+            if(name[i] == null && name[i].equals("")) continue;
+
+            System.out.println("이름이 뭐야 : " + name[i]);
 
             int ch1 = Arrays.asList(material).indexOf(name[i]) + 1;
 
@@ -241,19 +243,21 @@ public class PurchaseService {
                 if(ch1 < 3) {
                     if(now.getHour() < 12) {
                         orderTime[i] = twelveOrder(now, ch1);
+
                     } else {
                         LocalDateTime tempDate = now.plusDays(1).withHour(11).withMinute(0).withSecond(0).withNano(0);
                         orderTime[i] = twelveOrder(tempDate, ch1);
+
                     }
 //						System.out.println("1 : " + orderTime[i]);
                 } else {
                     if(now.getHour() < 15) {
                         orderTime[i] = fifthteenOrder(now, ch1);
-//						System.out.println("2 : " + orderTime[i]);
                     } else {
                         LocalDateTime tempDate = now.plusDays(1).withHour(14).withMinute(0).withSecond(0).withNano(0);
                         orderTime[i] = twelveOrder(tempDate, ch1);
                     }
+//                    System.out.println("2 : " + orderTime[i]);
                 }
             } else {
                 System.out.println(name[i] + "은(는) 발주를 진행하지 않아도 됩니다.");
@@ -301,6 +305,8 @@ public class PurchaseService {
             System.out.println();
             System.out.println();
 
+            System.out.println(latestTime +" " +  i);
+            System.out.println(orderTime[i] +" " +  i);
 
             // {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.파우치, 7.스틱파우치, 8.박스}
             if(ch1 <= 5){
