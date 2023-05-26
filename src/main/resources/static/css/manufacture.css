@@ -11,7 +11,7 @@
 /*}*/
 
 /* 테이블 */
-.orders-content-2 {
+.manufacture-content-2 {
     /*position: absolute;*/
     /*flex-direction: column;*/
     /*display: flex;*/
@@ -30,8 +30,10 @@ tbody tr:hover {
     color: white;
 }
 
+
+
 /* 거래처 */
-.orders_company{
+.manufacture_company{
     margin-left : 20px;
     height : 40px;
     font-size : 25px;
@@ -39,7 +41,7 @@ tbody tr:hover {
     display : flex;
 }
 
-#orders_company{
+#manufacture_company{
     margin-left : 10px;
     height : 40px;
     weight : 90px;
@@ -49,7 +51,7 @@ tbody tr:hover {
 }
 
 /* 수주 일자 */
-.orders-date{
+.manufacture-date{
     display : flex;
     height : 40px;
     margin-left : 35px;
@@ -57,13 +59,13 @@ tbody tr:hover {
     font-weight : bold;
 }
 
-#orders-date{
+#manufacture-date{
     height : 40px;
     margin-left : 10px;
 }
 
 /* 수주 번호 */
-.orders-no{
+.manufacture-no{
     height : 40px;
     margin-left : 35px;
     display : flex;
@@ -71,7 +73,7 @@ tbody tr:hover {
     font-weight : bold;
 }
 
-#orders-no{
+#manufacture-no{
     height : 40px;
     width: 200px;
     margin-left : 10px;
@@ -80,12 +82,13 @@ tbody tr:hover {
 
 
 /* 수주 확정,등록 버튼 */
-.orders-btn{
+.manufacture-btn{
     display : flex;
     margin-right : 40px;
     height : 40px;
     justify-content: flex-end;
 }
+
 
 /* 엑셀 다운로드 버튼 */
 #downloadButton{
@@ -98,19 +101,8 @@ tbody tr:hover {
     font-size : 23px;
 }
 
-/* 수주 삭제 버튼 */
-#delete {
-    margin-left : 10px;
-    height : 40px;
-    border-radius : 8px;
-    background: #223E4F;
-    color : white;
-    margin-right : 10px;
-    font-size : 23px;
-}
-
 /* 수주 확정 버튼 */
-#confirmed {
+#confirmed{
     margin-left : 10px;
     height : 40px;
     border-radius : 8px;
@@ -121,7 +113,7 @@ tbody tr:hover {
 }
 
 /* 수주 등록 버튼 */
-#register {
+#register{
     margin-left : 10px;
     height : 40px;
     border-radius : 8px;
@@ -130,14 +122,15 @@ tbody tr:hover {
     font-size : 23px;
 }
 
+
 /* content-2 아래 부분 */
-.orders-content-2-2 {
+.manufacture-content-2-2 {
     width: 100%;
     display: flex;
 }
 
 /* 제품명 */
-.orders_item {
+.manufacture_item {
     margin-left : 20px;
     font-size: 25px;
     font-weight: bold;
@@ -145,7 +138,7 @@ tbody tr:hover {
     height : 40px;
 }
 
-#orders_item {
+#manufacture_item {
     height : 40px;
     width: 200px;
     margin-left : 10px;
@@ -154,7 +147,7 @@ tbody tr:hover {
 }
 
 /* 제품 코드 */
-.orders_code{
+.manufacture_code{
     display : flex;
     height : 40px;
     margin-left : 59px;
@@ -162,7 +155,7 @@ tbody tr:hover {
     font-weight : bold;
 }
 
-#orders_code{
+#manufacture_code{
     height : 40px;
     weight : 200px;
     margin-left : 10px;
@@ -171,7 +164,7 @@ tbody tr:hover {
 
 
 /* 진행 상태 */
-.orders_status {
+.manufacture_status {
     display : flex;
     height : 40px;
     margin-left : 60px;
@@ -179,7 +172,7 @@ tbody tr:hover {
     font-weight : bold;
 }
 
-#orders_status {
+#manufacture_status {
     height : 40px;
     weight : 200px;
     margin-left : 10px;
@@ -187,7 +180,7 @@ tbody tr:hover {
 }
 
 /* 진행 상태 */
-.orders_qtt {
+.manufacture_qtt {
     display : flex;
     height : 40px;
     margin-left : 60px;
@@ -195,11 +188,10 @@ tbody tr:hover {
     font-weight : bold;
 }
 
-#orders_qtt {
+#manufacture_qtt {
     height : 40px;
     weight : 200px;
     margin-left : 10px;
     font-size : 25px;
 }
-
 

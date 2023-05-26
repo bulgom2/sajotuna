@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta , charset="UTF-8" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+        name="viewport">
+
+  <title> T U N A - M E S </title>
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" rel="stylesheet">
+
+  <!--<script src="//code.jquery.com/jquery.min.js"></script>-->
+  <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>-->
+
+  <link href="/css/layout1.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Faster+One&display=swap" rel="stylesheet">
+
+  <!--<link href="https://fonts.googleapis.com" rel="preconnect">-->
+  <!--<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">-->
+
+  <!--<link rel="stylesheet" th:href="@{/vendor/fontawesome-free/css/all.min.css}" type="text/css">-->
+<!--  <link
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">-->
+
+  <!-- Custom styles for this template -->
+  <!--<link rel="stylesheet" th:href="@{css/sb-admin-2.min.css}">-->
+
+  <!-- Custom styles for this page -->
+  <!--<link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">-->
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <script src="/js/main1-2.js"></script>
+  <script src="/js/main2-1.js"></script>
+  <script src="/js/main2-2.js"></script>
+
+
+</head>
+<body class="sidebar-closed">
+
+<div id="container">
+  <!-- 사이드바 -->
+  <div th:replace="fragment/sidebar::sidebar"></div>
+  <!-- /사이드바 -->
+
+  <!-- 본문 -->
+  <div id="page-content-wrapper1">
+    <div class="content-desc1">
+      <div class="content-header1">
+        <p class="content-title1">T U N A - M E S</p>
+      </div>
+    </div>
+
+    <div class="main-content-1">
+      <div class="main-content-1-1">
+        <p style="text-align : center;">현재 공정별 현황</p>
+        <!--막대 차트-->
+        <div class="vertical_chart_box">
+          <div class="chart_box">
+            <ul class="axis_y">
+              <li class="item">0%<span class="blind">%</span></li>
+              <li class="item">20%<span class="blind">%</span></li>
+              <li class="item">40%<span class="blind">%</span></li>
+              <li class="item">60%<span class="blind">%</span></li>
+              <li class="item">80%<span class="blind">%</span></li>
+              <li class="item">100%<span class="blind">%</span></li>
+            </ul>
+            <ul class="axis_x">
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">원료계량</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data1" style="height:80%;"><span class="blind">data 타입 1</span></span>
+                </button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">세척기</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data1" style="height:50%;"><span class="blind">data 타입 1</span></span>
+                  <span class="time data2" style="height:20%;"><span class="blind">data 타입 2</span></span>
+                  <span class="time data3" style="height:10%;"><span class="blind">data 타입 3</span></span>
+                </button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">추출</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data3" style="height:100%;"><span class="blind">data 타입 3</span></span>
+                </button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">혼합</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data1" style="height:100%;"><span class="blind">data 타입 1</span></span>
+                </button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">충진</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data1" style="height:40%;"><span class="blind">data 타입 1</span></span>
+                  <span class="time data3" style="height:40%;"><span class="blind">data 타입 3</span></span>
+                </button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">검사</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data2" style="height:20%;"><span class="blind">data 타입 2</span></span>
+                </button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">식힘</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph"></button>
+              </li>
+              <li class="item">
+                <div class="text_box">
+                  <strong class="day">포장</strong>
+                  <span class="time">00</span>
+                </div>
+                <button type="button" class="graph">
+                  <span class="time data1" style="height:80%;"><span class="blind">data 타입 1</span></span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--막대 차트-->
+      </div>
+
+      <div class="main-content-1-2">
+        <p style="text-align : center;">설비 가동 현황</p>
+        <canvas id="myFacility" style="width : 800px; height : 470px;"></canvas>
+
+      </div>
+    </div>
+
+
+    <div class="main-content-2">
+      <div class="main-content-2-1">
+        <p style="text-align : center;">실시간 제품 현황</p>
+        <canvas id="myProduct" style="width : 800px; height : 470px;"></canvas>
+      </div>
+
+      <div class="main-content-2-2">
+        <p style="text-align : center;">재공재고 현황</p>
+        <canvas id="myWip" style="width : 800px; height : 470px;"></canvas>
+      </div>
+    </div>
+
+  </div>  <!--page-content-wrapper-->
+</div> <!-- container -->
+
+
+<script>
+  // JavaScript 코드
+  document.addEventListener("DOMContentLoaded", function() {
+    const sidebarBrand = document.querySelector(".sidebar-brand");
+    const pageContentWrapper = document.querySelector("#page-content-wrapper1");
+
+    sidebarBrand.addEventListener("click", function() {
+      if (pageContentWrapper.classList.contains("sidebar-closed")) {
+// 사이드바가 닫혀있는 상태에서 클릭 시
+        pageContentWrapper.classList.remove("sidebar-closed");
+      } else {
+// 사이드바가 열려있는 상태에서 클릭 시
+        pageContentWrapper.classList.add("sidebar-closed");
+      }
+
+// 추가된 코드: 사이드바가 fixed로 설정되어 있을 경우, 클릭 후에도 이벤트가 전달되도록 스크롤 위치를 변경
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
+
+</body>
+</html>

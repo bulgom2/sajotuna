@@ -1,7 +1,6 @@
 package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.OrdersDTO;
-
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -40,5 +41,10 @@ public class OrdersService {
                 .orElseThrow(EntityNotFoundException::new);
 
         ordersRepository.deleteById(id);
+    }
+
+    // 선택 날짜 필터링
+    public List<Orders> getOrdersByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        return ordersRepository.findByDateBetween(startDate, endDate);
     }
 }

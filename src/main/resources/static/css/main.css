@@ -1,0 +1,233 @@
+/* 본문 컨텐츠 영역 */
+#page-content-wrapper1 {
+    position: relative;
+    display: block;
+    margin: 10px 0;
+    border-radius: 16px;
+    padding: 0;
+    border: 5px solid #223E4F;  /* 틀 확인용 */
+    width: 2176px;
+    height: 1290px;
+}
+
+/* 페이지 제목란 */
+.content-desc1 {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    height: 10%;
+}
+
+
+/* 메인 영역 */
+.content-header1 {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* 탭 제목 */
+.content-title1 {
+    width: 100%;
+    height: 80px;
+    font-size: 60px;
+    color: #223E4F;
+    text-align : center;
+    margin-top : 5px;
+    font-family: 'Faster One', cursive;
+    color: #223E4F;
+}
+
+.main-content-1{
+    width: 100%;
+    display : flex;
+    justify-content : space-around;
+    margin-bottom : 50px;
+}
+
+
+
+
+/* 현재 공정별 현황 */
+.main-content-1-1{
+    width : 800px;
+    height : 500px;
+
+    color : black;
+
+}
+
+
+/* 설비 가동 시간 */
+.main-content-1-2{
+    width : 800px;
+    height : 500px;
+
+    color : black;
+
+}
+
+
+
+
+.main-content-2{
+    width: 100%;
+    display : flex;
+    justify-content : space-around;
+}
+
+/* 실시간 제품 현황*/
+.main-content-2-1{
+    width : 800px;
+    height : 500px;
+
+    color : black;
+}
+
+/* 재공재고 현황 */
+.main-content-2-2{
+    width : 800px;
+    height : 500px;
+
+    color : black;
+
+}
+
+
+
+ul,li{
+  list-style:none;
+}
+.blind{
+  position:absolute;
+  clip:rect(0 0 0 0);
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.vertical_chart_box{
+  position:relative;
+  .chart_box{
+    position:relative;
+    margin-bottom:45px;
+    padding-left:20px;
+    box-sizing:border-box;
+    /*height:200px;*/
+    width : 800px;
+    height : 400px;
+  }
+  .axis_y{
+    display:-webkit-flex;
+    display:-ms-flex;
+    display:-o-flex;
+    display:flex;
+    flex-direction:column-reverse;
+    align-items:center;
+    justify-content:space-between;
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0;
+    padding:0;
+    width:20px;
+    height:100%;
+    font-size:12px;
+    color:#4a4a4a;
+    &:before{
+      content:'';
+      position:absolute;
+      top:5px;
+      bottom:0;
+      right:0;
+      width:1px;
+      background:#d3d3d3;
+    }
+  }
+  .axis_x{
+    display:-webkit-flex;
+    display:-ms-flex;
+    display:-o-flex;
+    display:flex;
+    justify-content:center;
+    position:relative;
+    padding:0;
+    box-sizing:border-box;
+    height:100%;
+    border-bottom:1px solid #d3d3d3;
+    .item{
+      flex:1;
+      position:relative;
+      .text_box{
+        position:absolute;
+        bottom:-43px;
+        left:50%;
+        text-align:center;
+        -webkit-transform:translate(-50%,0);
+        -ms-transform:translate(-50%,0);
+        -o-transform:translate(-50%,0);
+        transform:translate(-50%,0);
+        .day{
+          display:block;
+          font-size:12px;
+          line-height:19px;
+          color:#4a4a4a;
+          &.sat{
+            color:#3475ed;
+          }
+          &.sun{
+            color:#eb474a;
+          }
+        }
+        .time{
+          display:block;
+          margin-top:3px;
+          font-size:12px;
+          color:#999;
+        }
+      }
+    }
+    .graph{
+      display:-webkit-flex;
+      display:-ms-flex;
+      display:-o-flex;
+      display:flex;
+      flex-direction:column-reverse;
+      position:relative;
+      margin:0 auto;
+      padding:0;
+      width:35px;
+      height:100%;
+      background:#e8e8e8;
+      border-radius:3px 3px 0 0;
+      overflow:hidden;
+      .time{
+        display:block;
+        position:relative;
+        margin-bottom:-4px;
+        padding-top:4px;
+        box-sizing:content-box;
+        width:100%;
+        border-radius:3px 3px 0 0;
+        &.data1{
+          background:#223E4F;
+          z-index:3;
+        }
+        &.data2{
+          background:#30d97d;
+          z-index:2;
+        }
+        &.data3{
+          background:#f5dc12;
+          z-index:1;
+        }
+      }
+    }
+    button.graph{
+      border:0;
+    }
+  }
+}

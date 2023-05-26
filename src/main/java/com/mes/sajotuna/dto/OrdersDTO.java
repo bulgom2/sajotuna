@@ -2,19 +2,14 @@ package com.mes.sajotuna.dto;
 
 import com.mes.sajotuna.entity.Orders;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-@Data
 // 수주관리
-@Getter
-@Setter
-@ToString
+@Data
 public class OrdersDTO {
 
     private Long id;    // 수주id
@@ -22,7 +17,7 @@ public class OrdersDTO {
     private String no;    // 수주번호
 
     // 23/05/22 LocalDateTime으로 타입 변경
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;    // 수주일자
 
     private String status;    // 진행상태

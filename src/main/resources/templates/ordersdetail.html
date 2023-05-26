@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
 
     <title> T U N A - M E S </title>
 
@@ -50,7 +50,6 @@
                     <th>수주 일자</th>
                     <th>거래처</th>
                     <th>제품명</th>
-                    <th>제품 코드</th>
                     <th>수량</th>
                     <th>예상 납품일</th>
                     <th>진행 상태</th>
@@ -63,7 +62,6 @@
                     <td th:text="${ordersDto.date}">2023/05/01</td>
                     <td th:text="${ordersDto.company}">쿠팡</td>
                     <td th:text="${ordersDto.item}">양배추 즙</td>
-                    <td th:text="${ordersDto.code}">A0001</td>
                     <td th:text="${ordersDto.qtt}">100</td>
                     <td th:text="${ordersDto.shipDate}">2023/05/04</td>
                     <td th:text="${ordersDto.status}">진행중</td>

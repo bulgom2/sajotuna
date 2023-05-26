@@ -31,11 +31,11 @@ public class Process {
     @Column(name = "process_category")
     private String category;  //  (수작업) 자동 설비 여부
 
-    @Column(name = "process_pt")
-    private Integer pt;  // 공정 준비시간
+    @Column(name = "process_preparation")
+    private Integer preparation;  // 공정 준비시간
 
-    @Column(name = "process_lt")
-    private Integer lt;  // 공정 소요 시간
+    @Column(name = "process_lead")
+    private Integer lead;  // 공정 소요 시간
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "facility_id")
