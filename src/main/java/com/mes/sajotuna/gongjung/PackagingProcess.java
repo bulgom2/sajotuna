@@ -22,7 +22,6 @@ public class PackagingProcess {
         this.company = company;
     }
 
-
     public void startPackaging(String no, Long qtt, String productName, LocalDateTime date, String ordersId, String company) {
         // 이전 공정(검사)에서 startPackaging에 데이터를 저장했음
         // 검사 데이터를 받아오면 냉각 공정 시작
@@ -30,17 +29,13 @@ public class PackagingProcess {
             this.productName = productName; // 현재 공정 제품명
             this.ordersId = ordersId; // 현재 공정 수주 번호
             this.company = company; // 현재 공정 거래처
-            // currentTime : 18:30
-//            LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
-            LocalDateTime startTime = date.plusMinutes(20); // 현재 시간에서 준비 시간 20분 추가
 
+            LocalDateTime startTime = date.plusMinutes(20); // 현재 시간에서 준비 시간 20분 추가
             LocalDateTime currentTime = LocalDateTime.now(); // 현재 시간
 
-            // startTime : 18:50
-
             // 근무 시간인지 확인
-//            if ((currentTime.getHour() >= 9 && currentTime.getHour() < 12) ||
-//                    (currentTime.getHour() >= 13 && currentTime.getHour() < 18)) {  // 점심 시간(12시~1시)을 뺀 근무 시간 9 to 6
+            if ((currentTime.getHour() >= 9 && currentTime.getHour() < 12) ||
+                    ( currentTime.getHour() == 13 && currentTime.getMinute() >= 20 && currentTime.getHour() < 18)) {  // 점심 시간(12시~1시 20분)을 뺀 근무 시간 9 to 6
 
                 // 제품 종류에 따라 박스 개수 계산
                 Long boxes;
@@ -53,10 +48,7 @@ public class PackagingProcess {
 
                 // 포장 소요 시간 계산
                 double packagingCnt = 200.0; // 시간당 포장 가능한 제품 수(박스)
-                int ptTime = 20; // 준비 시간(분)
-
                 int packagingTime = (int)Math.ceil((boxes / packagingCnt) * 60); // 시작 후 경과한 시간(분)
-//                Long addPtTime = (packagingTime / 60) * ptTime; // 시작 후 1시간마다 준비 시간 추가
                 int leadTime = packagingTime; // 총 포장 소요 시간
 
                 this.date = startTime.plusMinutes(leadTime); // 다음 공정의 시작 시간
@@ -69,9 +61,9 @@ public class PackagingProcess {
             } else {
                 System.out.println("현재 근무 시간이 아닙니다.");    // 근무시간이 아니면
             }
-//        }   else {
-//            System.out.println("현재 포장이 진행중이 아닙니다.");    // 냉각 데이터가 없다면
-//        }
+        }   else {
+            System.out.println("현재 포장이 진행중이 아닙니다.");    // 냉각 데이터가 없다면
+        }
     }
 
     public void startPackaging(CoolingProcess coolingProcess) {

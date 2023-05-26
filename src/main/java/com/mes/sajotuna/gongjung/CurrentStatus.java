@@ -8,12 +8,11 @@ public class CurrentStatus {
     private InspectionProcess inspectionProcess;
     private CoolingProcess coolingProcess;
     private PackagingProcess packagingProcess;
-    private ShipmentProcess shipmentProcess;
 
     public double completeInspectionCnt;    // 실시간 검사 완료 수량
     public double completeCoolingCnt;      // 실시간 냉각 완료 수량
     public double completePackagingCnt;     // 실시간 포장 완료 수량
-    public double completeShipmentCnt;
+
 
 
 
@@ -21,49 +20,52 @@ public class CurrentStatus {
     public double inspectionPercent() {
         Duration runtime = InspectionRuntime(); // 가동 시간 계산
         int inspectionCnt = 5000; // 시간당 검사 가능한 제품 수
-        int ptTime = 10;    // 시간당 준비 시간
 
         if (runtime.getSeconds() > 0) {
-            long minutes = runtime.toMinutes(); // 가동 시간을 분으로 변환
-            int processTime = (int) (minutes - (minutes / 60) * ptTime);   // 가동 시간에 준비 시간 차감
-            int completeCnt = (int) ((inspectionCnt / 60.0) * processTime); // 완료된 제품 수량 계산
-            Long qtt = InspectionProcess.getQtt(); // 총 수량 가져오기
-            double completePercent;
+            long inspectionRuntime = runtime.toMinutes(); // 가동 시간(분)
+            float completeInspectionCnt = (inspectionCnt / 60.0f) * inspectionRuntime; // 실시간 완료된 제품 수량 계산
+            long qtt = inspectionProcess.getQtt(); // 총 수량 가져오기
+            long inspectionTime = qtt / inspectionCnt * 60; // 총 소요 시간
+            double inspectionPercent;
 
             if (qtt > 0) {
-                completePercent = (completeCnt / (double) qtt) * 100.0; // 검사 완료 수량의 퍼센트 계산
+                inspectionPercent = Math.round(((completeInspectionCnt / qtt) * 100.0)); // 검사 완료 수량의 퍼센트 계산
             } else {
-                completePercent = 0.0; // 총 수량이 0인 경우 완료된 제품 수량의 퍼센트는 0
+                inspectionPercent = 0.0; // 총 수량이 0인 경우 완료된 제품 수량의 퍼센트는 0
             }
 
-            completeInspectionCnt = completeCnt;
-            return completePercent;
+            return inspectionPercent;
         } else {
             return 0.0; // 검사 공정이 진행되지 않았을 경우 완료된 제품 수량의 퍼센트는 0
         }
     }
 
+    public double coolingPercent() {
+        Duration runtime = CoolingRuntime(); // 냉각 공정의 가동 시간을 가져옴
+        Long qtt = coolingProcess.getQtt(); // 냉각 공정의 제품 수량
 
-//    public int CoolingPercent() { // 구하는 것 가능?
-//        Duration runtime = CoolingRuntime(); // 검사 공정의 가동 시간을 가져옴
-////        int CoolingCnt = qtt; 냉각은 포장에서 받아온 수 그대로. 시간에 대한 게 없음.
-//
-//        if (runtime.getSeconds() > 0) {
-//            long minutes = runtime.toMinutes(); // 가동 시간을 분으로 변환
-//            int completedCnt = (int) (CoolingCnt * minutes); // 완료된 제품 수량 계산
-//            return completedCnt;
-//        } else {
-//            return 0; // 검사 공정이 진행되지 않았을 경우 완료된 제품 수량은 0
-//        }
-//    }
+        if (runtime.getSeconds() > 0) {
+            long runtimeMinutes = runtime.toMinutes(); // 가동 시간(분)
+            long coolingTime = 24 * 60; // 총 소요 시간(24시간)
+
+            if (runtimeMinutes >= coolingTime) { // 현재 가동 시간이 총 소요 시간을 초과하면 완료
+                return 100.0;
+            } else {
+                float completeCoolingCnt = ((float) runtimeMinutes / (float) coolingTime) * qtt;// 실시간 제품 냉각 완료 수량 계산
+                double coolingPercent = Math.round((completeCoolingCnt / (double) qtt) * 100.0); // 전체 수량에 대한 퍼센트 계산
+                return coolingPercent;
+            }
+        } else {
+            return 0.0; // 냉각 공정이 진행되지 않았을 경우 완료된 제품 수량은 0
+        }
+    }
 
     public double packagingPercent() {
         Duration runtime = PackagingRuntime(); // 포장 공정의 가동 시간을 가져옴
-        int packagingCnt = 200; // 시간당 포장 가능한 제품 수(박스)
-        int ptTime = 20; // 준비 시간(분)
+        double packagingCnt = 200.0; // 시간당 포장 가능한 제품 수(박스)
 
         if (runtime.getSeconds() > 0) {
-            long minutes = runtime.toMinutes(); // 가동 시간을 분으로 변환
+            long runtimeMinutes = runtime.toMinutes(); // 가동 시간을 분으로 변환
 
             // 포장 클래스에서 제품명과 수량을 가져와서 확인
             String productName = PackagingProcess.getProductName();
@@ -72,21 +74,17 @@ public class CurrentStatus {
             // 제품 종류에 따라 박스 개수 계산
             Long boxes;
 
-            if (productName.equals("즙")) {
+            if (productName.contains("즙")) {
                 boxes = qtt / 30; // 즙은 박스당 30개
             } else {
                 boxes = qtt / 25; // 젤리는 박스당 25개
             }
 
             // 포장 소요 시간 계산
-            Long packagingTime = (boxes / packagingCnt) * 60; // 시작 후 경과한 시간(분)
-            Long addPtTime = (packagingTime / 60) * ptTime; // 시작 후 1시간마다 준비 시간 추가
-            Long leadTime = packagingTime + addPtTime; // 총 포장 소요 시간
-
-            int completedCnt = (int) (packagingCnt * minutes); // 완료된 제품 수량 계산
-            double completePercent = (completedCnt / (double) boxes) * 100.0; // 포장 완료 수량의 퍼센트 계산
-            completePackagingCnt = completedCnt;
-            return completePercent;
+            int packagingTime = (int)Math.ceil((boxes / packagingCnt) * 60);    // 박스 수에 따른 총 포장 시간
+            float completePackagingCnt = ((float) (packagingCnt / 60) * (float) runtimeMinutes); // 현재 완료된 제품 수량 계산
+            double packagingPercent = Math.round((completePackagingCnt / (double) boxes) * 100.0); // 포장 완료 수량의 퍼센트 계산
+            return packagingPercent;
         } else {
             return 0; // 포장 공정이 진행되지 않았을 경우 완료된 제품 수량은 0
         }
@@ -130,19 +128,18 @@ public class CurrentStatus {
 //    public int Juice2Cnt() {}   // 흑마늘즙 재고수량
 
     // 공정별 재공 재고 현황(미투입 원재료 수량) // 전체 수량(qtt)에서 실시간 공정별 현황의 수량(qtt)를 뺀 값
-    public Long InspectionWip() {
+    public Long InspectionWip(float completeInspectionCnt) {
         Long inspectionWip = (long) (inspectionProcess.getQtt() - completeInspectionCnt);
         return inspectionWip;
     }
 
-//    public Long CoolingWip() { // 냉각 공정은 일단 보류
-//        Long coolingWip = (long) (coolingProcess.getQtt() - completeCoolingCnt);
-//        return coolingWip;
-//    }
-
-    public Long PackagingWip() {
-        Long packagingWip = (long) (packagingProcess.getQtt() - completePackagingCnt);
-        return packagingWip;
+    public Long CoolingWip(float completeCoolingCnt) { // 냉각 공정은 일단 보류
+        Long coolingWip = (long) (coolingProcess.getQtt() - completeCoolingCnt);
+        return coolingWip;
     }
 
+    public long PackagingWip(float completePackagingCnt) {
+        long packagingWip = (long) (packagingProcess.getQtt() - completePackagingCnt);
+        return packagingWip;
+    }
 }
