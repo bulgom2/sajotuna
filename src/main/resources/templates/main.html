@@ -29,6 +29,11 @@
   <!-- Custom styles for this page -->
   <!--<link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">-->
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <script src="/js/main2-1.js"></script>
+  <script src="/js/main2-2.js"></script>
+
+
 </head>
 <body>
 
@@ -139,9 +144,9 @@
         <!--막대 차트-->
       </div>
 
-      <div class="main-content-1-2" id="react-container">
-        <p id="main-content-1-2" style="text-align : center;">설비 가동 현황</p>
-
+      <div class="main-content-1-2">
+        <p style="text-align : center;">설비 가동 현황</p>
+        <canvas id="myFacility"></canvas>
 
       </div>
     </div>
@@ -149,20 +154,18 @@
 
     <div class="main-content-2">
       <div class="main-content-2-1">
-        <p id="main-content-2-1" style="text-align : center;">실시간 제품 현황</p>
+        <p style="text-align : center;">실시간 제품 현황</p>
+        <canvas id="myProduct" style="width : 800px; height : 500px;"></canvas>
       </div>
+
       <div class="main-content-2-2">
-        <p id="main-content-2-2" style="text-align : center;">재공재고 현황</p>
+        <p style="text-align : center;">재공재고 현황</p>
+        <canvas id="myWip" style="width : 800px; height : 500px;"></canvas>
       </div>
     </div>
 
   </div>  <!--page-content-wrapper-->
 </div> <!-- container -->
-
-<script src="https://unpkg.com/react/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
-<script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
-<script src="main.js"></script>
 
 </body>
 </html>

@@ -52,21 +52,21 @@
 
 
 /* 현재 공정별 현황 */
-#main-content-1-1{
+.main-content-1-1{
     width : 800px;
     height : 500px;
-    background-color : grey;
-    color : white;
+
+    color : black;
 
 }
 
 
 /* 설비 가동 시간 */
-#main-content-1-2{
+.main-content-1-2{
     width : 800px;
     height : 500px;
-    background-color : grey;
-    color : white;
+
+    color : black;
 
 }
 
@@ -80,19 +80,19 @@
 }
 
 /* 실시간 제품 현황*/
-#main-content-2-1{
+.main-content-2-1{
     width : 800px;
     height : 500px;
-    background-color : grey;
-    color : white;
+
+    color : black;
 }
 
 /* 재공재고 현황 */
-#main-content-2-2{
+.main-content-2-2{
     width : 800px;
     height : 500px;
-    background-color : grey;
-    color : white;
+
+    color : black;
 
 }
 
@@ -117,7 +117,7 @@ ul,li{
     box-sizing:border-box;
     /*height:200px;*/
     width : 800px;
-    height : 500px;
+    height : 400px;
   }
   .axis_y{
     display:-webkit-flex;
