@@ -126,6 +126,14 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" id="ordersListContainer">
+                            <form th:method="get" th:action="@{/orders}">
+                                <label for="startDate">Start Date:</label>
+                                <input type="date" id="startDate" name="startDate" required th:value="${startDate != null ? startDate : ''}">
+                                <label for="endDate">End Date:</label>
+                                <input type="date" id="endDate" name="endDate" required th:value="${endDate != null ? endDate : ''}">
+                                <button type="submit" class="btn">Filter</button>
+                                <a th:href="@{/orders}" class="btn">초기화</a>
+                            </form>
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
@@ -143,7 +151,7 @@
                                 <tr th:each="orders : ${ordersList}">
                                     <td th:text="${orders.id}">수주ID</td>
                                     <td th:text="${orders.no}">수주번호</td>
-                                    <td th:text="${#temporals.format(orders.date, 'yyyy/MM/dd')}">수주일자</td>
+                                    <td th:text="${#temporals.format(orders.date, 'yyyy-MM-dd')}">수주일자</td>
                                     <td th:text="${orders.company}">거래처</td>
                                     <td th:text="${orders.item}">제품명</td>
                                     <td th:text="${orders.qtt}">수량</td>
@@ -198,6 +206,7 @@
 <!-- Page level custom scripts -->
 <script th:src="@{/js/demo/datatables-demo.js}"></script>
 
+<!-- swal -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
@@ -326,8 +335,13 @@
                 data: JSON.stringify({ ordersNo: ordersNo }),
                 contentType: 'application/json',
                 success: function() {
-                    alert('수주가 삭제되었습니다.');
-                    location.reload();
+                    swal({
+                        title: '성공',
+                        text: '수주가 삭제되었습니다.',
+                        icon: 'success'
+                    }).then(function() {
+                        location.reload();
+                    });
                 },
                 error: function() {
                     // 오류 처리 로직 추가

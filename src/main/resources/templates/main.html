@@ -30,7 +30,7 @@
   <!--<link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">-->
 
 </head>
-<body>
+<body class="sidebar-closed">
 
 <div id="container">
   <!-- 사이드바 -->
@@ -159,6 +159,28 @@
 
   </div>  <!--page-content-wrapper-->
 </div> <!-- container -->
+
+
+<script>
+  // JavaScript 코드
+  document.addEventListener("DOMContentLoaded", function() {
+    const sidebarBrand = document.querySelector(".sidebar-brand");
+    const pageContentWrapper = document.querySelector("#page-content-wrapper1");
+
+    sidebarBrand.addEventListener("click", function() {
+      if (pageContentWrapper.classList.contains("sidebar-closed")) {
+// 사이드바가 닫혀있는 상태에서 클릭 시
+        pageContentWrapper.classList.remove("sidebar-closed");
+      } else {
+// 사이드바가 열려있는 상태에서 클릭 시
+        pageContentWrapper.classList.add("sidebar-closed");
+      }
+
+// 추가된 코드: 사이드바가 fixed로 설정되어 있을 경우, 클릭 후에도 이벤트가 전달되도록 스크롤 위치를 변경
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
 
 </body>
 </html>

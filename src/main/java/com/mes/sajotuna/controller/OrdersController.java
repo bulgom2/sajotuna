@@ -5,12 +5,14 @@ import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -79,11 +81,26 @@ public class OrdersController {
     // orders 테이블에 있는 값들 표로 출력하기
     // main 페이지
     @GetMapping("/orders")
-    public String orderList(Model model){
-        List<Orders> ordersList = ordersRepository.findAll();
-        Collections.reverse(ordersList); // 리스트를 역순으로 정렬합니다.
+    public String orderList(@RequestParam(value = "startDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate,
+                            @RequestParam(value = "endDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate,
+                            Model model) {
+
+        List<Orders> ordersList;
+
+        if (startDate != null && endDate != null) {
+            LocalDateTime start = startDate.atStartOfDay().withHour(0).withMinute(0).withSecond(0);
+            LocalDateTime end = endDate.atTime(LocalTime.MAX);
+
+            // 날짜 범위가 지정된 경우 해당 기간 동안의 주문 검색
+            ordersList = ordersService.getOrdersByDateRange(start, end);
+        } else {
+            // 날짜 범위가 지정되지 않은 경우 모든 주문 검색
+            ordersList = ordersRepository.findAll();
+        }
 
         model.addAttribute("ordersList", ordersList);
+        model.addAttribute("startDate", null);
+        model.addAttribute("endDate", null);
 
         return "orders";
     }
@@ -99,7 +116,6 @@ public class OrdersController {
 
         return "ordersdetail";
     }
-
 
 //    // 삭제 버튼을 누르면 해당 값 삭제하기
 //    @GetMapping("/orders/delete/{id}")
