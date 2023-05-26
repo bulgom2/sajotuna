@@ -29,6 +29,12 @@
   <!-- Custom styles for this page -->
   <!--<link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">-->
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <script src="/js/main1-2.js"></script>
+  <script src="/js/main2-1.js"></script>
+  <script src="/js/main2-2.js"></script>
+
+
 </head>
 <body class="sidebar-closed">
 
@@ -48,8 +54,6 @@
     <div class="main-content-1">
       <div class="main-content-1-1">
         <p style="text-align : center;">현재 공정별 현황</p>
-        <!--<p id="main-content-1-1" style="text-align : center;">현재 공정별 현황</p>-->
-
         <!--막대 차트-->
         <div class="vertical_chart_box">
           <div class="chart_box">
@@ -139,10 +143,11 @@
           </div>
         </div>
         <!--막대 차트-->
-
       </div>
+
       <div class="main-content-1-2">
-        <p id="main-content-1-2" style="text-align : center;">설비 가동 시간</p>
+        <p style="text-align : center;">설비 가동 현황</p>
+        <canvas id="myFacility" style="width : 800px; height : 470px;"></canvas>
 
       </div>
     </div>
@@ -150,10 +155,13 @@
 
     <div class="main-content-2">
       <div class="main-content-2-1">
-        <p id="main-content-2-1" style="text-align : center;">실시간 제품 현황</p>
+        <p style="text-align : center;">실시간 제품 현황</p>
+        <canvas id="myProduct" style="width : 800px; height : 470px;"></canvas>
       </div>
+
       <div class="main-content-2-2">
-        <p id="main-content-2-2" style="text-align : center;">재공재고 현황</p>
+        <p style="text-align : center;">재공재고 현황</p>
+        <canvas id="myWip" style="width : 800px; height : 470px;"></canvas>
       </div>
     </div>
 
