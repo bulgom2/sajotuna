@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
         datasets: [
           {
             // dataset의 이름(String)
-            label: 'Product1',
+            label: '재고량',
             // dataset 값(Array)
             data: [80, 60, 75, 70 , 100 , 75],
             // dataset의 배경색(rgba값을 String으로 표현)
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
           },
           {
             // dataset의 이름(String)
-            label: 'Product2',
+            label: '수주량',
             // dataset 값(Array)
             data: [60, 40, 55, 90 , 60 , 75],
             // dataset의 배경색(rgba값을 String으로 표현)
