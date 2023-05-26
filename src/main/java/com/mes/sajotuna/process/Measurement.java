@@ -27,9 +27,13 @@ public class Measurement {
         thisManufactureDTO.setManufacture_qtt(purchaseDTO.getQtt());
         thisManufactureDTO.setOrders_no(purchaseDTO.getOrdersNo());
 
+
         LocalDateTime processLastTime = manufactureDTO.getManufacture_outTime();
 
-        if(now.isAfter(processLastTime)){  // 원료계량기 작업 계획이 없을때
+        if(processLastTime == null){
+            checkTime((now));
+            System.out.println("들어옴");
+        } else if(now.isAfter(processLastTime)){  // 원료계량기 작업 계획이 없을때
             checkTime(now);
 
 

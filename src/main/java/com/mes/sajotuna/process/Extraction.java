@@ -21,6 +21,7 @@ public class Extraction {
     LocalTime endLaunchTime = LocalTime.of(13, 0, 0); // 1시
     Map<String, Object> map = new HashMap<>();
 
+    List<ManufactureDTO> ccList = new ArrayList<>();
 
     public List<ManufactureDTO> extraction(List<ManufactureDTO> ppList, LocalDateTime EA1, LocalDateTime EA2) {
 
@@ -29,7 +30,7 @@ public class Extraction {
             ppListClone.add(new ManufactureDTO(ppList.get(i)));
         }
 
-        List<ManufactureDTO> ccList = new ArrayList<>();
+
         Map<String, Object> resultMap;
 
         List<ManufactureDTO> temporalList = new ArrayList<>();

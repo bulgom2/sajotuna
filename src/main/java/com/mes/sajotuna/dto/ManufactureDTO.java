@@ -1,6 +1,8 @@
 package com.mes.sajotuna.dto;
 
+import com.mes.sajotuna.entity.Manufacture;
 import lombok.Data;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
 @Data
@@ -40,5 +42,14 @@ public class ManufactureDTO implements Cloneable{
         }
     }
 
+    public static ModelMapper modelMapper = new ModelMapper();
+
+    public Manufacture createManufacture(){
+        return modelMapper.map(this, Manufacture.class);
+    }
+
+    public static ManufactureDTO of(Manufacture manufacture){
+        return modelMapper.map(manufacture, ManufactureDTO.class);
+    }
 
 }

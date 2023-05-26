@@ -22,7 +22,7 @@ public class Mix {
     LocalTime endLaunchTime = LocalTime.of(13, 0, 0); // 1시
     Map<String, Object> map = new HashMap<>();
 
-    List<ManufactureDTO> MIXList = new ArrayList<>();
+    List<ManufactureDTO> MXList = new ArrayList<>();
 
 
     public List<ManufactureDTO> mix(List<ManufactureDTO> ccList){
@@ -40,19 +40,19 @@ public class Mix {
 
             ccListClone.get(i).setManufacture_inTime(outTime);
             if(ccListClone.get(i).getManufacture_item().equals("YBC02")){
-                ccListClone.get(i).setManufacture_outTime(outTime.plusSeconds((long) (ccListClone.get(i).getManufacture_qtt()*172.8)));
+                ccListClone.get(i).setManufacture_outTime(outTime.plusHours(24));
                 ccListClone.get(i).setManufacture_item("YBC01");
             }else {
-                ccListClone.get(i).setManufacture_outTime(outTime.plusSeconds((long) (ccListClone.get(i).getManufacture_qtt()*172.8*2)));
+                ccListClone.get(i).setManufacture_outTime(outTime.plusHours(24));
                 ccListClone.get(i).setManufacture_item("HMN01");
             }
             ccListClone.get(i).setProcess_id("MIX");
 
-            MIXList.add(ccListClone.get(i));
+            MXList.add(ccListClone.get(i));
 
         }
 
-        return MIXList;
+        return MXList;
     }
 
     public List<ManufactureDTO> mix( LocalDateTime MIX1,LocalDateTime MIX2, ManufactureDTO resultMS){
@@ -78,15 +78,15 @@ public class Mix {
         }
 
 
-        MIXList.add(mixDTO);
-        return MIXList;
+        MXList.add(mixDTO);
+        return MXList;
     }
 
     public void measureSetTime(LocalDateTime now, ManufactureDTO mixDTO){
 
         mixDTO.setManufacture_inTime(now.plusMinutes(20));
         mixDTO.setManufacture_outTime(now.plusMinutes(500));
-        mixDTO.setProcess_id("MIX");
+        mixDTO.setProcess_id("MX");
     }
 
     public ManufactureDTO checkTime(LocalDateTime time, ManufactureDTO mixDTO){
