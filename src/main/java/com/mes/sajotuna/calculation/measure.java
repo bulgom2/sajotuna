@@ -81,7 +81,7 @@ public class measure {
         //(가상 발주 DTO)
         PurchaseDTO purchaseDTO = new PurchaseDTO();
         purchaseDTO.setOrdersNo("sj_2023_05_21");
-        purchaseDTO.setItem("HMN02");
+        purchaseDTO.setItem("YBC02");
         purchaseDTO.setQtt(5000L);
         purchaseDTO.setShipDate(LocalDateTime.of(2023, 05, 22, 10, 00, 0));
 

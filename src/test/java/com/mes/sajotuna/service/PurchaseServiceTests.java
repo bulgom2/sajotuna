@@ -32,6 +32,9 @@ class PurchaseServiceTests {
 
         LocalDateTime purchaseTime = purchaseService.purchaseTime(ordersDto);
 
+
+
+
         System.out.println("발주 완료 시간 : " + purchaseTime);
     }
 }

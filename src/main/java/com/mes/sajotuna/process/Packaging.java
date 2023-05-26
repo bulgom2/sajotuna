@@ -21,18 +21,13 @@ public class Packaging {
     Map<String, Object> map = new HashMap<>();
     List<ManufactureDTO> pkList = new ArrayList<>();
 
-    public void packaging(List<ManufactureDTO> coList, ManufactureDTO getPK){
+    public void packaging(List<ManufactureDTO> coList, ManufactureDTO getPK) {
 
         LocalDateTime processLastTime = getPK.getManufacture_outTime();
 
         List<ManufactureDTO> coListClone = new ArrayList<>();
-        for(int i = 0; i < coList.size(); i++){
+        for (int i = 0; i < coList.size(); i++) {
             coListClone.add(new ManufactureDTO(coList.get(i)));
         }
-
-        
-
-
-
     }
 }
