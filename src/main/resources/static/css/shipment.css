@@ -1,238 +1,32 @@
-
-.content2 {
-    position: absolute;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-bottom: 10px;
-    height: 40px;
-    justify-content: space-between;
-}
-
-/* 거래처 */
-.shipment_company{
-    height : 40px;
+/* 출하 내역 테이블 */
+.shipment-content-2, .shipment-content-3 {
+    width: 97%;
     margin-left : 20px;
+    margin-right : 20px;
+}
+
+
+tbody tr:hover {
+    background-color: #223E4F;
+    color: white;
+}
+
+/* 버튼 위치 */
+.shipment-btn{
     display : flex;
-    font-size : 25px;
-    font-weight : bold;
-    display : flex;
-}
-
-#shipment_company{
-    height : 40px;
-    width: 100px;
-    margin-left : 20px;
-    font-size : 25px;
-    display: flex;
-}
-
-
-/* 품목명 */
-.shipment_name {
-    margin-left : 100px;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
-    height : 40px;
-    display: flex;
-}
-
-#shipment_name {
-     height : 40px;
-     width: 200px;
-     margin-left : 10px;
-     font-size : 25px;
-     display: flex;
-
-}
-
-
-/* 수주 번호 */
-.orders_id{
-    display : flex;
-    height : 40px;
-    margin-left : 100px;
-    font-size : 25px;
-    font-weight : bold;
-    display: flex;
-}
-
-#orders_id{
-    height : 40px;
-    weight : 200px;
-    margin-left : 10px;
-    font-size : 25px;
-    display: flex;
-}
-
-/* 납기일 */
-.shipment_date{
-    margin-left : 87px;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
-    height : 40px;
-}
-
-#shipment_date{
-    height : 40px;
-    margin-left : 10px;
-}
-
-
-/* 진행 상황 */
-.shipment_status{
-    display : flex;
-    height : 40px;
-    margin-left : 45px;
-    font-size : 25px;
-    font-weight : bold;
-}
-
-#shipment_status{
-    height : 40px;
-    weight : 200px;
-    margin-left : 10px;
-    font-size : 25px;
-}
-
-
-
-/* content-3 */
-.content-3{
-
-    margin-top : 100px;
-    margin-left : 40px;
     margin-right : 40px;
     height : 40px;
-
+    justify-content: flex-end;
 }
 
-/* 출하 내역 */
-.shipment_record {
-    margin-left : 0px;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
+
+/* 엑셀 다운로드 버튼 */
+#downloadButton{
+    margin-left : 10px;
     height : 40px;
-}
-
-/* 출하 내역 테이블 */
-.content-4{
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 35px;
-    margin-bottom : 40px;
-    height : 400px;
-    overflow : auto;
-}
-
-
-
-/* 테이블 전체 셋팅 */
-table {
-     border-collapse: collapse;
-     width: 100%;
-
- }
-
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-    height : 40px;
-}
-
-
-th {
-    background-color: #f2f2f2;
-}
-
-
-
-/* 출하내역 테이블 셀 너비 지정 */
-.cell-width1 {
-    width : 400px;
-}
-
-.cell-width2{
-    width : 300px;
-}
-
-.cell-width3{
-    width : 450px;
-}
-
-.cell-width4{
-    width : 300px;
-}
-
-.cell-width5{
-    width : 200px;
-}
-
-.cell-width6{
-    width : 450px;
-}
-
-
-
-
-/* 출하 상세 내역 */
-.content-5{
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 35px;
-    height : 40px;
-    display : flex;
-}
-
-/* 출하 상세 내역 */
-.shipment_detail_record{
-    margin-left : 0px;
-    font-size: 25px;
-    font-weight: bold;
-    height : 40px;
-}
-
-
-/* 상세 이력 조회 테이블 */
-.content-6{
-    margin-top : 10px;
-    margin-left : 40px;
-    margin-right : 35px;
-    margin-bottom : 40px;
-    height : 400px;
-    overflow : auto;
-}
-
-
-/* 출하 상세내역 테이블 셀 너비 지정 */
-.cell-width1-1 {
-    width : 300px;
-}
-
-.cell-width2-2{
-    width : 300px;
-}
-
-.cell-width3-3{
-    width : 450px;
-}
-
-.cell-width4-4{
-    width : 300px;
-}
-
-.cell-width5-5{
-    width : 300px;
-}
-
-.cell-width6-6{
-    width : 450px;
-}
-
-.cell-width7-7{
-    width : 300px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    margin-right : 10px;
+    font-size : 23px;
 }

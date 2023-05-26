@@ -121,9 +121,8 @@ public class PurchaseService {
         int min4 = 0;
         int max4 = 0;
 
-        if(bom.getMaterial4() != null){
+        if(!bom.getMaterial4().equals("") && bom.getMaterial4() != null){
             Material material4 = materialRepository.findByName(bom.getMaterial4());
-
             stock4 = material4.getStock();
             min4 = material4.getMinorder();
             max4 = material4.getMaxorder();
@@ -161,8 +160,8 @@ public class PurchaseService {
         LocalDateTime orderTime[] = new LocalDateTime[5];
 
         // 현재 시간 지정
-        LocalDateTime now = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
-
+//        LocalDateTime now = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
+        LocalDateTime now = LocalDateTime.now();
 
         // 필요한 수량
         for(int i=0; i<productbox.length; i++) {
@@ -243,7 +242,8 @@ public class PurchaseService {
                     if(now.getHour() < 12) {
                         orderTime[i] = twelveOrder(now, ch1);
                     } else {
-                        System.out.println("다음날 12시 전에 발주를 진행해주세요");
+                        LocalDateTime tempDate = now.plusDays(1).withHour(11).withMinute(0).withSecond(0).withNano(0);
+                        orderTime[i] = twelveOrder(tempDate, ch1);
                     }
 //						System.out.println("1 : " + orderTime[i]);
                 } else {
@@ -251,7 +251,8 @@ public class PurchaseService {
                         orderTime[i] = fifthteenOrder(now, ch1);
 //						System.out.println("2 : " + orderTime[i]);
                     } else {
-                        System.out.println("다음날 15시 전에 발주를 진행해주세요");
+                        LocalDateTime tempDate = now.plusDays(1).withHour(14).withMinute(0).withSecond(0).withNano(0);
+                        orderTime[i] = twelveOrder(tempDate, ch1);
                     }
                 }
             } else {

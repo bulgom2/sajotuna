@@ -1,5 +1,5 @@
 
-/* 설비 정보 */
+/* 거래처 정보 */
 .company-content-2 {
     /*position: absolute;*/
     /*flex-direction: column;*/
@@ -9,23 +9,27 @@
     margin-right : 20px;
 }
 
+tbody tr:hover {
+    background-color: #223E4F;
+    color: white;
+}
 
-/* 메인 영역 */
-.content-header {
-    position: absolute;
-    display: flex;
-    height : 109px;
-    width: 100%;
-    padding-top: 42px;
-    border: 1px solid red;  /* 틀 확인용 */
+/* 버튼 위치 */
+.company-btn{
+    display : flex;
+    margin-right : 40px;
+    height : 40px;
+    justify-content: flex-end;
 }
 
 
-/* 탭 제목 */
-.form-control {
-    position: relative;
-    width: 800px;
-    height: 50px;
-    font-size: 30px;
-    margin-left: 20px;
+/* 엑셀 다운로드 버튼 */
+#downloadButton{
+    margin-left : 10px;
+    height : 40px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    margin-right : 10px;
+    font-size : 23px;
 }

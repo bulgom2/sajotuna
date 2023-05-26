@@ -16,7 +16,7 @@ public class ProcessRepositoryTest {
         Process process = new Process();
 
         process.setNo("dddd");
-        process.setPt(30);
+        process.setPreparation(30);
 //        process.setLt(Duration.ofMinutes(6));
         process.setName("sdfdf");
         process.setStatus(true);

@@ -23,16 +23,14 @@ public class OrdersController {
     private OrdersService ordersService;
 
     // html 불러오기(수주 등록 페이지)
-    @GetMapping("/orders")
+    @GetMapping("/orders/submit")
     public String orderWrite(){
         return "ordersinput";
     }
 
     // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
-    @PostMapping("/orders")
+    @PostMapping("/orders/submit")
     public String orderWritePost(OrdersDTO ordersDTO) {
-
-        System.out.println("시작ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
 
         ordersDTO.setDate(LocalDateTime.now());
 
@@ -74,19 +72,18 @@ public class OrdersController {
 
         System.out.println("orders " + orders);
 
-        return "redirect:/";
+        return "redirect:/orders";
     }
 
 
     // orders 테이블에 있는 값들 표로 출력하기
     // main 페이지
-    @GetMapping("/")
+    @GetMapping("/orders")
     public String orderList(Model model){
-        System.out.println("종룍ㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
         List<Orders> ordersList = ordersRepository.findAll();
         Collections.reverse(ordersList); // 리스트를 역순으로 정렬합니다.
 
-        model.addAttribute("orderList", ordersList);
+        model.addAttribute("ordersList", ordersList);
 
         return "orders";
     }
@@ -95,8 +92,6 @@ public class OrdersController {
     // 수주id를 선택하면 상세 페이지 출력하기
     @GetMapping("/orders/{id}")
     public String orderDetail(Model model, @PathVariable("id") Long id){
-
-        System.out.println("123 : " + id);
 
         OrdersDTO ordersDTO = ordersService.ordersDetail(id);
 
@@ -137,8 +132,6 @@ public class OrdersController {
     @ResponseBody
     public String confirmSuju(@RequestBody OrdersDTO ordersDTO) {
 
-        System.out.println("여기1 : " + ordersDTO);
-
         // 선택된 수주번호와 변경할 상태 값을 가져옴
         String selectedNo = ordersDTO.getOrdersNo();
         String newStatus = "확정"; // 변경할 상태 값
@@ -146,17 +139,11 @@ public class OrdersController {
         // Orders 테이블 조회
         Orders existingOrder = ordersRepository.findByNo(selectedNo);
 
-        System.out.println("여기1 : " + existingOrder);
-
         // 기존의 값을 유지하면서 진행 상태 변경
         existingOrder.setStatus(newStatus);
 
         // Orders 테이블 업데이트
-//        ordersRepository.updateStatusByNo(selectedNo, newStatus);
-
-        // Orders 테이블 업데이트
         ordersRepository.save(existingOrder);
-
 
         return "success";
     }

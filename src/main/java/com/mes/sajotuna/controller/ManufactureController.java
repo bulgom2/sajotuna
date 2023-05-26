@@ -23,8 +23,6 @@ public class ManufactureController {
 
         model.addAttribute("manufactureList", manufactureList);
 
-        System.out.println("실행");
-        System.out.println("abfdsbv");
         return "manufacture";
     }
 }

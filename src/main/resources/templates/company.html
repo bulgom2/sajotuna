@@ -32,6 +32,52 @@
     <!-- Custom styles for this page -->
     <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
+    <script>
+        // 엑셀 저장
+        function convertTableToCSV() {
+            var table = document.getElementById('dataTable');
+            var rows = table.getElementsByTagName('tr');
+            var csv = '';
+
+            // 헤더 부분 추가
+            var headerRow = rows[0];
+            var headerCells = headerRow.getElementsByTagName('th');
+            for (var h = 0; h < headerCells.length; h++) {
+                var headerCell = headerCells[h].innerText.replace(/"/g, '""');
+                csv += '"' + headerCell + '",';
+            }
+            csv += '\n';
+
+            // 행 데이터 추가
+            for (var i = 1; i < rows.length; i++) {
+                var row = rows[i];
+                var cells = row.getElementsByTagName('td');
+
+                for (var j = 0; j < cells.length; j++) {
+                    var cell = cells[j].innerText.replace(/"/g, '""');
+                    csv += '"' + cell + '",';
+                }
+
+                csv += '\n';
+            }
+            return csv;
+        }
+
+        $(document).ready(function() {
+            $('#downloadButton').on('click', function() {
+                var csvData = '\uFEFF' + convertTableToCSV();
+                var blob = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
+                var downloadLink = document.createElement('a');
+                downloadLink.setAttribute('href', URL.createObjectURL(blob));
+                downloadLink.setAttribute('download', '거래처내역.csv');
+                downloadLink.style.display = 'none';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -46,16 +92,19 @@
         <div class="content-desc">
             <div class="content-header">
                 <input class="content-title" disabled readonly type="text" value="거래처 정보">
+                <div class="company-btn">
+                    <button id="downloadButton" type="button">엑셀 다운로드</button>
+                </div>
             </div>
         </div>
 
         <div class="company-content-2">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">설비 정보</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">거래처 목록</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" id="processListContainer">
+                    <div class="table-responsive" id="companyListContainer">
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                             <tr>
@@ -79,14 +128,12 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /본문 -->
-    <!--  </div>-->
-</div>
+                    </div> <!-- /table-responsive -->
+                </div> <!-- /card-body -->
+            </div> <!-- /card shadow mb-4 -->
+        </div> <!-- /company-content-2 -->
+    </div> <!-- /page-content-wrapper -->
+</div> <!-- /container -->
 
 
 <!-- Bootstrap core JavaScript-->

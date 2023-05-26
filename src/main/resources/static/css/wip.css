@@ -1,120 +1,32 @@
 
-/* 자재명 */
-.wip_name {
-    margin-left : 30px;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
-    height : 40px;
+/* 공정별 대기 품목 테이블 */
+.wip-content-2 {
+    width: 97%;
+    margin-left : 20px;
+    margin-right : 20px;
 }
 
-#wip_name{
-    height : 40px;
-    width: 200px;
-    margin-left : 10px;
-    font-size : 25px;
-}
-
-
-/* 공정 */
-.wip_process{
-    display : flex;
-    height : 40px;
-    margin-left : 45px;
-    font-size : 25px;
-    font-weight : bold;
-}
-
-#wip_process{
-    height : 40px;
-    weight : 200px;
-    margin-left : 10px;
-    font-size : 25px;
-}
-
-.btn:hover {
+tbody tr:hover {
     background-color: #223E4F;
     color: white;
 }
 
-
-/* 공정별 대기 품목 */
-.content-2 {
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 16px;
-    margin-bottom: 10px;
-    height: 50px;
-    justify-content: space-between;
-    flex-direction: column;
-}
-
-#content-2{
-    font-size : 25px;
-    font-weight : bold;
-    margin-left : 40px;
-}
-
-
-/* 공정별 대기 품목 테이블 */
-.content-3{
-    margin-top : 0px;
-    margin-left : 40px;
-    margin-right : 45px;
-    margin-bottom : 50px;
-    height : 800px;
-    overflow : auto;
-}
-
-.wip-table {
-    margin-left : 0px;
-    font-size: 25px;
-    font-weight: bold;
-    display: flex;
+/* 버튼 위치 */
+.wip-btn{
+    display : flex;
+    margin-right : 40px;
     height : 40px;
+    justify-content: flex-end;
 }
 
 
-table {
-     border-collapse: collapse;
-     width: 100%;
- }
-
-th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: center;
-
-    weight : 40px;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-
-/* 테이블 셀 크기 지정 */
-.cell-width1 {
-    width : 100px;
-}
-
-.cell-width2{
-    width : 550px;
-}
-
-.cell-width3{
-    width : 400px;
-}
-
-.cell-width4{
-    width : 100px;
-}
-
-.cell-width5{
-
-}
-
-.cell-width6{
-    width : 150px;
+/* 엑셀 다운로드 버튼 */
+#downloadButton{
+    margin-left : 10px;
+    height : 40px;
+    border-radius : 8px;
+    background: #223E4F;
+    color : white;
+    margin-right : 10px;
+    font-size : 23px;
 }
