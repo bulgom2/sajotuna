@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface OrdersRepository extends JpaRepository<Orders, Long> {
@@ -20,4 +21,7 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     // 수주번호로 찾기
     Orders findByNo(String selectedNo);
+
+    // 날짜 필터링
+    List<Orders> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 }
