@@ -82,7 +82,7 @@ public class measure {
         PurchaseDTO purchaseDTO = new PurchaseDTO();
         purchaseDTO.setOrdersNo("sj_2023_05_21");
         purchaseDTO.setItem("YBC02");
-        purchaseDTO.setQtt(5000L);
+        purchaseDTO.setQtt(1000L);
         purchaseDTO.setShipDate(LocalDateTime.of(2023, 05, 22, 10, 00, 0));
 
 
@@ -176,7 +176,7 @@ public class measure {
 
         /////////////////////// 포장 공정 (PK == 포장)////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println("=== 포장 공정 ==================================================================================================");
-        pkList = packaging.packaging(coList, getPK);
+       // pkList = packaging.packaging(coList, getPK);
 
         System.out.println("");
 
