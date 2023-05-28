@@ -133,7 +133,7 @@ public class PurchaseService {
             stock4 = material4.getStock();
             min4 = material4.getMinorder();
             max4 = material4.getMaxorder();
-            System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ");
+            System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ" + material4);
         } else {
             stock4 = 0.0;
         }
@@ -273,7 +273,7 @@ public class PurchaseService {
 
 //            tempPurchaseDTO.setOrders(ordersDTO);
             tempPurchaseDTO.setDate(ordersDTO.getDate());
-            tempPurchaseDTO.setStatus("");
+            tempPurchaseDTO.setStatus("0");
 
             String comname = name[i];
             if(ch1 <= 2){
@@ -326,10 +326,10 @@ public class PurchaseService {
                 }
             } else if(needpro[i] >= max) {
                 orderpro[i] = max;
-            } else if(needpro[i] <= min) {
-                orderpro[i] = min;
-            } else {
+            } else if(needpro[i] <= 0) {
                 orderpro[i] = 0;
+            } else {
+                orderpro[i] = min;
             }
 
 
@@ -371,7 +371,9 @@ public class PurchaseService {
 
             purchaseDTOList.add(tempPurchaseDTO);
 
-            purchaseRepository.save(tempPurchaseDTO.createPurchase());
+            if(orderpro[i] != 0){
+                purchaseRepository.save(tempPurchaseDTO.createPurchase());
+            }
         }
 
 
