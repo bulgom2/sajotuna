@@ -1,9 +1,13 @@
 package com.mes.sajotuna.controller;
 
 import com.mes.sajotuna.dto.OrdersDTO;
+import com.mes.sajotuna.dto.PurchaseDTO;
 import com.mes.sajotuna.entity.Orders;
+import com.mes.sajotuna.entity.Purchase;
 import com.mes.sajotuna.repository.OrdersRepository;
+import com.mes.sajotuna.repository.PurchaseRepository;
 import com.mes.sajotuna.service.OrdersService;
+import com.mes.sajotuna.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -24,6 +28,13 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
+    @Autowired
+    private PurchaseService purchaseService;
+
+    @Autowired
+    private PurchaseRepository purchaseRepository;
+
+
     // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders/submit")
     public String orderWrite(){
@@ -35,8 +46,6 @@ public class OrdersController {
     public String orderWritePost(OrdersDTO ordersDTO) {
 
         ordersDTO.setDate(LocalDateTime.now());
-
-        ordersDTO.setStatus("proceeding");
 
         System.out.println("OrdersDto " + ordersDTO.toString());
 
@@ -71,6 +80,19 @@ public class OrdersController {
         System.out.println("orders " + orders);
 
         ordersRepository.save(orders);
+
+        System.out.println("수주 dto : " + ordersDTO);
+
+        ordersDTO = OrdersDTO.of(orders);
+
+        if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
+            PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
+            System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
+            System.out.println(purchaseDTO.getOrdersNo());
+            System.out.println(purchaseDTO);
+        } else{
+            System.out.println("발주가 진행되지 않았습니다.");
+        }
 
         System.out.println("orders " + orders);
 
@@ -136,6 +158,8 @@ public class OrdersController {
             // 삭제할 수주가 없는 경우 처리 로직 추가
         } else {
             ordersRepository.delete(existingOrder);
+            List<Purchase> purchase = purchaseRepository.findByOrdersNo(ordersNo);
+            purchaseRepository.deleteAll(purchase);
         }
 
         return "success";

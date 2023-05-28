@@ -1,9 +1,11 @@
-
-    function closeModal() {
+// 1. 모달창 새로고침
+function closeModal() {
     // 페이지 새로고침
     window.location.reload();
 }
 
+
+// 2. 부트스트랩 테이블 페이징 없애고 스크롤바 생성 및 오름차순 정렬
     $(document).ready(function() {
     var table = $('#dataTable').DataTable({
     "paging": false,
