@@ -17,6 +17,12 @@
 
     <script>
         function closeModal() {
+            var modalElement = window.parent.document.getElementById('myModal');
+            var modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+        }
+
+        function saveModal() {
          // 모달창 닫기
         <!--  $('#myModal').modal('hide');-->
 
@@ -35,6 +41,8 @@
               qtt: qtt
             },
             success: function(response) {
+
+                closeModal();
               // 성공적으로 요청이 처리되면 부모 창을 다른 경로로 이동시킴
               window.parent.location.href = 'http://localhost:8080/orders';
             },
@@ -86,7 +94,7 @@
             </div>
 
             <div class="orders-modal-btn">
-                <button id="save" onclick="closeModal()">저장</button>
+                <button id="save" onclick="saveModal()">저장</button>
                 <button id="close" data-dismiss="modal" type="button">닫기</button>
             </div>
 <!--        </form>-->
