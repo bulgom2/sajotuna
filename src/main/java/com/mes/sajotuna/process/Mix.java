@@ -25,7 +25,7 @@ public class Mix {
     List<ManufactureDTO> MXList = new ArrayList<>();
 
 
-    public List<ManufactureDTO> mix(List<ManufactureDTO> ccList){
+    /*public List<ManufactureDTO> mix(List<ManufactureDTO> ccList, LocalDateTime MX1,LocalDateTime MX2){
 
 
         // ccList 복제
@@ -39,6 +39,7 @@ public class Mix {
             LocalDateTime outTime = ccListClone.get(i).getManufacture_outTime();
 
             ccListClone.get(i).setManufacture_inTime(outTime);
+
             if(ccListClone.get(i).getManufacture_item().equals("YBC02")){
                 ccListClone.get(i).setManufacture_outTime(outTime.plusHours(24));
                 ccListClone.get(i).setManufacture_item("YBC01");
@@ -46,7 +47,38 @@ public class Mix {
                 ccListClone.get(i).setManufacture_outTime(outTime.plusHours(24));
                 ccListClone.get(i).setManufacture_item("HMN01");
             }
-            ccListClone.get(i).setProcess_id("MIX");
+            ccListClone.get(i).setProcess_id("MX");
+
+            MXList.add(ccListClone.get(i));
+
+        }
+
+        return MXList;
+    }*/
+
+    public List<ManufactureDTO> mix(List<ManufactureDTO> ccList, LocalDateTime MX1,LocalDateTime MX2){
+
+
+        // ccList 복제
+        List<ManufactureDTO> ccListClone = new ArrayList<>();
+        for(int i = 0; i < ccList.size(); i++){
+            ccListClone.add(new ManufactureDTO(ccList.get(i)));
+        }
+
+        for(int i = 0; i < ccListClone.size(); i++){
+
+            LocalDateTime outTime = ccListClone.get(i).getManufacture_outTime();
+
+            ccListClone.get(i).setManufacture_inTime(outTime);
+
+            if(ccListClone.get(i).getManufacture_item().equals("YBC02")){
+                ccListClone.get(i).setManufacture_outTime(outTime.plusHours(24));
+                ccListClone.get(i).setManufacture_item("YBC01");
+            }else {
+                ccListClone.get(i).setManufacture_outTime(outTime.plusHours(24));
+                ccListClone.get(i).setManufacture_item("HMN01");
+            }
+            ccListClone.get(i).setProcess_id("MX");
 
             MXList.add(ccListClone.get(i));
 
@@ -55,24 +87,24 @@ public class Mix {
         return MXList;
     }
 
-    public List<ManufactureDTO> mix( LocalDateTime MIX1,LocalDateTime MIX2, ManufactureDTO resultMS){
+    public List<ManufactureDTO> mix( LocalDateTime MX1,LocalDateTime MX2, ManufactureDTO resultMS){
 
         ManufactureDTO mixDTO = new ManufactureDTO(resultMS);
 
         LocalDateTime workTime = resultMS.getManufacture_outTime();
 
-        if(workTime.isAfter(MIX1) && workTime.isAfter(MIX2)){
+        if(workTime.isAfter(MX1) && workTime.isAfter(MX2)){
             mixDTO = checkTime(workTime, mixDTO);
         }else {
-            if(MIX1.isBefore(MIX2) || MIX1.isEqual(MIX2)){
-                LocalDateTime targetTime = (workTime.isBefore(MIX1)) ? MIX1 : workTime;
+            if(MX1.isBefore(MX2) || MX1.isEqual(MX2)){
+                LocalDateTime targetTime = (workTime.isBefore(MX1)) ? MX1 : workTime;
                 mixDTO = checkTime(targetTime, mixDTO);
 
             }else {
-                if(workTime.isAfter(MIX2)){
+                if(workTime.isAfter(MX2)){
                     mixDTO = checkTime(workTime, mixDTO);
                 }else {
-                    mixDTO = checkTime(MIX2, mixDTO);
+                    mixDTO = checkTime(MX2, mixDTO);
                 }
             }
         }

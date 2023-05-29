@@ -17,12 +17,14 @@ public class ManufactureRepostoryTest {
     void Test6() {
         Manufacture manufacture = new Manufacture();
 
-        manufacture.setQtt(550L);
-        manufacture.setItem("jelly");
-        manufacture.setInTime(LocalDateTime.now());
-        manufacture.setOutTime(LocalDateTime.now());
-        manufacture.setOrdersId("dfdf");
-        manufacture.setProcessId("sdff");
+        manufacture.setManufacture_id("dd");
+
+        manufacture.setManufacture_qtt(550L);
+        manufacture.setManufacture_item("jelly");
+        manufacture.setManufacture_inTime(LocalDateTime.now());
+        manufacture.setManufacture_outTime(LocalDateTime.now());
+        manufacture.setOrders_no("dfdf");
+        manufacture.setProcess_id("sdff");
 
         manufactureRepository.save(manufacture);
 

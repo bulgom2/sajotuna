@@ -157,7 +157,7 @@ public class Extraction {
                 DTOpost = measureSetTime(time.plusDays(1).withHour(9).withMinute(0).withSecond(0), manufactureDTO);
             }
 
-        } else { // 현재 시간이 5시 10분 이 후 일 경우
+        } else { // 현재 시간이 근로시간이 아닌 경우
             if (time.toLocalTime().isAfter(LocalTime.of(0, 0, 0)) && time.toLocalTime().isBefore(start)) {
                 if (time.getDayOfWeek().getValue() != 6 && time.getDayOfWeek().getValue() != 7) {
                     DTOpost = measureSetTime(time.withHour(9).withMinute(0).withSecond(0), manufactureDTO);

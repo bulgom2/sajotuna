@@ -114,12 +114,12 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="manufacture : ${manufactureList}">
-                                    <td th:text="${manufacture.id}">1</td>
-                                    <td th:text="${manufacture.item}">양배추즙</td>
-                                    <td th:text="${manufacture.processId}">추출</td>
-                                    <td th:text="${manufacture.qtt}">100</td>
-                                    <td th:text="${manufacture.inTime}">2023-05-24 17:47</td>
-                                    <td th:text="${manufacture.outTime}">2023-05-24 20:47</td>
+                                    <td th:text="${manufacture.getManufacture_id}">1</td>
+                                    <td th:text="${manufacture.getManufacture_item}">양배추즙</td>
+                                    <td th:text="${manufacture.getProcess_id}">추출</td>
+                                    <td th:text="${manufacture.getManufacture_qtt}">100</td>
+                                    <td th:text="${manufacture.getManufacture_intime}">2023-05-24 17:47</td>
+                                    <td th:text="${manufacture.getManufacture_outTime}">2023-05-24 20:47</td>
                                     <td th:text="${manufacture.status}">진행 중</td>
                                 </tr>
                                 </tbody>

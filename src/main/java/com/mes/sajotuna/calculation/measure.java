@@ -38,8 +38,8 @@ public class measure {
         LocalDateTime EA1 = LocalDateTime.of(2023, 05, 20, 13, 30, 0);             //설비1 마지막 공정 시간
         LocalDateTime EA2 = LocalDateTime.of(2023, 05, 20, 15, 30, 0);
         // 혼합 계획 최종 시간
-        LocalDateTime MIX1 = LocalDateTime.of(2023, 05, 21, 13, 30, 0);             //설비1 마지막 공정 시간
-        LocalDateTime MIX2 = LocalDateTime.of(2023, 05, 21, 15, 30, 0);
+        LocalDateTime MX1 = LocalDateTime.of(2023, 05, 24, 15, 30, 0);             //설비1 마지막 공정 시간
+        LocalDateTime MX2 = LocalDateTime.of(2023, 05, 24, 15, 30, 0);
         // 혼합 계획 최종 시간
         LocalDateTime FI1 = LocalDateTime.of(2023, 05, 24, 13, 30, 0);             //설비1 마지막 공정 시간
         LocalDateTime FI2 = LocalDateTime.of(2023, 05, 22, 11, 30, 0);
@@ -82,7 +82,7 @@ public class measure {
         PurchaseDTO purchaseDTO = new PurchaseDTO();
         purchaseDTO.setOrdersNo("sj_2023_05_21");
         purchaseDTO.setItem("YBC02");
-        purchaseDTO.setQtt(1000L);
+        purchaseDTO.setQtt(1200L);
         purchaseDTO.setShipDate(LocalDateTime.of(2023, 05, 22, 10, 00, 0));
 
 
@@ -127,7 +127,8 @@ public class measure {
 
             System.out.println("=== 추출 공정 ==================================================================================================");
 
-            ccList = extraction.extraction(ppList, EA1, EA2);
+            //ccList = extraction.extraction(ppList, EA1, EA2);
+            ccList = extraction.extraction(ppList, MX1, MX2);
 
             System.out.println();
 
@@ -135,9 +136,9 @@ public class measure {
         /////////////////////// 혼합 공정 (MIX == 추출)////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if (purchaseDTO.getItem().equals("YBC02") || purchaseDTO.getItem().equals("HMN02")) {
-            mxList = mix.mix(ccList);
+            mxList = mix.mix(ccList, MX1, MX2);
         } else {
-            mxList = mix.mix(MIX1, MIX2, resultMS);
+            mxList = mix.mix(MX1, MX2, resultMS);
         }
 
         System.out.println("=== 혼합 공정 ==================================================================================================");
@@ -176,8 +177,8 @@ public class measure {
 
         /////////////////////// 포장 공정 (PK == 포장)////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println("=== 포장 공정 ==================================================================================================");
-       // pkList = packaging.packaging(coList, getPK);
-
+        //pkList = packaging.packaging(coList, getPK);
+        pkList = packaging.packaging(coList, getPK);
         System.out.println("");
 
         /////////////////////// 최종 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -189,6 +190,7 @@ public class measure {
         System.out.println("---최종---"+fiList);
         System.out.println("---최종---"+isList);
         System.out.println("---최종---"+coList);
+        System.out.println("---최종---"+pkList);
 
         int a = 0;
         for(int i = 0; i <ppList.size()+ccList.size()+mxList.size()+fiList.size()+isList.size()+ccList.size()+ccList.size(); i++){
