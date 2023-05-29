@@ -18,6 +18,45 @@ public class OrdersService {
 
     private final OrdersRepository ordersRepository;
 
+    // 수주 번호 등록 후 저장하기
+    public OrdersDTO ordersMakeCode(OrdersDTO ordersDTO){
+
+        ordersDTO.setDate(LocalDateTime.now());
+
+        System.out.println("OrdersDto " + ordersDTO.toString());
+
+        LocalDateTime orderDay = ordersDTO.getDate();
+
+        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+"", orderDay.getSecond()+""};
+
+        String code = "SJ" + orderDay.getYear();
+
+        for(int i=0; i<dateTime.length; i++){
+            if(dateTime[i].length() < 2){
+                dateTime[i] = "0" + dateTime[i];
+            }
+            code += dateTime[i];
+        }
+
+        System.out.println("수주번호 : " + code);
+
+        ordersDTO.setNo(code);
+
+        ordersDTO.setStatus("대기");
+
+        Orders orders = ordersDTO.createOrders();
+
+        System.out.println("orders " + orders);
+
+        ordersRepository.save(orders);
+
+        System.out.println("수주 dto : " + ordersDTO);
+
+        ordersDTO = OrdersDTO.of(orders);
+
+        return ordersDTO;
+    }
+
 
     //특정 게시글 불러오기
     public OrdersDTO ordersDetail(Long id){

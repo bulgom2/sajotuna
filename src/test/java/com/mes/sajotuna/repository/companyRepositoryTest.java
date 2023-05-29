@@ -13,17 +13,12 @@ public class companyRepositoryTest {
 
     @Test
     void Test3() {
-        Company company = new Company();
 
-        company.setAddr("addd");
-        company.setItem("jelly");
-        company.setNo("coupang");
-        company.setName("coo");
-        company.setPerson("dddd");
+        Company company = companyRepository.findByItemContaining("파우치");
 
-        companyRepository.save(company);
+        System.out.println("회사 : " + company);
 
-        System.out.println(company);
+        System.out.println(company.getName());
 
     }
 }
