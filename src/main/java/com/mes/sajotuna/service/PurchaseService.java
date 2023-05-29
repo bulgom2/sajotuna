@@ -34,6 +34,10 @@ public class PurchaseService {
 
     private final CompanyRepository companyRepository;
 
+    private final StockRepository stockRepository;
+
+    private final StockService stockService;
+
 
 
 //    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
@@ -373,9 +377,11 @@ public class PurchaseService {
 
             if(orderpro[i] != 0){
                 purchaseRepository.save(tempPurchaseDTO.createPurchase());
+
+                stockService.stockSave(tempPurchaseDTO);
+
             }
         }
-
 
         return purchaseDTOList.get(0);
     }

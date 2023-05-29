@@ -45,45 +45,8 @@ public class OrdersController {
     @PostMapping("/orders/submit")
     public String orderWritePost(OrdersDTO ordersDTO) {
 
-        ordersDTO.setDate(LocalDateTime.now());
-
-        System.out.println("OrdersDto " + ordersDTO.toString());
-
-        LocalDateTime orderDay = ordersDTO.getDate();
-
-        String dateTime[] = {orderDay.getMonthValue()+"", orderDay.getDayOfMonth()+"", orderDay.getHour()+"", orderDay.getMinute()+"", orderDay.getSecond()+""};
-
-        String code = "SJ" + orderDay.getYear();
-
-        for(int i=0; i<dateTime.length; i++){
-            if(dateTime[i].length() < 2){
-                dateTime[i] = "0" + dateTime[i];
-            }
-            code += dateTime[i];
-        }
-
-        System.out.println("수주번호 : " + code);
-
-        ordersDTO.setNo(code);
-
-        ordersDTO.setStatus("대기");
-
-//        String code = "SJ" + ordersDto.getDate().toLocalDate();
-
-
-//        ordersDto.setCode();
-
-//        ordersDto.setShipDate("132456");
-
-        Orders orders = ordersDTO.createOrders();
-
-        System.out.println("orders " + orders);
-
-        ordersRepository.save(orders);
-
-        System.out.println("수주 dto : " + ordersDTO);
-
-        ordersDTO = OrdersDTO.of(orders);
+        // 수주 코드 생성 후 저장
+        ordersDTO = ordersService.ordersMakeCode(ordersDTO);
 
         if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
             PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
@@ -93,8 +56,6 @@ public class OrdersController {
         } else{
             System.out.println("발주가 진행되지 않았습니다.");
         }
-
-        System.out.println("orders " + orders);
 
         return "redirect:/orders";
     }
