@@ -2,13 +2,17 @@ package com.mes.sajotuna.controller;
 
 import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
+import com.mes.sajotuna.entity.Company;
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.entity.Purchase;
+import com.mes.sajotuna.repository.CompanyRepository;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.repository.PurchaseRepository;
 import com.mes.sajotuna.service.OrdersService;
+import com.mes.sajotuna.service.PrecordService;
 import com.mes.sajotuna.service.PurchaseService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.mes.sajotuna.service.RecordService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,20 +24,22 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class OrdersController {
 
-    @Autowired
-    private OrdersRepository ordersRepository;
+    private final OrdersRepository ordersRepository;
 
-    @Autowired
-    private OrdersService ordersService;
+    private final  OrdersService ordersService;
 
-    @Autowired
-    private PurchaseService purchaseService;
+    private final PurchaseService purchaseService;
 
-    @Autowired
-    private PurchaseRepository purchaseRepository;
+    private final PurchaseRepository purchaseRepository;
 
+    private final PrecordService precordService;
+
+    private final RecordService recordService;
+
+    private final CompanyRepository companyRepository;
 
     // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders/submit")
@@ -45,6 +51,10 @@ public class OrdersController {
     @PostMapping("/orders/submit")
     public String orderWritePost(OrdersDTO ordersDTO) {
 
+        Company company = companyRepository.findByItemContaining(ordersDTO.getItem());
+
+        ordersDTO.setCompany(company.getName());
+
         // 수주 코드 생성 후 저장
         ordersDTO = ordersService.ordersMakeCode(ordersDTO);
 
@@ -53,6 +63,8 @@ public class OrdersController {
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
             System.out.println(purchaseDTO.getOrdersNo());
             System.out.println(purchaseDTO);
+            precordService.precordSave(ordersDTO);
+            recordService.recordSave(ordersDTO);
         } else{
             System.out.println("발주가 진행되지 않았습니다.");
         }

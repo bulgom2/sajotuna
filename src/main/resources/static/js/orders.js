@@ -70,18 +70,17 @@ function closeModal() {
 
 
 // 수주 확정 및 삭제 버튼
-        $(document).ready(function() {
-        var selectedRow;
+$(document).ready(function() {
+    var selectedRow;
 
-        // 이벤트 바인딩을 별도의 함수로 이동합니다.
-        function bindRowClickEvent() {
+    // 이벤트 바인딩을 별도의 함수로 이동합니다.
+    function bindRowClickEvent() {
         $('#dataTable tbody tr').off('click');
-
         $(document).on('click', '#dataTable tbody tr', function() {
-        if (selectedRow) {
+    if (selectedRow) {
         selectedRow.removeClass('selected');
     }
-        if (selectedRow !== $(this)) {
+    if (selectedRow !== $(this)) {
         selectedRow = $(this);
         selectedRow.addClass('selected');
         $('#delete').prop('disabled', false); // 선택된 행이 있을 때 삭제 버튼 활성화
@@ -89,8 +88,8 @@ function closeModal() {
         selectedRow = null;
         $('#delete').prop('disabled', true); // 선택된 행이 없을 때 삭제 버튼 비활성화
     }
-    });
-    }
+});
+}
 
         // 초기에 이벤트 바인딩을 실행합니다.
         bindRowClickEvent();

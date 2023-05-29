@@ -21,7 +21,7 @@ public class ManufactureRepostoryTest {
         manufacture.setItem("jelly");
         manufacture.setInTime(LocalDateTime.now());
         manufacture.setOutTime(LocalDateTime.now());
-        manufacture.setOrdersId("dfdf");
+//        manufacture.setOrdersId("dfdf");
         manufacture.setProcessId("sdff");
 
         manufactureRepository.save(manufacture);

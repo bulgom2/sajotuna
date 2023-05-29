@@ -36,8 +36,8 @@ public class Manufacture {
     @Column(name = "manufacture_qtt", nullable = false)
     private Long qtt;    // 투입량
 
-    @Column(name = "orders_id", nullable = false)
-    private String ordersId;    // 수주번호
+    @Column(name = "orders_no", nullable = false)
+    private String ordersNo;    // 수주번호
 
     @Column(name = "manufacture_status")
     @ColumnDefault("'N'")
