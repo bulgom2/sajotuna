@@ -43,7 +43,7 @@ public class OrdersController {
     // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders/submit")
     public String orderWrite(){
-        return "ordersinput";
+        return "orderscopy";
     }
 
     // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
@@ -96,7 +96,7 @@ public class OrdersController {
 
         model.addAttribute("ordersList", ordersList);
 
-        return "orders";
+        return "orderscopy";
     }
 
 
