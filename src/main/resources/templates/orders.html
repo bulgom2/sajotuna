@@ -43,25 +43,24 @@
         }
 </style>
 
+<!--    <script>-->
+<!--        document.addEventListener("DOMContentLoaded", function() {-->
+<!--            var dataTableWrapper = document.getElementById("dataTable_wrapper");-->
+<!--            var firstRow = dataTableWrapper.querySelector(".row");-->
+<!--            var targetDiv = firstRow.querySelector(".col-sm-12.col-md-6");-->
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var dataTableWrapper = document.getElementById("dataTable_wrapper");
-            var firstRow = dataTableWrapper.querySelector(".row");
-            var targetDiv = firstRow.querySelector(".col-sm-12.col-md-6");
+<!--            var newContent = `<form th:method="get" th:action="@{/orders}">-->
+<!--                                        <label for="startDate">Start Date:</label>-->
+<!--                                        <input type="date" id="startDate" name="startDate" required th:value="${startDate != null ? startDate : ''}">-->
+<!--                                        <label for="endDate">End Date:</label>-->
+<!--                                        <input type="date" id="endDate" name="endDate" required th:value="${endDate != null ? endDate : ''}">-->
+<!--                                        <button type="submit" class="btn">Filter</button>-->
+<!--                                        <a th:href="@{/orders}" class="btn">초기화</a>-->
+<!--                                    </form>`;-->
 
-            var newContent = `<form th:method="get" th:action="@{/orders}">
-                                        <label for="startDate">Start Date:</label>
-                                        <input type="date" id="startDate" name="startDate" required th:value="${startDate != null ? startDate : ''}">
-                                        <label for="endDate">End Date:</label>
-                                        <input type="date" id="endDate" name="endDate" required th:value="${endDate != null ? endDate : ''}">
-                                        <button type="submit" class="btn">Filter</button>
-                                        <a th:href="@{/orders}" class="btn">초기화</a>
-                                    </form>`;
-
-            targetDiv.innerHTML = newContent;
-        });
-    </script>
+<!--            targetDiv.innerHTML = newContent;-->
+<!--        });-->
+<!--    </script>-->
 
 </head>
 <body>
@@ -95,8 +94,16 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive" id="ordersListContainer">
-
-
+                            <div class="search-by-date">
+                                <form th:method="get" th:action="@{/orders}">
+                                    <label for="startDate">Start Date:</label>
+                                    <input type="date" id="startDate" name="startDate" required th:value="${startDate != null ? startDate : ''}">
+                                    <label for="endDate">End Date:</label>
+                                    <input type="date" id="endDate" name="endDate" required th:value="${endDate != null ? endDate : ''}">
+                                    <button type="submit" class="btn">Filter</button>
+                                    <a th:href="@{/orders}" class="btn">초기화</a>
+                                </form>
+                            </div>
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>

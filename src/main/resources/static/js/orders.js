@@ -45,7 +45,6 @@ function convertTableToCSV() {
         }
 
         csv += '\n';
-        f
     }
     return csv;
 }
