@@ -2,10 +2,7 @@ package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
-import com.mes.sajotuna.entity.Bom;
-import com.mes.sajotuna.entity.Company;
-import com.mes.sajotuna.entity.Material;
-import com.mes.sajotuna.entity.Purchase;
+import com.mes.sajotuna.entity.*;
 import com.mes.sajotuna.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,7 +35,7 @@ public class PurchaseService {
 
     private final StockService stockService;
 
-
+    private final ProductRepository productRepository;
 
 //    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
 //        PurchaseDTO purchaseDTO = new PurchaseDTO();
@@ -123,6 +120,7 @@ public class PurchaseService {
         double productbox[] = new double[] {amount[0]*box, amount[1]*box, amount[2]*box, amount[3]*box, box};
 
         String name[] = new String[] {bom.getMaterial1(), bom.getMaterial2(), bom.getMaterial3(), bom.getMaterial4(), "박스"};
+
 
         Material material1 = materialRepository.findByName(bom.getMaterial1());
         Material material2 = materialRepository.findByName(bom.getMaterial2());
@@ -381,6 +379,10 @@ public class PurchaseService {
 
             }
         }
+
+        Product product = productRepository.findByName(name[0]);
+        String productCode = product.getNo();
+        purchaseDTOList.get(0).setItem(productCode);
 
         return purchaseDTOList.get(0);
     }

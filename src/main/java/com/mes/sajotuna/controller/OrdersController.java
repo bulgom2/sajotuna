@@ -63,7 +63,7 @@ public class OrdersController {
             manufactureService.confirm(purchaseDTO);
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
             System.out.println(purchaseDTO.getOrdersNo());
-            System.out.println(purchaseDTO);
+            System.out.println("purchaseDTO : " + purchaseDTO);
             precordService.precordSave(ordersDTO);
             recordService.recordSave(ordersDTO);
         } else{
