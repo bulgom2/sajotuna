@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 public class OrdersDTO {
 
-    private Long id;    // 수주id
+//    private Long id;    // 수주id
 
     private String no;    // 수주번호
 
