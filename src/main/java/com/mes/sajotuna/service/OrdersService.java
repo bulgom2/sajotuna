@@ -18,6 +18,8 @@ public class OrdersService {
 
     private final OrdersRepository ordersRepository;
 
+
+
     // 수주 번호 등록 후 저장하기
     public OrdersDTO ordersMakeCode(OrdersDTO ordersDTO){
 
@@ -85,5 +87,16 @@ public class OrdersService {
     // 선택 날짜 필터링
     public List<Orders> getOrdersByDateRange(LocalDateTime startDate, LocalDateTime endDate) {
         return ordersRepository.findByDateBetween(startDate, endDate);
+    }
+
+    public void updateShipDateByOrdersNo(String ordersNo, LocalDateTime shipDate) {
+        Orders orders = ordersRepository.findByNo(ordersNo);
+
+        if (orders == null) {
+            throw new EntityNotFoundException("Orders not found with no: " + ordersNo);
+        }
+
+        orders.setShipDate(shipDate);
+        ordersRepository.save(orders);
     }
 }

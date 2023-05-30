@@ -3,13 +3,15 @@ package com.mes.sajotuna.dto;
 import com.mes.sajotuna.entity.Manufacture;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class ManufactureDTO implements Cloneable{
 
-    int manufacture_id;
+    Long manufacture_id;
     String manufacture_item;
     String process_id;
     String orders_no;
@@ -59,15 +61,26 @@ public class ManufactureDTO implements Cloneable{
         return modelMapper.map(manufacture, ManufactureDTO.class);
     }
 
-    public Manufacture toEntity(){
-        return new Manufacture(manufacture_id
-                                ,manufacture_item
-                                ,process_id
-                                ,manufacture_inTime
-                                , manufacture_outTime
-                                ,manufacture_qtt
-                                ,orders_no
-                                ,facility_id);
+
+    public Manufacture dtoToEntity(ManufactureDTO dto){
+
+        Manufacture entity = Manufacture.builder()
+                .manufacture_item(dto.getManufacture_item() )
+                .process_id(dto.getProcess_id())
+                .orders_no(dto.getOrders_no())
+                .facility_id(dto.getFacility_id())
+                .manufacture_qtt(dto.getManufacture_qtt())
+                .manufacture_inTime(dto.getManufacture_inTime())
+                .manufacture_outTime(dto.getManufacture_outTime())
+                .build();
+
+        return entity;
+    }
+
+
+    public static List<ManufactureDTO> of(List<Manufacture> Manufacture){
+//        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(Manufacture, new TypeToken<List<ManufactureDTO>>() {}.getType());
     }
 
 }

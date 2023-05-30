@@ -41,6 +41,6 @@ class PurchaseServiceTests {
             System.out.println("발주가 진행되지 않았습니다.");
 
         }
-        
+
     }
 }

@@ -8,10 +8,7 @@ import com.mes.sajotuna.entity.Purchase;
 import com.mes.sajotuna.repository.CompanyRepository;
 import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.repository.PurchaseRepository;
-import com.mes.sajotuna.service.OrdersService;
-import com.mes.sajotuna.service.PrecordService;
-import com.mes.sajotuna.service.PurchaseService;
-import com.mes.sajotuna.service.RecordService;
+import com.mes.sajotuna.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -41,6 +38,8 @@ public class OrdersController {
 
     private final CompanyRepository companyRepository;
 
+    private final ManufactureService manufactureService;
+
     // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders/submit")
     public String orderWrite(){
@@ -60,6 +59,7 @@ public class OrdersController {
 
         if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
             PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
+            ordersService.updateShipDateByOrdersNo(ordersDTO.getOrdersNo(), manufactureService.expectedDate(purchaseDTO).getManufacture_outTime());
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
             System.out.println(purchaseDTO.getOrdersNo());
             System.out.println("purchaseDTO : " + purchaseDTO);
@@ -148,6 +148,11 @@ public class OrdersController {
         // 선택된 수주번호와 변경할 상태 값을 가져옴
         String selectedNo = ordersDTO.getOrdersNo();
         String newStatus = "확정"; // 변경할 상태 값
+
+        OrdersDTO ordersDTO1 = OrdersDTO.of(ordersRepository.findByNo(selectedNo));
+
+        PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO1);
+        manufactureService.confirm(purchaseDTO);
 
         // Orders 테이블 조회
         Orders existingOrder = ordersRepository.findByNo(selectedNo);

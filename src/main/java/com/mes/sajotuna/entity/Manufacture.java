@@ -1,5 +1,6 @@
 package com.mes.sajotuna.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,11 +14,13 @@ import java.time.LocalDateTime;
 @Table(name = "manufacture")
 @Getter @Setter
 @ToString
+@Builder
 public class Manufacture {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "manufacture_id", nullable = false)
-    private String manufacture_id;    // id
+    private Long manufacture_id;    // id
 
     @Column(name = "manufacture_item", nullable = false)
     private String manufacture_item;    // 제품명
@@ -45,10 +48,23 @@ public class Manufacture {
     @ColumnDefault("'N'")
     private String status;
 
-    public Manufacture(int manufactureId, String manufactureItem, String processId, LocalDateTime manufactureInTime, LocalDateTime manufactureOutTime, long manufactureQtt, String ordersNo, String facilityId) {
-    }
 
     public Manufacture() {
 
     }
+
+    @Builder
+    public Manufacture(Long manufacture_id, String manufacture_item, String process_id, LocalDateTime manufacture_inTime, LocalDateTime manufacture_outTime, long manufacture_qtt, String orders_no, String facility_id, String status) {
+        this.manufacture_id = manufacture_id;
+        this.manufacture_item = manufacture_item;
+        this.process_id = process_id;
+        this.manufacture_inTime = manufacture_inTime;
+        this.manufacture_outTime = manufacture_outTime;
+        this.manufacture_qtt = manufacture_qtt;
+        this.orders_no = orders_no;
+        this.facility_id = facility_id;
+        this.status = status;
+    }
+
+
 }
