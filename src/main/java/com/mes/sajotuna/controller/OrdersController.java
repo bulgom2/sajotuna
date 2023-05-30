@@ -60,7 +60,7 @@ public class OrdersController {
 
         if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
             PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
-            manufactureService.confirm(purchaseDTO);
+            ordersService.updateShipDateByOrdersNo(ordersDTO.getOrdersNo(), manufactureService.expectedDate(purchaseDTO).getManufacture_outTime());
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
             System.out.println(purchaseDTO.getOrdersNo());
             System.out.println("purchaseDTO : " + purchaseDTO);
@@ -148,7 +148,9 @@ public class OrdersController {
         String selectedNo = ordersDTO.getOrdersNo();
         String newStatus = "확정"; // 변경할 상태 값
 
-        PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
+        OrdersDTO ordersDTO1 = OrdersDTO.of(ordersRepository.findByNo(selectedNo));
+
+        PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO1);
         manufactureService.confirm(purchaseDTO);
 
         // Orders 테이블 조회

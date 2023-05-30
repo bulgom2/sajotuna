@@ -23,4 +23,8 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     // 날짜 필터링
     List<Orders> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+
+
+
+
 }
