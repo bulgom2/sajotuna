@@ -26,6 +26,7 @@ public class ManufactureRepostoryTest {
         manufacture.setOrders_no("dfdf");
         manufacture.setProcess_id("sdff");
 
+
         manufactureRepository.save(manufacture);
 
         System.out.println(manufacture);

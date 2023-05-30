@@ -21,37 +21,37 @@ public class Precord {
     @Column(name = "orders_id", nullable = false)
     private String ordersId;  // 수주 번호
 
-    @Column(name = "precord_lot1", nullable = false)
+    @Column(name = "precord_lot1")
     private String lot1;  // 로트1
 
-    @Column(name = "precord_lot2", nullable = false)
+    @Column(name = "precord_lot2")
     private String lot2;  // 로트2
 
-    @Column(name = "precord_lot3", nullable = false)
+    @Column(name = "precord_lot3")
     private String lot3;  // 로트3
 
-    @Column(name = "precord_lot4", nullable = false)
+    @Column(name = "precord_lot4")
     private String lot4;  // 로트4
 
-    @Column(name = "precord_lot5", nullable = false)
+    @Column(name = "precord_lot5")
     private String lot5;  // 로트5
 
-    @Column(name = "precord_lot6", nullable = false)
+    @Column(name = "precord_lot6")
     private String lot6;  // 로트6
 
-    @Column(name = "precord_lot7", nullable = false)
+    @Column(name = "precord_lot7")
     private String lot7;  // 로트7
 
-    @Column(name = "precord_lot8", nullable = false)
+    @Column(name = "precord_lot8")
     private String lot8;  // 로트8
 
-    @Column(name = "precord_lot9", nullable = false)
+    @Column(name = "precord_lot9")
     private String lot9;  // 로트9
 
-    @Column(name = "precord_lot10", nullable = false)
+    @Column(name = "precord_lot10")
     private String lot10;  // 로트10
 
-    @Column(name = "precord_lot11", nullable = false)
+    @Column(name = "precord_lot11")
     private String lot11;  // 로트11
 
 }

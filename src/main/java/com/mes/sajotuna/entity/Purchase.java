@@ -43,9 +43,11 @@ public class Purchase {
     @Column(name = "purchase_shipdate", nullable = false)
     private LocalDateTime shipDate;    // 입고일
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "orders_no")
-    private Orders orders;
+    private String ordersNo;
+
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "order_no", referencedColumnName = "orders_no")
+//    private Orders orders;
 
 //    @Column(name = "orders_id", nullable = false)
 //    private Long ordersId;    // 수주 번호
