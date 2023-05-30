@@ -5,12 +5,9 @@ import lombok.Data;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 public class ManufactureDTO implements Cloneable{
-
-    private List<ManufactureDTO> manufactureDTOList;
 
     int manufacture_id;
     String manufacture_item;
@@ -40,7 +37,7 @@ public class ManufactureDTO implements Cloneable{
         this.manufacture_outTime = m.getManufacture_outTime();
         this.beforeLot = m.getBeforeLot();
         this.thisLot = m.getThisLot();
-        Long outPut = m.getOutPut();
+        this.outPut = m.getOutPut();
     }
 
     @Override

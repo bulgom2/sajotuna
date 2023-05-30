@@ -50,11 +50,11 @@ public class Packaging {
                     coListClone.set(i, check(coListClone.get(i).getManufacture_outTime(),coListClone.get(i)));
 
                 }
-
+                coListClone.get(i).setOutPut(boxCount);
                 pkList.add(coListClone.get(i));
                 processLastTime = coListClone.get(i).getManufacture_outTime();
             }
-        }else if(coListClone.get(0).getManufacture_item().equals("SRJ01") || coListClone.get(0).getManufacture_item().equals("MSJ01")){
+        }else if(coListClone.get(0).getManufacture_item().equals("SRJ00") || coListClone.get(0).getManufacture_item().equals("MSJ00")){
             for (int i = 0; i < coListClone.size(); i++){
 
                 Long boxCount = coListClone.get(i).getManufacture_qtt()/25;
@@ -66,7 +66,7 @@ public class Packaging {
                     coListClone.set(i, check(coListClone.get(i).getManufacture_outTime(),coListClone.get(i)));
 
                 }
-
+                coListClone.get(i).setOutPut(boxCount);
                 pkList.add(coListClone.get(i));
                 processLastTime = coListClone.get(i).getManufacture_outTime();
             }
@@ -95,7 +95,9 @@ public class Packaging {
 
         manufactureDTO.setManufacture_inTime(now.plusMinutes(20));
         manufactureDTO.setProcess_id("PK");
-        manufactureDTO.setFacility_id("");
+        manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+        manufactureDTO.setThisLot("PK-"+manufactureDTO.getManufacture_inTime());
+        manufactureDTO.setFacility_id(null);
 
 
         return manufactureDTO;

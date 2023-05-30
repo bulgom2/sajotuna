@@ -82,7 +82,7 @@ public class measure {
         PurchaseDTO purchaseDTO = new PurchaseDTO();
         purchaseDTO.setOrdersNo("sj_2023_05_21");
         purchaseDTO.setItem("YBC02");
-        purchaseDTO.setQtt(1200L);
+        purchaseDTO.setQtt(5000L);
         purchaseDTO.setShipDate(LocalDateTime.of(2023, 05, 22, 10, 00, 0));
 
 
@@ -136,7 +136,7 @@ public class measure {
         /////////////////////// 혼합 공정 (MIX == 추출)////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         if (purchaseDTO.getItem().equals("YBC02") || purchaseDTO.getItem().equals("HMN02")) {
-            mxList = mix.mix(ccList, MX1, MX2);
+            mxList = mix.mix(ccList);
         } else {
             mxList = mix.mix(MX1, MX2, resultMS);
         }
@@ -191,12 +191,39 @@ public class measure {
         System.out.println("---최종---"+isList);
         System.out.println("---최종---"+coList);
         System.out.println("---최종---"+pkList);
-
-        int a = 0;
-        for(int i = 0; i <ppList.size()+ccList.size()+mxList.size()+fiList.size()+isList.size()+ccList.size()+ccList.size(); i++){
-            a += 1;
+        System.out.println();
+        for(int i = 0; i < 1; i++){
+            System.out.println("resultMS ("+(i+1)+") 번째 : "+resultMS);
         }
-        System.out.println(a);
+        System.out.println();
+        for(int i = 0; i < ppList.size(); i++){
+            System.out.println("ppList ("+(i+1)+") 번째 : "+ppList.get(i));
+        }
+        System.out.println();
+        for(int i = 0; i < ccList.size(); i++){
+            System.out.println("ccList ("+(i+1)+") 번째 : "+ccList.get(i));
+        }
+        System.out.println();
+        for(int i = 0; i < mxList.size(); i++){
+            System.out.println("mxList ("+(i+1)+") 번째 : "+mxList.get(i));
+        }
+        System.out.println();
+        for(int i = 0; i < fiList.size(); i++){
+            System.out.println("fiList ("+(i+1)+") 번째 : "+fiList.get(i));
+        }
+        System.out.println();
+        for(int i = 0; i < isList.size(); i++){
+            System.out.println("isList ("+(i+1)+") 번째 : "+isList.get(i));
+        }
+        System.out.println();
+        for(int i = 0; i < coList.size(); i++){
+            System.out.println("coList ("+(i+1)+") 번째 : "+coList.get(i));
+        }
+        System.out.println();
+        for(int i = 0; i < pkList.size(); i++){
+            System.out.println("pkList ("+(i+1)+") 번째 : "+pkList.get(i));
+        }
+        System.out.println();
     }
 
 }

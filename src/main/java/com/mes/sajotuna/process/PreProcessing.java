@@ -45,6 +45,7 @@ public class PreProcessing {
             amountWork.setOrders_no(resultMS.getOrders_no());
             amountWork.setManufacture_item(resultMS.getManufacture_item());
             amountWork.setBeforeLot(resultMS.getThisLot());
+            amountWork.setOutPut(amountPerWork);
 
             ppList.add(result(amountWork, workTime, processLastTime));
 
@@ -81,6 +82,7 @@ public class PreProcessing {
         manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*3.6)));
         manufactureDTO.setProcess_id("PP");
         manufactureDTO.setThisLot("PP"+manufactureDTO.getManufacture_inTime());
+
 
         return manufactureDTO;
     }

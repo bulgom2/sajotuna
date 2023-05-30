@@ -78,6 +78,9 @@ public class Extraction {
 
         if (workTime.isAfter(EA1) && workTime.isAfter(EA2)) { //두 설비 모두 가동중이지 않았을때
             manufactureDTO = checkTime(workTime, manufactureDTO);
+            manufactureDTO.setFacility_id("CCO1");
+            manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+            manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
             EA1 = manufactureDTO.getManufacture_outTime();
             map.put("manufactureDTO", manufactureDTO);
             map.put("EA1", EA1);
@@ -89,6 +92,9 @@ public class Extraction {
             if (EA1.isBefore(EA2) || EA1.isEqual(EA2)) {
                 LocalDateTime targetTime = (workTime.isBefore(EA1)) ? EA1 : workTime;
                 manufactureDTO = checkTime(targetTime, manufactureDTO);
+                manufactureDTO.setFacility_id("CCO1");
+                manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+                manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
                 EA1 = manufactureDTO.getManufacture_outTime();
                 map.put("manufactureDTO", manufactureDTO);
                 map.put("EA1", EA1);
@@ -101,6 +107,9 @@ public class Extraction {
             } else { // 설비2이 먼저 끝날 경우
                 if (workTime.isAfter(EA2)) { // 설비 2가 가동중이지 않을 경우
                     manufactureDTO = checkTime(workTime, manufactureDTO);
+                    manufactureDTO.setFacility_id("CCO2");
+                    manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+                    manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
                     EA2 = manufactureDTO.getManufacture_outTime();
                     map.put("manufactureDTO", manufactureDTO);
                     map.put("EA1", EA1);
@@ -109,6 +118,9 @@ public class Extraction {
 
                 } else { // 설비 2가 가동중일 경우
                     manufactureDTO = checkTime(EA2, manufactureDTO);
+                    manufactureDTO.setFacility_id("CCO2");
+                    manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+                    manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
                     EA2 = manufactureDTO.getManufacture_outTime();
                     map.put("manufactureDTO", manufactureDTO);
                     map.put("EA1", EA1);
@@ -130,9 +142,12 @@ public class Extraction {
         DTOClone.setManufacture_inTime(now.plusMinutes(60));
         if (DTOClone.getManufacture_item().equals("YBC02") ) {
             DTOClone.setManufacture_outTime(now.plusSeconds((long) (3600 + DTOClone.getManufacture_qtt() * 172.8)));
+            DTOClone.setOutPut((long) (DTOClone.getManufacture_qtt()*2*0.8));
         } else {
             DTOClone.setManufacture_outTime(now.plusSeconds((long) (3600 + DTOClone.getManufacture_qtt() * 172.8 * 2)));
+            DTOClone.setOutPut((long) (DTOClone.getManufacture_qtt()*4*0.6));
         }
+
         DTOClone.setProcess_id("CC");
         System.out.println("작업량 : " + DTOClone.getManufacture_qtt());
         System.out.println("여긴데 : " + DTOClone);

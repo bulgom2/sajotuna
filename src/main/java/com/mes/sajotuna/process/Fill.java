@@ -31,23 +31,23 @@ public class Fill {
             MXListClone.add(new ManufactureDTO(MXList.get(i)));
         }
 
-        // 임시 리스트 (충진기 2개에 나눠담기 위해 이전 리스트들을 2개로 나눔)
+        /*// 임시 리스트 (충진기 2개에 나눠담기 위해 이전 리스트들을 2개로 나눔)
         List<ManufactureDTO> temporalList = new ArrayList<>();
 
         for(int i = 0; i < MXListClone.size(); i++){
             Long amount = MXListClone.get(i).getManufacture_qtt();
             if(MXListClone.get(0).getManufacture_item().equals("YBC01")){
-                MXListClone.get(i).setManufacture_qtt((long) ((amount*2*0.8)));
+
             }else if(MXListClone.get(0).getManufacture_item().equals("HMN01")){
-                MXListClone.get(i).setManufacture_qtt((long) (amount*4*0.6));
+
             }else{
-                MXListClone.get(i).setManufacture_qtt(amount*3);
+
             }
 
             temporalList.add(MXListClone.get(i));
-        }
+        }*/
 
-        MXListClone = temporalList;
+        //MXListClone = temporalList;
 
         for(int i = 0; i < MXListClone.size(); i++){
             System.out.println(MXListClone.get(i));
@@ -59,7 +59,7 @@ public class Fill {
 
             System.out.println("FI1 : " + FI1);
             System.out.println("FI2 : " + FI2);
-
+            MXListClone.get(i).setManufacture_qtt(MXListClone.get(i).getOutPut());
             resultMap = result(MXListClone.get(i), FI1, FI2);
             FIList.add((ManufactureDTO) resultMap.get("manufactureDTO"));
             FI1 = (LocalDateTime) resultMap.get("FI1");
@@ -78,7 +78,13 @@ public class Fill {
 
         if (workTime.isAfter(FI1) && workTime.isAfter(FI2)) { //두 설비 모두 가동중이지 않았을때
             manufactureDTO = checkTime(workTime, manufactureDTO);
-
+            if(manufactureDTO.getManufacture_item().equals("YBC01") || manufactureDTO.getManufacture_item().equals("HMN01")){
+                manufactureDTO.setFacility_id("FI01");
+            }else {
+                manufactureDTO.setFacility_id("FI03");
+            }
+            manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+            manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
             FI1 = manufactureDTO.getManufacture_outTime();
             map.put("manufactureDTO", manufactureDTO);
             map.put("FI1", FI1);
@@ -91,6 +97,13 @@ public class Fill {
 
                 LocalDateTime targetTime = (workTime.isBefore(FI1)) ? FI1 : workTime;
                 manufactureDTO = checkTime(targetTime, manufactureDTO);
+                if(manufactureDTO.getManufacture_item().equals("YBC01") || manufactureDTO.getManufacture_item().equals("HMN01")){
+                    manufactureDTO.setFacility_id("FI01");
+                }else {
+                    manufactureDTO.setFacility_id("FI03");
+                }
+                manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+                manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
                 FI1 = manufactureDTO.getManufacture_outTime();
                 map.put("manufactureDTO", manufactureDTO);
                 map.put("FI1", FI1);
@@ -103,6 +116,13 @@ public class Fill {
             } else { // 설비2이 먼저 끝날 경우
                 if (workTime.isAfter(FI2)) { // 설비 2가 가동중이지 않을 경우
                     manufactureDTO = checkTime(workTime, manufactureDTO);
+                    if(manufactureDTO.getManufacture_item().equals("YBC01") || manufactureDTO.getManufacture_item().equals("HMN01")){
+                        manufactureDTO.setFacility_id("FI02");
+                    }else {
+                        manufactureDTO.setFacility_id("FI04");
+                    }
+                    manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+                    manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
                     FI2 = manufactureDTO.getManufacture_outTime();
                     map.put("manufactureDTO", manufactureDTO);
                     map.put("FI1", FI1);
@@ -111,6 +131,13 @@ public class Fill {
 
                 } else { // 설비 2가 가동중일 경우
                     manufactureDTO = checkTime(FI2, manufactureDTO);
+                    if(manufactureDTO.getManufacture_item().equals("YBC01") || manufactureDTO.getManufacture_item().equals("HMN01")){
+                        manufactureDTO.setFacility_id("FI02");
+                    }else {
+                        manufactureDTO.setFacility_id("FI04");
+                    }
+                    manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+                    manufactureDTO.setThisLot(manufactureDTO.getFacility_id()+"-"+manufactureDTO.getManufacture_inTime());
                     FI2 = manufactureDTO.getManufacture_outTime();
                     map.put("manufactureDTO", manufactureDTO);
                     map.put("FI1", FI1);
@@ -133,10 +160,14 @@ public class Fill {
         DTOClone.setManufacture_inTime(now.plusMinutes(20));
         if (DTOClone.getManufacture_item().equals("YBC01") ) {
             DTOClone.setManufacture_outTime(now.plusSeconds((long) (1200 + DTOClone.getManufacture_qtt() * 30)));
+            DTOClone.setOutPut(DTOClone.getManufacture_qtt()*1000/80);
         } else if(DTOClone.getManufacture_item().equals("HMN01")){
             DTOClone.setManufacture_outTime(now.plusSeconds((long) (1200 + DTOClone.getManufacture_qtt() * 120)));
+            DTOClone.setOutPut(DTOClone.getManufacture_qtt()*1000/20);
         } else {
             DTOClone.setManufacture_outTime(now.plusSeconds((long) (1200 + DTOClone.getManufacture_qtt() * (3600.0/26.25))));
+            DTOClone.setOutPut(DTOClone.getManufacture_qtt()*1000/15);
+
         }
         DTOClone.setProcess_id("FI");
         System.out.println("작업량 : " + DTOClone.getManufacture_qtt());
@@ -175,7 +206,6 @@ public class Fill {
                     DTOpost = measureSetTime(time.plusDays(1).withHour(9).withMinute(0).withSecond(0), manufactureDTO);
                 } else {
                     DTOpost = measureSetTime(time.plusDays(3).withHour(9).withMinute(0).withSecond(0), manufactureDTO);
-
                 }
             }else {
                 System.out.println("클남");

@@ -35,7 +35,13 @@ public class Inspection {
             }else if(fiListClone.get(0).getManufacture_item().equals("HMN01")){
                 fiListClone.get(i).setManufacture_qtt(fiListClone.get(i).getManufacture_qtt()*1000/20);
             }else {
-                fiListClone.get(i).setManufacture_qtt(fiListClone.get(i).getManufacture_qtt()*1000/15);
+                if(fiListClone.get(i).getManufacture_item().equals("SRJ02")){
+                    fiListClone.get(i).setManufacture_item("SRJ00");
+                }else {
+                    fiListClone.get(i).setManufacture_item("MSJ00");
+                }
+
+                fiListClone.get(i).setManufacture_qtt(fiListClone.get(i).getOutPut());
             }
         }
 
@@ -73,6 +79,9 @@ public class Inspection {
         manufactureDTO.setManufacture_inTime(now.plusMinutes(20));
         manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*0.72)));
         manufactureDTO.setProcess_id("IS");
+        manufactureDTO.setFacility_id("IS00");
+        manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+        manufactureDTO.setThisLot("IS-"+manufactureDTO.getManufacture_inTime());
 
         return manufactureDTO;
     }
