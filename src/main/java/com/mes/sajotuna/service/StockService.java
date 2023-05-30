@@ -28,7 +28,7 @@ public class StockService {
         StockDTO stockDTO = new StockDTO();
 
         stockDTO.setNo(purchaseDTO.getNo());
-        stockDTO.setStatus("0");
+        stockDTO.setStatus("입고");
         stockDTO.setQtt(purchaseDTO.getQtt());
         stockDTO.setTime(purchaseDTO.getShipDate());
         stockDTO.setUnit(product.getUnit());

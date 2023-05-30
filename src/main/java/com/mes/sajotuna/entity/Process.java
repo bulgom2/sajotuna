@@ -40,6 +40,4 @@ public class Process {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "facility_id")
     private Facility facility;  // 설비 정보
-
-
 }

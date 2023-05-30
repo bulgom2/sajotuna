@@ -62,21 +62,21 @@
                             <thead>
                             <tr>
                                 <th>순번</th>
+                                <th>LOT 번호</th>
+                                <th>공정</th>
                                 <th>자재명</th>
                                 <th>재고 수량</th>
                                 <th>단위</th>
-                                <th>LOT 번호</th>
-                                <th>공정</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="wip : ${wipList}">
                                 <td th:text="${wip.id}">재공재고id</td>
+                                <td th:text="${wip.lotId}">LOT번호</td>
+                                <td th:text="${wip.process}">공정</td>
                                 <td th:text="${wip.name}">자재명</td>
                                 <td th:text="${wip.qtt}">재고수량</td>
                                 <td th:text="${wip.unit}">단위</td>
-                                <td th:text="${wip.lotId}">LOT번호</td>
-                                <td th:text="${wip.process}">공정</td>
                             </tr>
                             </tbody>
                         </table>

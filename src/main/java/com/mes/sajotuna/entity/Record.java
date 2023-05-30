@@ -39,5 +39,4 @@ public class Record {
 
     @Column(name = "record_endtime")
     private LocalDateTime endTime;    // 종료 시간
-
 }

@@ -58,6 +58,7 @@ public class OrdersController {
         // 수주 코드 생성 후 저장
         ordersDTO = ordersService.ordersMakeCode(ordersDTO);
 
+
         if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
             PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());

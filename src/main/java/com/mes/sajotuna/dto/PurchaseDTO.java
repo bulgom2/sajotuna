@@ -18,11 +18,7 @@ public class PurchaseDTO {
 
     private LocalDateTime date;    // 발주일자
 
-    private String status;    // 진행상태
-
     private String company;    // 거래처
-
-    private String code;    // 자재코드
 
     private String item;    // 자재명
 

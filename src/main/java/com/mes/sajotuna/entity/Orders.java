@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 // 수주관리
@@ -15,11 +17,12 @@ import java.time.LocalDateTime;
 @ToString
 public class Orders {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orders_id", nullable = false)
-    private Long id;    // 수주id
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "orders_id", nullable = false)
+//    private Long id;    // 수주id
 
+    @Id
     @Column(name = "orders_no", nullable = false)
     private String no;    // 수주번호
 
@@ -44,7 +47,7 @@ public class Orders {
     private Integer qtt;    // 제품수량
 
     @Column(name = "orders_shipdate")
-    private LocalDate shipDate;    // 예상 납품일
+    private LocalDateTime shipDate;    // 예상 납품일
 
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
