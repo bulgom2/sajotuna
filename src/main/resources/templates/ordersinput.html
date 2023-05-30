@@ -27,11 +27,15 @@
 
           if(qtt <= 0){
 <!--            swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');-->
-            alert("0보다 큰 값을 입력해주세요!");
+            // alert("0보다 큰 값을 입력해주세요!");
             window.parent.swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');
-
             return false;
+          } else if(qtt > 3000){
+              // alert("3000개를 초과하면 수주할 수 없습니다!");
+              window.parent.swal('알림', '3000개를 초과하면 수주할 수 없습니다!', 'warning');
+              return false;
           }
+
 
           // AJAX 요청 보내기
           $.ajax({

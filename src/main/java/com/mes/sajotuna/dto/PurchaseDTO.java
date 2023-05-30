@@ -3,6 +3,7 @@ package com.mes.sajotuna.dto;
 import com.mes.sajotuna.entity.Purchase;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.modelmapper.ModelMapper;
 
 import java.time.LocalDateTime;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 // 수주관리
 @Getter
 @Setter
+@ToString
 public class PurchaseDTO {
 
     private Long id;    //
