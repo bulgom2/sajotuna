@@ -13,7 +13,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     List<Orders> findAll();
 
-
     // 수주 확정 변경
     @Modifying
     @Query("UPDATE Orders  SET status = :status WHERE no = :no")

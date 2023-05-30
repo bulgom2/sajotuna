@@ -67,8 +67,6 @@
                                 <th>거래처</th>
                                 <th>발주 일자</th>
                                 <th>입고 일자</th>
-                                <th>진행 상태</th>
-                                <th>자재 코드</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -78,10 +76,8 @@
                                 <td th:text="${purchase.item}">자재명</td>
                                 <td th:text="${purchase.qtt}">발주수량</td>
                                 <td th:text="${purchase.company}">거래처</td>
-                                <td th:text="${purchase.date}">발주일자</td>
-                                <td th:text="${purchase.shipDate}">입고일자</td>
-                                <td th:text="${purchase.status}">진행상태</td>
-                                <td th:text="${purchase.code}">자재 코드</td>
+                                <td th:text="${#temporals.format(purchase.date, 'yyyy-MM-dd HH:mm')}">발주일자</td>
+                                <td th:text="${#temporals.format(purchase.shipDate, 'yyyy-MM-dd HH:mm')}">입고일자</td>
                             </tr>
                             </tbody>
                         </table>

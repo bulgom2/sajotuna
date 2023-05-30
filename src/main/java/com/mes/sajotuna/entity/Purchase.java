@@ -25,14 +25,8 @@ public class Purchase {
     @Column(name = "purchase_date", nullable = false)
     private LocalDateTime date;    // 발주일자
 
-    @Column(name = "purchase_status", nullable = false)
-    private Long status;    // 진행상태
-
     @Column(name = "purchase_company", nullable = false)
     private String company;    // 거래처
-
-    @Column(name = "purchase_code")
-    private String code;    // 자재코드
 
     @Column(name = "purchase_item", nullable = false)
     private String item;    // 자재명
@@ -43,7 +37,7 @@ public class Purchase {
     @Column(name = "purchase_shipdate", nullable = false)
     private LocalDateTime shipDate;    // 입고일
 
-    private String ordersNo;
+    private String ordersNo; // 수주 번호
 
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "order_no", referencedColumnName = "orders_no")

@@ -23,7 +23,6 @@ public class ShipmentRepositoryTest {
         shipment.setQtt(30L);
         shipment.setDate(LocalDateTime.now());
         shipment.setName("dfdfd");
-        shipment.setOrdersId("dfdfd");
 
         shipmentRepository.save(shipment);
 

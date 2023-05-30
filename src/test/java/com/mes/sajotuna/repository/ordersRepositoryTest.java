@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootTest
@@ -29,7 +28,7 @@ public class ordersRepositoryTest {
 //        orders.setCode("123");
         orders.setItem("12315");
         orders.setCompany("2131");
-        orders.setShipDate((LocalDate.from(LocalDateTime.now())));
+        orders.setShipDate(LocalDateTime.now());
         orders.setStatus("132");
 
         ordersRepository.save(orders);

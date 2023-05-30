@@ -60,21 +60,25 @@
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                             <tr>
-                                <th>제품명</th>
-                                <th>Lot.no</th>
+                                <th>순번</th>
+                                <th>현재 로트번호</th>
+                                <th>공정</th>
                                 <th>투입량</th>
                                 <th>시작 시간</th>
                                 <th>종료 시간</th>
+                                <th>이전 로트번호</th>
                                 <th>진행 상황</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="record : ${recordList}">
-                                <td th:text="${record.beId}">제품명</td>
+                                <td th:text="${record.id}">id</td>
                                 <td th:text="${record.no}">Lot.no</td>
+                                <td th:text="${record.processNo}">공정명</td>
                                 <td th:text="${record.qtt}">투입량</td>
-                                <td th:text="${record.startTime}">시작 시간</td>
-                                <td th:text="${record.endTime}">종료 시간</td>
+                                <td th:text="${#temporals.format(record.startTime, 'yyyy-MM-dd HH:mm')}">시작 시간</td>
+                                <td th:text="${#temporals.format(record.endTime, 'yyyy-MM-dd HH:mm')}">종료 시간</td>
+                                <td th:text="${record.beId}"></td>
                                 <td th:text="${record.status}">진행 상황</td>
                             </tr>
                             </tbody>
@@ -95,20 +99,22 @@
                             <thead>
                             <tr>
                                 <th>공정</th>
-                                <th>Lot.no</th>
                                 <th>투입량</th>
                                 <th>시작 시간</th>
                                 <th>종료 시간</th>
+                                <th>이전 로트번호</th>
+                                <th>현재 로트번호</th>
                                 <th>진행 상황</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="record : ${recordList}">
-                                <td th:text="${record.beId}">공정</td>
-                                <td th:text="${record.no}">Lot.no</td>
+                                <td th:text="${record.processNo}">공정명</td>
                                 <td th:text="${record.qtt}">투입량</td>
-                                <td th:text="${record.startTime}">시작 시간</td>
-                                <td th:text="${record.endTime}">종료 시간</td>
+                                <td th:text="${#temporals.format(record.startTime, 'yyyy-MM-dd HH:mm')}">시작 시간</td>
+                                <td th:text="${#temporals.format(record.endTime, 'yyyy-MM-dd HH:mm')}">종료 시간</td>
+                                <td th:text="${record.beId}"></td>
+                                <td th:text="${record.no}">Lot.no</td>
                                 <td th:text="${record.status}">진행 상황</td>
                             </tr>
                             </tbody>

@@ -277,7 +277,6 @@ public class PurchaseService {
 
 //            tempPurchaseDTO.setOrders(ordersDTO);
             tempPurchaseDTO.setDate(ordersDTO.getDate());
-            tempPurchaseDTO.setStatus("0");
 
             String comname = name[i];
             if(ch1 <= 2){

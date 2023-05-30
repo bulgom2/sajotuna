@@ -21,7 +21,6 @@ public class PurchaseRepositoryTest {
 
         Orders orders = new Orders();
 
-        purchase.setCode("dd");
         purchase.setNo("sdfdf");
         purchase.setItem("dfdfd");
         purchase.setQtt(500L);
@@ -29,7 +28,6 @@ public class PurchaseRepositoryTest {
         purchase.setCompany("sfdfsd");
 //        purchase.setOrders();
         purchase.setShipDate((LocalDateTime.now()));
-        purchase.setStatus(30L);
 
 //        purchaseRepository.save(purchase);
 

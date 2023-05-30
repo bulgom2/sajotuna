@@ -75,8 +75,8 @@
                                     <td th:text="${manufacture.item}">양배추즙</td>
                                     <td th:text="${manufacture.processId}">추출</td>
                                     <td th:text="${manufacture.qtt}">100</td>
-                                    <td th:text="${manufacture.inTime}">2023-05-24 17:47</td>
-                                    <td th:text="${manufacture.outTime}">2023-05-24 20:47</td>
+                                    <td th:text="${#temporals.format(manufacture.inTime, 'yyyy-MM-dd HH:mm')}">2023-05-24 17:47</td>
+                                    <td th:text="${#temporals.format(manufacture.outTime, 'yyyy-MM-dd HH:mm')}">2023-05-24 20:47</td>
                                     <td th:text="${manufacture.status}">진행 중</td>
                                 </tr>
                                 </tbody>
