@@ -58,7 +58,7 @@
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                             <tr>
-                                <th>순번</th>
+<!--                                <th>순번</th>-->
                                 <th>수주 번호</th>
                                 <th>Lot.no</th>
                                 <th>거래처</th>
@@ -69,13 +69,13 @@
                             </thead>
                             <tbody>
                             <tr th:each="shipment : ${shipmentList}">
-                                <td th:text="${shipment.id}">순번</td>
-                                <td th:text="${shipment.ordersNo}">수주 번호</td>
+<!--                                <td th:text="${shipment.no}">순번</td>-->
+                                <td th:text="${shipment.no}">수주 번호</td>
                                 <td th:text="${shipment.no}">Lot.no</td>
                                 <td th:text="${shipment.company}">거래처</td>
-                                <td th:text="${shipment.name}">품목명</td>
+                                <td th:text="${shipment.item}">품목명</td>
                                 <td th:text="${shipment.qtt}">출하 수량</td>
-                                <td th:text="${#temporals.format(shipment.date, 'yyyy-MM-dd HH:mm')}">납기일</td>
+                                <td th:text="${#temporals.format(shipment.shipDate, 'yyyy-MM-dd HH:mm')}">납기일</td>
                             </tr>
                             </tbody>
                         </table>
@@ -85,41 +85,41 @@
         </div> <!-- /shipment-content-2 -->
 
 
-        <div class="shipment-content-3">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">출하 상세 내역</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive" id="shipmentListContainer2">
-                        <table class="table table-bordered" id="dataTable2">
-                            <thead>
-                            <tr>
-                                <th>수주 번호</th>
-                                <th>거래처</th>
-                                <th>Lot.no</th>
-                                <th>품목명</th>
-                                <th>출하 수량</th>
-                                <th>납기일</th>
-                                <th>진행 상황</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="shipment : ${shipmentList}">
-                                <td th:text="${shipment.ordersId}">수주 번호</td>
-                                <td th:text="${shipment.company}">거래처</td>
-                                <td th:text="${shipment.no}">Lot.no</td>
-                                <td th:text="${shipment.name}">품목명</td>
-                                <td th:text="${shipment.qtt}">출하 수량</td>
-                                <td th:text="${#temporals.format(shipment.date, 'yyyy-MM-dd HH:mm')}">납기일</td>
-                                <td th:text="${shipment.name}">진행상황</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div> <!-- /table-responsive -->
-                </div> <!-- /card-body -->
-            </div> <!-- /card shadow mb-4 -->
-        </div> <!-- /shipment-content-3 -->
+<!--        <div class="shipment-content-3">-->
+<!--            <div class="card shadow mb-4">-->
+<!--                <div class="card-header py-3">-->
+<!--                    <h6 class="m-0 font-weight-bold text-primary">출하 상세 내역</h6>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="table-responsive" id="shipmentListContainer2">-->
+<!--                        <table class="table table-bordered" id="dataTable2">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>수주 번호</th>-->
+<!--                                <th>거래처</th>-->
+<!--                                <th>Lot.no</th>-->
+<!--                                <th>품목명</th>-->
+<!--                                <th>출하 수량</th>-->
+<!--                                <th>납기일</th>-->
+<!--                                <th>진행 상황</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="shipment : ${shipmentList2}">-->
+<!--                                <td th:text="${shipment.ordersId}">수주 번호</td>-->
+<!--                                <td th:text="${shipment.company}">거래처</td>-->
+<!--                                <td th:text="${shipment.no}">Lot.no</td>-->
+<!--                                <td th:text="${shipment.name}">품목명</td>-->
+<!--                                <td th:text="${shipment.qtt}">출하 수량</td>-->
+<!--                                <td th:text="${#temporals.format(shipment.date, 'yyyy-MM-dd HH:mm')}">납기일</td>-->
+<!--                                <td th:text="${shipment.name}">진행상황</td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div> &lt;!&ndash; /table-responsive &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; /card-body &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; /card shadow mb-4 &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; /shipment-content-3 &ndash;&gt;-->
     </div> <!-- /page-content-wrapper -->
 </div> <!-- /container -->
 

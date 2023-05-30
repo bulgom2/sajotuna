@@ -376,10 +376,10 @@ public class PurchaseService {
                 purchaseRepository.save(tempPurchaseDTO.createPurchase());
 
                 stockService.stockSave(tempPurchaseDTO);
-
             }
         }
 
+        // 이름을 코드명으로 변경
         Product product = productRepository.findByName(name[0]);
         String productCode = product.getNo();
         purchaseDTOList.get(0).setItem(productCode);

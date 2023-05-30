@@ -1,6 +1,8 @@
 package com.mes.sajotuna.controller;
 
+import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.entity.Shipment;
+import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.repository.ShipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,15 +15,22 @@ import java.util.List;
 public class ShipmentController {
 
     @Autowired
-    private ShipmentRepository ShipmentRepository;
+    private ShipmentRepository shipmentRepository;
+
+    @Autowired
+    private OrdersRepository ordersRepository;
 
     // html 불러오기(bom 관리 페이지)
     @GetMapping("/shipment")
     public String shipmentInformation(Model model){
 
-        List<Shipment> shipmentList = ShipmentRepository.findAll();
+        List<Orders> ordersList = ordersRepository.findAllByStatus("확정");
 
-        model.addAttribute("shipmentList", shipmentList);
+        List<Shipment> shipmentList = shipmentRepository.findAll();
+
+        model.addAttribute("shipmentList", ordersList);
+
+        model.addAttribute("shipmentList2", shipmentList);
 
         return "shipment";
     }

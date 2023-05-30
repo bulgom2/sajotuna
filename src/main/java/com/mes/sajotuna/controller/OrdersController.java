@@ -44,7 +44,7 @@ public class OrdersController {
     // html 불러오기(수주 등록 페이지)
     @GetMapping("/orders/submit")
     public String orderWrite(){
-        return "orderscopy";
+        return "orders";
     }
 
     // 수주 등록 페이지에서 수주 list 페이지로 값 전달하기
@@ -57,7 +57,6 @@ public class OrdersController {
 
         // 수주 코드 생성 후 저장
         ordersDTO = ordersService.ordersMakeCode(ordersDTO);
-
 
         if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
             PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
@@ -96,7 +95,7 @@ public class OrdersController {
 
         model.addAttribute("ordersList", ordersList);
 
-        return "orderscopy";
+        return "orders";
     }
 
 
@@ -143,6 +142,8 @@ public class OrdersController {
     @PostMapping("/confirm")
     @ResponseBody
     public String confirmSuju(@RequestBody OrdersDTO ordersDTO) {
+
+        System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱ : " + ordersDTO);
 
         // 선택된 수주번호와 변경할 상태 값을 가져옴
         String selectedNo = ordersDTO.getOrdersNo();
