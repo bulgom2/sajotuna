@@ -64,10 +64,10 @@
                                 <th>순번</th>
                                 <th>재고 번호</th>
                                 <th>제품명</th>
-                                <th>재고 수량</th>
+                                <th>입출고 수량</th>
                                 <th>단위</th>
-                                <th>입고 일자</th>
-                                <th>진행 상태</th>
+                                <th>입출고 일자</th>
+                                <th>진행상태</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -77,7 +77,7 @@
                                 <th th:text="${stock.productName}">제품명</th>
                                 <th th:text="${stock.qtt}">재고 수량</th>
                                 <th th:text="${stock.unit}">단위</th>
-                                <th th:text="${stock.time}">입고 일자</th>
+                                <td th:text="${#temporals.format(stock.time, 'yyyy-MM-dd HH:mm')}">입고 일자</td>
                                 <th th:text="${stock.status}">진행 상태</th>
                             </tr>
                             </tbody>

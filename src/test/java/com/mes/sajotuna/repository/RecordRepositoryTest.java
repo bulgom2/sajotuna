@@ -21,7 +21,7 @@ public class RecordRepositoryTest {
         record.setBeId("sdds");
         record.setQtt(500L);
         record.setNo("sdfsfs");
-        record.setProcessId("sdfdfd");
+//        record.setProcessId("sdfdfd");
         record.setStatus(50L);
         record.setStartTime(LocalDateTime.now());
         record.setEndTime(LocalDateTime.now());

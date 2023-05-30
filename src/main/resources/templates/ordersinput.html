@@ -31,6 +31,14 @@
           var item = $('#orders_item').val();
           var qtt = $('#orders_qtt').val();
 
+          if(qtt <= 0){
+<!--            swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');-->
+            alert("0보다 큰 값을 입력해주세요!");
+            window.parent.swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');
+
+            return false;
+          }
+
           // AJAX 요청 보내기
           $.ajax({
             url: '/orders/submit',
@@ -44,7 +52,7 @@
 
                 closeModal();
               // 성공적으로 요청이 처리되면 부모 창을 다른 경로로 이동시킴
-              window.parent.location.href = 'http://localhost:8080/orders';
+              window.parent.location.href = 'http://localhost:8134/orders';
             },
             error: function(error) {
               // 요청이 실패한 경우 에러 처리
@@ -52,6 +60,14 @@
             }
           });
         }
+
+
+<!--        function closeModal2() {-->
+// <!--         // 모달창 닫기-->
+<!--&lt;!&ndash;          $('#myModal').modal('close');&ndash;&gt;-->
+// <!--          window.parent.location.href = 'http://localhost:8080/orders' ;-->
+
+<!--        }-->
     </script>
 </head>
 <body>
@@ -63,15 +79,15 @@
 
 
             <div class="orders-content-2">
-                <div class="orders-content-2-1">
-                    <div class="orders_company">
-                        <p class="orders_company">거래처</p>
-                        <select name = "company" id="orders_company">
-                            <option value = "coupang">쿠팡</option>
-                            <option value = "11번가">11번가</option>
-                        </select>
-                    </div>
-                </div>
+<!--                <div class="orders-content-2-1">-->
+<!--                    <div class="orders_company">-->
+<!--                        <p class="orders_company">거래처</p>-->
+<!--                        <select name = "company" id="orders_company">-->
+<!--                            <option value = "coupang">쿠팡</option>-->
+<!--                            <option value = "11번가">11번가</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <div class="orders-content-2-2">
                     <div class="orders_item">
@@ -100,5 +116,10 @@
 <!--        </form>-->
     </div>
 </div>
+
+<!-- swal -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 </body>
 </html>

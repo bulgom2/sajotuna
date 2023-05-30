@@ -1,6 +1,5 @@
 package com.mes.sajotuna.process;
 
-
 import com.mes.sajotuna.dto.ManufactureDTO;
 
 import java.time.LocalDateTime;
@@ -8,7 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreProcessing {
+public class Inspection {
 
     //하루 일과 시간
     LocalTime start = LocalTime.of(9, 0, 0); // 오전 9시
@@ -18,43 +17,42 @@ public class PreProcessing {
     LocalTime startLaunchTime = LocalTime.of(11, 40, 0); // 11시 10분
     LocalTime endLaunchTime = LocalTime.of(13, 0, 0); // 1시
 
-    public List<ManufactureDTO> preProcessing(ManufactureDTO getPP, ManufactureDTO resultMS) {
+    List<ManufactureDTO> isList = new ArrayList<>();
 
-        // 원료 계량 양
-        long amount = resultMS.getManufacture_qtt();
-        // 최대 생산 가능 양
-        long availableMax = 1000;
-        // 작업 횟수 계산
-        long numOfWorks = (int)Math.ceil((double) amount/availableMax);
-        System.out.println("작업 횟수 계산 : "+numOfWorks);
+    public List<ManufactureDTO> inspection(List<ManufactureDTO> fiList, ManufactureDTO getIS){
 
-        List<ManufactureDTO> ppList = new ArrayList<>();
+        //검사 마지막 공정 시간
+        LocalDateTime processLastTime = getIS.getManufacture_outTime();
 
-        //전처리 계산 시점
-        LocalDateTime workTime = resultMS.getManufacture_outTime();
-        //전처리 마지막 공정 시간
-        LocalDateTime processLastTime = getPP.getManufacture_outTime();
+        List<ManufactureDTO> fiListClone = new ArrayList<>();
+        for(int i = 0; i < fiList.size(); i++){
+            fiListClone.add(new ManufactureDTO(fiList.get(i)));
+        }
 
-        for (int i = 0; i < numOfWorks; i++) {
-            long amountPerWork = Math.min(amount, availableMax); // 각 작업당 처리할 양
-            amount -= amountPerWork;
+        for(int i = 0; i < fiListClone.size(); i++){
+            if(fiListClone.get(0).getManufacture_item().equals("YBC01")){
+                fiListClone.get(i).setManufacture_qtt(fiListClone.get(i).getManufacture_qtt()*1000/80);
+            }else if(fiListClone.get(0).getManufacture_item().equals("HMN01")){
+                fiListClone.get(i).setManufacture_qtt(fiListClone.get(i).getManufacture_qtt()*1000/20);
+            }else {
+                if(fiListClone.get(i).getManufacture_item().equals("SRJ02")){
+                    fiListClone.get(i).setManufacture_item("SRJ00");
+                }else {
+                    fiListClone.get(i).setManufacture_item("MSJ00");
+                }
 
-            ManufactureDTO amountWork = new ManufactureDTO(); // 새로운 객체 생성
+                fiListClone.get(i).setManufacture_qtt(fiListClone.get(i).getOutPut());
+            }
+        }
 
-            amountWork.setManufacture_qtt(amountPerWork);
-            amountWork.setOrders_no(resultMS.getOrders_no());
-            amountWork.setManufacture_item(resultMS.getManufacture_item());
-            amountWork.setBeforeLot(resultMS.getThisLot());
-            amountWork.setOutPut(amountPerWork);
-
-            ppList.add(result(amountWork, workTime, processLastTime));
-
-            processLastTime = ppList.get(i).getManufacture_outTime();
-            workTime = ppList.get(i).getManufacture_outTime();
+        for(int i = 0; i < fiListClone.size(); i++){
+            isList.add(result(fiListClone.get(i), fiListClone.get(i).getManufacture_outTime(), processLastTime));
         }
 
 
-        return ppList;
+
+
+        return  isList;
     }
 
     public ManufactureDTO result(ManufactureDTO manufactureDTO, LocalDateTime workTime , LocalDateTime processLastTime){
@@ -79,10 +77,11 @@ public class PreProcessing {
     public ManufactureDTO measureSetTime(LocalDateTime now, ManufactureDTO manufactureDTO) {
 
         manufactureDTO.setManufacture_inTime(now.plusMinutes(20));
-        manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*3.6)));
-        manufactureDTO.setProcess_id("PP");
-        manufactureDTO.setThisLot("PP"+manufactureDTO.getManufacture_inTime());
-
+        manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*0.72)));
+        manufactureDTO.setProcess_id("IS");
+        manufactureDTO.setFacility_id("IS00");
+        manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
+        manufactureDTO.setThisLot("IS-"+manufactureDTO.getManufacture_inTime());
 
         return manufactureDTO;
     }
@@ -109,4 +108,6 @@ public class PreProcessing {
 
         return manufactureDTO;
     }
+
+
 }

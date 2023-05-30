@@ -47,14 +47,17 @@ $(document).ready(function() {
 $(document).ready(function() {
     var table = $('#dataTable').DataTable({
         "paging": false,
+        "searching": false
     });
 
     var table = $('#dataTable2').DataTable({
         "paging": false,
+        "searching": false
     });
 
     var table = $('#dataTable3').DataTable({
         "paging": false,
+        "searching": false
     });
 
     // 오름차순 정렬

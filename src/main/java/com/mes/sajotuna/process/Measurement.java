@@ -26,10 +26,16 @@ public class Measurement {
         thisManufactureDTO.setManufacture_item(purchaseDTO.getItem());
         thisManufactureDTO.setManufacture_qtt(purchaseDTO.getQtt());
         thisManufactureDTO.setOrders_no(purchaseDTO.getOrdersNo());
+        thisManufactureDTO.setOutPut(purchaseDTO.getQtt());
 
-        LocalDateTime processLastTime = manufactureDTO.getManufacture_outtime();
 
-        if(now.isAfter(processLastTime)){  // 원료계량기 작업 계획이 없을때
+
+        LocalDateTime processLastTime = manufactureDTO.getManufacture_outTime();
+
+        if(processLastTime == null){
+            checkTime((now));
+            System.out.println("들어옴");
+        } else if(now.isAfter(processLastTime)){  // 원료계량기 작업 계획이 없을때
             checkTime(now);
 
 
@@ -43,9 +49,10 @@ public class Measurement {
 
     public void measureSetTime(LocalDateTime now){
 
-        thisManufactureDTO.setManufacture_intime(now.plusMinutes(20));
-        thisManufactureDTO.setManufacture_outtime(now.plusMinutes(50));
+        thisManufactureDTO.setManufacture_inTime(now.plusMinutes(20));
+        thisManufactureDTO.setManufacture_outTime(now.plusMinutes(50));
         thisManufactureDTO.setProcess_id("MS");
+        thisManufactureDTO.setThisLot("MS-"+this.thisManufactureDTO.getManufacture_inTime()); // 현재 로트
     }
 
     public void checkTime(LocalDateTime time){

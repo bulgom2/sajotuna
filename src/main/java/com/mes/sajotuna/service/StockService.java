@@ -14,16 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class StockService {
 
-    private final PurchaseRepository purchaseRepository;
-
-    private final OrdersRepository ordersRepository;
-
-    private final BomRepository bomRepository;
-
-    private final MaterialRepository materialRepository;
-
-    private final CompanyRepository companyRepository;
-
     private final StockRepository stockRepository;
 
     private final ProductRepository productRepository;
@@ -38,7 +28,7 @@ public class StockService {
         StockDTO stockDTO = new StockDTO();
 
         stockDTO.setNo(purchaseDTO.getNo());
-        stockDTO.setStatus("0");
+        stockDTO.setStatus("입고");
         stockDTO.setQtt(purchaseDTO.getQtt());
         stockDTO.setTime(purchaseDTO.getShipDate());
         stockDTO.setUnit(product.getUnit());

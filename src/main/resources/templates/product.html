@@ -100,7 +100,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:if="${product.id >= 5 and product.id <= 6}" th:each="product : ${productList}">
+                                <tr th:if="${product.id >= 5 and product.id <= 10}" th:each="product : ${productList}">
                                     <td th:text="${product.id}">1</td>
                                     <td th:text="${product.no}">c01</td>
                                     <td th:text="${product.name}">양배추즙</td>
@@ -133,7 +133,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr th:if="${product.id >= 7}" th:each="product : ${productList}">
+                                <tr th:if="${product.id >= 11}" th:each="product : ${productList}">
                                     <td th:text="${product.id}">1</td>
                                     <td th:text="${product.no}">c01</td>
                                     <td th:text="${product.name}">양배추즙</td>

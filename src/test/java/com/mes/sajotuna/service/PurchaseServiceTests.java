@@ -21,7 +21,7 @@ class PurchaseServiceTests {
 
     @Test
     void purchaseTest(){
-        Orders orders = ordersRepository.findById(8L)
+        Orders orders = ordersRepository.findById(1L)
                 .orElseThrow(EntityNotFoundException::new);
 
         System.out.println("수주 entity : " + orders);
@@ -41,6 +41,6 @@ class PurchaseServiceTests {
             System.out.println("발주가 진행되지 않았습니다.");
 
         }
-
+        
     }
 }

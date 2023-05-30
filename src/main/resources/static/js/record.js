@@ -48,10 +48,12 @@ $(document).ready(function() {
 $(document).ready(function() {
     var table = $('#dataTable').DataTable({
         "paging": false,
+        "scrollY": "300px", // Adjust the height as per your requirement
     });
 
     var table = $('#dataTable2').DataTable({
         "paging": false,
+        "scrollY": "300px", // Adjust the height as per your requirement
     });
 
     // 오름차순 정렬

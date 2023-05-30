@@ -100,25 +100,25 @@
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th>순번</th>
+<!--                                    <th>순번</th>-->
                                     <th>수주 번호</th>
-                                    <th>수주 일자</th>
-                                    <th>거래처</th>
                                     <th>제품명</th>
                                     <th>수량</th>
+                                    <th>거래처</th>
+                                    <th>수주 일자</th>
                                     <th>예상 납품일</th>
                                     <th data-orderable="true" data-priority="1">진행 상태</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="orders : ${ordersList}">
-                                    <td th:text="${orders.id}">수주ID</td>
+<!--                                    <td th:text="${orders.id}">수주ID</td>-->
                                     <td th:text="${orders.no}">수주번호</td>
-                                    <td th:text="${#temporals.format(orders.date, 'yyyy-MM-dd')}">수주일자</td>
-                                    <td th:text="${orders.company}">거래처</td>
                                     <td th:text="${orders.item}">제품명</td>
                                     <td th:text="${orders.qtt}">수량</td>
-                                    <td th:text="${orders.shipDate}">예상납품일</td>
+                                    <td th:text="${orders.company}">거래처</td>
+                                    <td th:text="${#temporals.format(orders.date, 'yyyy-MM-dd HH:mm')}">수주일자</td>
+                                    <td th:text="${#temporals.format(orders.shipDate, 'yyyy-MM-dd HH:mm')}">예상납품일</td>
                                     <td th:text="${orders.status.toString()}">진행상태</td>
                                 </tr>
                                 </tbody>
@@ -134,7 +134,7 @@
 
     <div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal">
         <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content" style="width:40%; height:430px;">
+            <div class="modal-content" style="width:40%; height:350px;">
 
                 <!-- Modal Header -->
                 <div class="modal-header">

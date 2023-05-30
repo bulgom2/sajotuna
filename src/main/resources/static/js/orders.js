@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 
     // 오름차순 정렬
-    table.order([7, 'asc']).draw();
+    table.order([6, 'asc']).draw();
 
 });
 <!--     dataTable-->
@@ -44,7 +44,8 @@ function convertTableToCSV() {
             csv += '"' + cell + '",';
         }
 
-        csv += '\n';f
+        csv += '\n';
+        f
     }
     return csv;
 }
@@ -65,6 +66,7 @@ $(document).ready(function () {
 
 
 // 수주 확정 및 삭제 버튼
+
 $(document).ready(function () {
     var selectedRow;
 
@@ -98,7 +100,7 @@ $(document).ready(function () {
             return;
         }
 
-        var statusCell = selectedRow.find('td:eq(7)');
+        var statusCell = selectedRow.find('td:eq(6)');
         var status = statusCell.text().trim();
         if (status === '확정') {
             swal('알림', '이미 확정된 수주입니다.', 'warning');
@@ -106,7 +108,7 @@ $(document).ready(function () {
         }
 
         //statusCell.text('확정');
-        var ordersNo = selectedRow.find('td:eq(1)').text().trim();
+        var ordersNo = selectedRow.find('td:eq(0)').text().trim();
         if (ordersNo === '') {
             swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
             return;
@@ -129,9 +131,11 @@ $(document).ready(function () {
                         console.log('수주가 확정되었습니다.');
                         console.log('response : ' + response);
 
+
                         statusCell.text('확정'); // 테이블 값을 업데이트
                         selectedRow.removeClass('selected');
                         selectedRow = null;
+
                         $('#delete').prop('disabled', true);
                         swal('성공', '수주가 확정되었습니다.', 'success');
 
@@ -155,7 +159,7 @@ $(document).ready(function () {
             return;
         }
 
-        var statusCell = selectedRow.find('td:eq(7)');
+        var statusCell = selectedRow.find('td:eq(6)');
         var status = statusCell.text().trim();
         if (status === '확정') {
             swal('알림', '이미 확정된 수주는 삭제할 수 없습니다.', 'warning');
@@ -170,12 +174,11 @@ $(document).ready(function () {
             dangerMode: true,
         }).then((confirmed) => {
             if (confirmed) {
-                var ordersNo = selectedRow.find('td:eq(1)').text().trim();
+                var ordersNo = selectedRow.find('td:eq(0)').text().trim();
                 if (ordersNo === '') {
                     swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
                     return;
                 }
-
                 deleteOrder(ordersNo);
             }
         });
