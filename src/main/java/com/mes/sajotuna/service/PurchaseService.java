@@ -38,23 +38,18 @@ public class PurchaseService {
     private final ProductRepository productRepository;
 
 //    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
-//        PurchaseDTO purchaseDTO = new PurchaseDTO();
 //
-//        Orders orders = ordersRepository.findById(1L)
-//                .orElseThrow(EntityNotFoundException::new);
+//        List<PurchaseDTO> purchaseDTOList = purchaseTime(ordersDTO);
 //
-//        System.out.println("수주 entity : " + orders);
-//
-//        OrdersDTO ordersDto = OrdersDTO.of(orders);
-//
-//        purchaseDTO.setDate(ordersDTO.getDate());
-//        purchaseDTO.setShipDate(purchaseTime(ordersDTO));
-//        purchaseDTO.setOrdersNo(ordersDTO.getNo());
-//
-//        purchaseDTO.setOrdersNo(ordersDTO.getNo());
+//        return purchaseDTO.get(0);
+//    }
+
+
+//    public void PurchaseSave(OrdersDTO ordersDTO){
+//        List<PurchaseDTO> purchaseDTO = purchaseTime(ordersDTO);
 //
 //
-//        return purchaseDTO;
+//
 //    }
 
     // 수주 날짜와 수주 수량 가져오기
