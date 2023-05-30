@@ -81,7 +81,7 @@ public class PreProcessing {
         manufactureDTO.setManufacture_inTime(now.plusMinutes(20));
         manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*3.6)));
         manufactureDTO.setProcess_id("PP");
-        manufactureDTO.setThisLot("PP"+manufactureDTO.getManufacture_inTime());
+        manufactureDTO.setThisLot("PP00-"+manufactureDTO.getManufacture_inTime());
 
 
         return manufactureDTO;

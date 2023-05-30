@@ -1,19 +1,29 @@
-package com.mes.sajotuna.calculation;
-
+package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.ManufactureDTO;
 import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
+import com.mes.sajotuna.entity.Manufacture;
 import com.mes.sajotuna.process.*;
+import com.mes.sajotuna.repository.ManufactureRepository;
+import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+@Log4j2
+@SpringBootTest
+public class ManufactureServiceTest {
 
-public class measure {
+    @Autowired
+    private ManufactureRepository manufactureRepository;
 
-    public static void main(String[] args) {
+    @Test
+    public void expectedDate(){
 
         ManufactureDTO resultMS;
         List<ManufactureDTO> ppList = new ArrayList<>();
@@ -223,9 +233,28 @@ public class measure {
         for(int i = 0; i < pkList.size(); i++){
             System.out.println("pkList ("+(i+1)+") 번째 : "+pkList.get(i));
         }
+        System.out.println();
+
+        List<Manufacture> manufactureList = new ArrayList<>();
+        for(int i = 0; i < pkList.size(); i++){
+            manufactureList.add(pkList.get(i).dtoToEntity(pkList.get(i)));
+        }
+
+        System.out.println("manufactureList : "+manufactureList);
 
 
+
+        ManufactureDTO MD = ManufactureDTO.of(manufactureRepository.findLatestManufactureByProcessId("MS"));
+
+
+        System.out.println("MD : "+MD);
+
+        Manufacture manufacture = resultMS.dtoToEntity(resultMS);
+        System.out.println("manufacture : "+manufacture);
+
+        manufactureRepository.save(manufacture);
 
     }
+
 
 }

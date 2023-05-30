@@ -17,7 +17,10 @@ public class Cooling {
         }
 
         for(int i = 0; i < isListClone.size(); i++){
-            coList.add(setTime(isListClone.get(i)));
+            ManufactureDTO thisDTO;
+            thisDTO = setTime(isListClone.get(i));
+            thisDTO.setThisLot("CO0"+i+"-"+thisDTO.getManufacture_inTime());
+            coList.add(thisDTO);
         }
 
 
@@ -32,7 +35,6 @@ public class Cooling {
         manufactureDTO.setProcess_id("CO");
         manufactureDTO.setFacility_id(null);
         manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
-        manufactureDTO.setThisLot("CO-"+manufactureDTO.getManufacture_inTime());
 
         return manufactureDTO;
     }
