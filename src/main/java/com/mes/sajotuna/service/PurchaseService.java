@@ -1,17 +1,12 @@
 package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.OrdersDTO;
-
 import com.mes.sajotuna.dto.PurchaseDTO;
-
 import com.mes.sajotuna.entity.Bom;
+import com.mes.sajotuna.entity.Company;
 import com.mes.sajotuna.entity.Material;
-import com.mes.sajotuna.entity.Orders;
-import com.mes.sajotuna.repository.BomRepository;
-import com.mes.sajotuna.repository.MaterialRepository;
-import com.mes.sajotuna.repository.OrdersRepository;
 import com.mes.sajotuna.entity.Purchase;
-import com.mes.sajotuna.repository.PurchaseRepository;
+import com.mes.sajotuna.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +15,9 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @Transactional
@@ -35,29 +32,36 @@ public class PurchaseService {
 
     private final MaterialRepository materialRepository;
 
+    private final CompanyRepository companyRepository;
 
-    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
-        PurchaseDTO purchaseDTO = new PurchaseDTO();
+    private final StockRepository stockRepository;
 
-        Orders orders = ordersRepository.findById(1L)
-                .orElseThrow(EntityNotFoundException::new);
-
-        System.out.println("수주 entity : " + orders);
-
-        OrdersDTO ordersDto = OrdersDTO.of(orders);
-
-        purchaseDTO.setDate(ordersDTO.getDate());
-        purchaseDTO.setShipDate(purchaseTime(ordersDTO));
-        purchaseDTO.setOrdersNo(ordersDTO.getNo());
-
-        purchaseDTO.setOrdersNo(ordersDTO.getNo());
+    private final StockService stockService;
 
 
-        return purchaseDTO;
-    }
+
+//    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
+//        PurchaseDTO purchaseDTO = new PurchaseDTO();
+//
+//        Orders orders = ordersRepository.findById(1L)
+//                .orElseThrow(EntityNotFoundException::new);
+//
+//        System.out.println("수주 entity : " + orders);
+//
+//        OrdersDTO ordersDto = OrdersDTO.of(orders);
+//
+//        purchaseDTO.setDate(ordersDTO.getDate());
+//        purchaseDTO.setShipDate(purchaseTime(ordersDTO));
+//        purchaseDTO.setOrdersNo(ordersDTO.getNo());
+//
+//        purchaseDTO.setOrdersNo(ordersDTO.getNo());
+//
+//
+//        return purchaseDTO;
+//    }
 
     // 수주 날짜와 수주 수량 가져오기
-    public LocalDateTime purchaseTime(OrdersDTO ordersDTO){
+    public PurchaseDTO purchaseTime(OrdersDTO ordersDTO){
         // 1번 가져온다
 //        Orders orders = ordersRepository.findById(4L)
 
@@ -75,7 +79,14 @@ public class PurchaseService {
 
         System.out.println("bom : " + bom);
 
-        String material[] = new String[] {"양배추", "흑마늘", "석류 농축액", "매실 농축액", "콜라겐", "파우치", "스틱파우치", "박스", "정제수"};
+        String material[] = new String[] {"양배추", "흑마늘", "석류 농축액", "매실 농축액", "콜라겐", "파우치", "스틱 파우치", "박스", "정제수"};
+
+        // 제품당 코드 생성
+        String bomCode[] = new String[] {"YBC02", "HMN02", "SRJ02", "MSJ02", "CRG02", "PUC02", "STP02", "BOX02", ""};
+
+
+        // 제품 생성시 담을 수 있는 List 생성
+        List<PurchaseDTO> purchaseDTOList = new ArrayList<>();
 
         // 완제품 재고 : 양배추즙, 흑마늘즙, 석류젤리스틱, 매실젤리스틱
         int stock = bom.getTotal();
@@ -84,8 +95,8 @@ public class PurchaseService {
 
         // 현재 날짜 지정 방법
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDateTime date = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
-//        LocalDate date = LocalDate.now();
+//        LocalDateTime date = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
+        LocalDate date = LocalDate.now();
         String formattedDate = date.format(formatter);
 
         if(box <= 0) {
@@ -126,6 +137,7 @@ public class PurchaseService {
             stock4 = material4.getStock();
             min4 = material4.getMinorder();
             max4 = material4.getMaxorder();
+            System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ" + material4);
         } else {
             stock4 = 0.0;
         }
@@ -160,7 +172,7 @@ public class PurchaseService {
         LocalDateTime orderTime[] = new LocalDateTime[5];
 
         // 현재 시간 지정
-//        LocalDateTime now = LocalDateTime.of(2023, 5, 17, 11, 50, 25);
+//        LocalDateTime now = LocalDateTime.of(2023, 5, 26, 11, 50, 25);
         LocalDateTime now = LocalDateTime.now();
 
         // 필요한 수량
@@ -188,7 +200,6 @@ public class PurchaseService {
 
         // 현재 재고
         for(int i=0; i<name.length; i++) {
-
 
             System.out.print("현재 " + name[name.length -1 - i]);
 
@@ -228,13 +239,56 @@ public class PurchaseService {
         // ch1 {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.포장지, 7.스틱파우치, 8.박스}
         for(int i=0; i<orderTime.length; i++) {
             // 정제수이면 for문으로 다시 가서 i 값 1 증가
-
             if(Arrays.asList(material).indexOf(name[i]) == material.length-1) continue;
-            if(name[i] == null) continue;
 
             int ch1 = Arrays.asList(material).indexOf(name[i]) + 1;
 
+            if(ch1 == 0) continue;
+
             System.out.println("ch1 : " + ch1);
+
+            if(now.getDayOfWeek().getValue() > 5){
+                System.out.println("해당 요일에는 발주가 불가능합니다!");
+                return null;
+            }
+
+            // 임시 리스트 생성
+            List<PurchaseDTO> tempPurchaseDTOList = new ArrayList<>();
+
+            // 임시 DTO 생성
+            PurchaseDTO tempPurchaseDTO = new PurchaseDTO();
+
+
+            // 발주 번호 생성
+            String code = "PC00-" + bomCode[ch1-1] +"-" +  now.getYear();
+
+            String dateTime[] = {now.getMonthValue()+"", now.getDayOfMonth()+"", now.getHour()+"", now.getMinute()+"", now.getSecond()+""};
+
+            for(int j=0; j<dateTime.length; j++){
+                if(dateTime[j].length() < 2){
+                    dateTime[j] = "0" + dateTime[j];
+                }
+                code += dateTime[j];
+            }
+
+            tempPurchaseDTO.setNo(code);
+            tempPurchaseDTO.setItem(name[i]);
+            tempPurchaseDTO.setOrdersNo(ordersDTO.getOrdersNo());
+
+//            tempPurchaseDTO.setOrders(ordersDTO);
+            tempPurchaseDTO.setDate(ordersDTO.getDate());
+
+            String comname = name[i];
+            if(ch1 <= 2){
+                comname += ",";
+            }
+
+            Company company = companyRepository.findByItemContaining(comname);
+
+            System.out.println("회사 : " + company);
+
+            tempPurchaseDTO.setCompany(company.getName());
+
 
             // 필요량이 0이 아니면 아래의 식 진행
             if(needpro[i] != 0) {
@@ -242,18 +296,22 @@ public class PurchaseService {
                     if(now.getHour() < 12) {
                         orderTime[i] = twelveOrder(now, ch1);
                     } else {
-                        LocalDateTime tempDate = now.plusDays(1).withHour(11).withMinute(0).withSecond(0).withNano(0);
-                        orderTime[i] = twelveOrder(tempDate, ch1);
+                        if(now.getDayOfWeek().getValue() <= 5){
+                            LocalDateTime tempDate = now.plusDays(1).withHour(11).withMinute(0).withSecond(0).withNano(0);
+                            orderTime[i] = twelveOrder(tempDate, ch1);
+                        }
                     }
 //						System.out.println("1 : " + orderTime[i]);
                 } else {
                     if(now.getHour() < 15) {
                         orderTime[i] = fifthteenOrder(now, ch1);
-//						System.out.println("2 : " + orderTime[i]);
                     } else {
-                        LocalDateTime tempDate = now.plusDays(1).withHour(14).withMinute(0).withSecond(0).withNano(0);
-                        orderTime[i] = twelveOrder(tempDate, ch1);
+                        if(now.getDayOfWeek().getValue() <= 5) {
+                            LocalDateTime tempDate = now.plusDays(1).withHour(14).withMinute(0).withSecond(0).withNano(0);
+                            orderTime[i] = twelveOrder(tempDate, ch1);
+                        }
                     }
+//                    System.out.println("2 : " + orderTime[i]);
                 }
             } else {
                 System.out.println(name[i] + "은(는) 발주를 진행하지 않아도 됩니다.");
@@ -263,7 +321,7 @@ public class PurchaseService {
             double min = minmax[i][0];
             double max = minmax[i][1];
 
-            if(needpro[i] > min || needpro[i] < max) {
+            if(needpro[i] > min && needpro[i] < max) {
                 if(needpro[i] % min == 0) {
                     orderpro[i] = needpro[i];
                 } else {
@@ -271,10 +329,10 @@ public class PurchaseService {
                 }
             } else if(needpro[i] >= max) {
                 orderpro[i] = max;
-            } else if(needpro[i] <= min) {
-                orderpro[i] = min;
-            } else {
+            } else if(needpro[i] <= 0) {
                 orderpro[i] = 0;
+            } else {
+                orderpro[i] = min;
             }
 
 
@@ -301,19 +359,30 @@ public class PurchaseService {
             System.out.println();
             System.out.println();
 
+            System.out.println(latestTime +" " +  i);
+            System.out.println(orderTime[i] +" " +  i);
 
-            // {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.파우치, 7.스틱파우치, 8.박스}
-            if(ch1 <= 5){
-                if(latestTime.isBefore(orderTime[i])){
-                    latestTime = orderTime[i];
-                }
+            tempPurchaseDTO.setShipDate(orderTime[i]);
+            tempPurchaseDTO.setQtt((long) orderpro[i]);
+
+//            // {1.양배추, 2.흑마늘, 3.석류 농축액, 4.매실 농축액, 5.콜라겐, 6.파우치, 7.스틱파우치, 8.박스}
+//            if(ch1 <= 5){
+//                if(latestTime.isBefore(orderTime[i])){
+//                    latestTime = orderTime[i];
+//                }
+//            }
+
+            purchaseDTOList.add(tempPurchaseDTO);
+
+            if(orderpro[i] != 0){
+                purchaseRepository.save(tempPurchaseDTO.createPurchase());
+
+                stockService.stockSave(tempPurchaseDTO);
+
             }
-
         }
 
-        latestTime = latestTime.withHour(10).withMinute(0).withSecond(0).withNano(0);
-
-        return latestTime;
+        return purchaseDTOList.get(0);
     }
 
 
@@ -340,7 +409,7 @@ public class PurchaseService {
                 chDate = now.plusDays(day+1);
             }
         }
-        return chDate;
+        return chDate.withHour(10).withMinute(0).withSecond(0).withNano(0);
     }
 
 
@@ -387,7 +456,7 @@ public class PurchaseService {
                 }
             }
         }
-        return chDate;
+        return chDate.withHour(10).withMinute(0).withSecond(0).withNano(0);
     }
 
     // 발주 상세페이지~

@@ -26,51 +26,8 @@
     <!-- Custom styles for this page -->
     <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
-    <script>
-        // 엑셀 저장
-        function convertTableToCSV() {
-            var table = document.getElementById('dataTable');
-            var rows = table.getElementsByTagName('tr');
-            var csv = '';
+    <script src="/js/purchase.js"></script>
 
-            // 헤더 부분 추가
-            var headerRow = rows[0];
-            var headerCells = headerRow.getElementsByTagName('th');
-            for (var h = 0; h < headerCells.length; h++) {
-                var headerCell = headerCells[h].innerText.replace(/"/g, '""');
-                csv += '"' + headerCell + '",';
-            }
-            csv += '\n';
-
-            // 행 데이터 추가
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var cells = row.getElementsByTagName('td');
-
-                for (var j = 0; j < cells.length; j++) {
-                    var cell = cells[j].innerText.replace(/"/g, '""');
-                    csv += '"' + cell + '",';
-                }
-
-                csv += '\n';
-            }
-            return csv;
-        }
-
-        $(document).ready(function() {
-            $('#downloadButton').on('click', function() {
-                var csvData = '\uFEFF' + convertTableToCSV();
-                var blob = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
-                var downloadLink = document.createElement('a');
-                downloadLink.setAttribute('href', URL.createObjectURL(blob));
-                downloadLink.setAttribute('download', '발주목록.csv');
-                downloadLink.style.display = 'none';
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-            });
-        });
-    </script>
 
 </head>
 <body>
@@ -110,8 +67,6 @@
                                 <th>거래처</th>
                                 <th>발주 일자</th>
                                 <th>입고 일자</th>
-                                <th>진행 상태</th>
-                                <th>자재 코드</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -121,10 +76,8 @@
                                 <td th:text="${purchase.item}">자재명</td>
                                 <td th:text="${purchase.qtt}">발주수량</td>
                                 <td th:text="${purchase.company}">거래처</td>
-                                <td th:text="${purchase.date}">발주일자</td>
-                                <td th:text="${purchase.shipDate}">입고일자</td>
-                                <td th:text="${purchase.status}">진행상태</td>
-                                <td th:text="${purchase.code}">자재 코드</td>
+                                <td th:text="${#temporals.format(purchase.date, 'yyyy-MM-dd HH:mm')}">발주일자</td>
+                                <td th:text="${#temporals.format(purchase.shipDate, 'yyyy-MM-dd HH:mm')}">입고일자</td>
                             </tr>
                             </tbody>
                         </table>

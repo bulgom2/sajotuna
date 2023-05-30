@@ -19,8 +19,8 @@ public class Stock {
     @Column(name = "stock_id", nullable = false)
     private Long id;    // id
 
-    @Column(name = "product_id", nullable = false)
-    private String productId;    // 품목 정보 id
+    @Column(name = "product_name", nullable = false)
+    private String productName;    // 품목 정보 id
 
     @Column(name = "stock_qtt", nullable = false)
     private Long qtt;    // 입출고 수량

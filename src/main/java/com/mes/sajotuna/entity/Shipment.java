@@ -22,8 +22,8 @@ public class Shipment {
     @Column(name = "shipment_company", nullable = false)
     private String company;  // 거래처(=수령자)
 
-    @Column(name = "orders_id", nullable = false)
-    private String ordersId;  // 수주 번호
+    @Column(name = "orders_no", nullable = false)
+    private String ordersNo;  // 수주 번호
 
     @Column(name = "shipment_qtt", nullable = false)
     private Long qtt;  // 출하수량(=완제품 수량)

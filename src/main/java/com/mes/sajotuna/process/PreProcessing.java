@@ -31,9 +31,9 @@ public class PreProcessing {
         List<ManufactureDTO> ppList = new ArrayList<>();
 
         //전처리 계산 시점
-        LocalDateTime workTime = resultMS.getManufacture_outtime();
+        LocalDateTime workTime = resultMS.getManufacture_outTime();
         //전처리 마지막 공정 시간
-        LocalDateTime processLastTime = getPP.getManufacture_outtime();
+        LocalDateTime processLastTime = getPP.getManufacture_outTime();
 
         for (int i = 0; i < numOfWorks; i++) {
             long amountPerWork = Math.min(amount, availableMax); // 각 작업당 처리할 양
@@ -44,11 +44,13 @@ public class PreProcessing {
             amountWork.setManufacture_qtt(amountPerWork);
             amountWork.setOrders_no(resultMS.getOrders_no());
             amountWork.setManufacture_item(resultMS.getManufacture_item());
+            amountWork.setBeforeLot(resultMS.getThisLot());
+            amountWork.setOutPut(amountPerWork);
 
             ppList.add(result(amountWork, workTime, processLastTime));
 
-            processLastTime = ppList.get(i).getManufacture_outtime();
-            workTime = ppList.get(i).getManufacture_outtime();
+            processLastTime = ppList.get(i).getManufacture_outTime();
+            workTime = ppList.get(i).getManufacture_outTime();
         }
 
 
@@ -57,7 +59,9 @@ public class PreProcessing {
 
     public ManufactureDTO result(ManufactureDTO manufactureDTO, LocalDateTime workTime , LocalDateTime processLastTime){
 
-        if (workTime.isAfter(processLastTime)) {  // 원료계량기 작업 계획이 없을때
+        if(processLastTime == null){
+            checkTime(workTime, manufactureDTO);
+        }else if (workTime.isAfter(processLastTime)) {  // 원료계량기 작업 계획이 없을때
             checkTime(workTime, manufactureDTO);
 
 
@@ -74,9 +78,11 @@ public class PreProcessing {
 
     public ManufactureDTO measureSetTime(LocalDateTime now, ManufactureDTO manufactureDTO) {
 
-        manufactureDTO.setManufacture_intime(now.plusMinutes(20));
-        manufactureDTO.setManufacture_outtime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*3.6)));
+        manufactureDTO.setManufacture_inTime(now.plusMinutes(20));
+        manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*3.6)));
         manufactureDTO.setProcess_id("PP");
+        manufactureDTO.setThisLot("PP"+manufactureDTO.getManufacture_inTime());
+
 
         return manufactureDTO;
     }

@@ -29,51 +29,7 @@
     <!-- Custom styles for this page -->
     <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
-    <script>
-        // 엑셀 저장
-        function convertTableToCSV() {
-            var table = document.getElementById('dataTable');
-            var rows = table.getElementsByTagName('tr');
-            var csv = '';
-
-            // 헤더 부분 추가
-            var headerRow = rows[0];
-            var headerCells = headerRow.getElementsByTagName('th');
-            for (var h = 0; h < headerCells.length; h++) {
-                var headerCell = headerCells[h].innerText.replace(/"/g, '""');
-                csv += '"' + headerCell + '",';
-            }
-            csv += '\n';
-
-            // 행 데이터 추가
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var cells = row.getElementsByTagName('td');
-
-                for (var j = 0; j < cells.length; j++) {
-                    var cell = cells[j].innerText.replace(/"/g, '""');
-                    csv += '"' + cell + '",';
-                }
-
-                csv += '\n';
-            }
-            return csv;
-        }
-
-        $(document).ready(function() {
-            $('#downloadButton').on('click', function() {
-                var csvData = '\uFEFF' + convertTableToCSV();
-                var blob = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
-                var downloadLink = document.createElement('a');
-                downloadLink.setAttribute('href', URL.createObjectURL(blob));
-                downloadLink.setAttribute('download', '재공재고내역.csv');
-                downloadLink.style.display = 'none';
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-            });
-        });
-    </script>
+    <script src="/js/wip.js"></script>
 
 </head>
 <body>
@@ -106,21 +62,21 @@
                             <thead>
                             <tr>
                                 <th>순번</th>
+                                <th>LOT 번호</th>
+                                <th>공정</th>
                                 <th>자재명</th>
                                 <th>재고 수량</th>
                                 <th>단위</th>
-                                <th>LOT 번호</th>
-                                <th>공정</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="wip : ${wipList}">
                                 <td th:text="${wip.id}">재공재고id</td>
+                                <td th:text="${wip.lotId}">LOT번호</td>
+                                <td th:text="${wip.process}">공정</td>
                                 <td th:text="${wip.name}">자재명</td>
                                 <td th:text="${wip.qtt}">재고수량</td>
                                 <td th:text="${wip.unit}">단위</td>
-                                <td th:text="${wip.lotId}">LOT번호</td>
-                                <td th:text="${wip.process}">공정</td>
                             </tr>
                             </tbody>
                         </table>

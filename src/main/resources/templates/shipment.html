@@ -27,51 +27,7 @@
     <!-- Custom styles for this page -->
     <link rel="stylesheet" th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}">
 
-    <script>
-        // 엑셀 저장
-        function convertTableToCSV() {
-            var table = document.getElementById('dataTable');
-            var rows = table.getElementsByTagName('tr');
-            var csv = '';
-
-            // 헤더 부분 추가
-            var headerRow = rows[0];
-            var headerCells = headerRow.getElementsByTagName('th');
-            for (var h = 0; h < headerCells.length; h++) {
-                var headerCell = headerCells[h].innerText.replace(/"/g, '""');
-                csv += '"' + headerCell + '",';
-            }
-            csv += '\n';
-
-            // 행 데이터 추가
-            for (var i = 1; i < rows.length; i++) {
-                var row = rows[i];
-                var cells = row.getElementsByTagName('td');
-
-                for (var j = 0; j < cells.length; j++) {
-                    var cell = cells[j].innerText.replace(/"/g, '""');
-                    csv += '"' + cell + '",';
-                }
-
-                csv += '\n';
-            }
-            return csv;
-        }
-
-        $(document).ready(function() {
-            $('#downloadButton').on('click', function() {
-                var csvData = '\uFEFF' + convertTableToCSV();
-                var blob = new Blob([csvData], {type: 'text/csv;charset=utf-8;'});
-                var downloadLink = document.createElement('a');
-                downloadLink.setAttribute('href', URL.createObjectURL(blob));
-                downloadLink.setAttribute('download', '출하내역.csv');
-                downloadLink.style.display = 'none';
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-            });
-        });
-    </script>
+    <script src="/js/shipment.js"></script>
 
 </head>
 <body>
@@ -102,9 +58,10 @@
                         <table class="table table-bordered" id="dataTable">
                             <thead>
                             <tr>
+                                <th>순번</th>
                                 <th>수주 번호</th>
-                                <th>거래처</th>
                                 <th>Lot.no</th>
+                                <th>거래처</th>
                                 <th>품목명</th>
                                 <th>출하 수량</th>
                                 <th>납기일</th>
@@ -112,12 +69,13 @@
                             </thead>
                             <tbody>
                             <tr th:each="shipment : ${shipmentList}">
-                                <td th:text="${shipment.ordersId}">수주 번호</td>
-                                <td th:text="${shipment.company}">거래처</td>
+                                <td th:text="${shipment.id}">순번</td>
+                                <td th:text="${shipment.ordersNo}">수주 번호</td>
                                 <td th:text="${shipment.no}">Lot.no</td>
+                                <td th:text="${shipment.company}">거래처</td>
                                 <td th:text="${shipment.name}">품목명</td>
                                 <td th:text="${shipment.qtt}">출하 수량</td>
-                                <td th:text="${shipment.date}">납기일</td>
+                                <td th:text="${#temporals.format(shipment.date, 'yyyy-MM-dd HH:mm')}">납기일</td>
                             </tr>
                             </tbody>
                         </table>
@@ -153,7 +111,7 @@
                                 <td th:text="${shipment.no}">Lot.no</td>
                                 <td th:text="${shipment.name}">품목명</td>
                                 <td th:text="${shipment.qtt}">출하 수량</td>
-                                <td th:text="${shipment.date}">납기일</td>
+                                <td th:text="${#temporals.format(shipment.date, 'yyyy-MM-dd HH:mm')}">납기일</td>
                                 <td th:text="${shipment.name}">진행상황</td>
                             </tr>
                             </tbody>
