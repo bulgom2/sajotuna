@@ -37,23 +37,34 @@ public class PurchaseService {
 
     private final ProductRepository productRepository;
 
-//    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
-//
-//        List<PurchaseDTO> purchaseDTOList = purchaseTime(ordersDTO);
-//
-//        return purchaseDTO.get(0);
-//    }
+    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
+
+        List<PurchaseDTO> purchaseDTOList = purchaseTime(ordersDTO);
+
+        // 이름을 코드명으로 변경
+        Product product = productRepository.findByName(purchaseDTOList.get(0).getItem());
+        String productCode = product.getNo();
+        purchaseDTOList.get(0).setItem(productCode);
+
+        return purchaseDTOList.get(0);
+    }
 
 
-//    public void PurchaseSave(OrdersDTO ordersDTO){
-//        List<PurchaseDTO> purchaseDTO = purchaseTime(ordersDTO);
-//
-//
-//
-//    }
+    public void purchaseSave(OrdersDTO ordersDTO){
+        List<PurchaseDTO> purchaseDTOList = purchaseTime(ordersDTO);
+
+        for(PurchaseDTO purchaseDTO : purchaseDTOList){
+            Purchase purchase = purchaseDTO.createPurchase();
+
+            if(purchaseDTO.getQtt() != 0){
+                purchaseRepository.save(purchase);
+                stockService.stockSave(purchaseDTO);
+            }
+        }
+    }
 
     // 수주 날짜와 수주 수량 가져오기
-    public PurchaseDTO purchaseTime(OrdersDTO ordersDTO){
+    public List<PurchaseDTO> purchaseTime(OrdersDTO ordersDTO){
         // 1번 가져온다
 //        Orders orders = ordersRepository.findById(4L)
 
@@ -130,7 +141,6 @@ public class PurchaseService {
             stock4 = material4.getStock();
             min4 = material4.getMinorder();
             max4 = material4.getMaxorder();
-            System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ" + material4);
         } else {
             stock4 = 0.0;
         }
@@ -367,19 +377,19 @@ public class PurchaseService {
 
             purchaseDTOList.add(tempPurchaseDTO);
 
-            if(orderpro[i] != 0){
-                purchaseRepository.save(tempPurchaseDTO.createPurchase());
-
-                stockService.stockSave(tempPurchaseDTO);
-            }
+//            if(orderpro[i] != 0){
+//                purchaseRepository.save(tempPurchaseDTO.createPurchase());
+//
+//                stockService.stockSave(tempPurchaseDTO);
+//            }
         }
 
-        // 이름을 코드명으로 변경
-        Product product = productRepository.findByName(name[0]);
-        String productCode = product.getNo();
-        purchaseDTOList.get(0).setItem(productCode);
+//        // 이름을 코드명으로 변경
+//        Product product = productRepository.findByName(name[0]);
+//        String productCode = product.getNo();
+//        purchaseDTOList.get(0).setItem(productCode);
 
-        return purchaseDTOList.get(0);
+        return purchaseDTOList;
     }
 
 

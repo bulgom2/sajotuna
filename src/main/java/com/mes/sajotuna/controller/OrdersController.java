@@ -5,9 +5,8 @@ import com.mes.sajotuna.dto.PurchaseDTO;
 import com.mes.sajotuna.entity.Company;
 import com.mes.sajotuna.entity.Orders;
 import com.mes.sajotuna.entity.Purchase;
-import com.mes.sajotuna.repository.CompanyRepository;
-import com.mes.sajotuna.repository.OrdersRepository;
-import com.mes.sajotuna.repository.PurchaseRepository;
+import com.mes.sajotuna.entity.Record;
+import com.mes.sajotuna.repository.*;
 import com.mes.sajotuna.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,6 +35,10 @@ public class OrdersController {
 
     private final RecordService recordService;
 
+    private final PrecordRepository precordRepository;
+
+    private final RecordRepository recordRepository;
+
     private final CompanyRepository companyRepository;
 
     private final ManufactureService manufactureService;
@@ -58,7 +61,7 @@ public class OrdersController {
         ordersDTO = ordersService.ordersMakeCode(ordersDTO);
 
         if(ordersDTO.getDate().getDayOfWeek().getValue() <= 5){
-            PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO);
+            PurchaseDTO purchaseDTO = purchaseService.purchaseMain(ordersDTO);
             ordersService.updateShipDateByOrdersNo(ordersDTO.getOrdersNo(), manufactureService.expectedDate(purchaseDTO).getManufacture_outTime());
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
             System.out.println(purchaseDTO.getOrdersNo());
@@ -133,6 +136,10 @@ public class OrdersController {
             ordersRepository.delete(existingOrder);
             List<Purchase> purchase = purchaseRepository.findByOrdersNo(ordersNo);
             purchaseRepository.deleteAll(purchase);
+            List<Record> recordList = recordRepository.findByBeId(ordersNo);
+            recordRepository.deleteAll(recordList);
+            precordRepository.deleteByOrdersId(ordersNo);
+
         }
 
         return "success";
@@ -151,7 +158,9 @@ public class OrdersController {
 
         OrdersDTO ordersDTO1 = OrdersDTO.of(ordersRepository.findByNo(selectedNo));
 
-        PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDTO1);
+        PurchaseDTO purchaseDTO = purchaseService.purchaseMain(ordersDTO1);
+        purchaseService.purchaseSave(ordersDTO1);
+
         manufactureService.confirm(purchaseDTO);
 
         // Orders 테이블 조회

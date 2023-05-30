@@ -128,6 +128,8 @@ public class ManufactureServiceTest {
             for (int i = 0; i < ppList.size(); i++) {
                 System.out.println((i + 1) + "번째 전처리 시작 시간 : " + ppList.get(i).getManufacture_inTime().format(formatter) + " 작업량 : " + ppList.get(i).getManufacture_qtt() + "kg");
                 System.out.println((i + 1) + "번째 전처리 종료 시간 : " + ppList.get(i).getManufacture_outTime().format(formatter));
+                System.out.println((i + 1) + "번째 : " + ppList);
+
             }
             System.out.println(" ");
             //@@@@@@@@ 테스트 후 삭제 @@@@@@@@@//
@@ -139,6 +141,8 @@ public class ManufactureServiceTest {
 
             //ccList = extraction.extraction(ppList, EA1, EA2);
             ccList = extraction.extraction(ppList, MX1, MX2);
+            System.out.println("추출 : " + ccList);
+
 
             System.out.println();
 
@@ -252,7 +256,7 @@ public class ManufactureServiceTest {
         Manufacture manufacture = resultMS.dtoToEntity(resultMS);
         System.out.println("manufacture : "+manufacture);
 
-        manufactureRepository.save(manufacture);
+//        manufactureRepository.save(manufacture);
 
     }
 

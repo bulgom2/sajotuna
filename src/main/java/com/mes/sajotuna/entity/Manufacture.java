@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -44,9 +43,9 @@ public class Manufacture {
     @Column(name = "facility_id")
     private String facility_id; //설비 명
 
-    @Column(name = "manufacture_status")
-    @ColumnDefault("'N'")
-    private String status;
+//    @Column(name = "manufacture_status")
+//    @ColumnDefault("'N'")
+//    private String status;
 
 
     public Manufacture() {
@@ -54,7 +53,7 @@ public class Manufacture {
     }
 
     @Builder
-    public Manufacture(Long manufacture_id, String manufacture_item, String process_id, LocalDateTime manufacture_inTime, LocalDateTime manufacture_outTime, long manufacture_qtt, String orders_no, String facility_id, String status) {
+    public Manufacture(Long manufacture_id, String manufacture_item, String process_id, LocalDateTime manufacture_inTime, LocalDateTime manufacture_outTime, long manufacture_qtt, String orders_no, String facility_id) {
         this.manufacture_id = manufacture_id;
         this.manufacture_item = manufacture_item;
         this.process_id = process_id;
@@ -63,7 +62,7 @@ public class Manufacture {
         this.manufacture_qtt = manufacture_qtt;
         this.orders_no = orders_no;
         this.facility_id = facility_id;
-        this.status = status;
+//        this.status = status;
     }
 
 
