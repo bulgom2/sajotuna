@@ -18,7 +18,7 @@ public class ManufactureRepostoryTest {
     void Test6() {
         Manufacture manufacture = new Manufacture();
 
-        manufacture.setManufacture_id("dd");
+//        manufacture.setManufacture_id("dd");
 
         manufacture.setManufacture_qtt(550L);
         manufacture.setManufacture_item("jelly");

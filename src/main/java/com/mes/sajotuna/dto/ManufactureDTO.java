@@ -61,7 +61,6 @@ public class ManufactureDTO implements Cloneable{
         return modelMapper.map(manufacture, ManufactureDTO.class);
     }
 
-
     public Manufacture dtoToEntity(ManufactureDTO dto){
 
         Manufacture entity = Manufacture.builder()

@@ -51,6 +51,7 @@ public class PreProcessing {
 
             processLastTime = ppList.get(i).getManufacture_outTime();
             workTime = ppList.get(i).getManufacture_outTime();
+
         }
 
 
@@ -79,7 +80,7 @@ public class PreProcessing {
     public ManufactureDTO measureSetTime(LocalDateTime now, ManufactureDTO manufactureDTO) {
 
         manufactureDTO.setManufacture_inTime(now.plusMinutes(20));
-        manufactureDTO.setManufacture_outTime(now.plusSeconds((long) (1200+manufactureDTO.getManufacture_qtt()*3.6)));
+        manufactureDTO.setManufacture_outTime(now.plusMinutes(60));
         manufactureDTO.setProcess_id("PP");
         manufactureDTO.setThisLot("PP00-"+manufactureDTO.getManufacture_inTime());
 
