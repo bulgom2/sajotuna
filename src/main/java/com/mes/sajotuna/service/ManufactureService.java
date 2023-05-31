@@ -1,7 +1,6 @@
 package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.ManufactureDTO;
-import com.mes.sajotuna.dto.PrecordDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
 import com.mes.sajotuna.entity.Manufacture;
 import com.mes.sajotuna.process.*;
@@ -44,8 +43,10 @@ public class ManufactureService {
 
         LocalDateTime MX1 = ManufactureDTO.of(manufactureRepository.findLatestManufactureByFacility_id("MX01")).getManufacture_outTime();
         LocalDateTime MX2 = ManufactureDTO.of(manufactureRepository.findLatestManufactureByFacility_id("MX02")).getManufacture_outTime();
+
         LocalDateTime FI1;
         LocalDateTime FI2;
+
         if(purchaseDTO.getItem().equals("YBC02") || purchaseDTO.getItem().equals("HMN02")){
             FI1 = ManufactureDTO.of(manufactureRepository.findLatestManufactureByFacility_id("FI01")).getManufacture_outTime();
             FI2 = ManufactureDTO.of(manufactureRepository.findLatestManufactureByFacility_id("FI02")).getManufacture_outTime();
