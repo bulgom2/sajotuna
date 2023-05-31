@@ -88,41 +88,41 @@
             </div> <!-- /card shadow mb-4 -->
         </div> <!-- /record-content-2 -->
 
-        <div class="record-content-3">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">상세 이력 조회</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive" id="recordListContainer2">
-                        <table class="table table-bordered" id="dataTable2">
-                            <thead>
-                            <tr>
-                                <th>공정</th>
-                                <th>투입량</th>
-                                <th>시작 시간</th>
-                                <th>종료 시간</th>
-                                <th>이전 로트번호</th>
-                                <th>현재 로트번호</th>
-                                <th>진행 상황</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="record : ${recordList}">
-                                <td th:text="${record.processNo}">공정명</td>
-                                <td th:text="${record.qtt}">투입량</td>
-                                <td th:text="${#temporals.format(record.startTime, 'yyyy-MM-dd HH:mm')}">시작 시간</td>
-                                <td th:text="${#temporals.format(record.endTime, 'yyyy-MM-dd HH:mm')}">종료 시간</td>
-                                <td th:text="${record.beId}"></td>
-                                <td th:text="${record.no}">Lot.no</td>
-                                <td th:text="${record.status}">진행 상황</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div> <!-- /table-responsive -->
-                </div> <!-- /card-body -->
-            </div> <!-- /card shadow mb-4 -->
-        </div> <!-- /record-content-3 -->
+<!--        <div class="record-content-3">-->
+<!--            <div class="card shadow mb-4">-->
+<!--                <div class="card-header py-3">-->
+<!--                    <h6 class="m-0 font-weight-bold text-primary">상세 이력 조회</h6>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div class="table-responsive" id="recordListContainer2">-->
+<!--                        <table class="table table-bordered" id="dataTable2">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>공정</th>-->
+<!--                                <th>투입량</th>-->
+<!--                                <th>시작 시간</th>-->
+<!--                                <th>종료 시간</th>-->
+<!--                                <th>이전 로트번호</th>-->
+<!--                                <th>현재 로트번호</th>-->
+<!--                                <th>진행 상황</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="record : ${recordList}">-->
+<!--                                <td th:text="${record.processNo}">공정명</td>-->
+<!--                                <td th:text="${record.qtt}">투입량</td>-->
+<!--                                <td th:text="${#temporals.format(record.startTime, 'yyyy-MM-dd HH:mm')}">시작 시간</td>-->
+<!--                                <td th:text="${#temporals.format(record.endTime, 'yyyy-MM-dd HH:mm')}">종료 시간</td>-->
+<!--                                <td th:text="${record.beId}"></td>-->
+<!--                                <td th:text="${record.no}">Lot.no</td>-->
+<!--                                <td th:text="${record.status}">진행 상황</td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div> &lt;!&ndash; /table-responsive &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; /card-body &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; /card shadow mb-4 &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; /record-content-3 &ndash;&gt;-->
     </div> <!-- /page-content-wrapper -->
 </div> <!-- /container -->
 
