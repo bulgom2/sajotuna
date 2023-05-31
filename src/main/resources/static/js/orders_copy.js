@@ -105,20 +105,11 @@ $(document).ready(function () {
         }
 
         //statusCell.text('확정');
-        var rowData = {
-               ordersNo: selectedRow.find('td:eq(0)').text().trim(),
-               item: selectedRow.find('td:eq(1)').text().trim(),
-               qtt: selectedRow.find('td:eq(2)').text().trim(),
-               company: selectedRow.find('td:eq(3)').text().trim(),
-               date: new Date(selectedRow.find('td:eq(4)').text().trim()).toISOString(),
-//               shipDate: new Date(selectedRow.find('td:eq(5)').text().trim()).toISOString(),
-               status: selectedRow.find('td:eq(6)').text().trim()
-           };
-
-           if (rowData.ordersNo === '') {
-               swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
-               return;
-           }
+        var ordersNo = selectedRow.find('td:eq(0)').text().trim();
+        if (ordersNo === '') {
+            swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
+            return;
+        }
 
 
         swal({
@@ -132,7 +123,7 @@ $(document).ready(function () {
                 $.ajax({
                     url: '/confirm',
                     method: 'POST',
-                    data: JSON.stringify(rowData),
+                    data: JSON.stringify({ordersNo: ordersNo}),
                     contentType: 'application/json',
                     success: function (response) {
                         console.log('수주가 확정되었습니다.');

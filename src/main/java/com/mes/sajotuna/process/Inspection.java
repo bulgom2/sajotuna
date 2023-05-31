@@ -46,7 +46,10 @@ public class Inspection {
         }
 
         for(int i = 0; i < fiListClone.size(); i++){
-            isList.add(result(fiListClone.get(i), fiListClone.get(i).getManufacture_outTime(), processLastTime));
+            ManufactureDTO thisDTO = new ManufactureDTO();
+            thisDTO = result(fiListClone.get(i), fiListClone.get(i).getManufacture_outTime(), processLastTime);
+            thisDTO.setThisLot("IS0"+i+"-"+thisDTO.getManufacture_inTime());
+            isList.add(thisDTO);
         }
 
 
@@ -81,7 +84,7 @@ public class Inspection {
         manufactureDTO.setProcess_id("IS");
         manufactureDTO.setFacility_id("IS00");
         manufactureDTO.setBeforeLot(manufactureDTO.getThisLot());
-        manufactureDTO.setThisLot("IS-"+manufactureDTO.getManufacture_inTime());
+//        manufactureDTO.setThisLot("IS-"+manufactureDTO.getManufacture_inTime());
 
         return manufactureDTO;
     }

@@ -31,7 +31,7 @@
 
     <script src="/js/orders.js"></script>
 
-    <style>
+<style>
         .modal {
             align-items: center;
             justify-content: center;
@@ -67,6 +67,9 @@
               return false;
           }
 
+
+
+
           // AJAX 요청 보내기
           $.ajax({
             url: '/orders/submit',
@@ -86,6 +89,8 @@
             }
           });
         }
+
+
     </script>
 </head>
 <body>
@@ -131,7 +136,7 @@
                             <table class="table table-bordered" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <!--                                    <th>순번</th>-->
+<!--                                    <th>순번</th>-->
                                     <th>수주 번호</th>
                                     <th>제품명</th>
                                     <th>수량</th>
@@ -143,7 +148,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="orders : ${ordersList}">
-                                    <!--                                    <td th:text="${orders.id}">수주ID</td>-->
+<!--                                    <td th:text="${orders.id}">수주ID</td>-->
                                     <td th:text="${orders.no}">수주번호</td>
                                     <td th:text="${orders.item}">제품명</td>
                                     <td th:text="${orders.qtt}">수량</td>
@@ -195,13 +200,13 @@
                             </div>
                         </div>
                     </div>
-                    <!--                    <iframe src="/orders/submit" style="width:100%; height:100%; border:none;"></iframe>-->
+<!--                    <iframe src="/orders/submit" style="width:100%; height:100%; border:none;"></iframe>-->
                 </div>
 
                 <!-- Modal Footer -->
-                <!--                <div class="modal-footer" style="width:100%;">-->
-                <!--                    <iframe src="/orders/submit" style="width:100%; height:100%; border:none;"></iframe>-->
-                <!--                </div>-->
+<!--                <div class="modal-footer" style="width:100%;">-->
+<!--                    <iframe src="/orders/submit" style="width:100%; height:100%; border:none;"></iframe>-->
+<!--                </div>-->
 
                 <div class="orders-modal-btn">
                     <button id="save" onclick="closeModal()">저장</button>

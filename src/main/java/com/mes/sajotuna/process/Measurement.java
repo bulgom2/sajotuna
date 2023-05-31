@@ -52,7 +52,7 @@ public class Measurement {
         thisManufactureDTO.setManufacture_inTime(now.plusMinutes(20));
         thisManufactureDTO.setManufacture_outTime(now.plusMinutes(50));
         thisManufactureDTO.setProcess_id("MS");
-        thisManufactureDTO.setThisLot("MS-"+this.thisManufactureDTO.getManufacture_inTime()); // 현재 로트
+        thisManufactureDTO.setThisLot("MS00-"+this.thisManufactureDTO.getManufacture_inTime()); // 현재 로트
     }
 
     public void checkTime(LocalDateTime time){

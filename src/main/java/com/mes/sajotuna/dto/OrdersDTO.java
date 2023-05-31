@@ -2,11 +2,13 @@ package com.mes.sajotuna.dto;
 
 import com.mes.sajotuna.entity.Orders;
 import lombok.Data;
-
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 // 수주관리
 @Data
@@ -35,6 +37,8 @@ public class OrdersDTO {
 
     private String ordersNo;
 
+//    private String
+
 //    public enum OrdersStatus {
 //        IN_PROGRESS, COMPLETED  // 진행중, 완료
 //    }
@@ -51,4 +55,16 @@ public class OrdersDTO {
     public static OrdersDTO of(Orders orders){
         return modelMapper.map(orders, OrdersDTO.class);
     }
+
+    public static List<OrdersDTO> of(List<Orders> orders){
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(orders, new TypeToken<List<OrdersDTO>>() {}.getType());
+    }
+
+    public static List<Orders> toOrders(List<OrdersDTO> ordersDTOList){
+        return ordersDTOList.stream()
+                .map(OrdersDTO::createOrders)
+                .collect(Collectors.toList());
+    }
+
 }

@@ -1,19 +1,29 @@
-package com.mes.sajotuna.calculation;
-
+package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.ManufactureDTO;
 import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
+import com.mes.sajotuna.entity.Manufacture;
 import com.mes.sajotuna.process.*;
+import com.mes.sajotuna.repository.ManufactureRepository;
+import lombok.extern.log4j.Log4j2;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+@Log4j2
+@SpringBootTest
+public class ManufactureServiceTest {
 
-public class measure {
+    @Autowired
+    private ManufactureRepository manufactureRepository;
 
-    public static void main(String[] args) {
+    @Test
+    public void expectedDate(){
 
         ManufactureDTO resultMS;
         List<ManufactureDTO> ppList = new ArrayList<>();
@@ -118,6 +128,8 @@ public class measure {
             for (int i = 0; i < ppList.size(); i++) {
                 System.out.println((i + 1) + "번째 전처리 시작 시간 : " + ppList.get(i).getManufacture_inTime().format(formatter) + " 작업량 : " + ppList.get(i).getManufacture_qtt() + "kg");
                 System.out.println((i + 1) + "번째 전처리 종료 시간 : " + ppList.get(i).getManufacture_outTime().format(formatter));
+                System.out.println((i + 1) + "번째 : " + ppList);
+
             }
             System.out.println(" ");
             //@@@@@@@@ 테스트 후 삭제 @@@@@@@@@//
@@ -129,6 +141,8 @@ public class measure {
 
             //ccList = extraction.extraction(ppList, EA1, EA2);
             ccList = extraction.extraction(ppList, MX1, MX2);
+            System.out.println("추출 : " + ccList);
+
 
             System.out.println();
 
@@ -223,9 +237,28 @@ public class measure {
         for(int i = 0; i < pkList.size(); i++){
             System.out.println("pkList ("+(i+1)+") 번째 : "+pkList.get(i));
         }
+        System.out.println();
+
+        List<Manufacture> manufactureList = new ArrayList<>();
+        for(int i = 0; i < pkList.size(); i++){
+            manufactureList.add(pkList.get(i).dtoToEntity(pkList.get(i)));
+        }
+
+        System.out.println("manufactureList : "+manufactureList);
 
 
+
+        ManufactureDTO MD = ManufactureDTO.of(manufactureRepository.findLatestManufactureByProcessId("MS"));
+
+
+        System.out.println("MD : "+MD);
+
+        Manufacture manufacture = resultMS.dtoToEntity(resultMS);
+        System.out.println("manufacture : "+manufacture);
+
+//        manufactureRepository.save(manufacture);
 
     }
+
 
 }

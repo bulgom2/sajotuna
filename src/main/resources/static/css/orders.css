@@ -137,6 +137,7 @@ tbody tr:hover {
 }
 
 /* 제품명 */
+/*
 .orders_item {
     margin-left : 20px;
     font-size: 25px;
@@ -152,6 +153,7 @@ tbody tr:hover {
     font-size : 25px;
 
 }
+*/
 
 /* 제품 코드 */
 .orders_code{
@@ -187,6 +189,7 @@ tbody tr:hover {
 }
 
 /* 진행 상태 */
+/*
 .orders_qtt {
     display : flex;
     height : 40px;
@@ -202,4 +205,4 @@ tbody tr:hover {
     font-size : 25px;
 }
 
-
+*/
