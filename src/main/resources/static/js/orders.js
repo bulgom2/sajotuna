@@ -71,6 +71,7 @@ $(document).ready(function () {
     // 이벤트 바인딩을 별도의 함수로 이동합니다.
     function bindRowClickEvent() {
         $('#dataTable tbody tr').off('click');
+
         $(document).on('click', '#dataTable tbody tr', function () {
             if (selectedRow) {
                 selectedRow.removeClass('selected');
@@ -120,7 +121,6 @@ $(document).ready(function () {
                return;
            }
 
-
         swal({
             title: '확정',
             text: '수주를 확정하시겠습니까?',
@@ -144,6 +144,7 @@ $(document).ready(function () {
 
                         $('#delete').prop('disabled', true);
                         swal('성공', '수주가 확정되었습니다.', 'success');
+
 
                     },
                     error: function (xhr, status, error) {
@@ -185,7 +186,6 @@ $(document).ready(function () {
                     swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
                     return;
                 }
-
                 deleteOrder(ordersNo);
             }
         });
