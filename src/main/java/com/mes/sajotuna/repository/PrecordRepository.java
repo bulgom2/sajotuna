@@ -4,4 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.mes.sajotuna.entity.Precord;
 
 public interface PrecordRepository extends JpaRepository<Precord, Long> {
+    void deleteByOrdersId(String ordersNo);
+
+    Precord findByOrdersId(String ordersNo);
 }

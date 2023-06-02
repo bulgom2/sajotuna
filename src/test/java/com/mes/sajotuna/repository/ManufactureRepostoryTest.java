@@ -1,5 +1,6 @@
 package com.mes.sajotuna.repository;
 
+import com.mes.sajotuna.dto.ManufactureDTO;
 import com.mes.sajotuna.entity.Manufacture;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class ManufactureRepostoryTest {
     void Test6() {
         Manufacture manufacture = new Manufacture();
 
-        manufacture.setManufacture_id("dd");
+//        manufacture.setManufacture_id("dd");
 
         manufacture.setManufacture_qtt(550L);
         manufacture.setManufacture_item("jelly");
@@ -31,4 +32,24 @@ public class ManufactureRepostoryTest {
 
         System.out.println(manufacture);
     }
+
+    @Test
+
+    void Test1() {
+       Manufacture manufacture =  manufactureRepository.findLatestManufactureByProcessId("PP");
+        System.out.println("manufacture : "+manufacture);
+    }
+    @Test
+    void Test2() {
+        Manufacture manufacture =  manufactureRepository.findLatestManufactureByFacility_id("CC01");
+        System.out.println("manufacture : "+manufacture);
+
+        ManufactureDTO manufactureDTO = ManufactureDTO.of(manufacture);
+        System.out.println("ManufactureDTO : "+manufactureDTO);
+
+
+
+
+    }
+
 }

@@ -35,12 +35,12 @@ class PurchaseServiceTests {
         ordersRepository.save(orders);
 
         if(ordersDto.getDate().getDayOfWeek().getValue() <= 5){
-            PurchaseDTO purchaseDTO = purchaseService.purchaseTime(ordersDto);
+            PurchaseDTO purchaseDTO = purchaseService.purchaseMain(ordersDto);
             System.out.println("발주 완료 시간 : " + purchaseDTO.getShipDate());
         } else{
             System.out.println("발주가 진행되지 않았습니다.");
 
         }
-        
+
     }
 }

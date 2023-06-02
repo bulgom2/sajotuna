@@ -2,10 +2,7 @@ package com.mes.sajotuna.service;
 
 import com.mes.sajotuna.dto.OrdersDTO;
 import com.mes.sajotuna.dto.PurchaseDTO;
-import com.mes.sajotuna.entity.Bom;
-import com.mes.sajotuna.entity.Company;
-import com.mes.sajotuna.entity.Material;
-import com.mes.sajotuna.entity.Purchase;
+import com.mes.sajotuna.entity.*;
 import com.mes.sajotuna.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -38,30 +35,36 @@ public class PurchaseService {
 
     private final StockService stockService;
 
+    private final ProductRepository productRepository;
+
+    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
+
+        List<PurchaseDTO> purchaseDTOList = purchaseTime(ordersDTO);
+
+        // 이름을 코드명으로 변경
+        Product product = productRepository.findByName(purchaseDTOList.get(0).getItem());
+        String productCode = product.getNo();
+        purchaseDTOList.get(0).setItem(productCode);
+
+        return purchaseDTOList.get(0);
+    }
 
 
-//    public PurchaseDTO purchaseMain(OrdersDTO ordersDTO){
-//        PurchaseDTO purchaseDTO = new PurchaseDTO();
-//
-//        Orders orders = ordersRepository.findById(1L)
-//                .orElseThrow(EntityNotFoundException::new);
-//
-//        System.out.println("수주 entity : " + orders);
-//
-//        OrdersDTO ordersDto = OrdersDTO.of(orders);
-//
-//        purchaseDTO.setDate(ordersDTO.getDate());
-//        purchaseDTO.setShipDate(purchaseTime(ordersDTO));
-//        purchaseDTO.setOrdersNo(ordersDTO.getNo());
-//
-//        purchaseDTO.setOrdersNo(ordersDTO.getNo());
-//
-//
-//        return purchaseDTO;
-//    }
+    public void purchaseSave(OrdersDTO ordersDTO){
+        List<PurchaseDTO> purchaseDTOList = purchaseTime(ordersDTO);
+
+        for(PurchaseDTO purchaseDTO : purchaseDTOList){
+            Purchase purchase = purchaseDTO.createPurchase();
+
+            if(purchaseDTO.getQtt() != 0){
+                purchaseRepository.save(purchase);
+                stockService.stockSave(purchaseDTO);
+            }
+        }
+    }
 
     // 수주 날짜와 수주 수량 가져오기
-    public PurchaseDTO purchaseTime(OrdersDTO ordersDTO){
+    public List<PurchaseDTO> purchaseTime(OrdersDTO ordersDTO){
         // 1번 가져온다
 //        Orders orders = ordersRepository.findById(4L)
 
@@ -124,6 +127,7 @@ public class PurchaseService {
 
         String name[] = new String[] {bom.getMaterial1(), bom.getMaterial2(), bom.getMaterial3(), bom.getMaterial4(), "박스"};
 
+
         Material material1 = materialRepository.findByName(bom.getMaterial1());
         Material material2 = materialRepository.findByName(bom.getMaterial2());
         Material material3 = materialRepository.findByName(bom.getMaterial3());
@@ -137,7 +141,6 @@ public class PurchaseService {
             stock4 = material4.getStock();
             min4 = material4.getMinorder();
             max4 = material4.getMaxorder();
-            System.out.println("ㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱㄱ" + material4);
         } else {
             stock4 = 0.0;
         }
@@ -374,15 +377,19 @@ public class PurchaseService {
 
             purchaseDTOList.add(tempPurchaseDTO);
 
-            if(orderpro[i] != 0){
-                purchaseRepository.save(tempPurchaseDTO.createPurchase());
-
-                stockService.stockSave(tempPurchaseDTO);
-
-            }
+//            if(orderpro[i] != 0){
+//                purchaseRepository.save(tempPurchaseDTO.createPurchase());
+//
+//                stockService.stockSave(tempPurchaseDTO);
+//            }
         }
 
-        return purchaseDTOList.get(0);
+//        // 이름을 코드명으로 변경
+//        Product product = productRepository.findByName(name[0]);
+//        String productCode = product.getNo();
+//        purchaseDTOList.get(0).setItem(productCode);
+
+        return purchaseDTOList;
     }
 
 

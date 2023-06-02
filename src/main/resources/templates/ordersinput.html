@@ -17,49 +17,45 @@
 
     <script>
         function closeModal() {
-         // 모달창 닫기
-        <!--  $('#myModal').modal('hide');-->
-
-          // 데이터 가져오기
-          var company = $('#orders_company').val();
-          var item = $('#orders_item').val();
-          var qtt = $('#orders_qtt').val();
-
-          if(qtt <= 0){
-<!--            swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');-->
-            alert("0보다 큰 값을 입력해주세요!");
-            window.parent.swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');
-
-            return false;
-          }
-
-          // AJAX 요청 보내기
-          $.ajax({
-            url: '/orders/submit',
-            method: 'POST',
-            data: {
-              company: company,
-              item: item,
-              qtt: qtt
-            },
-            success: function(response) {
-              // 성공적으로 요청이 처리되면 부모 창을 다른 경로로 이동시킴
-              window.parent.location.href = 'http://localhost:8134/orders';
-            },
-            error: function(error) {
-              // 요청이 실패한 경우 에러 처리
-              console.error(error);
-            }
-          });
+            var modalElement = window.parent.document.getElementById('myModal');
+            var modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
         }
 
+        function saveModal() {
+            // 모달창 닫기
+            <!--  $('#myModal').modal('hide');-->
 
-<!--        function closeModal2() {-->
-// <!--         // 모달창 닫기-->
-<!--&lt;!&ndash;          $('#myModal').modal('close');&ndash;&gt;-->
-// <!--          window.parent.location.href = 'http://localhost:8080/orders' ;-->
+            // 데이터 가져오기
+            var company = $('#orders_company').val();
+            var item = $('#orders_item').val();
+            var qtt = $('#orders_qtt').val();
 
-<!--        }-->
+            if (qtt <= 0) {
+                <!--            swal('알림', '0보다 큰 값을 입력해주세요!', 'warning');-->
+
+                // AJAX 요청 보내기
+                $.ajax({
+                    url: '/orders/submit',
+                    method: 'POST',
+                    data: {
+                        company: company,
+                        item: item,
+                        qtt: qtt
+                    },
+                    success: function (response) {
+
+                        closeModal();
+                        // 성공적으로 요청이 처리되면 부모 창을 다른 경로로 이동시킴
+                        window.parent.location.href = 'http://localhost:8134/orders';
+                    },
+                    error: function (error) {
+                        // 요청이 실패한 경우 에러 처리
+                        console.error(error);
+                    }
+                });
+            }
+        }
     </script>
 </head>
 <body>
@@ -102,8 +98,8 @@
             </div>
 
             <div class="orders-modal-btn">
-                <button id="save" onclick="closeModal()">저장</button>
-                <button id="close" data-dismiss="modal" type="button" onclick="closeModal2()">닫기</button>
+                <button id="save" onclick="saveModal()">저장</button>
+                <button id="close" data-dismiss="modal" type="button">닫기</button>
             </div>
 <!--        </form>-->
     </div>

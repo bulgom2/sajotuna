@@ -71,7 +71,6 @@ $(document).ready(function () {
     // 이벤트 바인딩을 별도의 함수로 이동합니다.
     function bindRowClickEvent() {
         $('#dataTable tbody tr').off('click');
-
         $(document).on('click', '#dataTable tbody tr', function () {
             if (selectedRow) {
                 selectedRow.removeClass('selected');
@@ -106,20 +105,12 @@ $(document).ready(function () {
         }
 
         //statusCell.text('확정');
-        var rowData = {
-               ordersNo: selectedRow.find('td:eq(0)').text().trim(),
-               item: selectedRow.find('td:eq(1)').text().trim(),
-               qtt: selectedRow.find('td:eq(2)').text().trim(),
-               company: selectedRow.find('td:eq(3)').text().trim(),
-               date: new Date(selectedRow.find('td:eq(4)').text().trim()).toISOString(),
-//               shipDate: new Date(selectedRow.find('td:eq(5)').text().trim()).toISOString(),
-               status: selectedRow.find('td:eq(6)').text().trim()
-           };
+        var ordersNo = selectedRow.find('td:eq(0)').text().trim();
+        if (ordersNo === '') {
+            swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
+            return;
+        }
 
-           if (rowData.ordersNo === '') {
-               swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
-               return;
-           }
 
         swal({
             title: '확정',
@@ -132,7 +123,7 @@ $(document).ready(function () {
                 $.ajax({
                     url: '/confirm',
                     method: 'POST',
-                    data: JSON.stringify(rowData),
+                    data: JSON.stringify({ordersNo: ordersNo}),
                     contentType: 'application/json',
                     success: function (response) {
                         console.log('수주가 확정되었습니다.');
@@ -144,7 +135,6 @@ $(document).ready(function () {
 
                         $('#delete').prop('disabled', true);
                         swal('성공', '수주가 확정되었습니다.', 'success');
-
 
                     },
                     error: function (xhr, status, error) {
@@ -186,6 +176,7 @@ $(document).ready(function () {
                     swal('알림', '수주 번호를 가져올 수 없습니다.', 'warning');
                     return;
                 }
+
                 deleteOrder(ordersNo);
             }
         });

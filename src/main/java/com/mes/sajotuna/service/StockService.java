@@ -38,6 +38,13 @@ public class StockService {
 
         stockRepository.save(stock);
 
+        stockDTO.setStatus("출고");
+        stockDTO.setQtt(purchaseDTO.getQtt() * (-1));
+
+        stock = stockDTO.createStock();
+
+        stockRepository.save(stock);
+
         return stockDTO;
     }
 
