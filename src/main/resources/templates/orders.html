@@ -109,23 +109,23 @@
                         <!--                        <button id="register" data-toggle="modal" data-target="#myModal">수주 등록</button>-->
                         <button data-target="#myModal" data-toggle="modal" id="register" type="button">수주 등록</button>
 
-                    </div>
-                </div> <!-- content-header -->
-            </div> <!-- content-desc -->
+                        </div>
+                    </div> <!-- content-header -->
+                </div> <!-- content-desc -->
 
-            <div class="orders-content-2">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">수주 현황</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive" id="ordersListContainer">
-                            <form th:method="get" th:action="@{/orders}">
-                                <label for="startDate">Start Date:</label>
-                                <input type="date" id="startDate" name="startDate" required th:value="${startDate != null ? startDate : ''}">
-                                <label for="endDate">End Date:</label>
-                                <input type="date" id="endDate" name="endDate" required th:value="${endDate != null ? endDate : ''}">
-                                <button type="submit" class="btn">Filter</button>
+                <div class="orders-content-2">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">수주 현황</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" id="ordersListContainer">
+                                <form th:method="get" th:action="@{/orders}">
+                                    <label for="startDate">Start Date:</label>
+                                    <input type="date" id="startDate" name="startDate" required th:value="${startDate != null ? startDate : ''}">
+                                    <label for="endDate">End Date:</label>
+                                    <input type="date" id="endDate" name="endDate" required th:value="${endDate != null ? endDate : ''}">
+                                    <button type="submit" class="btn">Filter</button>
                                 <a th:href="@{/orders}" class="btn">초기화</a>
                             </form>
                             <table class="table table-bordered" id="dataTable">

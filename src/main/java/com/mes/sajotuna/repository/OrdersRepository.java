@@ -20,7 +20,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
     // 수주번호로 찾기
     Orders findByNo(String selectedNo);
-
     // 날짜 필터링
     List<Orders> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
